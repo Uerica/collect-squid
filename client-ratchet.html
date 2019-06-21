@@ -4,28 +4,102 @@
     <title>Ratchet Client</title>
     <!-- 要加chartset=utf-8 這樣如果html中有寫中文，傳送時編碼(encoding)才會正常 -->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+
+    .chat{
+        display: flex;
+    }
+
+    .chat_area{
+        width: 300px;
+        height: 500px;
+        background-color: #abc;
+    }
+    .friend_list{
+        width: 300px;
+        height: 500px;
+        background-color: pink;
+        box-sizing: border-box;
+        padding: 5px;
+    }
+
+    .friend_list .item{
+        width: 100%;
+        height: 50px;
+        background-color: #ccc;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .friend_list .avatar img{
+        width:30px;
+    }
+
+    .friend_list .online_status span{
+        width: 10px;
+        height: 10px;
+        background-color: rgb(119, 238, 119);
+        border-radius: 50%;
+        display: inline-block;
+    }
+
+    .friend_list .visit_icon{
+        width: 30px;
+        height: 30px;
+        background-color: yellow;
+    }
+
+    .friend_list .more_icon{
+        width: 30px;
+        height: 30px;
+        background-color: yellow;
+        border-radius: 50%;
+    }
+    
+    
+    </style>
 </head>
 <body>
 
-<input type="button" name="chat" value="private chat" onclick="chat_to_someone('curtains','hihi')">
-<input type="button" name="chat" value="chat to all" onclick="chat_to_all('yoyo')">
+<div class="chat">
+<div class="chat_area"></div>
+<div class="friend_list"></div>
+</div>
+
+<div>
+    輸入名稱:<input type="text" id="username">
+    <input type="button" name="" id="" value="送出" onclick="login()">
+</div>
+
+
+<!-- <input type="button" name="chat" value="private chat" onclick="chat_to_someone('curtains','hihi')">
+<input type="button" name="chat" value="chat to all" onclick="chat_to_all('yoyo')"> -->
 
 <script language="javascript"> 
     // Then some JavaScript in the browser:
     var conn_chat = new WebSocket('ws://localhost:8080/chat');
-    var names = ["ninja", "chair", "pancake", "statue", "unicorn", "rainbows", "laser", "senor", "bunny", "captain", "nibblets", "cupcake", "carrot", "gnomes", "glitter", "potato", "salad", "toejam", "curtains", "beets", "toilet", "exorcism", "stick figures", "mermaid eggs", "sea barnacles", "dragons", "jellybeans", "snakes", "dolls", "bushes", "cookies", "apples", "ice cream", "ukulele", "kazoo", "banjo", "opera singer", "circus", "trampoline", "carousel", "carnival", "locomotive", "hot air balloon", "praying mantis", "animator", "artisan", "artist", "colorist", "inker", "coppersmith", "director", "designer", "flatter", "stylist", "leadman", "limner", "make-up artist", "model", "musician", "penciller", "producer", "scenographer", "set decorator", "silversmith", "teacher", "auto mechanic", "beader", "bobbin boy", "clerk of the chapel", "filling station attendant", "foreman", "maintenance engineering", "mechanic", "miller", "moldmaker", "panel beater", "patternmaker", "plant operator", "plumber", "sawfiler", "shop foreman", "soaper", "stationary engineer", "wheelwright", "woodworkers"];
-    var user_id = names[Math.floor(Math.random() * names.length)];
-    // var user_id = "uerica";
+    // var names = ["ninja", "chair", "pancake", "statue", "unicorn", "rainbows", "laser", "senor", "bunny", "captain", "nibblets", "cupcake", "carrot", "gnomes", "glitter", "potato", "salad", "toejam", "curtains", "beets", "toilet", "exorcism", "stick figures", "mermaid eggs", "sea barnacles", "dragons", "jellybeans", "snakes", "dolls", "bushes", "cookies", "apples", "ice cream", "ukulele", "kazoo", "banjo", "opera singer", "circus", "trampoline", "carousel", "carnival", "locomotive", "hot air balloon", "praying mantis", "animator", "artisan", "artist", "colorist", "inker", "coppersmith", "director", "designer", "flatter", "stylist", "leadman", "limner", "make-up artist", "model", "musician", "penciller", "producer", "scenographer", "set decorator", "silversmith", "teacher", "auto mechanic", "beader", "bobbin boy", "clerk of the chapel", "filling station attendant", "foreman", "maintenance engineering", "mechanic", "miller", "moldmaker", "panel beater", "patternmaker", "plant operator", "plumber", "sawfiler", "shop foreman", "soaper", "stationary engineer", "wheelwright", "woodworkers"];
+    // var user_id = names[Math.floor(Math.random() * names.length)];
+    var user_id;
 
     conn_chat.onopen = function(e) { 
-        // 一登入，我就告訴server我的user_id
-        //座標
+        console.log('已連到伺服器');
+    };
+
+    function login() {
+        // 告訴server我的user_id
+        var user_id = document.getElementById('username').value;
         conn_chat.send(
             JSON.stringify(
                 { "msg_type": "LOGIN", "user_id": user_id }
                 )
-            ); 
-
+            );  
+            
         conn_chat.send(
             JSON.stringify(
                 {
@@ -34,16 +108,7 @@
                 }
             )
         )
-
-        conn_chat.send(
-            JSON.stringify(
-                {
-                    "msg_type": "GET_USERS_POSITION",
-                    "user_id": user_id
-                }
-            )
-        )
-    };
+    }
 
     conn_chat.onmessage = function(e) { 
         // 收到server傳過來的訊息
@@ -57,12 +122,36 @@
                 break;
             case 'ONLINE_USERS':
                 console.log('更新目前有哪些人在線上', resp_obj.users);
+                for(var user in resp_obj.users) {
+                    document.getElementsByClassName('friend_list')[0].innerHTML += '\
+                    <div class="item" id="friend_item_'+resp_obj.users[user]+'">\
+                        <div class="avatar">\
+                            <img src="img/a.jpg" alt="">\
+                        </div>\
+                        <div class="username">'+resp_obj.users[user]+'</div>\
+                        <div class="online_status"><span></span></div>\
+                        <div class="visit_icon"></div>\
+                        <div class="more_icon"></div>\
+                    </div>\
+                    ';
+                }
                 break;
             case 'USER_OFFLINE':
                 console.log('把使用者狀態改成下線', resp_obj.user_id);
                 break;
             case 'USER_ONLINE':
                 console.log('有人上線了', resp_obj.user_id);
+                document.getElementsByClassName('friend_list')[0].innerHTML += '\
+                <div class="item">\
+                    <div class="avatar">\
+                        <img src="img/a.jpg" alt="">\
+                    </div>\
+                    <div class="username">'+resp_obj.user_id+'</div>\
+                    <div class="online_status"><span></span></div>\
+                    <div class="visit_icon"></div>\
+                    <div class="more_icon"></div>\
+                </div>\
+                ';
                 break;
 
             case 'GET_USERS_POSITION':
