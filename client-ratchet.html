@@ -25,6 +25,7 @@
         background-color: pink;
         box-sizing: border-box;
         padding: 5px;
+        overflow-y: auto;
     }
 
     .friend_list .item{
@@ -40,10 +41,18 @@
         width:30px;
     }
 
-    .friend_list .online_status span{
+    .friend_list .online span{
         width: 10px;
         height: 10px;
         background-color: rgb(119, 238, 119);
+        border-radius: 50%;
+        display: inline-block;
+    }
+
+    .friend_list .offline span{
+        width: 10px;
+        height: 10px;
+        background-color: #aaa;
         border-radius: 50%;
         display: inline-block;
     }
@@ -60,15 +69,144 @@
         background-color: yellow;
         border-radius: 50%;
     }
+
+    .chat_history{
+       background-color: #fff;
+       overflow-y: auto;
+       width: 100%;
+       height:400px;
+       padding: 10px;
+       box-sizing: border-box;
+    }
+
+    
+
+    .chat_tab ul{
+        display: flex;
+        list-style: none;
+        justify-content: space-around;
+        background-color: pink;
+        height: 30px;
+    }
+    .chat_tab li{
+        width: 100%;
+        text-align: center;
+    }
+
+    .chat_tab .active{
+        background-color: yellow;
+    }
+
+    .otherschat{
+        display:flex;
+        margin-bottom: 5px;
+    }
+
+    .otherschat .avatar{
+        display: flex;
+        flex-direction: column;
+        width: 100px;
+        align-items: center;
+    }
+
+    .otherschat img{
+        width: 50px;
+    }
+    
+    .otherschat .content{
+        background-color: pink;
+        width: 100%;
+        padding: 5px;
+        box-sizing: border-box;
+       
+    }
     
     
     </style>
 </head>
 <body>
+<div id="app">
+    <div class="chat">
+        <div class="chat_area">
+            <div class="chat_history">
 
-<div class="chat">
-<div class="chat_area"></div>
-<div class="friend_list"></div>
+                <template v-if="chat_to_all" v-for="message in messages_to_all">
+                    <div v-if="message.user_id != user_id" class="otherschat">
+                        <div class="avatar">
+                            <img src="img/b.png" alt="別人頭像">
+                            <span class="user_name">{{ message.user_id }}</span>
+                        </div>
+                        <div class="content">{{ message.chat_msg }}</div>
+                    </div>
+
+                    <div v-if="message.user_id == user_id" class="otherschat">
+                        <div class="content">{{ message.chat_msg }}</div>
+                        <div class="avatar">
+                            <img src="img/b.png" alt="my頭像">
+                            <span class="user_name">{{ message.user_id }}</span>
+                        </div>
+                    </div>
+                </template>
+
+                <template v-if="!chat_to_all" v-for="message in messages_to_someone(chat_to_who)">
+                    <div v-if="message.user_id != user_id" class="otherschat">
+                        <div class="avatar">
+                            <img src="img/b.png" alt="別人頭像">
+                            <span class="user_name">{{ message.user_id }}</span>
+                        </div>
+                        <div class="content">{{ message.chat_msg }}</div>
+                    </div>
+
+                    <div v-if="message.user_id == user_id" class="otherschat">
+                        <div class="content">{{ message.chat_msg }}</div>
+                        <div class="avatar">
+                            <img src="img/b.png" alt="my頭像">
+                            <span class="user_name">{{ message.user_id }}</span>
+                        </div>
+                    </div>
+                </template>
+                
+            </div>
+            <div class="chat_send">
+                <input v-model="chat_send_text" type="text">
+                <input type="button" v-on:click="chat_send()" value="傳送">
+            </div>
+            <div class="chat_tab">
+                <ul>
+                    <li v-bind:class="{ active: !chat_to_all }">密語</li>
+                    <li v-bind:class="{ active: chat_to_all }" v-on:click="public_chat()">公頻</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="friend_list">
+            <template v-for="friend in online_friends">
+                <div class="item">
+                    <div class="avatar">
+                        <img src="img/a.jpg" alt="">
+                    </div>
+                    <div class="username" v-on:click="private_chat(friend)"> {{ friend }} </div>
+                    <div class="online_status online"><span></span></div>
+                    <div class="visit_icon"></div>
+                    <div class="more_icon"></div>
+                </div>
+            </template>
+            <template v-for="friend in offline_friends">
+                <div class="item">
+                    <div class="avatar">
+                        <img src="img/a.jpg" alt="">
+                    </div>
+                    <div class="username"> {{ friend }} </div>
+                    <div class="online_status offline"><span></span></div>
+                    <div class="visit_icon"></div>
+                    <div class="more_icon"></div>
+                </div>
+            </template>
+
+
+        </div>
+    </div>
+    <span>目前線上人數：{{online_users.length}}</span>
 </div>
 
 <div>
@@ -80,12 +218,68 @@
 <!-- <input type="button" name="chat" value="private chat" onclick="chat_to_someone('curtains','hihi')">
 <input type="button" name="chat" value="chat to all" onclick="chat_to_all('yoyo')"> -->
 
-<script language="javascript"> 
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="js/vue.js"></script>
+<script> 
     // Then some JavaScript in the browser:
     var conn_chat = new WebSocket('ws://localhost:8080/chat');
     // var names = ["ninja", "chair", "pancake", "statue", "unicorn", "rainbows", "laser", "senor", "bunny", "captain", "nibblets", "cupcake", "carrot", "gnomes", "glitter", "potato", "salad", "toejam", "curtains", "beets", "toilet", "exorcism", "stick figures", "mermaid eggs", "sea barnacles", "dragons", "jellybeans", "snakes", "dolls", "bushes", "cookies", "apples", "ice cream", "ukulele", "kazoo", "banjo", "opera singer", "circus", "trampoline", "carousel", "carnival", "locomotive", "hot air balloon", "praying mantis", "animator", "artisan", "artist", "colorist", "inker", "coppersmith", "director", "designer", "flatter", "stylist", "leadman", "limner", "make-up artist", "model", "musician", "penciller", "producer", "scenographer", "set decorator", "silversmith", "teacher", "auto mechanic", "beader", "bobbin boy", "clerk of the chapel", "filling station attendant", "foreman", "maintenance engineering", "mechanic", "miller", "moldmaker", "panel beater", "patternmaker", "plant operator", "plumber", "sawfiler", "shop foreman", "soaper", "stationary engineer", "wheelwright", "woodworkers"];
     // var user_id = names[Math.floor(Math.random() * names.length)];
     var user_id;
+
+    var chat_app = new Vue({
+        el: '#app',
+        data: {
+            user_id: '',
+            friends: ['董董','曲翑','揉揉','詩詩','華姐'],
+            online_users: [],
+            chat_to_all: true,
+            chat_to_who: '',
+            messages: [],
+            chat_send_text: ''
+        },
+        methods:{
+            user_online: function(user){
+                this.online_users.push(user);
+            },
+            user_offline: function(user){
+                this.online_users = this.online_users.filter(function(e){ return e != user });
+            },
+            public_chat: function() {
+                this.chat_to_who = '';
+                this.chat_to_all = true;
+            },
+            private_chat: function(who) {
+                this.chat_to_who = who;
+                this.chat_to_all = false;
+            },
+            chat_send: function() {
+                if(this.chat_to_all) {
+                    chat_to_all(this.chat_send_text);
+                }else{
+                    chat_to_someone(this.chat_to_who , this.chat_send_text);
+                }
+            },
+            messages_to_someone: function(who){
+                return this.messages.filter(function(e){
+                    return e.chat_type != "ALL" && (e.user_id == who || e.chat_to == who);
+                });
+            }
+        },
+        computed: {
+            online_friends: function() {
+                return $(this.friends).filter(this.online_users).toArray();
+            },
+            offline_friends: function() {
+                return $(this.friends).not(this.online_users).toArray();
+            },
+            messages_to_all: function(){
+                return this.messages.filter(function(e){
+                    return e.chat_type == "ALL";
+                });
+            }
+        }
+    });
 
     conn_chat.onopen = function(e) { 
         console.log('已連到伺服器');
@@ -93,7 +287,8 @@
 
     function login() {
         // 告訴server我的user_id
-        var user_id = document.getElementById('username').value;
+        user_id = document.getElementById('username').value;
+        chat_app.user_id = user_id;
         conn_chat.send(
             JSON.stringify(
                 { "msg_type": "LOGIN", "user_id": user_id }
@@ -119,44 +314,24 @@
             case 'CHAT':
                 console.log('把資料塞到泡泡裡', resp_obj);
                 console.log('把資料更新到聊天視窗', resp_obj);
+                chat_app.messages.push(resp_obj);
                 break;
             case 'ONLINE_USERS':
                 console.log('更新目前有哪些人在線上', resp_obj.users);
-                for(var user in resp_obj.users) {
-                    document.getElementsByClassName('friend_list')[0].innerHTML += '\
-                    <div class="item" id="friend_item_'+resp_obj.users[user]+'">\
-                        <div class="avatar">\
-                            <img src="img/a.jpg" alt="">\
-                        </div>\
-                        <div class="username">'+resp_obj.users[user]+'</div>\
-                        <div class="online_status"><span></span></div>\
-                        <div class="visit_icon"></div>\
-                        <div class="more_icon"></div>\
-                    </div>\
-                    ';
-                }
+                chat_app.online_users = resp_obj.users;
                 break;
             case 'USER_OFFLINE':
                 console.log('把使用者狀態改成下線', resp_obj.user_id);
+                chat_app.user_offline(resp_obj.user_id);
                 break;
             case 'USER_ONLINE':
                 console.log('有人上線了', resp_obj.user_id);
-                document.getElementsByClassName('friend_list')[0].innerHTML += '\
-                <div class="item">\
-                    <div class="avatar">\
-                        <img src="img/a.jpg" alt="">\
-                    </div>\
-                    <div class="username">'+resp_obj.user_id+'</div>\
-                    <div class="online_status"><span></span></div>\
-                    <div class="visit_icon"></div>\
-                    <div class="more_icon"></div>\
-                </div>\
-                ';
+                chat_app.user_online(resp_obj.user_id);
                 break;
 
-            case 'GET_USERS_POSITION':
-                console.log('收到座標');
-                break;
+            // case 'GET_USERS_POSITION':
+            //     console.log('收到座標');
+            //     break;
                 
             default:
                 console.error('收到不認得的msg_type', resp_obj);
