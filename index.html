@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- 要加chartset=utf-8 這樣如果html中有寫中文，傳送時編碼(encoding)才會正常 -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+
+    <title>尋找友誼</title>
+  </head>
+
+  <body>
+    <div class="home_page">
+      <header>
+        <nav>
+          <li>
+            <a href="javascript:;" class="room">
+              <i class="nav_icon"
+                ><img src="imgs/icon/room--icon.png" alt="我的房間icon"
+              /></i>
+              <span>我的房間</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="javascript:;" class="friend">
+              <i class="nav_icon"
+                ><img src="imgs/icon/friend--icon.png" alt="找朋友icon"
+              /></i>
+              <span>找朋友</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="javascript:;" class="activity">
+              <i class="nav_icon"
+                ><img src="imgs/icon/activity--icon.png" alt="揪團活動icon"
+              /></i>
+              <span>揪團活動</span>
+            </a>
+          </li>
+
+          <li>
+            <h1 class="logo">
+              尋找友誼
+              <a href="javascript:;" class=" logo">
+                <img src="imgs/logo.png" alt="尋找友誼Logo" />
+              </a>
+            </h1>
+          </li>
+
+          <li>
+            <a href="javascript:;" class="mall">
+              <i class="nav_icon"
+                ><img src="imgs/icon/mall-icon.png" alt="虛擬商城icon"
+              /></i>
+              <span>虛擬商城</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="javascript:;" class="mem_center">
+              <i class="nav_icon"
+                ><img src="imgs/icon/member-icon.png" alt="會員中心icon"
+              /></i>
+              <span>會員中心</span>
+            </a>
+          </li>
+
+          <li class="mem_info">
+            <i class="avatar"
+              ><img src="imgs/icon/login--icon.png" alt="" class="driver"
+            /></i>
+            <span class="login"><a href="javascript:;">登入</a></span>
+          </li>
+        </nav>
+      </header>
+
+      <main class="gameWorld">
+        <!-- <canvas id="canvas"></canvas> -->
+        <div class="wrapper">
+          <div class="item busBlock">
+            <a href="javascript:;"
+              ><img src="imgs/bus.png" alt="Bus" class="bus"
+            /></a>
+            <div class="npc bus_npc">
+              <div class="pic">
+                <img
+                  src="imgs/busDriver.png"
+                  alt="Bus Driver"
+                  class="busDriver"
+                />
+              </div>
+              <div class="text">
+                <p class>我們將帶領你前往活動專區</p>
+              </div>
+            </div>
+          </div>
+          <div class="item"></div>
+          <!-- <div class="item"><img src="imgs/house.png" alt=""></div> -->
+          <div class="item"></div>
+        </div>
+      </main>
+    </div>
+
+    <div class="chatRoom">
+      <div class="chatPart">
+        <div class="content">
+          <div class="other">
+            <div class="pic">
+              <img src="https://placedog.net/35/35?random" alt="random dog" />
+            </div>
+            <div class="text">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem,
+                ullam.
+              </p>
+            </div>
+          </div>
+          <div class="mySelf">
+            <div class="text">
+              <p>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                Pariatur, modi!
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="inputField">
+          <input type="text" />
+          <button>傳送</button>
+        </div>
+        <div class="channels">
+          <a href="javascript:;">密語</a>
+          <a href="javascript:;">公頻</a>
+        </div>
+      </div>
+      <div class="friends">
+        <div class="friend-list">
+          <div class="friend friend1">
+            <div class="pic">
+              <img src="https://placedog.net/35/35?random" alt="random dog" />
+            </div>
+            <span>小柔</span>
+            <span class="online"></span>
+            <div class="houseIcon">
+              <img src="https://placedog.net/35/35?random" alt="random dog" />
+            </div>
+            <div class="deleteIcon">
+              <img src="https://placedog.net/35/35?random" alt="random dog" />
+            </div>
+          </div>
+          <div class="friend friend1">
+            <div class="pic">
+              <img src="https://placedog.net/35/35?random" alt="random dog" />
+            </div>
+            <span>小柔</span>
+            <span class="online"></span>
+            <div class="houseIcon">
+              <img src="https://placedog.net/35/35?random" alt="random dog" />
+            </div>
+            <div class="deleteIcon">
+              <img src="https://placedog.net/35/35?random" alt="random dog" />
+            </div>
+          </div>
+        </div>
+        <div class="title">
+          <h3>
+            好友名單
+          </h3>
+        </div>
+      </div>
+    </div>
+
+    <!-- <script>
+    var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
+
+ctx.fillStyle = "green";
+ctx.fillRect(10, 10, 100, 100);
+    </script> -->
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/vue.js"></script>
+    <script> 
+        // Then some JavaScript in the browser:
+        var conn_chat = new WebSocket('ws://localhost:8080/chat');
+        // var names = ["ninja", "chair", "pancake", "statue", "unicorn", "rainbows", "laser", "senor", "bunny", "captain", "nibblets", "cupcake", "carrot", "gnomes", "glitter", "potato", "salad", "toejam", "curtains", "beets", "toilet", "exorcism", "stick figures", "mermaid eggs", "sea barnacles", "dragons", "jellybeans", "snakes", "dolls", "bushes", "cookies", "apples", "ice cream", "ukulele", "kazoo", "banjo", "opera singer", "circus", "trampoline", "carousel", "carnival", "locomotive", "hot air balloon", "praying mantis", "animator", "artisan", "artist", "colorist", "inker", "coppersmith", "director", "designer", "flatter", "stylist", "leadman", "limner", "make-up artist", "model", "musician", "penciller", "producer", "scenographer", "set decorator", "silversmith", "teacher", "auto mechanic", "beader", "bobbin boy", "clerk of the chapel", "filling station attendant", "foreman", "maintenance engineering", "mechanic", "miller", "moldmaker", "panel beater", "patternmaker", "plant operator", "plumber", "sawfiler", "shop foreman", "soaper", "stationary engineer", "wheelwright", "woodworkers"];
+        // var user_id = names[Math.floor(Math.random() * names.length)];
+        var user_id;
+
+        var chat_app = new Vue({
+            el: '#app',
+            data: {
+                user_id: '',
+                friends: ['董董','曲翑','揉揉','詩詩','華姐'],
+                online_users: [],
+                chat_to_all: true,
+                chat_to_who: '',
+                messages: [],
+                chat_send_text: ''
+            },
+            methods:{
+                user_online: function(user){
+                    this.online_users.push(user);
+                },
+                user_offline: function(user){
+                    this.online_users = this.online_users.filter(function(e){ return e != user });
+                },
+                public_chat: function() {
+                    this.chat_to_who = '';
+                    this.chat_to_all = true;
+                },
+                private_chat: function(who) {
+                    this.chat_to_who = who;
+                    this.chat_to_all = false;
+                },
+                chat_send: function() {
+                    if(this.chat_to_all) {
+                        chat_to_all(this.chat_send_text);
+                    }else{
+                        chat_to_someone(this.chat_to_who , this.chat_send_text);
+                    }
+                },
+                messages_to_someone: function(who){
+                    return this.messages.filter(function(e){
+                        return e.chat_type != "ALL" && (e.user_id == who || e.chat_to == who);
+                    });
+                }
+            },
+            computed: {
+                online_friends: function() {
+                    return $(this.friends).filter(this.online_users).toArray();
+                },
+                offline_friends: function() {
+                    return $(this.friends).not(this.online_users).toArray();
+                },
+                messages_to_all: function(){
+                    return this.messages.filter(function(e){
+                        return e.chat_type == "ALL";
+                    });
+                }
+            }
+        });
+
+        conn_chat.onopen = function(e) { 
+            console.log('已連到伺服器');
+        };
+
+        function login() {
+            // 告訴server我的user_id
+            user_id = document.getElementById('username').value;
+            chat_app.user_id = user_id;
+            conn_chat.send(
+                JSON.stringify(
+                    { "msg_type": "LOGIN", "user_id": user_id }
+                    )
+                );  
+                
+            conn_chat.send(
+                JSON.stringify(
+                    {
+                        "msg_type": "GET_ONLINE_USERS",
+                        "user_id": user_id
+                    }
+                )
+            )
+        }
+
+        conn_chat.onmessage = function(e) { 
+            // 收到server傳過來的訊息
+            var resp_obj = JSON.parse(e.data);
+            // console.log("回傳的JSON物件",resp_obj);
+            console.log("收到訊息，訊息類型",resp_obj.msg_type);
+            switch(resp_obj.msg_type) {
+                case 'CHAT':
+                    console.log('把資料塞到泡泡裡', resp_obj);
+                    console.log('把資料更新到聊天視窗', resp_obj);
+                    chat_app.messages.push(resp_obj);
+                    break;
+                case 'ONLINE_USERS':
+                    console.log('更新目前有哪些人在線上', resp_obj.users);
+                    chat_app.online_users = resp_obj.users;
+                    break;
+                case 'USER_OFFLINE':
+                    console.log('把使用者狀態改成下線', resp_obj.user_id);
+                    chat_app.user_offline(resp_obj.user_id);
+                    break;
+                case 'USER_ONLINE':
+                    console.log('有人上線了', resp_obj.user_id);
+                    chat_app.user_online(resp_obj.user_id);
+                    break;
+
+                // case 'GET_USERS_POSITION':
+                //     console.log('收到座標');
+                //     break;
+                    
+                default:
+                    console.error('收到不認得的msg_type', resp_obj);
+            }
+        };
+
+        function chat_to_someone(to, msg) {
+            conn_chat.send(
+                JSON.stringify(
+                    {
+                        "msg_type": "CHAT", 
+                        "user_id": user_id, 
+                        "chat_type": "USER", 
+                        "chat_to": to, 
+                        "chat_msg": msg
+                    }
+                    )
+                ); 
+
+        }
+
+        function chat_to_all(msg) {
+            conn_chat.send(
+                JSON.stringify(
+                    { 
+                        "msg_type": "CHAT", 
+                        "user_id": user_id, 
+                        "chat_type": "ALL", 
+                        "chat_msg": msg
+                    }
+                    )
+                ); 
+        }
+    </script>
+  </body>
+</html>
