@@ -328,10 +328,6 @@
                 console.log('有人上線了', resp_obj.user_id);
                 chat_app.user_online(resp_obj.user_id);
                 break;
-
-            // case 'GET_USERS_POSITION':
-            //     console.log('收到座標');
-            //     break;
                 
             default:
                 console.error('收到不認得的msg_type', resp_obj);
