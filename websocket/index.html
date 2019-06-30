@@ -163,9 +163,9 @@
 
                     <template v-for="message in messages_to_all()">
                         <!-- 發送訊息者 -->
-                        <!-- Rou:檢查收到訊息的userid是不是自己來判斷訊息區塊的樣子,以下userid是自己 -->
+                        <!-- Rou:檢查收到訊息的userid是不是自己來判斷訊息區塊的樣子,以下userid不是自己 -->
                         <!-- Rou:在公頻聊天只有大頭貼沒辦法看到名字,在內容中寫入{{ message.user_id }}可以產生正在講話的人的名字 -->
-                        <li class="chatRoom_messageSent" v-if="message.user_id == user_id">
+                        <li class="chatRoom_messageSent" v-if="message.user_id != user_id">
                             <div class="message-sent">
                                 <div class="text">
                                     <p>{{ message.chat_msg }}</p>
@@ -176,9 +176,9 @@
                             </div>
                         </li>
                         <!-- 接收訊息者 -->
-                        <!-- Rou:檢查收到訊息的userid是不是自己來判斷訊息區塊的樣子,以下userid不是自己 -->
+                        <!-- Rou:檢查收到訊息的userid是不是自己來判斷訊息區塊的樣子,以下userid是自己 -->
                         <!-- Rou:在公頻聊天只有大頭貼沒辦法看到名字,在內容中寫入{{ message.user_id }}可以產生正在講話的人的名字 -->
-                        <li class="chatRoom_messageReceived" v-if="message.user_id != user_id">
+                        <li class="chatRoom_messageReceived" v-if="message.user_id == user_id">
                             <div class="message-received">
                                 <div class="avatar">
                                     <img src="imgs/icon/member0.png" alt="">{{ message.user_id }}
@@ -198,8 +198,8 @@
 
                     <template v-for="message in messages_to_someone(chat_to_who)">
                         <!-- 發送訊息者 -->
-                        <!-- Rou:如果發訊息的人是我 -->
-                        <li class="chatRoom_messageSent" v-if="message.user_id == user_id">
+                        <!-- Rou:如果發訊息的人不是我 -->
+                        <li class="chatRoom_messageSent" v-if="message.user_id != user_id">
                             <div class="message-sent">
                                 <div class="text">
                                     <p>{{ message.chat_msg }}</p>
@@ -210,8 +210,8 @@
                             </div>
                         </li>
                         <!-- 接收訊息者 -->
-                        <!-- Rou:如果發訊息的人不是我本人 -->
-                        <li class="chatRoom_messageReceived" v-if="message.user_id != user_id">
+                        <!-- Rou:如果發訊息的人是我本人 -->
+                        <li class="chatRoom_messageReceived" v-if="message.user_id == user_id">
                             <div class="message-received">
                                 <div class="avatar">
                                     <img src="imgs/icon/member0.png" alt="">
