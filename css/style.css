@@ -1,224 +1,720 @@
-body {
-  outline: 1px solid #0f0; }
-  body > .home_page {
-    width: 100vw;
-    height: 100vh;
-    background-image: url(../imgs/map.png);
-    background-size: cover;
-    resize: both;
-    font-family: "Noto Sans TC", sans-serif; }
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: #F5F5F5;
+}
 
-a,
-button,
-input {
-  font-family: "Noto Sans TC", sans-serif; }
+::-webkit-scrollbar {
+  width: 12px;
+  background-color: #F5F5F5;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #555;
+}
+
+.collapse {
+  display: none !important;
+}
+
+html {
+  background: url(../imgs/homepage.png) no-repeat center center fixed;
+  background-size: cover;
+}
+
+body {
+  font-family: 'Noto Sans TC', sans-serif;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
 
 a {
-  text-decoration: none; }
+  text-decoration: none;
+  color: #000;
+}
 
-.home_page {
-  font-size: 0; }
-  .home_page img {
-    max-width: 100%;
-    height: auto; }
-  .home_page li {
-    list-style: none; }
-    .home_page li a {
-      text-decoration: none;
-      color: black; }
-  .home_page header {
-    width: 100vw;
-    background-color: #ff8d8d;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12); }
-    .home_page header nav {
-      padding: 10px 0px;
-      text-align: center;
-      display: flex;
-      flex-flow: row nowrap;
-      justify-content: center;
-      position: relative;
-      left: -20px; }
-      .home_page header nav li {
-        width: calc(100% / 12);
-        margin: 0px 40px;
-        display: inline-block;
-        display: flex;
-        flex-flow: row nowrap;
-        justify-content: center;
-        align-items: center;
-        font-size: 16px; }
-        .home_page header nav li:nth-child(3) {
-          padding-right: 14px; }
-      .home_page header nav a {
-        display: flex;
-        flex-flow: row nowrap;
-        justify-content: center;
-        align-items: center; }
-        .home_page header nav a span {
-          width: 80px;
-          padding: 8px 20px;
-          background-color: #fff;
-          border-radius: 20px; }
-        .home_page header nav a .nav_icon {
-          width: 50px;
-          height: 50px;
-          border-radius: 50%;
-          box-shadow: 0 0 0 3px #ff8d8d;
-          position: relative;
-          left: 14px; }
-          .home_page header nav a .nav_icon img {
-            width: 50px; }
-      .home_page header nav .logo {
-        font-size: 0px;
-        position: absolute;
-        top: 20px; }
-        .home_page header nav .logo img {
-          width: 100px; }
-      .home_page header nav .mem_info .avatar {
-        vertical-align: middle; }
-      .home_page header nav .mem_info .login {
-        vertical-align: middle;
-        display: inline-block; }
-  .home_page .gameWorld {
-    font-size: 0; }
-    .home_page .gameWorld .item {
-      width: 400px;
-      height: 400px;
-      display: inline-block; }
-      .home_page .gameWorld .item img {
-        width: 100%;
-        height: auto; }
-    .home_page .gameWorld .busBlock {
-      padding-top: 50px;
-      padding-left: 200px;
-      position: relative; }
-      .home_page .gameWorld .busBlock .npc {
-        position: absolute;
-        bottom: 10px;
-        right: 50px;
-        width: 250px;
-        display: flex;
-        justify-content: space-between; }
-        .home_page .gameWorld .busBlock .npc .text {
-          width: 60%;
-          font-size: 18px;
-          position: relative;
-          top: -30px; }
-          .home_page .gameWorld .busBlock .npc .text p {
-            background-color: #fff;
-            padding: 15px;
-            border-radius: 10px;
-            border: 5px solid #ff8d8d;
-            transform: scale(0);
-            transform-origin: left bottom;
-            transition: 1s; }
-          .home_page .gameWorld .busBlock .npc .text p.active {
-            transform: scale(1); }
+img {
+  max-width: 100%;
+  height: auto;
+}
 
-.chatRoom {
+.common_header {
+  width: 100%;
+  background-color: #ff8d8d;
+}
+
+.menuDesktop {
+  width: 100%;
+  font-size: 0;
+  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+          box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+@media all and (max-width: 996px) {
+  .menuDesktop {
+    display: none;
+  }
+}
+
+.menuDesktop ul {
+  width: 100%;
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 4px 0px;
+  position: relative;
+  top: 2px;
+}
+
+.menuDesktop li {
+  display: inline-block;
+  font-size: 18px;
+  margin: 0px 1.57%;
+  vertical-align: middle;
+}
+
+.menuDesktop li img {
+  display: block;
+  margin: auto;
+}
+
+.menuDesktop span {
+  font-weight: 500;
+  vertical-align: middle;
+}
+
+.menuDesktop .logo {
+  font-size: 0;
+  position: relative;
+  top: 20px;
+}
+
+.menuDesktop .logo span {
+  padding: 0;
+}
+
+.menuDesktop .memberInfo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  right: -3%;
+}
+
+.menuDesktop .memberInfo li {
+  margin: 0px;
+}
+
+.menuDesktop .memberInfo img {
+  display: inline-block;
+  vertical-align: middle;
+  width: 40px;
+  height: 40px;
+}
+
+.menuDesktop .memberInfo .login {
+  display: inline-block;
+  padding-right: 5px;
+}
+
+.menuDesktop .memberInfo .login .name {
+  padding-right: 5px;
+}
+
+.menuDesktop .memberInfo .login span {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.menuDesktop .memberInfo .coin {
+  padding-right: 5px;
+}
+
+.menuDesktop .memberInfo .coin a {
+  font-size: 16px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.menuDesktop .memberInfo .level {
+  font-size: 0;
+}
+
+.menuMobile {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  height: 48px;
+  width: 48px;
+}
+
+@media all and (min-width: 997px) {
+  .menuMobile {
+    display: none;
+  }
+}
+
+.menuMobile_line {
+  background-color: #ECEFF4;
+  height: 2px;
+  width: 100%;
+  border-radius: 2px;
+  position: absolute;
+  left: 0;
+  -webkit-transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.menuMobile_line-1 {
+  top: 0;
+}
+
+.menuMobile_line-2 {
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.menuMobile_line-3 {
+  bottom: 0;
+}
+
+.menuMobile_link {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 1002;
+}
+
+.menuMobile_icon {
+  position: absolute;
+  width: 20px;
+  height: 14px;
+  margin: auto;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 1px;
+}
+
+.menuMobile_circle {
+  background-color: #ff8d8d;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border-radius: 50%;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  z-index: 1000;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.menuMobile_overlay {
+  background-color: #4C566A;
+  color: #333;
+  width: 100%;
+  height: 100%;
+  font-size: 0;
   position: fixed;
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
+  z-index: 1001;
+}
+
+.menuMobile_overlay li {
+  list-style: none;
+}
+
+.menuMobile_overlay a {
+  color: #333;
+  font-weight: 600;
+  font-size: 16px;
+  display: inline-block;
+}
+
+.menuMobile_overlay .memberInfo {
+  margin: 20px 10px 0px 10px;
+}
+
+.menuMobile_overlay .memberInfo img {
+  width: 40px;
+  height: 40px;
+}
+
+.menuMobile_overlay .memberInfo li {
+  display: inline-block;
+  margin: 0% 2% 0% 2%;
+  width: calc((100%-12%)/4);
+}
+
+.menuMobile_overlay .memberInfo span, .menuMobile_overlay .memberInfo a {
+  color: #D8DEE9;
+  font-weight: 500;
+}
+
+.menuMobile_overlay .memberInfo .coin {
+  display: inline-block;
+  font-size: 16px;
+  vertical-align: middle;
+}
+
+.menuMobile_overlay .memberInfo .coin img {
+  vertical-align: middle;
+}
+
+.menuMobile_overlay .memberInfo .coin span {
+  vertical-align: middle;
+  padding-left: 8px;
+}
+
+.menuMobile_overlay .memberInfo .logo a {
+  font-size: 0;
+}
+
+.menuMobile_overlay .memberInfo .logo img {
+  width: 80px;
+  height: 80px;
+  vertical-align: middle;
+}
+
+.menuMobile_overlay .memberInfo .login {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.menuMobile_overlay .memberInfo .login img {
+  vertical-align: middle;
+}
+
+.menuMobile_overlay .memberInfo .login span {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.menuMobile_overlay .memberInfo .login a {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 16px;
+  padding-right: 8px;
+}
+
+.menuMobile_overlay .memberInfo .login .name {
+  padding-left: 10px;
+}
+
+.menuMobile_overlay .menuMobile_nav {
+  margin: 4% 10%;
+  text-align: center;
+}
+
+.menuMobile_overlay .menuMobile_nav li {
+  display: inline-block;
+  width: 25%;
+  margin: 2% 0%;
+}
+
+.menuMobile_overlay .menuMobile_nav span, .menuMobile_overlay .menuMobile_nav a {
+  display: block;
+  color: #D8DEE9;
+  font-weight: 500;
+}
+
+.menuMobile_overlay .menuMobile_nav span {
+  margin-top: 4px;
+}
+
+.menuMobile_overlay .menuMobile_nav img {
+  width: 46px;
+  height: 46px;
+}
+
+.menuMobile:hover .menuMobile_circle {
+  -webkit-transform: scale(1.4);
+          transform: scale(1.4);
+}
+
+.menuMobile_overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.menuMobile.open .menuMobile_circle {
+  -webkit-transform: scale(60);
+          transform: scale(60);
+}
+
+.menuMobile.open .menuMobile_line-2 {
+  opacity: 0;
+}
+
+.menuMobile.open .menuMobile_line-1 {
+  -webkit-transform: translateY(7px) translateY(-50%) rotate(-135deg);
+          transform: translateY(7px) translateY(-50%) rotate(-135deg);
+}
+
+.menuMobile.open .menuMobile_line-3 {
+  -webkit-transform: translateY(-7px) translateY(50%) rotate(135deg);
+          transform: translateY(-7px) translateY(50%) rotate(135deg);
+}
+
+.chatGroup {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 50%;
+  height: 80%;
+  padding-top: 2em;
+  background-color: #ff8d8d;
+  border-radius: 10px 10px 0px 0px;
+  position: absolute;
   right: 0;
   bottom: 0;
-  height: 350px;
-  width: 400px;
+}
+
+@media screen and (max-width: 1310px) {
+  .chatGroup {
+    width: 60%;
+  }
+}
+
+.chatGroup .closeBtn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin-right: .5em;
+  margin-top: -.35em;
+  font-size: 40px;
+  color: #fff;
+}
+
+.chatGroup .chatRoom {
+  width: 60%;
+  height: 100%;
+  background-color: #ff8d8d;
+}
+
+.chatGroup .chatRoom_content {
+  width: 100%;
+  height: 100%;
+}
+
+.chatGroup .chatRoom_main {
+  overflow: scroll;
+  overflow-x: hidden;
+  width: 94%;
+  height: 79%;
+  background-color: #fff;
+  margin: .5em 3% 2% 3%;
+  border-radius: 10px;
+}
+
+.chatGroup .chatRoom_sendTo {
+  padding: 0.5em 1em;
+  color: rgba(0, 0, 0, 0.8);
+  background-color: #E6E6E6;
+  font-size: 20px;
+  margin-bottom: 2.5%;
+}
+
+.chatGroup .chatRoom_messageOfficial {
+  display: block;
+}
+
+.chatGroup .chatRoom_messageOfficial .text {
+  display: inline-block;
+  margin: 2.5% 5%;
+  background-color: #ccc;
+  border-radius: 10px;
+  padding: 3%;
+  opacity: .7;
+}
+
+.chatGroup .chatRoom_messageSent, .chatGroup .chatRoom_messageReceived {
+  line-height: 22px;
+}
+
+.chatGroup .chatRoom_messageSent .message-sent, .chatGroup .chatRoom_messageSent .message-received, .chatGroup .chatRoom_messageReceived .message-sent, .chatGroup .chatRoom_messageReceived .message-received {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  font-size: 16px; }
-  .chatRoom .chatPart {
-    width: 50%;
-    height: 100%;
-    padding: 30px 5px 5px 5px;
-    box-sizing: border-box;
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: space-between;
-    border-radius: 10px 10px 0 0;
-    background-color: #ff8d8d; }
-    .chatRoom .chatPart .content::-webkit-scrollbar-thumb {
-      background-color: #fec4c4; }
-    .chatRoom .chatPart .content {
-      width: 100%;
-      height: 70%;
-      padding: 10px;
-      box-sizing: border-box;
-      background-color: #fff;
-      overflow: auto; }
-      .chatRoom .chatPart .content .other {
-        display: flex;
-        justify-content: space-between; }
-        .chatRoom .chatPart .content .other .pic {
-          width: 20%; }
-          .chatRoom .chatPart .content .other .pic img {
-            border-radius: 50%; }
-        .chatRoom .chatPart .content .other .text {
-          width: 75%;
-          background-color: #fec4c4;
-          border-radius: 10px;
-          padding: 5px;
-          box-sizing: border-box; }
-          .chatRoom .chatPart .content .other .text p {
-            margin: 0; }
-      .chatRoom .chatPart .content .mySelf .text p {
-        background-color: #fec4c4;
-        border-radius: 10px;
-        padding: 5px; }
-    .chatRoom .chatPart .inputField {
-      display: flex;
-      justify-content: space-between; }
-      .chatRoom .chatPart .inputField input {
-        border: none;
-        outline: none;
-        appearance: none;
-        width: 70%;
-        border-radius: 5px;
-        padding: 5px;
-        box-sizing: border-box;
-        background-color: #fec4c4; }
-      .chatRoom .chatPart .inputField button {
-        border-radius: 5px; }
-    .chatRoom .chatPart .channels {
-      display: flex;
-      justify-content: space-between;
-      align-items: center; }
-      .chatRoom .chatPart .channels a {
-        width: 48%;
-        height: 100%;
-        text-align: center;
-        border-radius: 5px;
-        background-color: #fff;
-        color: #333;
-        display: flex;
-        justify-content: center;
-        align-items: center; }
-  .chatRoom .friends {
-    background-color: #ff8d8d;
-    height: 100%;
-    width: 50%;
-    border-radius: 10px 10px 0 0;
-    padding: 30px 5px 5px 5px;
-    box-sizing: border-box;
-    font-family: "Noto Sans TC", sans-serif;
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: space-between; }
-    .chatRoom .friends .friend-list {
-      height: 85%;
-      overflow: auto; }
-      .chatRoom .friends .friend-list .friend {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin: 1% 0;
-        padding: 3% 2%;
-        background-color: #fff; }
-        .chatRoom .friends .friend-list .friend img {
-          border-radius: 50%; }
-        .chatRoom .friends .friend-list .friend .online {
-          width: 7px;
-          height: 7px;
-          border-radius: 5px;
-          background-color: #0c0; }
-    .chatRoom .friends .title {
-      height: 10%; }
-      .chatRoom .friends .title h3 {
-        margin: 0;
-        text-align: center; }
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+}
+
+.chatGroup .chatRoom_messageSent .text, .chatGroup .chatRoom_messageReceived .text {
+  display: inline-block;
+  max-width: 75%;
+  margin: 2.5% 2% 2.5% 5%;
+  background-color: #fec4c4;
+  border-radius: 10px;
+  padding: 3%;
+  vertical-align: top;
+}
+
+.chatGroup .chatRoom_messageSent .text p, .chatGroup .chatRoom_messageReceived .text p {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.chatGroup .chatRoom_messageSent .text .avatar, .chatGroup .chatRoom_messageReceived .text .avatar {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.chatGroup .chatRoom_messageSent .text .avatar img, .chatGroup .chatRoom_messageReceived .text .avatar img {
+  width: 100%;
+  max-width: 42px;
+}
+
+.chatGroup .chatRoom_messageSent .text {
+  background-color: #ddd;
+}
+
+.chatGroup .chatRoom_messageSent .avatar {
+  margin: 2.5% 2% 2.5% 0%;
+}
+
+.chatGroup .chatRoom_messageReceived .text {
+  margin: 2.5% 5% 2.5% 2%;
+}
+
+.chatGroup .chatRoom_messageReceived .avatar {
+  margin: 2.5% 0% 2.5% 2%;
+}
+
+.chatGroup .chatRoom_submitMessage .messageInput {
+  width: 64%;
+  height: 50%;
+  background-color: #fff;
+  border-radius: 5px;
+  font-size: 18px;
+  padding: 1.5%;
+  margin: .5em;
+}
+
+.chatGroup .chatRoom_submitMessage .submitContext {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+}
+
+.chatGroup .chatRoom_submitMessage .submit {
+  width: 25%;
+  font-size: 16px;
+  padding: 1.5%;
+  border-radius: 5px;
+  margin: .5em;
+}
+
+.chatGroup .chatRoom_switchChannel {
+  margin: 2%;
+}
+
+.chatGroup .chatRoom_switchChannel .private {
+  width: 49%;
+  border-radius: 5px 0px 0px 5px;
+}
+
+.chatGroup .chatRoom_switchChannel .public {
+  width: 49%;
+  border-radius: 0px 5px 5px 0px;
+}
+
+.chatGroup .friendList {
+  width: 40%;
+  height: 100%;
+  background-color: #ff8d8d;
+}
+
+.chatGroup .friendList_content {
+  width: 100%;
+  height: 100%;
+}
+
+.chatGroup .friendList_main {
+  overflow: scroll;
+  overflow-x: hidden;
+  width: 94%;
+  height: 88.5%;
+  background-color: #fff;
+  margin: .5em 3% 2% 3%;
+}
+
+.friendList {
+  width: 94%;
+  height: 79%;
+  background-color: #fff;
+}
+
+.friendList_main {
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+.friendList_friendStatus {
+  width: 100%;
+  text-align: left !important;
+}
+
+.friendList_friend {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 2% 4.2%;
+  border-bottom: 2px solid #ff8d8d;
+}
+
+.friendList_friend .friendName, .friendList_friend .connectStatus, .friendList_friend .houseVisit, .friendList_friend .moreAction {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.friendList_friend .avatar {
+  display: inline-block;
+  max-width: 42px;
+  max-height: 42px;
+  border-radius: 50%;
+  background: #aaa;
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+@media screen and (max-width: 1310px) {
+  .friendList_friend .avatar {
+    max-width: 30px;
+    max-height: 30px;
+  }
+}
+
+.friendList_friend .friendName {
+  font-size: 18px;
+  margin-left: 5px;
+}
+
+.friendList_friend .connectStatus {
+  padding: 10px 15px;
+}
+
+@media screen and (max-width: 1310px) {
+  .friendList_friend .connectStatus {
+    padding: 5px 10px;
+  }
+}
+
+.friendList_friend .connectStatus .dot {
+  width: 10px;
+  height: 10px;
+  line-height: 10px;
+  border-radius: 50%;
+}
+
+.friendList_friend .connectStatus .dot-online {
+  background-color: #32b16c;
+}
+
+.friendList_friend .connectStatus .dot-offline {
+  background-color: #999;
+}
+
+.friendList_friend .houseVisit img {
+  max-width: 44px;
+  max-height: 44px;
+}
+
+@media screen and (max-width: 1310px) {
+  .friendList_friend .houseVisit img {
+    max-width: 30px;
+    max-height: 30px;
+  }
+}
+
+.friendList_friend .moreAction a {
+  display: inline-block;
+  padding: 5px 15px;
+}
+
+.friendList_friend .moreAction .dot {
+  width: 7px;
+  height: 7px;
+  margin: 2px 0px;
+  background-color: #ff8d8d;
+  border-radius: 50%;
+}
+
+.friendList_friend .requestAccept, .friendList_friend .requestRefuse {
+  font-size: 0;
+  padding: 0px 5px;
+  display: inline-block;
+}
+
+.friendList_friend .requestAccept img, .friendList_friend .requestRefuse img {
+  max-width: 44px;
+  max-height: 44px;
+}
+
+@media screen and (max-width: 1310px) {
+  .friendList_friend .requestAccept img, .friendList_friend .requestRefuse img {
+    max-width: 30px;
+    max-height: 30px;
+  }
+}
+
+.friendList_open {
+  width: 19.5vw;
+  height: auto;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+@media screen and (max-width: 1310px) {
+  .friendList_open {
+    width: 23.3vw;
+  }
+}
+
+.friendList_openBtn {
+  width: 100%;
+  padding: 1em 0 !important;
+}
+/*# sourceMappingURL=style.css.map */

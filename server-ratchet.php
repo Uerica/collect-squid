@@ -73,38 +73,6 @@ class MyChat implements MessageComponentInterface {
                 $resp_obj['users'] = array_values(array_unique($resp_obj['users']));
                 $this->msgBack($from, json_encode($resp_obj));
                 break;
-            // case "GET_USERS_POSITION":
-            //     // 取得目前所有已連線使用者的座標
-            //     //TODO: 需要另外把每個使用者送上來的座標資訊存起來
-            //     //      把目前所有已連線的使用者user_id和座標，回傳給目前連線的人
-            //     $resp_obj = array();
-            //     $resp_obj['msg_type'] = "ONLINE_USERS_POSITIONS";
-            //     $resp_obj['users'] = array();
-            //     $resp_obj['users']['uerica'] = array();
-            //     $resp_obj['users']['uerica']['x'] = "123";
-            //     $resp_obj['users']['uerica']['y'] = "456";
-            //     $resp_obj['users']['joe'] = array();
-            //     $resp_obj['users']['joe']['x'] = "333";
-            //     $resp_obj['users']['joe']['y'] = "666";
-            //     $this->msgBack($from, json_encode($resp_obj));
-            //     break;
-            // case "USER_MOVE":
-            //     // 角色位置移動的位置
-            //     $user_id = $json_msg['user_id'];
-            //     $position_x = $json_msg['position_x'];
-            //     $position_y = $json_msg['position_y'];
-            //     echo "使用者:[$user_id] 移動至座標 x:[$position_x] y:[$position_y]\r\n";
-            //     // 把角色移動的資訊，傳給所有人
-            //     $this->msgToAll($msg);
-            //     break;
-            // case "USER_ACTION":
-            //     //角色行為
-            //     $user_id = $json_msg['user_id'];
-            //     $action = $json_msg['action'];
-            //     echo "使用者:[$user_id] 進行動作 action:[$action]\r\n";
-            //     // 把角色動作的資訊，傳給所有人
-            //     $this->msgToAll($msg);
-            //     break;
         }
     }
 
@@ -180,6 +148,6 @@ class MyChat implements MessageComponentInterface {
 }
 
 // Run the server application through the WebSocket protocol on port 8080
-$app = new Ratchet\App('localhost', 8080);
+$app = new Ratchet\App('localhost', 8080, "0.0.0.0");
 $app->route('/chat', new MyChat, array('*'));
 $app->run();
