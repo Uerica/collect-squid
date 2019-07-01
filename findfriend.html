@@ -4,95 +4,197 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <title>findfriend</title>
     <style>
-    
-    /* 讓魷魚置中 */
-    .showFriend_persFile{
-        display:flex;
-        justify-content: center;
+
+    /* 按鈕樣式 */
+    .selectBtn input{
+    display: inline-block;
+    width: 45%;
+    margin: 2% -4px;
+    padding: 2% 3%;
+    border: 3px solid #f6f6f6;
+    font-size: 16px;
+    border-radius: 20px;
+    color: #fff;
+    background-color: #fa7979;
+    position: relative;
+    top: -3px;
+    left: -3px;
+    -webkit-box-shadow: 3px 3px #e7867e;
+            box-shadow: 3px 3px #e7867e;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
     }
 
-    /* 讓檔案飛 */
-    .showFriend_persFile .squid{
+    .selectBtn input:hover {
+    top: 0;
+    left: 0;
+    -webkit-box-shadow: 0 0 transparent;
+            box-shadow: 0 0 transparent;
+    }
+
+    /* 找朋友背景 */
+    .findFriend{
+        background-image: url("img/findbg.png");
+        width: 100%;
+        height: 100vh;
+        background-size: cover;
+    }
+
+    .friendSelect{
         position: relative;
     }
 
-    
+    .friendSelect .card{
+        display: flex;
+        justify-content: center;
+    }
 
-    /* 讓檔案飛 */
+    .friendSelect .select{
+        position:absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);   
+    }
+
+    .friendSelect .select h1{
+        color: #663535;
+        font-size: 30px;
+        line-height: 100px;
+
+    }
+
+    .friendSelect .select h1,.selectBtn{
+        text-align: center;
+    }
+
+    .select_form select{
+        appearance:none;
+        -moz-appearance:none;
+        -webkit-appearance:none;
+        width: 250px;
+        height: 50px;
+        border: 3px solid #f8b853;
+        display:block;
+        margin-bottom: 80px;
+        color: #f8b853;
+        font-size: 20px;
+    }
+
+    /* 搜尋後出現先隱藏 */
+    .showFriend{
+        display: none;
+    }
+
+    /* 讓魷魚置中 */
+    .showFriend_persFile .squid_profile{
+        display:flex;
+        justify-content:center;
+        position: relative;
+    }
+
+    /* 魷魚檔案外框 */
     .showFriend_persFile .profile{
         position: absolute;
         top:0;
-        left:150%;
+        right: 0;
     }
-
-    /* 讓文字飛 */
+    
+     /* 文字樣式 */
     .showFriend_persFile .profile .txt{
-        position: absolute;
-        left: 50%;
-        top:40%;
-        transform:translate(-50%,-50%);
-        font-size: 24px;
+        font-size: 20px;
         letter-spacing: 5px;
+        line-height: 40px;
         color: #663535;
+        position: absolute;
+        top:40%;
+        left: 50%;
+        transform: translate(-50%,-50%);
     }
 
 
     .showFriend_prizeWheel{
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         justify-content: space-around;
     }
 
-    .showFriend_prizeWheel img{
-        max-width: 500px;
+    .prizeWheel_body{
+        position:fixed;
     }
 
-  
+
+    /* 啊魷的部分~ */
+    .cls-1 {
+        fill: #ff8d8d;
+    }
+
+    .cls-1, .cls-2, .cls-3, .cls-4 {
+        fill-rule: evenodd;
+    }
+
+    .cls-2 {
+        fill: #4b4b4b;
+    }
+
+    .cls-3 {
+        fill: #f3f3f3;
+    }
+
+    .cls-4 {
+        fill: #5d8bae;
+    }
+
+    .cls-5 {
+        fill: #58c7cb;
+    }
+
+
  
     </style>
 </head>
 <body>
+    <div class="findFriend">
+        <!-- 篩選條件燈箱 -->
+        <div class="friendSelect">
+            <div class="card">
+                <img src="img/select.png" alt="搜尋的背景">
+            </div>
+            <div class="select">
+                <h1>搜尋好友</h1>
+                <form class="select_form">
+                <select name="gender">
+                    <option value="allgender">全選</option>
+                    <option value="male">男</option>
+                    <option value="female">女</option>
+                </select>
+                <select name="gender">
+                    <option value="allgender">全選</option>
+                    <option value="male">男</option>
+                    <option value="female">女</option>
+                </select>
+                <select name="gender">
+                    <option value="allgender">全選</option>
+                    <option value="male">男</option>
+                    <option value="female">女</option>
+                </select>
+                </form>
+
+                <div class="selectBtn">
+                <input onclick="startSearch()" type="button" value="開始搜尋"/>
+                </div>
+            </div> 
+        </div>
     <!-- 篩選後出現人選 -->
-    <div class="showFriend">
-        <!-- 顯示人物區 -->
-        <div class="showFriend_persFile">
-            <div class="squid">
-                    <svg id="阿魷" xmlns="http://www.w3.org/2000/svg" width="250" height="418" viewBox="0 0 250 418">
-                        <metadata><?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
-                      <x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 5.6-c138 79.159824, 2016/09/14-01:09:01        ">
-                         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-                            <rdf:Description rdf:about=""/>
-                         </rdf:RDF>
-                      </x:xmpmeta><?xpacket end="w"?></metadata>
-                      <defs>
-                          <style>
-                            .cls-1 {
-                              fill: #ff8d8d;
-                            }
-                      
-                            .cls-1, .cls-2, .cls-3, .cls-4 {
-                              fill-rule: evenodd;
-                            }
-                      
-                            .cls-2 {
-                              fill: #4b4b4b;
-                            }
-                      
-                            .cls-3 {
-                              fill: #f3f3f3;
-                            }
-                      
-                            .cls-4 {
-                              fill: #5d8bae;
-                            }
-                      
-                            .cls-5 {
-                              fill: #58c7cb;
-                            }
-                          </style>
-                        </defs>
+        <div class="showFriend">
+            <!-- 顯示人物區 -->
+            <div class="showFriend_persFile">
+                <div class="squid_profile">
+
+                    <div class="squid">
+                        <svg id="阿魷" xmlns="http://www.w3.org/2000/svg" width="180" height="418" viewBox="0 0 250 418">     
                         <path id="矩形_2_拷貝_23" data-name="矩形 2 拷貝 23" class="cls-1" d="M914.128,225.538H1055.32a15,15,0,0,1,15,15v251.7a15,15,0,0,1-15,15H914.128a15,15,0,0,1-15-15v-251.7A15,15,0,0,1,914.128,225.538Z" transform="translate(-862 -155)"/>
                         <path id="多邊形_1_拷貝_23" data-name="多邊形 1 拷貝 23" class="cls-1" d="M1080.74,214.493Q1174.49,333.509,987,333.509T893.256,214.493Q987,95.477,1080.74,214.493Z" transform="translate(-862 -155)"/>
                         <path id="矩形_3_拷貝_24" data-name="矩形 3 拷貝 24" class="cls-1" d="M936.857,441.5h12.565a5.423,5.423,0,0,1,5.424,5.423V567.577A5.423,5.423,0,0,1,949.422,573H936.857a5.423,5.423,0,0,1-5.424-5.423V446.919A5.423,5.423,0,0,1,936.857,441.5Z" transform="translate(-862 -155)"/>
@@ -106,31 +208,33 @@
                         <path id="矩形_45" data-name="矩形 45" class="cls-5" d="M158.06,274.625H192a0,0,0,0,1,0,0v26.508A7.867,7.867,0,0,1,184.133,309H165.927a7.867,7.867,0,0,1-7.867-7.867V274.625a0,0,0,0,1,0,0Z"/>
                         <path id="橢圓_15_拷貝_2" data-name="橢圓 15 拷貝 2" class="cls-4" d="M987.992,470.057A6.054,6.054,0,1,1,982,476.111,6.024,6.024,0,0,1,987.992,470.057Z" transform="translate(-862 -155)"/>
                         <path id="形狀_782" data-name="形狀 782" class="cls-2" d="M951.807,381.671v-3.656s11.616,6.093,35.013,6.093c22.71,0,30.52-6.093,30.52-6.093v3.656s-7.39,6.093-29.875,6.093C963.861,387.764,951.807,381.671,951.807,381.671Z" transform="translate(-862 -155)"/>
-                      </svg>
-                      
-                
-                <div class="profile">
-                    <img src="img/file.png" alt="魷魚檔案">
-                    <div class="txt">
-                        <p>ID:<span id="userid">9453</span></p>
-                        <p>暱稱:<span id="nickname">魷魚軟軟</span></p>
-                        <p>性別:<span id="gender">男</span></p>
-                        <p>星座:<span id="constellation">水瓶座</span></p>
-                        <p>興趣:<span id="habit">我愛php!</span></p>
+                        </svg>
+                    </div>
+
+                    <div class="profile">
+                        <img src="img/file.png" alt="魷魚檔案">
+                        <div class="txt">
+                            <p>ID:<span id="userid">9453</span></p>
+                            <p>暱稱:<span id="nickname">魷魚軟軟</span></p>
+                            <p>性別:<span id="gender">男</span></p>
+                            <p>星座:<span id="constellation">水瓶座</span></p>
+                            <p>興趣:<span id="habit">我愛php!</span></p>
+                        </div>
                     </div>
                 </div>
             </div>
-            
-        </div>
 
-        <!-- 轉盤區 -->
-        <div class="showFriend_prizeWheel">
-            <!-- 轉盤與按鈕 -->
-            <div class="prev" id="prev"><a href="#"><img src="img/prev.png" alt=""></a></div>
-            <div class="body" id="body"><img src="img/pwBody.png" alt=""></div>
-            <div class="next" id="next"><a href="#"><img src="img/next.png" alt=""></a></div>
+            <!-- 轉盤區 -->
+            <div class="showFriend_prizeWheel">
+                <!-- 轉盤與按鈕 -->
+                <div class="prizeWheel_prev" id="prev"><a href="#"><img src="img/prev.png" alt=""></a></div>
+                <div class="prizeWheel_body" id="body"><img src="img/pwBody.png" alt=""></div>
+                <div class="prizeWheel_next" id="next"><a href="#"><img src="img/next.png" alt=""></a></div>
+                
+            </div>
         </div>
     </div>
+
     <script src="js/jquery-3.4.1.min.js"></script>
     <script>
         var degree = 0;
@@ -138,66 +242,66 @@
         var profiles = [
             {
                 userid: "9453",
-                username: "魷魚軟軟",
+                username: "軟軟",
                 gender: "男",
                 constellation: "水瓶座",
                 habit: "我愛php!",
                 avatar_color: "#f3f3f3"
             },
             {
-                userid: "222",
-                username: "abc222",
-                gender: "male",
-                constellation: "xxx",
-                habit: "",
+                userid: "9527",
+                username: "硬硬",
+                gender: "男",
+                constellation: "摩羯座",
+                habit: "套套看",
                 avatar_color: "yellow"
             },
             {
-                userid: "333",
-                username: "abc333",
-                gender: "male",
-                constellation: "xxx",
-                habit: "",
+                userid: "9487",
+                username: "好辣",
+                gender: "女",
+                constellation: "摩羯座",
+                habit: "找相機",
                 avatar_color: "pink"
             },
             {
-                userid: "123",
-                username: "abc",
-                gender: "male",
-                constellation: "xxx",
-                habit: "",
+                userid: "9981",
+                username: "詩詩",
+                gender: "女",
+                constellation: "雙子座",
+                habit: "設計頭型",
                 avatar_color: "red"
             },
             {
-                userid: "222",
-                username: "abc222",
-                gender: "male",
-                constellation: "xxx",
-                habit: "",
+                userid: "9898",
+                username: "魚翔",
+                gender: "男",
+                constellation: "摩羯座",
+                habit: "打魚翔拳",
                 avatar_color: "yellow"
             },
             {
-                userid: "333",
-                username: "abc333",
-                gender: "male",
-                constellation: "xxx",
-                habit: "",
-                avatar_color: "pink"
+                userid: "520520",
+                username: "長長",
+                gender: "男",
+                constellation: "巨蠍座",
+                habit: "扣扣看",
+                avatar_color: "blue"
             },
             {
-                userid: "123",
-                username: "abc",
-                gender: "male",
-                constellation: "xxx",
-                habit: "",
+                userid: "79979",
+                username: "內內",
+                gender: "女",
+                constellation: "牡羊座",
+                habit: "修冷氣",
                 avatar_color: "red"
             },
             {
-                userid: "222",
-                username: "abc222",
-                gender: "male",
-                constellation: "xxx",
-                habit: "",
+                userid: "54321",
+                username: "酒酒",
+                gender: "女",
+                constellation: "雙魚座",
+                habit: "喝一杯",
                 avatar_color: "yellow"
             }
         ];
@@ -246,9 +350,12 @@
 
             $(".squid .cls-3").css("fill", profile.avatar_color);
         }
-        
-        
-        
+
+
+        function startSearch(){
+            $('.friendSelect').css('display','none');
+            $('.showFriend').css('display','block');
+        }
     </script>
 </body>
 </html>
