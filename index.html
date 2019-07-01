@@ -464,7 +464,7 @@
     };
 
     function initWebsocketServer() {
-        conn_chat = new WebSocket('ws://localhost:8080/chat');
+        conn_chat = new WebSocket('ws://35.229.227.58:8080/chat');
         conn_chat.onopen = function(e) { 
             console.log('已連到伺服器');
             // temp solution
