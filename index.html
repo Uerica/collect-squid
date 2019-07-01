@@ -355,6 +355,43 @@
     <div class="friendList_open">
         <button class="button friendList_openBtn">開啟聊天室</button>
     </div>
+    
+    <div class="loginBox">
+        <div class="loginContent">
+            <div class="intro">
+                <div class="logo">
+                    <img src="imgs/loginBox/logo.png" alt="Logo" />
+                    <h2>收集友誼</h2>
+                </div>
+                <div class="drawing">
+                    <img src="imgs/loginBox/logingBg.png" alt="Login Background" />
+                </div>
+                <div class="slogan"><p>線上魷魚，即時友誼</p></div>
+            </div>
+
+            <div class="loginForm">
+                <h3>會員登入</h3>
+                <form action="">
+                    <div class="personalInfo">
+                        <div class="inputField">
+                            <label for="memId">暱稱</label>
+                            <input type="text" name="memId" id="memId" />
+                        </div>
+                        <div class="inputField">
+                            <label for="memPsw">密碼</label>
+                            <input type="text" name="memPsw" id="memPsw" />
+                        </div>
+                            <a href="javascript:;">忘記密碼？</a>
+                    </div>
+                    <div class="submitBtns">
+                        <input class="createRole" type="submit" value="創角" />
+                        <input type="button" value="登入" onclick="login()" />
+                        <input class="godMode" type="submit" value="上帝模式" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
 
 
@@ -467,11 +504,6 @@
         conn_chat = new WebSocket('ws://35.229.227.58/chat');
         conn_chat.onopen = function(e) { 
             console.log('已連到伺服器');
-            // temp solution
-            if(typeof(user_id)=="undefined") {        
-                var user_id = prompt("input your nickname");
-                login(user_id);
-            }
         };
 
         conn_chat.onclose = function(e) { 
@@ -480,9 +512,11 @@
         conn_chat.onmessage = onMessageListener;
     }
 
-    function login(user_id) {
+    function login() {
+        var user_id = $('#memId').val();
         // 告訴server我的user_id
         chat_app.user_id = user_id;
+        $('.loginBox').css('display','none');
         conn_chat.send(
             JSON.stringify(
                 { "msg_type": "LOGIN", "user_id": user_id }

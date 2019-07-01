@@ -1,37 +1,35 @@
-::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
-  background-color: #F5F5F5;
-}
-
-::-webkit-scrollbar {
-  width: 12px;
-  background-color: #F5F5F5;
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  background-color: #555;
-}
-
 .collapse {
   display: none !important;
 }
 
-html {
-  background: url(../imgs/homepage.png) no-repeat center center fixed;
-  background-size: cover;
-}
-
 body {
-  font-family: 'Noto Sans TC', sans-serif;
+  font-family: "Noto Sans TC", sans-serif;
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
+  color: #fa7979;
+}
+
+body .bgImage {
+  width: 1920px;
+  height: 1080px;
+  font-size: 0;
+  position: absolute;
+  background-color: #ffa;
+  margin-top: 85px;
+  z-index: -100;
+}
+
+@media screen and (max-width: 1310px) {
+  body .bgImage {
+    width: 100vw;
+    height: 100vh;
+    margin-top: 0;
+  }
+}
+
+body .bgImage img {
+  width: 100%;
+  height: 100%;
 }
 
 a {
@@ -47,6 +45,10 @@ img {
 .common_header {
   width: 100%;
   background-color: #ff8d8d;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
 }
 
 .menuDesktop {
@@ -179,7 +181,7 @@ img {
 }
 
 .menuMobile_line {
-  background-color: #ECEFF4;
+  background-color: #eceff4;
   height: 2px;
   width: 100%;
   border-radius: 2px;
@@ -235,7 +237,7 @@ img {
 }
 
 .menuMobile_overlay {
-  background-color: #4C566A;
+  background-color: #4c566a;
   color: #333;
   width: 100%;
   height: 100%;
@@ -272,11 +274,12 @@ img {
 .menuMobile_overlay .memberInfo li {
   display: inline-block;
   margin: 0% 2% 0% 2%;
-  width: calc((100%-12%)/4);
+  width: calc((100%-12%) / 4);
 }
 
-.menuMobile_overlay .memberInfo span, .menuMobile_overlay .memberInfo a {
-  color: #D8DEE9;
+.menuMobile_overlay .memberInfo span,
+.menuMobile_overlay .memberInfo a {
+  color: #d8dee9;
   font-weight: 500;
 }
 
@@ -341,9 +344,10 @@ img {
   margin: 2% 0%;
 }
 
-.menuMobile_overlay .menuMobile_nav span, .menuMobile_overlay .menuMobile_nav a {
+.menuMobile_overlay .menuMobile_nav span,
+.menuMobile_overlay .menuMobile_nav a {
   display: block;
-  color: #D8DEE9;
+  color: #d8dee9;
   font-weight: 500;
 }
 
@@ -394,7 +398,7 @@ img {
   padding-top: 2em;
   background-color: #ff8d8d;
   border-radius: 10px 10px 0px 0px;
-  position: absolute;
+  position: fixed;
   right: 0;
   bottom: 0;
 }
@@ -405,12 +409,19 @@ img {
   }
 }
 
+@media screen and (max-width: 768px) {
+  .chatGroup {
+    width: 100vw;
+    height: 100vh;
+  }
+}
+
 .chatGroup .closeBtn {
   position: absolute;
   right: 0;
   top: 0;
-  margin-right: .5em;
-  margin-top: -.35em;
+  margin-right: 0.5em;
+  margin-top: -0.35em;
   font-size: 40px;
   color: #fff;
 }
@@ -418,30 +429,46 @@ img {
 .chatGroup .chatRoom {
   width: 60%;
   height: 100%;
-  background-color: #ff8d8d;
 }
 
 .chatGroup .chatRoom_content {
   width: 100%;
   height: 100%;
-}
-
-.chatGroup .chatRoom_main {
-  overflow: scroll;
-  overflow-x: hidden;
-  width: 94%;
-  height: 79%;
-  background-color: #fff;
-  margin: .5em 3% 2% 3%;
-  border-radius: 10px;
+  background-color: #ff8d8d;
+  margin-left: 1em;
+  margin-top: 0.5em;
 }
 
 .chatGroup .chatRoom_sendTo {
-  padding: 0.5em 1em;
+  padding: 0.5em 3%;
   color: rgba(0, 0, 0, 0.8);
-  background-color: #E6E6E6;
+  background-color: #e6e6e6;
   font-size: 20px;
-  margin-bottom: 2.5%;
+}
+
+.chatGroup .chatRoom_main {
+  width: 96.5%;
+  height: 82.1%;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.chatGroup .chatRoom_main::-webkit-scrollbar-track {
+  background-color: #ff8d8d;
+}
+
+.chatGroup .chatRoom_main::-webkit-scrollbar {
+  width: 22px;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+}
+
+.chatGroup .chatRoom_main::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #fff;
+  border: 4px solid #ff8d8d;
 }
 
 .chatGroup .chatRoom_messageOfficial {
@@ -454,14 +481,17 @@ img {
   background-color: #ccc;
   border-radius: 10px;
   padding: 3%;
-  opacity: .7;
+  opacity: 0.7;
+  line-height: 22px;
 }
 
 .chatGroup .chatRoom_messageSent, .chatGroup .chatRoom_messageReceived {
   line-height: 22px;
 }
 
-.chatGroup .chatRoom_messageSent .message-sent, .chatGroup .chatRoom_messageSent .message-received, .chatGroup .chatRoom_messageReceived .message-sent, .chatGroup .chatRoom_messageReceived .message-received {
+.chatGroup .chatRoom_messageSent .message-sent,
+.chatGroup .chatRoom_messageSent .message-received, .chatGroup .chatRoom_messageReceived .message-sent,
+.chatGroup .chatRoom_messageReceived .message-received {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -512,14 +542,17 @@ img {
   margin: 2.5% 0% 2.5% 2%;
 }
 
+.chatGroup .chatRoom_submitMessage {
+  margin: 1em 0em;
+}
+
 .chatGroup .chatRoom_submitMessage .messageInput {
-  width: 64%;
+  width: 67%;
   height: 50%;
   background-color: #fff;
   border-radius: 5px;
   font-size: 18px;
   padding: 1.5%;
-  margin: .5em;
 }
 
 .chatGroup .chatRoom_submitMessage .submitContext {
@@ -532,25 +565,21 @@ img {
           flex-flow: row nowrap;
 }
 
-.chatGroup .chatRoom_submitMessage .submit {
+.chatGroup .chatRoom_submitMessage .submitContext .submit {
   width: 25%;
   font-size: 16px;
   padding: 1.5%;
   border-radius: 5px;
-  margin: .5em;
+  margin-left: 0.5em;
 }
 
-.chatGroup .chatRoom_switchChannel {
-  margin: 2%;
-}
-
-.chatGroup .chatRoom_switchChannel .private {
-  width: 49%;
+.chatGroup .chatRoom_switchChannel .button-private {
+  width: 47%;
   border-radius: 5px 0px 0px 5px;
 }
 
-.chatGroup .chatRoom_switchChannel .public {
-  width: 49%;
+.chatGroup .chatRoom_switchChannel .button-public {
+  width: 47%;
   border-radius: 0px 5px 5px 0px;
 }
 
@@ -566,12 +595,28 @@ img {
 }
 
 .chatGroup .friendList_main {
-  overflow: scroll;
-  overflow-x: hidden;
   width: 94%;
   height: 88.5%;
   background-color: #fff;
-  margin: .5em 3% 2% 3%;
+  margin: 0.5em 3% 2% 3%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.chatGroup .friendList_main::-webkit-scrollbar-track {
+  background-color: #ff8d8d;
+}
+
+.chatGroup .friendList_main::-webkit-scrollbar {
+  width: 18px;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+}
+
+.chatGroup .friendList_main::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #fff;
+  border: 3px solid #ff8d8d;
 }
 
 .friendList {
@@ -587,7 +632,7 @@ img {
 
 .friendList_friendStatus {
   width: 100%;
-  text-align: left !important;
+  text-align: left;
 }
 
 .friendList_friend {
@@ -600,11 +645,14 @@ img {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 2% 4.2%;
+  padding: 2% 1.2% 2% 4.2%;
   border-bottom: 2px solid #ff8d8d;
 }
 
-.friendList_friend .friendName, .friendList_friend .connectStatus, .friendList_friend .houseVisit, .friendList_friend .moreAction {
+.friendList_friend .friendName,
+.friendList_friend .connectStatus,
+.friendList_friend .roomVisit,
+.friendList_friend .moreAction {
   display: inline-block;
   vertical-align: middle;
 }
@@ -656,13 +704,13 @@ img {
   background-color: #999;
 }
 
-.friendList_friend .houseVisit img {
+.friendList_friend .roomVisit img {
   max-width: 44px;
   max-height: 44px;
 }
 
 @media screen and (max-width: 1310px) {
-  .friendList_friend .houseVisit img {
+  .friendList_friend .roomVisit img {
     max-width: 30px;
     max-height: 30px;
   }
@@ -681,19 +729,22 @@ img {
   border-radius: 50%;
 }
 
-.friendList_friend .requestAccept, .friendList_friend .requestRefuse {
+.friendList_friend .requestAccept,
+.friendList_friend .requestRefuse {
   font-size: 0;
   padding: 0px 5px;
   display: inline-block;
 }
 
-.friendList_friend .requestAccept img, .friendList_friend .requestRefuse img {
+.friendList_friend .requestAccept img,
+.friendList_friend .requestRefuse img {
   max-width: 44px;
   max-height: 44px;
 }
 
 @media screen and (max-width: 1310px) {
-  .friendList_friend .requestAccept img, .friendList_friend .requestRefuse img {
+  .friendList_friend .requestAccept img,
+  .friendList_friend .requestRefuse img {
     max-width: 30px;
     max-height: 30px;
   }
@@ -702,9 +753,10 @@ img {
 .friendList_open {
   width: 19.5vw;
   height: auto;
-  position: absolute;
+  position: fixed;
   right: 0;
   bottom: 0;
+  z-index: 2;
 }
 
 @media screen and (max-width: 1310px) {
@@ -714,7 +766,405 @@ img {
 }
 
 .friendList_openBtn {
+  font-size: 20px;
   width: 100%;
-  padding: 1em 0 !important;
+  padding: 1em 0;
+}
+
+@media screen and (max-width: 768px) {
+  .friendList_openBtn {
+    padding: 0.1em 0;
+  }
+}
+
+.common_notifications {
+  position: fixed;
+  width: auto;
+  left: 0;
+  top: 55%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+@media screen and (max-width: 768px) {
+  .common_notifications {
+    display: none;
+  }
+}
+
+.common_notifications .notifications {
+  position: relative;
+}
+
+.common_notifications .notifications_delete {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 8px 10px;
+  font-size: 19px;
+  color: #3b4252;
+}
+
+.common_notifications .notifications_actionBox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column wrap;
+          flex-flow: column wrap;
+  background-color: #ff8d8d;
+  padding: 10px 10px 10px 0px;
+  border-radius: 0px 10px 10px 0px;
+}
+
+.common_notifications .notifications_actionBox .button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column wrap;
+          flex-flow: column wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #fff;
+}
+
+.common_notifications .notifications_actionBox .button-notifications {
+  border-radius: 0px 5px 0px 0px;
+  margin-bottom: 5px;
+  padding: 0.5em 0.5em;
+}
+
+.common_notifications .notifications_actionBox .button-robot {
+  border-radius: 0px 0px 5px 0px;
+  margin-top: 5px;
+  padding: 0.5em 0.5em;
+}
+
+.common_notifications .notifications_container {
+  background-color: #ff8d8d;
+  border-radius: 0px 20px 20px 0px;
+  padding: 0.4em 0.3em 0.4em 0.4em;
+}
+
+.common_notifications .notifications_content {
+  line-height: 22px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  width: 300px;
+  height: 35vh;
+  max-height: 35vh;
+  margin: 0.2em;
+}
+
+.common_notifications .notifications_content::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+.common_notifications .notifications_content::-webkit-scrollbar {
+  width: 12px;
+  border-radius: 10px;
+}
+
+.common_notifications .notifications_content::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+}
+
+.common_notifications .notifications_content::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.common_notifications .notifications {
+  background-color: #fff;
+  margin: 0em 0.6em 0.75em 0em;
+  padding: 1em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+}
+
+.common_notifications .notifications:last-child {
+  margin-bottom: 0;
+}
+
+.gameWorld {
+  position: relative;
+  font-size: 0;
+}
+
+.gameWorld img {
+  display: block;
+}
+
+.gameWorld_bgImage {
+  position: relative;
+  width: 1920px;
+  height: 1080px;
+  margin-top: 85px;
+}
+
+.gameWorld_bgImage img {
+  width: 100%;
+  height: auto;
+}
+
+@media screen and (max-width: 1310px) {
+  .gameWorld_bgImage {
+    margin-top: 0;
+  }
+}
+
+.gameWorld_house img {
+  position: absolute;
+  right: 12.6%;
+  top: 12%;
+  width: 20%;
+  height: auto;
+}
+
+.gameWorld_fountain img {
+  position: absolute;
+  top: 39%;
+  left: 43.2%;
+  width: 16.2%;
+  height: auto;
+}
+
+.gameWorld_bus img {
+  position: absolute;
+  top: 22.9%;
+  left: 19.5%;
+  width: 22%;
+  height: auto;
+}
+
+.gameWorld_cup img {
+  position: absolute;
+  width: 11%;
+  bottom: 1.7%;
+  left: 14.5%;
+}
+
+.loginBox {
+  position: fixed;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(78, 70, 60, 0.8);
+  z-index: 100;
+  color: #fff;
+}
+
+.loginBox img {
+  vertical-align: middle;
+}
+
+.loginBox .loginContent {
+  width: 60%;
+  padding: 2%;
+  border: 3px solid #fff;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-radius: 10px;
+  background-color: #f8b853;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.loginBox .loginContent label,
+.loginBox .loginContent input {
+  -webkit-appearance: none;
+  border: none;
+  display: inline-block;
+  font-size: 18px;
+}
+
+.loginBox .loginContent a {
+  display: block;
+  text-align: center;
+  color: #f8b853;
+}
+
+.loginBox .loginContent .intro {
+  width: 38%;
+}
+
+.loginBox .loginContent .intro .logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 3% 6%;
+}
+
+.loginBox .loginContent .intro .logo h2 {
+  font-size: 30px;
+  -webkit-box-flex: 0.5;
+      -ms-flex-positive: 0.5;
+          flex-grow: 0.5;
+}
+
+.loginBox .loginContent .intro .drawing img {
+  width: 100%;
+}
+
+.loginBox .loginContent .intro .slogan {
+  padding: 5% 0 0;
+  text-align: center;
+  font-size: 24px;
+}
+
+.loginBox .loginContent .loginForm {
+  width: 58%;
+  padding: 2% 3%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-radius: 10px;
+  background-color: #fff;
+  color: #333;
+}
+
+.loginBox .loginContent .loginForm h3 {
+  height: 15%;
+  font-size: 24px;
+  text-align: center;
+  padding-top: 5px;
+}
+
+.loginBox .loginContent .loginForm form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 85%;
+}
+
+.loginBox .loginContent .loginForm form .personalInfo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 50%;
+}
+
+.loginBox .loginContent .loginForm form .personalInfo .inputField {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  padding: 3% 2%;
+}
+
+.loginBox .loginContent .loginForm form .personalInfo .inputField label {
+  width: 20%;
+  text-align: center;
+}
+
+.loginBox .loginContent .loginForm form .personalInfo .inputField input {
+  width: 75%;
+  padding: 2% 3%;
+  border: 3px solid #f8b853;
+  border-radius: 20px;
+}
+
+.loginBox .loginContent .loginForm form .submitBtns {
+  width: 100%;
+  height: 40%;
+}
+
+.loginBox .loginContent .loginForm form .submitBtns input {
+  display: inline-block;
+  width: 45%;
+  margin: 2% -4px;
+  padding: 2% 3%;
+  border: 3px solid #f6f6f6;
+  font-size: 16px;
+  border-radius: 20px;
+  color: #fff;
+  background-color: #fa7979;
+  position: relative;
+  top: -3px;
+  left: -3px;
+  -webkit-box-shadow: 3px 3px #e7867e;
+          box-shadow: 3px 3px #e7867e;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.loginBox .loginContent .loginForm form .submitBtns input:hover {
+  top: 0;
+  left: 0;
+  -webkit-box-shadow: 0 0 transparent;
+          box-shadow: 0 0 transparent;
+}
+
+.loginBox .loginContent .loginForm form .submitBtns .createRole {
+  background-color: #fff;
+  color: #fa7979;
+  margin-right: 10%;
+}
+
+.loginBox .loginContent .loginForm form .submitBtns .godMode {
+  width: 100%;
+  padding-top: 3%;
+  background-color: #f65d5d;
+  -webkit-box-shadow: 3px 3px #fb8787;
+          box-shadow: 3px 3px #fb8787;
 }
 /*# sourceMappingURL=style.css.map */
