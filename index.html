@@ -1,340 +1,598 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <!-- 要加chartset=utf-8 這樣如果html中有寫中文，傳送時編碼(encoding)才會正常 -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, minmum-scale=0, maximum-scale=10 initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="css/normalize.css" />
-    <link
-      href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="css/style.css" />
+    <!-- <link rel="stylesheet" href="css/normalize.css"> -->
+    <link rel="stylesheet" href="css/reset.css">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>收集友誼</title>
+</head>
 
-    <title>尋找友誼</title>
-  </head>
+<body>
+    <div class="gameWorld_bgImage">
+        <img src="imgs/homepage01.png" alt="" draggable="false" oncontextmenu="return false">
+    </div>
 
-  <body>
-    <div class="home_page">
-      <header>
-        <nav>
-          <li>
-            <a href="javascript:;" class="room">
-              <i class="nav_icon"
-                ><img src="imgs/icon/room--icon.png" alt="我的房間icon"
-              /></i>
-              <span>我的房間</span>
+    <!-- gameWorld -->
+    <!-- <div class="gameWorld">
+        <div class="house">
+        </div>
+    </div> -->
+
+    <div class="gameWorld">
+        <!-- <div class="gameWorld_bgImage">
+                    <img src="imgs/homepage01.png" alt="" draggable="false" oncontextmenu="return false">
+                </div> -->
+        <div class="gameWorld_house gameWorld_object">
+            <img src="imgs/house_tag.png" alt="">
+        </div>
+        <div class="gameWorld_fountain gameWorld_object">
+            <img src="imgs/fountain.png" alt="">
+        </div>
+        <div class="gameWorld_bus gameWorld_object">
+            <img src="imgs/bus.png" alt="">
+        </div>
+        <div class="gameWorld_cup gameWorld_object">
+            <img src="imgs/cup.png" alt="">
+        </div>
+    </div>
+
+    <header class="common_header disabledScrollOnHover">
+        <div class="menuMobile">
+            <span class="menuMobile_circle"></span>
+            <a href="#" class="menuMobile_link">
+                <span class="menuMobile_icon">
+                    <span class="menuMobile_line menuMobile_line-1"></span>
+                    <span class="menuMobile_line menuMobile_line-2"></span>
+                    <span class="menuMobile_line menuMobile_line-3"></span>
+                </span>
             </a>
-          </li>
+        </div>
 
-          <li>
-            <a href="javascript:;" class="friend">
-              <i class="nav_icon"
-                ><img src="imgs/icon/friend--icon.png" alt="找朋友icon"
-              /></i>
-              <span>找朋友</span>
-            </a>
-          </li>
+        <div class="menuMobile_overlay">
+            <ul class="memberInfo">
+                <li class="coin">
+                    <a href="javascript:;">
+                        <img src="imgs/icon/coin.png" alt="持有金額icon">
+                        <span>1500</span>
+                    </a>
+                </li>
+                <li class="logo">
+                    <a href="index.html">
+                        <img src="imgs/logo.png" alt="尋找友誼網站LOGO">
+                        <span>尋找友誼</span>
+                    </a>
+                </li>
+                <li class="login">
+                    <img src="imgs/icon/avatar.png" alt="角色頭像icon">
+                    <span class="name">
+                        <a href="javascript:;">魚翔</a>
+                    </span>
+                    <span>
+                        <a href="javascript:;">登出</a>
+                    </span>
+                </li>
+            </ul>
+            <nav class="menuMobile_nav">
+                <li><a href="myRoom.html"> <img src="imgs/icon/room.png" alt="我的房間icon">
+                        <span>我的房間</span></a></li>
+                <li><a href="dressingRoom.html"><img src="imgs/icon/fittingRoom.png" alt="換衣間icon">
+                        <span>換衣間</span></a></li>
+                <li><a href="findfriend.html"> <img src="imgs/icon/friend.png" alt="找朋友icon">
+                        <span>找朋友</span></a></li>
+                <li><a href="javascript:;"> <img src="imgs/icon/events.png" alt="揪團活動icon">
+                        <span>揪團活動</span></a></li>
+                <li><a href="shop.html"> <img src="imgs/icon/mall.png" alt="虛擬商城icon">
+                        <span>虛擬商城</span></a></li>
+                <li><a href="memberCenter.html"> <img src="imgs/icon/member.png" alt="會員中心icon">
+                        <span>會員中心</span></a></li>
+                <li><a href="javascript:;"> <img src="imgs/icon/robot.png" alt="客服機器人_icon">
+                        <span>客服機器人</span></a></li>
+                <li><a href="javascript:;"> <img src="imgs/icon/notice02.png" alt="通知_icon">
+                        <span>通知</span></a></li>
+            </nav>
+        </div>
 
-          <li>
-            <a href="javascript:;" class="activity">
-              <i class="nav_icon"
-                ><img src="imgs/icon/activity--icon.png" alt="揪團活動icon"
-              /></i>
-              <span>揪團活動</span>
-            </a>
-          </li>
-
-          <li>
-            <h1 class="logo">
-              尋找友誼
-              <a href="javascript:;" class=" logo">
-                <img src="imgs/logo.png" alt="尋找友誼Logo" />
-              </a>
-            </h1>
-          </li>
-
-          <li>
-            <a href="javascript:;" class="mall">
-              <i class="nav_icon"
-                ><img src="imgs/icon/mall-icon.png" alt="虛擬商城icon"
-              /></i>
-              <span>虛擬商城</span>
-            </a>
-          </li>
-
-          <li>
-            <a href="javascript:;" class="mem_center">
-              <i class="nav_icon"
-                ><img src="imgs/icon/member-icon.png" alt="會員中心icon"
-              /></i>
-              <span>會員中心</span>
-            </a>
-          </li>
-
-          <li class="mem_info">
-            <i class="avatar"
-              ><img src="imgs/icon/login--icon.png" alt="" class="driver"
-            /></i>
-            <span class="login"><a href="javascript:;">登入</a></span>
-          </li>
+        <nav class="menuDesktop">
+            <ul>
+                <li>
+                    <a href="myRoom.html">
+                        <img src="imgs/icon/room.png" alt="我的房間icon">
+                        <span>我的房間</span>
+                    </a>
+                </li>
+                <li><a href="dressingRoom.html">
+                        <img src="imgs/icon/fittingRoom.png" alt="換衣間icon">
+                        <span>換衣間</span></a>
+                </li>
+                <li>
+                    <a href="findfriend.html">
+                        <img src="imgs/icon/friend.png" alt="找朋友icon">
+                        <span>找朋友</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        <img src="imgs/icon/events.png" alt="揪團活動icon">
+                        <span>揪團活動</span>
+                    </a>
+                </li>
+                <li class="logo">
+                    <a href="index.html">
+                        <img src="imgs/logo.png" alt="尋找友誼網站LOGO">
+                        <span>尋找友誼</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="shop.html">
+                        <img src="imgs/icon/mall.png" alt="虛擬商城icon">
+                        <span>虛擬商城</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="memberCenter.html">
+                        <img src="imgs/icon/member.png" alt="會員中心icon">
+                        <span>會員中心</span>
+                    </a>
+                </li>
+                <div class="memberInfo">
+                    <li class="login">
+                        <img src="imgs/icon/avatar.png" alt="角色頭像icon">
+                        <span class="name"><a href="javascript:;">魚翔</a></span>
+                        <span><a href="javascript:;">登出</a></span>
+                    </li>
+                    <li class="coin">
+                        <a href="javascript:;">
+                            <img src="imgs/icon/coin.png" alt="持有金額icon">
+                            <span>1500</span>
+                        </a>
+                    </li>
+                    <li class="level">
+                        <a href="javascript:;">
+                            <img src="imgs/icon/civilian.png" alt="平民等級icon">
+                            <span>平民</span>
+                        </a>
+                    </li>
+                </div>
+            </ul>
         </nav>
-      </header>
+    </header>
 
-      <main class="gameWorld">
-        <!-- <canvas id="canvas"></canvas> -->
-        <div class="wrapper">
-          <div class="item busBlock">
-            <a href="javascript:;"
-              ><img src="imgs/bus.png" alt="Bus" class="bus"
-            /></a>
-            <div class="npc bus_npc">
-              <div class="pic">
-                <img
-                  src="imgs/busDriver.png"
-                  alt="Bus Driver"
-                  class="busDriver"
-                />
-              </div>
-              <div class="text">
-                <p class>我們將帶領你前往活動專區</p>
-              </div>
+    <!-- 聊天群組(1.聊天室 2.好友列表) -->
+    <!-- Rou:vue.js #chat_app -->
+    <div class="chatGroup disabledScrollOnHover collapse" id="chat_app">
+        <i class="fas fa-window-minimize closeBtn"></i>
+        <!-- 聊天室 -->
+        <!-- 聊天室分成三種訊息 1.官方(messageOfficial) 2.發訊息的人(messageSent) 3.收訊息的人(messageReceived) -->
+        <div class="chatRoom">
+            <div class="chatRoom_content">
+                <!-- Rou:公頻區塊在這裏,如果傳訊息給所有人,並且將訊息印出來 -->
+                <ul class="chatRoom_main" v-if="chat_to_all">
+                    <!-- 發訊息給... -->
+                    <div class="chatRoom_sendTo">
+                        <p>公頻</p>
+                    </div>
+                    <!-- 官方訊息 -->
+                    <li class="chatRoom_messageOfficial">
+                        <div class="text">
+                            <p>在你離線時共有 2 人 造訪你的房間</p>
+                        </div>
+                    </li>
+                    <template v-for="message in messages_to_all()">
+                        <!-- 發送訊息者 -->
+                        <!-- Rou:檢查收到訊息的userid是不是自己來判斷訊息區塊的樣子,以下userid是自己 -->
+                        <!-- Rou:在公頻聊天只有大頭貼沒辦法看到名字,在內容中寫入{{ message.user_id }}可以產生正在講話的人的名字 -->
+                        <li class="chatRoom_messageSent" v-if="message.user_id == user_id">
+                            <div class="message-sent">
+                                <div class="text">
+                                    <p>{{ message.chat_msg }}</p>
+                                </div>
+                                <div class="avatar">
+                                    <img src="imgs/icon/member0.png" alt="大頭貼">{{ message.user_id }}
+                                </div>
+                            </div>
+                        </li>
+                        <!-- 接收訊息者 -->
+                        <!-- Rou:檢查收到訊息的userid是不是自己來判斷訊息區塊的樣子,以下userid不是自己 -->
+                        <!-- Rou:在公頻聊天只有大頭貼沒辦法看到名字,在內容中寫入{{ message.user_id }}可以產生正在講話的人的名字 -->
+                        <li class="chatRoom_messageReceived" v-if="message.user_id != user_id">
+                            <div class="message-received">
+                                <div class="avatar">
+                                    <img src="imgs/icon/member0.png" alt="大頭貼">{{ message.user_id }}
+                                </div>
+                                <div class="text">
+                                    <p>{{ message.chat_msg }}</p>
+                                </div>
+                            </div>
+                        </li>
+                    </template>
+                </ul>
+
+                <!-- Rou:密語區塊在這裏,檢查不是公頻訊息,並且傳入誰傳訊息給我,再印出-->
+                <ul class="chatRoom_main" v-if="!chat_to_all">
+                    <!-- 發訊息給... -->
+                    <div class="chatRoom_sendTo">
+                        <p>TO: {{chat_to_who}}</p>
+                    </div>
+                    <template v-for="message in messages_to_someone(chat_to_who)">
+                        <!-- 發送訊息者 -->
+                        <!-- Rou:如果發訊息的人是我 -->
+                        <li class="chatRoom_messageSent" v-if="message.user_id == user_id">
+                            <div class="message-sent">
+                                <div class="text">
+                                    <p>{{ message.chat_msg }}</p>
+                                </div>
+                                <div class="avatar">
+                                    <img src="imgs/icon/member0.png" alt="">
+                                </div>
+                            </div>
+                        </li>
+                        <!-- 接收訊息者 -->
+                        <!-- Rou:如果發訊息的人不是我本人 -->
+                        <li class="chatRoom_messageReceived" v-if="message.user_id != user_id">
+                            <div class="message-received">
+                                <div class="avatar">
+                                    <img src="imgs/icon/member0.png" alt="大頭貼">
+                                </div>
+                                <div class="text">
+                                    <p>{{ message.chat_msg }}</p>
+                                </div>
+                            </div>
+                        </li>
+                    </template>
+                </ul>
+
+                <!-- 訊息輸入區 -->
+                <div class="chatRoom_submitMessage">
+                    <form action="" class="submitContext form">
+                        <!-- Rou:在此用v-model產生動態變數 以及增加事件-->
+                        <input type="text" class="messageInput" v-model="chat_send_text">
+                        <input type="button" value="傳送" class="submit button-submit" v-on:click="chat_send()">
+                    </form>
+                </div>
+
+                <!-- 選擇頻道 -->
+                <!-- Rou:動作後產生class -->
+
+                <div class="chatRoom_switchChannel button_group">
+                    <button class="button button-private" v-bind:class="{ active: !chat_to_all }">私訊</button>
+                    <button class="button button-public" v-bind:class="{ active: chat_to_all }"
+                        v-on:click="public_chat()">公開</button>
+                </div>
             </div>
-          </div>
-          <div class="item"></div>
-          <!-- <div class="item"><img src="imgs/house.png" alt=""></div> -->
-          <div class="item"></div>
         </div>
-      </main>
+
+        <div class="friendList">
+            <div class="friendList_content">
+                <ul class="friendList_main">
+                    <!-- 上線的好友 -->
+                    <li class="friendList_onlineFriend">
+                        <!-- 好友類型(online, offline, requested) -->
+                        <button
+                            class="friendList_friendStatus button">在線好友({{online_friends().length}}/{{friends.length}})</button>
+
+                        <!-- 好友01 每個 friendList_friend 是一位好友-->
+                        <!-- Rou:將有上線的好友跑一遍,如果有抓到產生此區塊 -->
+                        <div class="friendList_friend" v-for="friend in online_friends()">
+                            <!-- 好友大頭貼、暱稱 -->
+                            <div class="friendInfo">
+                                <div class="avatar">
+                                    <img src="imgs/tree_04.png" alt="大頭貼">
+                                </div>
+                                <!-- 點擊user名字可以產生聊天視窗 -->
+                                <div class="friendName" v-on:click="private_chat(friend)">
+                                    <p>{{ friend }}</p>
+                                </div>
+                            </div>
+
+                            ({{ unread_messages_from_someone(friend).length }})
+
+                            <!-- 好友連線狀態、去他房間、更多 -->
+                            <div class="friendAction">
+                                <div class="connectStatus">
+                                    <div class="dot dot-online"></div>
+                                </div>
+
+                                <div class="roomVisit">
+                                    <a href="javascript:;"><img src="imgs/icon/home.png" alt="房間ICON"></a>
+                                </div>
+
+                                <div class="moreAction">
+                                    <a href="javavscript:;">
+                                        <div class="dot"></div>
+                                        <div class="dot"></div>
+                                        <div class="dot"></div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- 離線的好友 -->
+                    <li class="friendList_offlineFriend">
+                        <button
+                            class="friendList_friendStatus button">離線好友({{offline_friends().length}}/{{friends.length}})</button>
+
+                        <!-- Rou:將離線好友跑一遍,如果有抓到產生此區塊 -->
+                        <div class="friendList_friend" v-for="friend in offline_friends()">
+                            <div class="friendInfo">
+                                <div class="avatar">
+                                    <img src="imgs/tree_04.png" alt="大頭貼">
+                                </div>
+                                <div class="friendName">
+                                    <p>{{ friend }}</p>
+                                </div>
+                            </div>
+
+                            <div class="friendAction">
+                                <div class="connectStatus">
+                                    <div class="dot dot-offline"></div>
+                                </div>
+
+                                <div class="roomVisit">
+                                    <a href="javascript:;"><img src="imgs/icon/home.png" alt="房間ICON"></a>
+                                </div>
+
+                                <div class="moreAction">
+                                    <a href="javavscript:;">
+                                        <div class="dot"></div>
+                                        <div class="dot"></div>
+                                        <div class="dot"></div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="friendList_friend">
+                            <div class="friendInfo">
+                                <div class="avatar">
+                                    <img src="imgs/tree_04.png" alt="大頭貼">
+                                </div>
+                                <div class="friendName">
+                                    <p>佩佩</p>
+                                </div>
+                            </div>
+
+                            <div class="friendAction">
+                                <!-- 上線 / 下線狀態 點 -->
+                                <div class="connectStatus">
+                                    <div class="dot dot-offline"></div>
+                                </div>
+
+                                <div class="roomVisit">
+                                    <a href="javascript:;"><img src="imgs/icon/home.png" alt="房間ICON"></a>
+                                </div>
+
+                                <div class="moreAction">
+                                    <a href="javavscript:;">
+                                        <div class="dot"></div>
+                                        <div class="dot"></div>
+                                        <div class="dot"></div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- 好友邀請中 -->
+                    <li class="friendList_requestedFriend">
+                        <button class="friendList_friendStatus button">好友邀請中</button>
+                        <div class="friendList_friend">
+                            <div class="friendInfo">
+                                <div class="avatar">
+                                    <img src="imgs/tree_04.png" alt="大頭貼">
+                                </div>
+                                <div class="friendName">
+                                    <p>毛筆</p>
+                                </div>
+                            </div>
+
+                            <div class="friendAction">
+                                <!-- 接受好友申請 -->
+                                <div class="requestAccept">
+                                    <a href="javascript:;"><img src="imgs/icon/accept.png" alt="接受ICON"></a>
+                                </div>
+                                <!-- 拒絕好友申請 -->
+                                <div class="requestRefuse">
+                                    <a href="javascript:;"><img src="imgs/icon/refuse.png" alt="拒絕ICON"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="friendList_open disabledScrollOnHover">
+        <button class="button friendList_openBtn">開啟聊天室</button>
     </div>
 
-    <div class="chatRoom">
-      <div class="chatPart">
-        <div class="content">
-          <div class="other">
-            <div class="pic">
-              <img src="https://placedog.net/35/35?random" alt="random dog" />
-            </div>
-            <div class="text">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem,
-                ullam.
-              </p>
-            </div>
-          </div>
-          <div class="mySelf">
-            <div class="text">
-              <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Pariatur, modi!
-              </p>
-            </div>
-          </div>
+    <!-- 通知&客服機器人 -->
+    <div class="common_notifications disabledScrollOnHover">
+        <div class="notifications_actionBox">
+            <button class="button button-notifications">
+                <img src="imgs/icon/notice.png" alt="通知按鈕圖片">
+                <span>通知</span>
+            </button>
+            <button class="button button-robot">
+                <img src="imgs/icon/robot.png" alt="客服機器人圖片">
+                <span>客服魷魚</span>
+            </button>
         </div>
-        <div class="inputField">
-          <input type="text" />
-          <button>傳送</button>
+        <div class="notifications_container collapse">
+            <div class="notifications_content">
+                <div class="notifications notifications_friend">
+                    <i class="fas fa-times notifications_delete"></i>
+                    <span>【好友通知】</span>
+                    <p>你現在已經和詩詩成為好友了</p>
+                </div>
+                <div class="notifications notifications_event">
+                    <i class="fas fa-times notifications_delete"></i>
+                    <span>【活動邀請】</span>
+                    <p>好友"詩詩"邀請你參加「與VUE一起浮淺」活動</p>
+                </div>
+                <div class="notifications notifications_room">
+                    <i class="fas fa-times notifications_delete"></i>
+                    <span>【房間留言】</span>
+                    <p>會員"詩詩"在您房間留下了一筆新訊息</p>
+                </div>
+                <div class="notifications notifications_event">
+                    <i class="fas fa-times notifications_delete"></i>
+                    <span>【活動邀請】</span>
+                    <p>好友"詩詩"邀請你參加「與VUE一起浮淺」活動</p>
+                </div>
+                <div class="notifications notifications_room">
+                    <i class="fas fa-times notifications_delete"></i>
+                    <span>【房間留言】</span>
+                    <p>會員"詩詩"在您房間留下了一筆新訊息</p>
+                </div>
+                <div class="notifications notifications_event">
+                    <i class="fas fa-times notifications_delete"></i>
+                    <span>【活動邀請】</span>
+                    <p>好友"詩詩"邀請你參加「與VUE一起浮潛」活動</p>
+                </div>
+                <div class="notifications notifications_room">
+                    <i class="fas fa-times notifications_delete"></i>
+                    <span>【房間留言】</span>
+                    <p>會員"詩詩"在您房間留下了一筆新訊息</p>
+                </div>
+            </div>
         </div>
-        <div class="channels">
-          <a href="javascript:;">密語</a>
-          <a href="javascript:;">公頻</a>
-        </div>
-      </div>
-      <div class="friends">
-        <div class="friend-list">
-          <div class="friend friend1">
-            <div class="pic">
-              <img src="https://placedog.net/35/35?random" alt="random dog" />
-            </div>
-            <span>小柔</span>
-            <span class="online"></span>
-            <div class="houseIcon">
-              <img src="https://placedog.net/35/35?random" alt="random dog" />
-            </div>
-            <div class="deleteIcon">
-              <img src="https://placedog.net/35/35?random" alt="random dog" />
-            </div>
-          </div>
-          <div class="friend friend1">
-            <div class="pic">
-              <img src="https://placedog.net/35/35?random" alt="random dog" />
-            </div>
-            <span>小柔</span>
-            <span class="online"></span>
-            <div class="houseIcon">
-              <img src="https://placedog.net/35/35?random" alt="random dog" />
-            </div>
-            <div class="deleteIcon">
-              <img src="https://placedog.net/35/35?random" alt="random dog" />
-            </div>
-          </div>
-        </div>
-        <div class="title">
-          <h3>
-            好友名單
-          </h3>
-        </div>
-      </div>
     </div>
 
-    <!-- <script>
-    var canvas = document.getElementById("canvas");
-var ctx = canvas.getContext("2d");
+    <!-- 登入 -->
+    <div class="loginBox">
+        <div class="loginContent">
+            <div class="intro">
+                <div class="logo">
+                    <img src="imgs/loginBox/logo.png" alt="Logo" />
+                    <h2>收集友誼</h2>
+                </div>
+                <div class="drawing">
+                    <img src="imgs/loginBox/logingBg.png" alt="Login Background" />
+                </div>
+                <div class="slogan">
+                    <p>線上魷魚，即時友誼</p>
+                </div>
+            </div>
+            <div class="loginForm">
+                <h3>會員登入</h3>
+                <form action="">
+                    <div class="personalInfo">
+                        <div class="inputField">
+                            <label for="memId">暱稱</label>
+                            <input type="text" name="memId" id="memId" />
+                        </div>
+                        <div class="inputField">
+                            <label for="memPsw">密碼</label>
+                            <input type="text" name="memPsw" id="memPsw" /> 
+                        </div>
+                        <a href="javascript:;">忘記密碼？</a>
+                    </div>
+                    <div class="submitBtns">
+                        <input class="createRole" type="submit" value="創角" />
+                        <input type="button" value="登入" onclick="login()"/>
+                        <input class="godMode" type="submit" value="上帝模式" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
-ctx.fillStyle = "green";
-ctx.fillRect(10, 10, 100, 100);
-    </script> -->
-    <script src="js/jquery-3.4.1.min.js"></script>
-    <script src="js/jquery-ui.min.js"></script>
-    <script src="js/script.js"></script>
-    <script src="js/vue.js"></script>
-    <script> 
-        // Then some JavaScript in the browser:
-        var conn_chat = new WebSocket('ws://localhost:8080/chat');
-        // var names = ["ninja", "chair", "pancake", "statue", "unicorn", "rainbows", "laser", "senor", "bunny", "captain", "nibblets", "cupcake", "carrot", "gnomes", "glitter", "potato", "salad", "toejam", "curtains", "beets", "toilet", "exorcism", "stick figures", "mermaid eggs", "sea barnacles", "dragons", "jellybeans", "snakes", "dolls", "bushes", "cookies", "apples", "ice cream", "ukulele", "kazoo", "banjo", "opera singer", "circus", "trampoline", "carousel", "carnival", "locomotive", "hot air balloon", "praying mantis", "animator", "artisan", "artist", "colorist", "inker", "coppersmith", "director", "designer", "flatter", "stylist", "leadman", "limner", "make-up artist", "model", "musician", "penciller", "producer", "scenographer", "set decorator", "silversmith", "teacher", "auto mechanic", "beader", "bobbin boy", "clerk of the chapel", "filling station attendant", "foreman", "maintenance engineering", "mechanic", "miller", "moldmaker", "panel beater", "patternmaker", "plant operator", "plumber", "sawfiler", "shop foreman", "soaper", "stationary engineer", "wheelwright", "woodworkers"];
-        // var user_id = names[Math.floor(Math.random() * names.length)];
-        var user_id;
+    <div class="createBox">
+        <div class="createContent">
+            <form action="">
+                <div class="inputField">
+                    <label for="gender">性別</label><input type="text" name="gender" id="gender" />
+                </div>
+                <div class="inputField">
+                    <label for="birthday">生日</label><input type="text" name="birthday" id="birthday" />
+                </div>
+                <div class="inputField">
+                    <label for="memName">姓名</label><input type="text" name="memName" id="memName" />
+                </div>
+                <div class="inputField">
+                    <label for="email">信箱</label><input type="email" name="email" id="email" />
+                </div>
+                <div class="inputField">
+                    <label for="memPsw">密碼</label><input type="password" name="memPsw" id="memPsw" />
+                </div>
+                <div class="inputField">
+                    <label for="checkMemPsw">確認密碼</label><input type="password" name="checkMemPsw" id="checkMemPsw" />
+                </div>
+            </form>
+            <div class="styling">
+                <div class="shapes">
+                    <ul class="styles">
+                        <li id="headStyle" class="active">
+                            <a href="javascript:;">頭型</a>
+                        </li>
+                        <li id="skinStyle"><a href="javascript:;">膚色</a></li>
+                        <li id="faceStyle"><a href="javascript:;">五官</a></li>
+                    </ul>
+                    <div class="changeStyle">
+                        <div class="heads">
+                            <ul>
+                                <li>
+                                    <img src="imgs/createBox/head1.png" alt="Head 1" /><img
+                                        src="imgs/createBox/head2.png" alt="Head 2" />
+                                </li>
+                                <li>
+                                    <img src="imgs/createBox/head3.png" alt="Head 3" /><img alt="Head 4"
+                                        src="imgs/createBox/head4.png" />
+                                </li>
+                                <li>
+                                    <img src="imgs/createBox/head5.png" alt="Head 5" /><img
+                                        src="imgs/createBox/head6.png" alt="Head 6" />
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="skinColor"></div>
+                        <div class="facialFeatures">
+                            <ul>
+                                <li>
+                                    <img src="imgs/createBox/face1.png" alt="Head 1" /><img
+                                        src="imgs/createBox/face2.png" alt="Head 2" />
+                                </li>
+                                <li>
+                                    <img src="imgs/createBox/face3.png" alt="Head 3" /><img alt="Head 4"
+                                        src="imgs/createBox/face4.png" />
+                                </li>
+                                <li>
+                                    <img src="imgs/createBox/face5.png" alt="Head 5" /><img
+                                        src="imgs/createBox/face6.png" alt="Head 6" />
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="appearance">
+                    <div class="squidBorn">
+                        <img src="imgs/createBox/squid.png" alt="Faceless Squid" />
+                        <img class="headFeature" src="imgs/createBox/head1.png" alt="Head" />
+                        <img class="faceFeature" src="imgs/createBox/face1.png" alt="Face Feature" />
+                    </div>
+                </div>
+            </div>
+            <div class="btns">
+                <a id="backToLoginBtn" href="javascript:;">回登錄頁</a>
+                <a id="createRoleBtn" href="javascript:;">創建角色</a>
+            </div>
+        </div>
+    </div>
+    <!-- 到這裡 -->
 
-        var chat_app = new Vue({
-            el: '#app',
-            data: {
-                user_id: '',
-                friends: ['董董','曲翑','揉揉','詩詩','華姐'],
-                online_users: [],
-                chat_to_all: true,
-                chat_to_who: '',
-                messages: [],
-                chat_send_text: ''
-            },
-            methods:{
-                user_online: function(user){
-                    this.online_users.push(user);
-                },
-                user_offline: function(user){
-                    this.online_users = this.online_users.filter(function(e){ return e != user });
-                },
-                public_chat: function() {
-                    this.chat_to_who = '';
-                    this.chat_to_all = true;
-                },
-                private_chat: function(who) {
-                    this.chat_to_who = who;
-                    this.chat_to_all = false;
-                },
-                chat_send: function() {
-                    if(this.chat_to_all) {
-                        chat_to_all(this.chat_send_text);
-                    }else{
-                        chat_to_someone(this.chat_to_who , this.chat_send_text);
-                    }
-                },
-                messages_to_someone: function(who){
-                    return this.messages.filter(function(e){
-                        return e.chat_type != "ALL" && (e.user_id == who || e.chat_to == who);
-                    });
-                }
-            },
-            computed: {
-                online_friends: function() {
-                    return $(this.friends).filter(this.online_users).toArray();
-                },
-                offline_friends: function() {
-                    return $(this.friends).not(this.online_users).toArray();
-                },
-                messages_to_all: function(){
-                    return this.messages.filter(function(e){
-                        return e.chat_type == "ALL";
-                    });
-                }
-            }
-        });
 
-        conn_chat.onopen = function(e) { 
-            console.log('已連到伺服器');
-        };
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js'></script>
+    <script src="https://kit.fontawesome.com/629062769a.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/loginBox.js"></script>
+    <script src="js/createBox.js"></script>
+</body>
 
-        function login() {
-            // 告訴server我的user_id
-            user_id = document.getElementById('username').value;
-            chat_app.user_id = user_id;
-            conn_chat.send(
-                JSON.stringify(
-                    { "msg_type": "LOGIN", "user_id": user_id }
-                    )
-                );  
-                
-            conn_chat.send(
-                JSON.stringify(
-                    {
-                        "msg_type": "GET_ONLINE_USERS",
-                        "user_id": user_id
-                    }
-                )
-            )
-        }
-
-        conn_chat.onmessage = function(e) { 
-            // 收到server傳過來的訊息
-            var resp_obj = JSON.parse(e.data);
-            // console.log("回傳的JSON物件",resp_obj);
-            console.log("收到訊息，訊息類型",resp_obj.msg_type);
-            switch(resp_obj.msg_type) {
-                case 'CHAT':
-                    console.log('把資料塞到泡泡裡', resp_obj);
-                    console.log('把資料更新到聊天視窗', resp_obj);
-                    chat_app.messages.push(resp_obj);
-                    break;
-                case 'ONLINE_USERS':
-                    console.log('更新目前有哪些人在線上', resp_obj.users);
-                    chat_app.online_users = resp_obj.users;
-                    break;
-                case 'USER_OFFLINE':
-                    console.log('把使用者狀態改成下線', resp_obj.user_id);
-                    chat_app.user_offline(resp_obj.user_id);
-                    break;
-                case 'USER_ONLINE':
-                    console.log('有人上線了', resp_obj.user_id);
-                    chat_app.user_online(resp_obj.user_id);
-                    break;
-
-                // case 'GET_USERS_POSITION':
-                //     console.log('收到座標');
-                //     break;
-                    
-                default:
-                    console.error('收到不認得的msg_type', resp_obj);
-            }
-        };
-
-        function chat_to_someone(to, msg) {
-            conn_chat.send(
-                JSON.stringify(
-                    {
-                        "msg_type": "CHAT", 
-                        "user_id": user_id, 
-                        "chat_type": "USER", 
-                        "chat_to": to, 
-                        "chat_msg": msg
-                    }
-                    )
-                ); 
-
-        }
-
-        function chat_to_all(msg) {
-            conn_chat.send(
-                JSON.stringify(
-                    { 
-                        "msg_type": "CHAT", 
-                        "user_id": user_id, 
-                        "chat_type": "ALL", 
-                        "chat_msg": msg
-                    }
-                    )
-                ); 
-        }
-    </script>
-  </body>
 </html>

@@ -30,6 +30,7 @@ function browserSyncReload(done) {
 
 //watch files
 function watchfiles() {
+  
   watch(["./sass/*.scss", "./sass/**/*.scss"], sass);
   watch(["./", "./**/*"], series(browserSyncReload));
 }

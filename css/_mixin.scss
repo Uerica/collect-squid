@@ -1,0 +1,115 @@
+// 左右置中
+@mixin absHzCenter() {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+// 上下置中
+@mixin absVtCenter() {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+// 上下左右置中
+@mixin absCenter() {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+// 往左按鈕
+@mixin prevBtn() {
+  &::before {
+    @include absHzCenter();
+    border-radius: 2px;
+    top: 6px;
+    content: "";
+    width: 22px;
+    height: 4px;
+    background-color: #fff;
+    transform: rotate(-45deg);
+  }
+  &::after {
+    @include absHzCenter();
+    border-radius: 2px;
+    bottom: 6px;
+    content: "";
+    width: 22px;
+    height: 4px;
+    background-color: #fff;
+    transform: rotate(45deg);
+  }
+}
+
+// 往右按鈕
+@mixin nextBtn() {
+  &::before {
+    @include absHzCenter();
+    border-radius: 2px;
+    top: 6px;
+    content: "";
+    width: 22px;
+    height: 4px;
+    background-color: #fff;
+    transform: rotate(45deg);
+  }
+  &::after {
+    @include absHzCenter();
+    border-radius: 2px;
+    bottom: 6px;
+    content: "";
+    width: 22px;
+    height: 4px;
+    background-color: #fff;
+    transform: rotate(-45deg);
+  }
+}
+
+// 取消燈箱鈕的XX
+@mixin btnCross() {
+  &::before {
+    @include absCenter();
+    content: "";
+    display: block;
+    width: 22px;
+    height: 4px;
+    background-color: #ec8a63;
+    transform: rotate(45deg);
+  }
+  &::after {
+    @include absCenter();
+    content: "";
+    display: block;
+    width: 22px;
+    height: 4px;
+    background-color: #ec8a63;
+    transform: rotate(-45deg);
+  }
+}
+
+@mixin rwd($viewport) {
+  @if $viewport == mobile {
+      @media all and (max-width: $sm){
+          @content;
+      }
+  }
+  
+  @else if $viewport == tablet {
+      @media all and (max-width: $md){
+          @content;
+      }
+  }
+  
+  @else if $viewport == desktop {
+      @media all and (min-width: $lg){
+          @content;
+      }
+  }
+}

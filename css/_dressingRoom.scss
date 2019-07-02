@@ -1,0 +1,373 @@
+@import "variable";
+@import "mixin";
+@import "publicElement";
+
+h2,
+h3,
+h4,
+a,
+span,
+button,
+input {
+  font-family: "Noto Sans TC", sans-serif;
+}
+
+
+.dressingRoom {
+  background-image: linear-gradient(0deg, #ccd7d9 26%, #ead2c6 25%);
+  height: 100vh;
+  display: flex;
+  ul {
+    list-style: none;
+    padding: 0 0 0 3%;
+  }
+  
+  a {
+    text-decoration: none;
+  }  
+  img {
+    display: inline-block;
+    width: 100%;
+    vertical-align: middle;
+  }
+  h3 {
+    display: inline-block;
+    padding: 5px 10px;
+    border: 3px solid #fa7979;
+    border-radius: 10px;
+    font-size: 16px;
+    color: #666;
+    background-color: #e6e6e6;
+  }
+  // 繪圖區塊
+  .paintArea {
+    width: 23%;
+    padding-top: 10%;
+    .customize {
+      text-align: center;
+      .paintShirt {
+        width: 100%;
+        height: 55.26316%;
+        position: relative;
+        .startCreate {
+          width: 50%;
+          height: 70%;
+          padding: 10% 25%;
+          position: relative;
+          z-index: 10;
+          img {
+            cursor: pointer;
+          }
+          a {
+            @include btn();
+            margin-top: 20px;
+          }
+        }
+        .sprayBg {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 1;
+        }
+      }
+    }
+    .paint {
+      padding: 20% 0 0 5%;
+      width: 50%;
+    }
+  }
+  // 阿魷穿新衣區塊
+  .squidArea {
+    width: 25%;
+    padding: 20% 5% 0 5%;
+    box-sizing: border-box;
+    .dressingZone {
+      position: relative;
+      img {
+        position: relative;
+        z-index: 10;
+      }
+      .changedHat {
+        @include absHzCenter();
+        width: 60%;
+        top: -20%;
+      }
+      .changedClo {
+        @include absHzCenter();
+        top: 61%;
+        width: 68.7%;
+      }
+      .changedShoes {
+        @include absHzCenter();
+        width: 100%;
+        bottom: -5%;
+        z-index: 1;
+      }
+    }
+  }
+  // 衣櫃區塊
+  .clothesArea {
+    width: 52%;
+    padding-top: 3%;
+    .wardrobe {
+      height: 100%;
+      text-align: center;
+      .top {
+        width: 100%;
+        height: 4%;
+        background-color: #f8b797;
+      }
+      .storages {
+        width: 97%;
+        height: 80%;
+        margin-left: 3%;
+        padding: 3% 4%;
+        box-sizing: border-box;
+        background-color: #f5e2b7;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: space-between;
+        // 個別櫃子
+        .storage {
+          width: 100%;
+          height: 25%;
+          padding: 0 7%;
+          box-sizing: border-box;
+          background-color: #ec8a63;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          position: relative;
+          // 移除原本的 relative
+          .owl-carousel {
+            position: static;
+            .owl-item {
+              display: flex;
+              justify-content: center;
+            }
+          }
+          .myItem {
+            width: 70%;
+          }
+          .owl-prev {
+            @include absVtCenter();
+            left: 2%;
+            width: 30px;
+            height: 30px;
+            z-index: 20;
+            span {
+              opacity: 0;
+            }
+          }
+          .owl-next {
+            @include absVtCenter();
+            right: 2%;
+            width: 30px;
+            height: 30px;
+            z-index: 20;
+            span {
+              opacity: 0;
+            }
+          }
+          .leftBtn {
+            @include absVtCenter();
+            @include prevBtn();
+            content: "";
+            left: 2%;
+            width: 30px;
+            height: 30px;
+          }
+          .rightBtn {
+            @include absVtCenter();
+            @include nextBtn();
+            content: "";
+            right: 2%;
+            width: 30px;
+            height: 30px;
+          }
+        }
+        .hats {
+          .myItem {
+            width: 50%;
+          }
+        }
+        // 衣服區間高一點
+        .clothes {
+          height: 35%;
+        }
+        .shoes {
+          .myItem {
+            width: 90%;
+          }
+        }
+      }
+    }
+  }
+  // 繪圖燈箱
+  .lightBox {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(39, 39, 39, 0.8);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .drawingBox {
+      width: 50%;
+      padding: 2% 0 1%;
+      border: 3px solid $borderColor;
+      border-radius: $smRad;
+      text-align: center;
+      background: $liBoxBg;
+      position: relative;
+      #cancelBtn {
+        position: absolute;
+        top: 15px;
+        right: 25px;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background-color: #f6f6f6;
+        cursor: pointer;
+        @include btnCross();
+      }
+      h4 {
+        font-size: 20px;
+        margin: 0;
+        padding: 0 0 3%;
+      }
+      .subTitle {
+        display: inline-block;
+        margin: 1% 0;
+        padding: 5px 10px;
+        background-color: #ffd189;
+        border-radius: $smRad;
+      }
+      .choosingArea {
+        width: 80%;
+        margin: auto;
+        padding: 2%;
+        box-sizing: border-box;
+        border-radius: $smRad;
+        background: $liBoxContentBg;
+        text-align: left;
+        li {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+        .strokeSize {
+          ul {
+            width: 80%;
+            padding: 2% 0;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-radius: $smRad;
+            background-color: #ffeed4;
+            @for $i from 1 through 5 {
+              li:nth-child(#{$i}) {
+                width: 10px + $i * 2px;
+                height: 10px + $i * 2px;
+                border-radius: 50%;
+                background-color: #000;
+              }
+            }
+          }
+        }
+        .colorBar {
+          padding: 2% 0 0 0;
+          #colorPicker {
+            width: 80%;
+            display: flex;
+            justify-content: space-between;
+            border-radius: $smRad;
+            overflow: hidden;
+            span {
+              flex-grow: 1;
+              width: 10px;
+              height: 28px;
+            }
+          }
+        }
+      }
+      .drawingArea {
+        width: 80%;
+        margin: 5% auto 0;
+        padding: 2%;
+        box-sizing: border-box;
+        border-radius: $smRad;
+        background-color: $liBoxContentBg;
+        text-align: left;
+        .drawingPart {
+          text-align: center;
+          margin: 2% 0 1%;
+          padding: 2% 0;
+          background-color: #ffeed4;
+          border-radius: 15px;
+          img {
+            width: 70%;
+          }
+        }
+      }
+      a {
+        @include btn();
+        margin-top: 20px;
+      }
+    }
+  }
+}
+
+* {
+  // outline: 1px solid #f00;
+}
+
+@media screen and (min-width: 1200px) {
+  .dressingRoom {
+    .lightBox {
+      .drawingBox {
+        width: 40%;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 668px) {
+  .dressingRoom {
+    .lightBox {
+      .drawingBox {
+        width: 90%;
+        .drawingPart {
+          display: flex;
+          .choosingArea {
+            width: 45%;
+          }
+          .drawingArea {
+            width: 45%;
+            margin: 0 auto;
+          }
+        }
+      }
+    }
+    .paintArea {
+      padding-top: 5%;
+      .customize {
+        .paintShirt {
+          .startCreate {
+            width: 70%;
+            padding: 10% 15%;
+          }
+        }
+      }
+    }
+    .clothesArea {
+      padding-top: 1%;
+    }
+    h3 {
+      margin: 1% 0 3%;
+    }
+  }
+}
