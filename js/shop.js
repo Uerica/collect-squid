@@ -4,7 +4,7 @@ $(window).load(tab);
 function tab() {
   var $li = $('ul.tab_title li');
 
-  $($li.eq(0).addClass('active').find('a').attr('href')).siblings('.tab_inner').show();
+  // $($li.eq(0).addClass('active').find('a').attr('href')).siblings('.tab_inner').show();
 
   if ($(window).width() <= 768) {
     $(function () {
