@@ -4,6 +4,7 @@ node_modules
 package-lock.json
 .vscode
 css/style.css
+sass/style.css
 .sass-cache/
 *.css.map
 *.sass.map
