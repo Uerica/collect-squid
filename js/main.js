@@ -198,7 +198,7 @@ function gameObject(tag, w, h) {
 
 
 // 即時聊天
-// Then some JavaScript in the browser:
+//vuejs & websocket
 var conn_chat;
 var chat_app = new Vue({
   el: '#chat_app',
