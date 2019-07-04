@@ -1,1 +1,0 @@
-nohup php server-ratchet.php > server.log &
