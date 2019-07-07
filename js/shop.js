@@ -54,4 +54,69 @@ $('.owl-carousel').owlCarousel({
   }
 });
 
+
 // squid animation
+
+function bedAnimation() {
+  TweenMax.fromTo("#squid", 1,
+    {
+      y: 150,
+      repeat: -1,
+      rotation: 55.7,
+      transformOrigin: "right,bottom",
+      repeat: -1,
+      yoyo: true,
+    },
+    {
+      y: 0,
+      rotation: 70.7,
+      ease: Power4.easeOut,
+      repeat: -1,
+      yoyo: true,
+    });
+
+  TweenMax.fromTo("#squid_head", 1,
+    {
+      x:0,
+      rotation: 0,
+      transformOrigin: "right,bottom",
+    },
+    {
+      x:10,
+      rotation: 10,
+      repeat: -1,
+      yoyo: true,
+    });
+
+  TweenMax.fromTo("#squid_foot1", 1,
+    {
+      y: -10,
+      rotation: 20,
+    }, {
+      rotation: -20,
+      repeat: -1,
+      yoyo: true,
+      ease: Power4.easeOut,
+    });
+  TweenMax.fromTo("#squid_foot2", 1,
+    {
+      rotation: 20,
+    }, {
+      y: -10,
+      rotation: -20,
+      repeat: -1,
+      yoyo: true,
+      ease: Power4.easeOut,
+    });
+  TweenMax.fromTo("#squid_foot3", 1,
+    {
+      rotation: 20,
+    }, {
+      y: -10,
+      rotation: -20,
+      repeat: -1,
+      yoyo: true,
+      ease: Power4.easeOut,
+    });
+}
+bedAnimation();
