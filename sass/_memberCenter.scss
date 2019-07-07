@@ -1,3 +1,7 @@
+*{
+    margin: 0;
+}
+
 // 通知&客服機器人
 
 
@@ -13,12 +17,18 @@
     background:url("../imgs/memberCenter/memBG_phone.jpg") no-repeat center;
     background-size: cover;
     position: relative;
-    input{
-        border: 1px solid rgb(185, 185, 185);
-        border-radius: 8px;
-        height: 25px;
-    }
+    
 }
+    input{
+            border: 1px solid rgb(185, 185, 185);
+            border-radius: 8px;
+            height: 25px;
+        }
+
+    .cloud{
+        display: none;
+    }
+
     .memArea{
         width: 100%;/**/
         height: 370px;
@@ -45,7 +55,7 @@
                 width: 60%;
                 
                 padding-bottom: 10%;
-                background-color: #fff;
+                background-color: #ffc982;
                 margin-left: 10px;
                 
                 position: relative;
@@ -57,6 +67,30 @@
                 }
                 
             }
+
+                // 會員資訊欄
+                .memFileWrapInfo{
+                    width: 92%;
+                    height: 35%;
+                    background-color: #fff;
+                    border-radius: 8px;
+                    margin: auto;
+                    padding: 4px;
+                // display: none;
+                }
+
+                // form表單,input輸入 欄
+                .memFileWrapFrom{
+                    width: 92%;
+                    height: 35%;
+                    background-color: #fff;
+                    border-radius: 8px;
+                    margin: auto;
+                    padding: 4px;
+                display: none;
+                }
+
+
             .memFile_web{
                 display: none;
             }
@@ -65,6 +99,41 @@
                 height: auto;
                 overflow: hidden;
             }
+
+                // 會員資訊欄 的按鈕
+                .memFileInfoBtn{
+                    text-align: center;
+                    position: absolute;
+                    left: 38%;
+                    bottom: 10%;
+                }
+                .memFileInfoBtn button{
+                    // width: 72px;
+                    height: 25px;
+                    border-radius: 20px;
+                }
+                .btnEdit{
+                    border: 3px solid #f1f1f1;
+                    border-radius: 20px;
+                    color: #fff;
+                    background-color: #fa7979;
+                    position: relative;
+                    top: -3px;
+                    left: -3px;
+                    box-shadow: 3px 3px #e7867e;
+                    transition: 0.3s;
+                    &:hover{
+                        top:0;
+                        left: 0;
+                        box-shadow: 0 0 transparent;
+                    }
+                    
+                    cursor: pointer;
+                }
+
+
+
+                // form表單,input輸入 的按鈕
                 .memFileBtn{
                     text-align: center;
                     position: absolute;
@@ -75,26 +144,55 @@
                 .memFileBtn input{
                     width: 72px;
                     height: 25px;
-                    border-radius: 8px;
+                    border-radius: 20px;
                 
                 }
                 .memFileBtn button{
                     width: 72px;
                     height: 25px;
-                    border-radius: 8px;
+                    border-radius: 20px;
                 }
                 .btnConfirm{
-                    background-color: #575fac;
+                    // background-color: #575fac;
+                    // color: #fff;
+                    // border: 0;
+                    border: 3px solid #f1f1f1;
+                    border-radius: 20px;
                     color: #fff;
-                    border: 0;
+                    background-color: #fa7979;
+                    position: relative;
+                    top: -3px;
+                    left: -3px;
+                    box-shadow: 3px 3px #e7867e;
+                    transition: 0.3s;
+                    &:hover{
+                        top:0;
+                        left: 0;
+                        box-shadow: 0 0 transparent;
+                    }
                     
                     cursor: pointer;
                 }
                 .btnCanncel{
+                    // background-color: #fff;
+                    // color: #000;
+                    // border: 0;
+                    // border: 1px solid #575fac;
+                    border-radius: 20px;
+                    color: #e7867e;
                     background-color: #fff;
-                    color: #000;
+                    position: relative;
+                    top: -3px;
+                    left: -3px;
+                    box-shadow: 3px 3px #e7867e;
                     border: 0;
-                    border: 1px solid #575fac;
+                    transition: 0.3s;
+                    &:hover{
+                        top:0;
+                        left: 0;
+                        box-shadow: 0 0 transparent;
+                    }
+
                     cursor: pointer;
                 }
         
@@ -105,7 +203,7 @@
         .msgRecord{
             width: 100%; /*原667px*/
             height: 86%; /*原315px*/
-            background-color: #ffd200;
+            background-color: #ffc982;
             position: absolute;
             bottom: 60px;
         display: none;
@@ -129,12 +227,12 @@
                   ::-webkit-scrollbar-track {
                     // box-shadow: inset 0 0 1px #575fac; 
                     border-radius: 10px;
-                    border: 1px solid #575fac;
+                    border: 1px solid #e7867e;
                   }
 
                   /* Handle */
                   ::-webkit-scrollbar-thumb {
-                    background: #575fac; 
+                    background: #e7867e; 
                     border-radius: 10px;
                     
                   }
@@ -169,7 +267,7 @@
         .groupRecord{
             width: 100%; /*原667px*/
             height: 86%; /*原315px*/
-            background-color: #ffd200;
+            background-color: #ffc982;
             position: absolute;
             bottom: 60px;
         display: none;
@@ -193,12 +291,12 @@
                   ::-webkit-scrollbar-track {
                     // box-shadow: inset 0 0 1px #575fac; 
                     border-radius: 10px;
-                    border: 1px solid #575fac;
+                    border: 1px solid #e7867e;
                   }
 
                   /* Handle */
                   ::-webkit-scrollbar-thumb {
-                    background: #575fac; 
+                    background: #e7867e; 
                     border-radius: 10px;
                     
                   }
@@ -234,7 +332,7 @@
         .shopRecord{
             width: 100%; /*原667px*/
             height: 86%; /*原315px*/
-            background-color: #ffd200;
+            background-color: #ffc982;
             position: absolute;
             bottom: 60px;
         display: none;
@@ -258,12 +356,12 @@
                   ::-webkit-scrollbar-track {
                     // box-shadow: inset 0 0 1px #575fac; 
                     border-radius: 10px;
-                    border: 1px solid #575fac;
+                    border: 1px solid #e7867e;
                   }
 
                   /* Handle */
                   ::-webkit-scrollbar-thumb {
-                    background: #575fac; 
+                    background: #e7867e; 
                     border-radius: 10px;
                     
                   }
@@ -299,7 +397,7 @@
         .recordArea{
             width: 100%;
             height: 60px;
-            background-color: #ffd200;
+            background-color: #ffc982;
             position: absolute;
             bottom: 0;
             display: flex;
@@ -353,10 +451,13 @@
     //     margin: auto;
     // }
     .memBg{ /*?????*/
-        width: 100vw;/*960px*/
+        width: 100%;/*960px*/
         height: 100vh;
-        background:url("../imgs/memberCenter/memBG-2.jpg") no-repeat center;
+        background:url("../imgs/memberCenter/memBG.jpg") no-repeat center;
         background-size: 100%;
+        position: relative;
+
+        z-index: -2;
     }
         // .memArea{
         //     width: 1104px;
@@ -368,8 +469,61 @@
         //     display: flex;
         //     // display: none;
         // }
+        
+        input{
+            border: 1px solid rgb(185, 185, 185);
+            border-radius: 8px;
+            height: 25px;
+        }
 
+        // 雲
+        .cloud_1{
+            position: absolute;
+            top: 120px;
+            right: 70px;
+            z-index: -1;
+            animation: cloud_1 16s ease-in-out infinite alternate-reverse ;
+        }
+        @keyframes cloud_1 {
+            0%{right: 70px;}
+            100%{right: 1200px;}
+        }
 
+        .cloud_2{
+            position: absolute;
+            top: 320px;
+            right: 75px;
+            z-index: -1;
+            animation: cloud_2 20s ease-in-out infinite alternate-reverse ;
+        }
+        @keyframes cloud_2 {
+            0%{right: 75px;}
+            100%{right: 1200px;}
+        }
+
+        .cloud_3{
+            position: absolute;
+            top: 220px;
+            left: 50px;
+            z-index: -1;
+            animation: cloud_3 15s ease-in-out infinite alternate-reverse ;
+        }
+        @keyframes cloud_3 {
+            0%{left: 50px;}
+            100%{left: 1200px;}
+        }
+
+        .cloud_4{
+            position: absolute;
+            top: 450px;
+            left: 60px;
+            z-index: -1;
+            animation: cloud_4 18s ease-in-out infinite alternate-reverse ;
+        }
+        @keyframes cloud_4 {
+            0%{left: 60px;}
+            100%{left: 1200px;}
+        }
 
 
         .memArea{
@@ -410,86 +564,198 @@
                     width: 45%;
                     height: auto; /*150px*/
                     padding-bottom: 5.5%;
-                    background-color: #fff;
+                    background-color: #ffc982;
                     position: relative;
                     border-radius: 8px;
-                    border: 1px solid #575fac;
+                    border: 3px solid #fff;
+                    margin-left: 10px;
                 }
-                    .memFileForm_web{
-                        display: flex;
-                        flex-direction: column;
-                        flex-wrap: wrap;
-                    }
-                    .memFileBtn{
-                        text-align: center;
-                        position: absolute;
-                        left: 40%;
-                        bottom: 10%;
-                        
-                    }
-                    .memFileBtn input{
-                        width: 72px;
-                        height: 25px;
-                        border-radius: 8px;
-                    
-                    }
-                    .memFileBtn button{
-                        width: 72px;
-                        height: 25px;
-                        border-radius: 8px;
-                    }
-                    .btnConfirm{
-                        background-color: #575fac;
-                        color: #fff;
-                        border: 0;
-                        cursor: pointer;
-                    }
-                    .btnCanncel{
+
+                    // 會員資訊欄
+                    .memFileWrapInfo{
+                        width: 95%;
+                        height: 35%;
                         background-color: #fff;
-                        
-                        color: #000;
-                        border: 0;
-                        border: 1px solid #575fac;
-                        cursor: pointer;
+                        border-radius: 8px;
+                        margin: auto;
+                    // display: none;
                     }
+                        .memFileWrapInfo td{
+                            width: 243px;
+                            height: 30px;
+                            // background-color: gray;
+                        }
+
+                    // form表單,input輸入 欄
+                    .memFileWrapFrom{
+                        width: 95%;
+                        height: 35%;
+                        background-color: #fff;
+                        border-radius: 8px;
+                        margin: auto;
+                    display: none;
+                    }
+                        .memFileForm_web{
+                            display: flex;
+                            flex-direction: column;
+                            flex-wrap: wrap;
+                        }
+
+                        // 會員資訊欄 的按鈕
+                        .memFileInfoBtn{
+                            text-align: center;
+                            position: absolute;
+                            left: 42%;
+                            bottom: 10%;
+                        }
+                        .memFileInfoBtn button{
+                            // width: 72px;
+                            height: 25px;
+                            border-radius: 20px;
+                        }
+                        .btnEdit{
+                            border: 3px solid #f1f1f1;
+                            border-radius: 20px;
+                            color: #fff;
+                            background-color: #fa7979;
+                            position: relative;
+                            top: -3px;
+                            left: -3px;
+                            box-shadow: 3px 3px #e7867e;
+                            transition: 0.3s;
+                            &:hover{
+                                top:0;
+                                left: 0;
+                                box-shadow: 0 0 transparent;
+                            }
+
+                            cursor: pointer;
+                        }
+
+
+                        // form表單,input輸入 的按鈕
+                        .memFileBtn{
+                            text-align: center;
+                            position: absolute;
+                            left: 40%;
+                            bottom: 10%;
+
+                        }
+                        .memFileBtn input{
+                            width: 72px;
+                            height: 25px;
+                            border-radius: 20px;
+                        
+                        }
+                        .memFileBtn button{
+                            width: 72px;
+                            height: 25px;
+                            border-radius: 20px;
+                        }
+                        .btnConfirm{
+                            // background-color: #575fac;
+                            // color: #fff;
+                            // border: 0;
+
+                            border: 3px solid #f1f1f1;
+                            border-radius: 20px;
+                            color: #fff;
+                            background-color: #fa7979;
+                            position: relative;
+                            top: -3px;
+                            left: -3px;
+                            box-shadow: 3px 3px #e7867e;
+                            transition: 0.3s;
+                            &:hover{
+                                top:0;
+                                left: 0;
+                                box-shadow: 0 0 transparent;
+                            }
+
+                            cursor: pointer;
+                        }
+                        .btnCanncel{
+                            // background-color: #fff;
+                            // color: #000;
+                            // border: 0;
+                            // border: 1px solid #575fac;
+
+                            // border: 3px solid #f1f1f1;
+                            border-radius: 20px;
+                            color: #e7867e;
+                            background-color: #fff;
+                            position: relative;
+                            top: -3px;
+                            left: -3px;
+                            box-shadow: 3px 3px #e7867e;
+                            border: 0;
+                            transition: 0.3s;
+                            &:hover{
+                                top:0;
+                                left: 0;
+                                box-shadow: 0 0 transparent;
+                            }
+
+                            cursor: pointer;
+                        }
 
     /* 電腦版 記錄區 */
         .recordArea_web{
             width: 60%; /*原1122px*/
-            height: 40vh; /*540px*/
+            // height: 40vh; /*540px*/
             // background-color: rgb(65, 185, 41);
-            margin: 50px auto;
+            margin: 4% auto 0%;
+            position: relative;
         }
-            .recordAreaUl_web{
-                margin: 0;
-                padding: 0;
-            }
-                .recordAreaUl_web li:first-child{
-                    // background-color: #ffd200;
-                }
-                .recordAreaUl_web li{
-                    width: 100px;
-                    height: 30px;
-                    // background-color: #fff;
-                    display: inline-block;
-                    text-align: center;
-                    line-height: 30px;
-                    border-radius: 8px 8px 0px 0px;
-                    cursor: pointer;
-                }
-                .yellow{
-                    background-color: #ffd200;
-                }
-                .white{
-                    background-color: #fff;
-                }
+            
 
             .msgRecord_web{
                 width: 100%;
                 height: 34.5vh;/*34.5vh*/
-                background-color: #ffd200;
+                background-color: #ffc982;
+                border: 3px solid #fff;/*ask???*/
+
+                position: relative;
                 
             }
+                .recordAreaUl_web{
+                    margin: 0;
+                    padding: 0;
+
+                    position: absolute;
+                    
+                    transform: translateY(3px);
+
+                    z-index: 1;
+                }
+                    .recordAreaUl_web li:first-child{
+                        // background-color: #ffd200;
+                    }
+                    .recordAreaUl_web li{
+                        width: 100px;
+                        height: 30px;
+                        // background-color: #fff;
+                        display: inline-block;
+                        text-align: center;
+                        line-height: 30px;
+                        border-radius: 8px 8px 0px 0px;
+                        // border: 3px solid #fff;
+                        border-bottom-style: none;
+                        cursor: pointer;
+
+                        transform: translateY(-32.5px);
+                        
+                    }
+                    .yellow{
+                        background-color: #ffc982;
+                        border: 3px solid #fff;
+                    }
+                    .white{
+                        background-color: #fff;
+                    }
+
+
+
     /**/        .msgRecordWrapFor2_web{
                    display: flex;
                 }
@@ -519,17 +785,43 @@
                             .btnEdit_web{
                                 width: 72px;
                                 height: 25px;
-                                background-color: #fff;
-                                color: #575fac;
-                                border: 1px solid #575fac;
+
+                                border: 3px solid #f1f1f1;
+                                border-radius: 20px;
+                                color: #fff;
+                                background-color: #fa7979;
+                                position: relative;
+                                top: -3px;
+                                left: -3px;
+                                box-shadow: 3px 3px #e7867e;
+                                transition: 0.3s;
+                                &:hover{
+                                    top:0;
+                                    left: 0;
+                                    box-shadow: 0 0 transparent;
+                                }
+                    
                                 cursor: pointer;
                             }
                             .btnDelete_web{
                                 width: 72px;
                                 height: 25px;
-                                background-color: #575fac;
-                                color: #fff;
+
+                                border-radius: 20px;
+                                color: #e7867e;
+                                background-color: #fff;
+                                position: relative;
+                                top: -3px;
+                                left: -3px;
+                                box-shadow: 3px 3px #e7867e;
                                 border: 0;
+                                transition: 0.3s;
+                                &:hover{
+                                    top:0;
+                                    left: 0;
+                                    box-shadow: 0 0 transparent;
+                                }
+
                                 cursor: pointer;
                             }
 
@@ -538,8 +830,10 @@
             .grpRecord_web{
                 width: 100%;
                 height: 34.5vh;/*34.5vh*/
-                background-color: #ffd200;
+                background-color: #ffc982;
+                border: 3px solid #fff;
             display: none;
+                position: relative;
             }
     /**/        .grpRecordWrapFor2_web{
                     display: flex;
@@ -571,8 +865,10 @@
             .shopRecord_web{
                 width: 100%;
                 height: 34.5vh;/*34.5vh*/
-                background-color: #ffd200;
+                background-color: #ffc982;
+                border: 3px solid #fff;
             display: none;
+                position: relative;
             }
     /**/        .shopRecordWrapFor2_web{
                     display: flex;

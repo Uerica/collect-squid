@@ -368,6 +368,6 @@ window.addEventListener('load', function () {
 });
 
 window.addEventListener('mousemove', function (e) {
-  moveScene(e);
+  // moveScene(e);
 });
 

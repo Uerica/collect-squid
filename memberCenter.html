@@ -5,9 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="sass/style.css">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js'></script>
+    
     <title>會員中心</title>
 </head>
 
@@ -147,59 +148,126 @@
 
     <!-- 會員中心  -->
     <div class="memBg">
+
+        <!-- 雲 -->
+        <div class="cloud_1 cloud">
+            <img src="imgs/memberCenter/cloud1.png" alt="cloud_1">
+        </div>
+        <div class="cloud_2 cloud">
+            <img src="imgs/memberCenter/cloud2.png" alt="cloud_2">
+        </div>
+        <div class="cloud_3 cloud">
+            <img src="imgs/memberCenter/cloud3.png" alt="cloud_3">
+        </div>
+        <div class="cloud_4 cloud">
+            <img src="imgs/memberCenter/cloud4.png" alt="cloud_4">
+        </div>
+
+
         <div class="memArea">
             <div class="memAreaMiddlebox">
                 <!--<div class="memPhoto_phone">-->
-                <img src="imgs/memberCenter/member.jpg" alt="會員魷魚圖">
+                <img src="imgs/memberCenter/memCenter_photo.png" alt="會員魷魚圖">
                 <!--</div>-->
                 <!-- <div class="memFileMidbox"> *****-->
                 <div class="memFile">
                     <!--手機版用-->
                     <center>基本資訊</center>
-                    <form action="">
-                        <table>
-                            <tr>
-                                <th>編號:</th>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <th>暱稱:</th>
-                                <td><input type="text"></td>
-                            </tr>
-                            <tr>
-                                <th>性別:</th>
-                                <td><input type="text"></td>
-                            </tr>
-                            <tr>
-                                <th>生日:</th>
-                                <td><input type="text"></td>
-                            </tr>
-                            <tr>
-                                <th>星座:</th>
-                                <td><input type="text"></td>
-                            </tr>
-                            <tr>
-                                <th>帳號:</th>
-                                <td><input type="text"></td>
-                            </tr>
-                            <tr>
-                                <th>密碼:</th>
-                                <td><input type="text"></td>
-                            </tr>
-                            <tr>
-                                <th>信箱:</th>
-                                <td><input type="text"></td>
-                            </tr><!-- -->
-                        </table>
+                    
+                    <!-- 會員資訊欄 -->
+                    <div class="memFileWrapInfo">
+                        <form action="">
+                            <table>
+                                <tr>
+                                    <th>編號:</th>
+                                    <td>test 123123</td>
+                                </tr>
+                                <tr>
+                                    <th>暱稱:</th>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th>性別:</th>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th>生日:</th>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th>星座:</th>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th>帳號:</th>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th>密碼:</th>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th>信箱:</th>
+                                    <td></td>
+                                </tr><!-- -->
+                            </table>
 
 
-                        <!-- </div> *****-->
-                        <div class="memFileBtn">
-                            <input type="submit" class="btnConfirm" value="確認修改">
-                            <!-- <button></button> -->
-                            <button class="btnCanncel">取消</button>
-                        </div>
-                    </form>
+                            <!-- </div> *****-->
+                            <div class="memFileInfoBtn">
+                                <button class="btnEdit">編輯基本資料</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    
+                    <!-- form表單,input輸入 -->
+                    <div class="memFileWrapFrom">
+                        <form action="">
+                            <table>
+                                <tr>
+                                    <th>編號:</th>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th>暱稱:</th>
+                                    <td><input type="text"></td>
+                                </tr>
+                                <tr>
+                                    <th>性別:</th>
+                                    <td><input type="text"></td>
+                                </tr>
+                                <tr>
+                                    <th>生日:</th>
+                                    <td><input type="text"></td>
+                                </tr>
+                                <tr>
+                                    <th>星座:</th>
+                                    <td><input type="text"></td>
+                                </tr>
+                                <tr>
+                                    <th>帳號:</th>
+                                    <td><input type="text"></td>
+                                </tr>
+                                <tr>
+                                    <th>密碼:</th>
+                                    <td><input type="text"></td>
+                                </tr>
+                                <tr>
+                                    <th>信箱:</th>
+                                    <td><input type="text"></td>
+                                </tr><!-- -->
+                            </table>
+
+
+                            <!-- </div> *****-->
+                            <div class="memFileBtn">
+                                <input type="submit" class="btnConfirm" value="確認修改">
+                                <!-- <button></button> -->
+                                <button class="btnCanncel">取消</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
 
 
@@ -207,54 +275,84 @@
                 <div class="memFile_web">
                     <!-- 電腦版用 -->
                     <center>基本資訊</center>
-                    <form action="" class="memFileForm_web">
-                        <table>
-                            <tr>
-                                <th>編號:</th>
-                                <td></td>
-                                <th>帳號:</th>
-                                <td><input type="text"></td>
-                            </tr>
-                            <tr>
-                                <th>暱稱:</th>
-                                <td><input type="text"></td>
-                                <th>密碼:</th>
-                                <td><input type="text"></td>
-                            </tr>
-                            <tr>
-                                <th>性別:</th>
-                                <td><input type="text"></td>
-                                <th>信箱:</th>
-                                <td><input type="text"></td>
-                            </tr>
-                            <tr>
-                                <th>生日:</th>
-                                <td><input type="text"></td>
-                                <th>星座:</th>
-                                <td><input type="text"></td>
-                            </tr>
+
+                    <!-- 會員資訊欄 -->
+                    <div class="memFileWrapInfo">
+                        <form action="">
+                            <table>
+                                <tr>
+                                    <th>編號:</th>
+                                    <td></td>
+                                    <th>星座:</th>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th>暱稱:</th>
+                                    <td></td>
+                                    <th>帳號:</th>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th>性別:</th>
+                                    <td></td>
+                                    <th>密碼:</th>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th>生日:</th>
+                                    <td></td>
+                                    <th>信箱:</th>
+                                    <td></td>
+                                </tr>
+                            </table>
 
 
-                            <tr>
+                            <!-- </div> *****-->
+                            <div class="memFileInfoBtn">
+                                <button class="btnEdit">編輯基本資料</button>
+                            </div>
+                        </form>
+                    </div>
 
-                            </tr>
-                            <tr>
+                    <!-- form表單,input輸入 -->
+                    <div class="memFileWrapFrom">
+                        <form action="" class="memFileForm_web">
+                            <table>
+                                <tr>
+                                    <th>編號:</th>
+                                    <td></td>
+                                    <th>星座:</th>
+                                    <td><input type="text"></td>
+                                </tr>
+                                <tr>
+                                    <th>暱稱:</th>
+                                    <td><input type="text"></td>
+                                    <th>帳號:</th>
+                                    <td><input type="text"></td>
+                                </tr>
+                                <tr>
+                                    <th>性別:</th>
+                                    <td><input type="text"></td>
+                                    <th>密碼:</th>
+                                    <td><input type="text"></td>
+                                </tr>
+                                <tr>
+                                    <th>生日:</th>
+                                    <td><input type="text"></td>
+                                    <th>信箱:</th>
+                                    <td><input type="text"></td>
+                                </tr>
+                            </table>
 
-                            </tr>
-                            <tr>
 
-                            </tr> <!-- -->
-                        </table>
-
-
-                        <!-- </div> *****-->
-                        <div class="memFileBtn">
-                            <input type="submit" class="btnConfirm" value="確認修改">
-                            <!-- <button></button> -->
-                            <button class="btnCanncel">取消</button>
-                        </div>
-                    </form>
-
+                            <!-- </div> *****-->
+                            <div class="memFileBtn">
+                                <input type="submit" class="btnConfirm" value="確認修改">
+                                <!-- <button></button> -->
+                                <button class="btnCanncel">取消</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
 
 
@@ -376,23 +474,23 @@
 
         <script>
             // $(window).onload(funciton(){
-            $("#msgRecordBtn").click(function () {
-                $("#msgRecord").toggle();
-                $("#grpRecord").hide();
-                $("#shopRecord").hide();
-            });
+            // $("#msgRecordBtn").click(function () {
+            //     $("#msgRecord").toggle();
+            //     $("#grpRecord").hide();
+            //     $("#shopRecord").hide();
+            // });
 
-            $("#grpRecordBtn").click(function () {
-                $("#msgRecord").hide();
-                $("#grpRecord").toggle();
-                $("#shopRecord").hide();
-            });
+            // $("#grpRecordBtn").click(function () {
+            //     $("#msgRecord").hide();
+            //     $("#grpRecord").toggle();
+            //     $("#shopRecord").hide();
+            // });
 
-            $("#shopRecordBtn").click(function () {
-                $("#msgRecord").hide();
-                $("#grpRecord").hide();
-                $("#shopRecord").toggle();
-            });
+            // $("#shopRecordBtn").click(function () {
+            //     $("#msgRecord").hide();
+            //     $("#grpRecord").hide();
+            //     $("#shopRecord").toggle();
+            // });
             // });
         </script>
 
@@ -403,14 +501,15 @@
         <!-- 電腦版 記錄區 -->
         <div class="recordArea_web">
             <ul class="recordAreaUl_web">
-                <li id="msgLi" class="yellow">留言記錄</li>
-                <li id="grpLi" class="white">揪團記錄</li>
-                <li id="shopLi" class="white">購物記錄</li>
-            </ul>
+                    <li id="msgLi" class="yellow">留言記錄</li>
+                    <li id="grpLi" class="white">揪團記錄</li>
+                    <li id="shopLi" class="white">購物記錄</li>
+                </ul>
 
-
-            <!-- 留言記錄 -->
+                
             <div id="msgRecord_web" class="msgRecord_web">
+
+                <!-- 留言記錄 電腦版 -->
                 <div class="msgRecordWrapFor2_web">
                     <div class="msgRecordBox_web">
                         <div class="msgRecordImg_web">
@@ -495,7 +594,16 @@
 
 
             <!-- 揪團記錄 電腦版 -->
+            <!-- <ul class="recordAreaUl_web">
+                    <li id="msgLi" class="yellow">留言記錄</li>
+                    <li id="grpLi" class="white">揪團記錄</li>
+                    <li id="shopLi" class="white">購物記錄</li>
+                </ul> -->
+
             <div id="grpRecord_web" class="grpRecord_web">
+
+                
+
                 <div class="grpRecordWrapFor2_web">
                     <div class="grpRecordBox_web">
                         <div class="grpRecordImg_web">
@@ -579,8 +687,16 @@
             </div>
 
 
-            <!-- 購物記錄 -->
+            <!-- 購物記錄 電腦版 -->
+            <!-- <ul class="recordAreaUl_web">
+                    <li id="msgLi" class="yellow">留言記錄</li>
+                    <li id="grpLi" class="white">揪團記錄</li>
+                    <li id="shopLi" class="white">購物記錄</li>
+                </ul> -->
+
             <div id="shopRecord_web" class="shopRecord_web">
+                
+
                 <div class="shopRecordWrapFor2_web">
                     <div class="shopRecordBox_web">
                         <div class="shopRecordImg_web">
@@ -664,41 +780,41 @@
             </div>
 
             <script>
-                $('#msgLi').click(function () {
-                    $('#msgRecord_web').show();
-                    $('#grpRecord_web').hide();
-                    $('#shopRecord_web').hide();
-                    $('#msgLi').removeClass('white');
-                    $('#msgLi').addClass('yellow');
-                    $('#grpLi').removeClass('yellow');
-                    $('#grpLi').addClass('white');
-                    $('#shopLi').removeClass('yellow');
-                    $('#shopLi').addClass('white');
-                });
+                // $('#msgLi').click(function () {
+                //     $('#msgRecord_web').show();
+                //     $('#grpRecord_web').hide();
+                //     $('#shopRecord_web').hide();
+                //     $('#msgLi').removeClass('white');
+                //     $('#msgLi').addClass('yellow');
+                //     $('#grpLi').removeClass('yellow');
+                //     $('#grpLi').addClass('white');
+                //     $('#shopLi').removeClass('yellow');
+                //     $('#shopLi').addClass('white');
+                // });
 
-                $('#grpLi').click(function () {
-                    $('#msgRecord_web').hide();
-                    $('#grpRecord_web').show();
-                    $('#shopRecord_web').hide();
-                    $('#msgLi').removeClass('yellow');
-                    $('#msgLi').addClass('white');
-                    $('#grpLi').removeClass('white');
-                    $('#grpLi').addClass('yellow');
-                    $('#shopLi').removeClass('yellow');
-                    $('#shopLi').addClass('white');
-                });
+                // $('#grpLi').click(function () {
+                //     $('#msgRecord_web').hide();
+                //     $('#grpRecord_web').show();
+                //     $('#shopRecord_web').hide();
+                //     $('#msgLi').removeClass('yellow');
+                //     $('#msgLi').addClass('white');
+                //     $('#grpLi').removeClass('white');
+                //     $('#grpLi').addClass('yellow');
+                //     $('#shopLi').removeClass('yellow');
+                //     $('#shopLi').addClass('white');
+                // });
 
-                $('#shopLi').click(function () {
-                    $('#msgRecord_web').hide();
-                    $('#grpRecord_web').hide();
-                    $('#shopRecord_web').show();
-                    $('#msgLi').removeClass('yellow');
-                    $('#msgLi').addClass('white');
-                    $('#grpLi').removeClass('yellow');
-                    $('#grpLi').addClass('white');
-                    $('#shopLi').removeClass('white');
-                    $('#shopLi').addClass('yellow');
-                });
+                // $('#shopLi').click(function () {
+                //     $('#msgRecord_web').hide();
+                //     $('#grpRecord_web').hide();
+                //     $('#shopRecord_web').show();
+                //     $('#msgLi').removeClass('yellow');
+                //     $('#msgLi').addClass('white');
+                //     $('#grpLi').removeClass('yellow');
+                //     $('#grpLi').addClass('white');
+                //     $('#shopLi').removeClass('white');
+                //     $('#shopLi').addClass('yellow');
+                // });
             </script>
 
 
@@ -731,6 +847,7 @@
     <!--點選變換
         </div>
     </div 多的> -->
+    <script src="js/memberCenter.js"></script>
 </body>
 
 </html>
