@@ -39,19 +39,19 @@ function tab() {
 // 商店owl.carousel
 $('.owl-carousel').owlCarousel({
   loop: true,
-  // margin: 10,
   nav: true,
   dots: false,
   responsive: {
     0: {
       items: 1
     },
-    768: {
-      items: 1
+    908: {
+      items: 2
     },
-    1000: {
+    1321: {
       items: 3
-    }
+    },
   }
-})
+});
 
+// squid animation

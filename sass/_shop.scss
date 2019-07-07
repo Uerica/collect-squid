@@ -110,15 +110,12 @@
   padding: 2px;
   margin: auto;
   border-radius: 10px 10px 0px 0px;
-  background-color: rgba(249, 249, 249, .80);
-  font-size: 80%;
+  // font-size: 80%;
 }
 .img_bg{
   width: 70%;
   height: 80%;
   border-radius: 10px 10px 0px 10px;
-  // background-color: #e5f2f3;
-  background-color: rgba(249, 249, 249, .80);
   position: relative;
 }
 .img_wrap{
@@ -139,16 +136,30 @@
   left: 50%;
   transform: translate(-50%,-50%);
 }
-.btn_wrap{
+.btn_bg{
   width: 42%;
   height: 60%;
   padding: 3px 0px;
   position: absolute;
-  right: 0;
+  right: 1px;
   bottom: 0;
   transform: translate(100%);
   border-radius: 0px 10px 10px 0px;
-  background-color: rgba(249, 249, 249, .80);
+}
+.btn_wrap{
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.chair_row .img_bg,.chair_row .item_title h3,.chair_row .btn_bg{
+  background-color: #e4f2f5;
+}
+.table_row .img_bg,.table_row .item_title h3,.table_row .btn_bg{
+  background-color: #f9f5eb;
+}
+.bed_row .img_bg,.bed_row .item_title h3,.bed_row .btn_bg{
+  background-color: #e5f2f3;
 }
 .owl-stage-outer{
   height: 100%;
