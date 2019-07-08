@@ -1,6 +1,6 @@
 @import "variable";
 @import "mixin";
-@import "publicElement";
+@import "public";
 
 h2,
 h3,
@@ -12,19 +12,21 @@ input {
   font-family: "Noto Sans TC", sans-serif;
 }
 
+@include menuAnima();
 
 .dressingRoom {
   background-image: linear-gradient(0deg, #ccd7d9 26%, #ead2c6 25%);
   height: 100vh;
   display: flex;
+  padding-left: 1%;
   ul {
     list-style: none;
     padding: 0 0 0 3%;
   }
-  
+
   a {
     text-decoration: none;
-  }  
+  }
   img {
     display: inline-block;
     width: 100%;
@@ -32,17 +34,18 @@ input {
   }
   h3 {
     display: inline-block;
-    padding: 5px 10px;
+    padding: 2% 3%;
     border: 3px solid #fa7979;
     border-radius: 10px;
     font-size: 16px;
-    color: #666;
-    background-color: #e6e6e6;
+    color: #777;
+    background-color: #f3f3f3;
   }
   // 繪圖區塊
   .paintArea {
-    width: 23%;
-    padding-top: 10%;
+    width: 25%;
+    padding: 11% 0 0 1%;
+    box-sizing: border-box;
     .customize {
       text-align: center;
       .paintShirt {
@@ -60,6 +63,8 @@ input {
           }
           a {
             @include btn();
+            width: 50%;
+            padding: 4% 2%;
             margin-top: 20px;
           }
         }
@@ -74,14 +79,14 @@ input {
       }
     }
     .paint {
-      padding: 20% 0 0 5%;
+      padding: 25% 0 0 5%;
       width: 50%;
     }
   }
   // 阿魷穿新衣區塊
   .squidArea {
     width: 25%;
-    padding: 20% 5% 0 5%;
+    padding: 19% 5% 0 5%;
     box-sizing: border-box;
     .dressingZone {
       position: relative;
@@ -92,7 +97,7 @@ input {
       .changedHat {
         @include absHzCenter();
         width: 60%;
-        top: -20%;
+        top: -25%;
       }
       .changedClo {
         @include absHzCenter();
@@ -109,11 +114,15 @@ input {
   }
   // 衣櫃區塊
   .clothesArea {
-    width: 52%;
-    padding-top: 3%;
+    width: 50%;
+    padding-top: 10%;
     .wardrobe {
       height: 100%;
       text-align: center;
+      h3 {
+        padding: 1%;
+        margin-bottom: 3%;
+      }
       .top {
         width: 100%;
         height: 4%;
@@ -208,6 +217,8 @@ input {
   // 繪圖燈箱
   .lightBox {
     position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(39, 39, 39, 0.8);
@@ -335,7 +346,7 @@ input {
   }
 }
 
-@media screen and (max-width: 668px) {
+@media screen and (max-width: 813px) {
   .dressingRoom {
     .lightBox {
       .drawingBox {
@@ -348,17 +359,24 @@ input {
           .drawingArea {
             width: 45%;
             margin: 0 auto;
+            .drawingPart {
+              justify-content: center;
+            }
           }
         }
       }
     }
     .paintArea {
-      padding-top: 5%;
+      padding-top: 10%;
       .customize {
         .paintShirt {
           .startCreate {
             width: 70%;
             padding: 10% 15%;
+            a {
+              width: 90%;
+              padding: 5% 0;
+            }
           }
         }
       }
