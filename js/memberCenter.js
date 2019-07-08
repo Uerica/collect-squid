@@ -1,7 +1,6 @@
 // 手機版下方 記錄區
 
-$( document ).ready(function(){
-
+$(window).ready(function(){
 
     $("#msgRecordBtn").click(function () {
         $("#msgRecord").toggle();
@@ -23,7 +22,7 @@ $( document ).ready(function(){
 
 
     //桌機版 基本資訊欄_點擊按鈕換編輯欄
-    
+
 
 
     // 桌機版 記錄區頁籤
