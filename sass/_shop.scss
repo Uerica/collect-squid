@@ -270,9 +270,6 @@
   bottom: 16%;
   transform: translate(-50%);
 }
-.squid_top{
-  overflow: hidden;
-}
 #squid{
   width: 50%;
   margin: auto;
@@ -283,7 +280,7 @@
 }
 #squid_body{
   position: absolute;
-  left: 49.5%;
+  left: 49%;
   bottom: 0px;
   transform: translate(-50%);
 }
@@ -352,20 +349,21 @@
   }
   .tab_title{
     writing-mode: vertical-lr;
-    display: block;
+    display: flex;
+    justify-content: space-between;
+    height: 85%;
     position: absolute;
+    top: 50%;
     z-index: 1;
-    transform: translate(-100%,10%);
+    transform: translate(-100%,-50%);
     li{
-      display: inline-block;
       text-align: center;
       width: 44px;
       height: 50px;
       line-height: 44px;
-      margin: 5px;
       border-radius: 5px 0px 0px 5px;
       background-color: #e6e7e9;
-      margin: 10px 0px;
+      margin: 0px;
     }
     li:first-child.active{
       background-color: #92d7e7;

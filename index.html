@@ -8,6 +8,7 @@
     <!-- <link rel="stylesheet" href="css/normalize.css"> -->
     <link rel="stylesheet" href="css/reset.css">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/hover.css">
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="sass/style.css">
@@ -15,31 +16,67 @@
 </head>
 
 <body>
+
+
     <div class="gameWorld_bgImage">
-        <img src="imgs/homepage01.png" alt="" draggable="false" oncontextmenu="return false">
+        <img src="imgs/homePage/homepage01.png" alt="" draggable="false" oncontextmenu="return false">
     </div>
 
-    <!-- gameWorld -->
-    <!-- <div class="gameWorld">
-        <div class="house">
+    <!-- <div class="gameWorld_tutorial">
+        <div class="tutorial_cover">
+            <div class="tutorial_house">
+                <div class="cover cover-house">
+                    <img src="imgs/homePage/coverHouse.png" alt="">
+                </div>
+                <div class="desc desc-house"></div>
+            </div>
         </div>
     </div> -->
 
     <div class="gameWorld">
-        <!-- <div class="gameWorld_bgImage">
-                    <img src="imgs/homepage01.png" alt="" draggable="false" oncontextmenu="return false">
-                </div> -->
         <div class="gameWorld_house gameWorld_object">
-            <img src="imgs/house_tag.png" alt="">
+            <a href="javascript:;"><img src="imgs/homePage/house_tag.png" alt=""></a>
         </div>
         <div class="gameWorld_fountain gameWorld_object">
-            <img src="imgs/fountain.png" alt="">
+            <a href="javascript:;"><img src="imgs/homePage/fountain.png" alt=""></a>
         </div>
         <div class="gameWorld_bus gameWorld_object">
-            <img src="imgs/bus.png" alt="">
+            <a href="javascript:;"><img src="imgs/homePage/bus.png" alt=""></a>
         </div>
         <div class="gameWorld_cup gameWorld_object">
-            <img src="imgs/cup.png" alt="">
+            <a href="javascript:;"><img src="imgs/homePage/cup.png" alt=""></a>
+        </div>
+    </div>
+
+    <div class="gameWorld_switchPage">
+        <div class="checkBox checkBox-room collapse">
+            <div class="checkBox_content">
+                <div class="checkBox_title">
+                    <h3>前往我的房間</h3>
+                </div>
+                <div class="checkBox_hint">
+                    <p>要前往我的房間嗎?</p>
+                </div>
+                <div class="checkBox_btn">
+                    <button class="button button-cancel" id="btnCancel-room">取消</button>
+                    <a href="myRoom.html" class="button button-check">確認</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="checkBox checkBox-event collapse">
+            <div class="checkBox_content">
+                <div class="checkBox_title">
+                    <h3>前往揪團活動</h3>
+                </div>
+                <div class="checkBox_hint">
+                    <p>要前往揪團活動專區嗎?</p>
+                </div>
+                <div class="checkBox_btn">
+                    <button class="button button-cancel" id="btnCancel-event">取消</button>
+                    <a href="event.html" class="button button-check">確認</a>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -55,107 +92,113 @@
             </a>
         </div>
 
-        <div class="menuMobile_overlay">
-            <ul class="memberInfo">
-                <li class="coin">
-                    <a href="javascript:;">
-                        <img src="imgs/icon/coin.png" alt="持有金額icon">
-                        <span>1500</span>
-                    </a>
-                </li>
-                <li class="logo">
-                    <a href="index.html">
-                        <img src="imgs/logo.png" alt="尋找友誼網站LOGO">
-                        <span>尋找友誼</span>
-                    </a>
-                </li>
-                <li class="login">
-                    <img src="imgs/icon/avatar.png" alt="角色頭像icon">
-                    <span class="name">
-                        <a href="javascript:;">魚翔</a>
-                    </span>
-                    <span>
-                        <a href="javascript:;">登出</a>
-                    </span>
-                </li>
-            </ul>
-            <nav class="menuMobile_nav">
-                <li><a href="myRoom.html"> <img src="imgs/icon/room.png" alt="我的房間icon">
-                        <span>我的房間</span></a></li>
-                <li><a href="dressingRoom.html"><img src="imgs/icon/fittingRoom.png" alt="換衣間icon">
-                        <span>換衣間</span></a></li>
-                <li><a href="findfriend.html"> <img src="imgs/icon/friend.png" alt="找朋友icon">
-                        <span>找朋友</span></a></li>
-                <li><a href="javascript:;"> <img src="imgs/icon/events.png" alt="揪團活動icon">
-                        <span>揪團活動</span></a></li>
-                <li><a href="shop.html"> <img src="imgs/icon/mall.png" alt="虛擬商城icon">
-                        <span>虛擬商城</span></a></li>
-                <li><a href="memberCenter.html"> <img src="imgs/icon/member.png" alt="會員中心icon">
-                        <span>會員中心</span></a></li>
-                <li><a href="javascript:;"> <img src="imgs/icon/robot.png" alt="客服機器人_icon">
-                        <span>客服機器人</span></a></li>
-                <li><a href="javascript:;"> <img src="imgs/icon/notice02.png" alt="通知_icon">
-                        <span>通知</span></a></li>
-            </nav>
+        <div class="menuHandheld">
+            <div class="menuMobile_overlay">
+                <div class="menuMobile_menu">
+                    <ul class="memberInfo">
+                        <li class="coin">
+                            <a href="javascript:;">
+                                <img src="imgs/homePage/icon/coin.png" alt="持有金額icon">
+                                <span>1500</span>
+                            </a>
+                        </li>
+                        <li class="logo">
+                            <a href="index.html">
+                                <img src="imgs/homePage/logo.png" alt="尋找友誼網站LOGO">
+                                <span>尋找友誼</span>
+                            </a>
+                        </li>
+                        <li class="login">
+                            <img src="imgs/homePage/icon/avatar.png" alt="角色頭像icon">
+                            <span class="name">
+                                <a href="javascript:;">魚翔</a>
+                            </span>
+                            <span>
+                                <a href="javascript:;">登出</a>
+                            </span>
+                        </li>
+                    </ul>
+                    <nav class="menuMobile_nav">
+                        <li><a href="myRoom.html"> <img src="imgs/homePage/icon/room.png" alt="我的房間icon">
+                                <span>我的房間</span></a></li>
+                        <li><a href="dressingRoom.html"><img src="imgs/homePage/icon/fittingRoom.png" alt="換衣間icon">
+                                <span>換衣間</span></a></li>
+                        <li><a href="findfriend.html"> <img src="imgs/homePage/icon/friend.png" alt="找朋友icon">
+                                <span>找朋友</span></a></li>
+                        <li><a href="javascript:;"> <img src="imgs/homePage/icon/events.png" alt="揪團活動icon">
+                                <span>揪團活動</span></a></li>
+                        <li><a href="shop.html"> <img src="imgs/homePage/icon/mall.png" alt="虛擬商城icon">
+                                <span>虛擬商城</span></a></li>
+                        <li><a href="memberCenter.html"> <img src="imgs/homePage/icon/member.png" alt="會員中心icon">
+                                <span>會員中心</span></a></li>
+                        <li><a href="javascript:;"> <img src="imgs/homePage/icon/robot.png" alt="客服機器人_icon">
+                                <span>客服機器人</span></a></li>
+                        <li><a href="javascript:;"> <img src="imgs/homePage/icon/notice02.png" alt="通知_icon">
+                                <span>通知</span></a></li>
+                    </nav>
+                </div>
+            </div>
         </div>
 
         <nav class="menuDesktop">
             <ul>
-                <li>
+                <li class="hvr-pulse-grow">
                     <a href="myRoom.html">
-                        <img src="imgs/icon/room.png" alt="我的房間icon">
+                        <img src="imgs/homePage/icon/room.png" alt="我的房間icon">
                         <span>我的房間</span>
                     </a>
                 </li>
-                <li><a href="dressingRoom.html">
-                        <img src="imgs/icon/fittingRoom.png" alt="換衣間icon">
-                        <span>換衣間</span></a>
+                <li class="hvr-pulse-grow">
+                    <a href="dressingRoom.html">
+                        <img src="imgs/homePage/icon/fittingRoom.png" alt="換衣間icon">
+                        <span>換衣間</span>
+                    </a>
                 </li>
-                <li>
+                <li class="hvr-pulse-grow">
                     <a href="findfriend.html">
-                        <img src="imgs/icon/friend.png" alt="找朋友icon">
+                        <img src="imgs/homePage/icon/friend.png" alt="找朋友icon">
                         <span>找朋友</span>
                     </a>
                 </li>
-                <li>
+                <li class="hvr-pulse-grow">
                     <a href="javascript:;">
-                        <img src="imgs/icon/events.png" alt="揪團活動icon">
+                        <img src="imgs/homePage/icon/events.png" alt="揪團活動icon">
                         <span>揪團活動</span>
                     </a>
                 </li>
-                <li class="logo">
+                <li class="logo hvr-pulse-grow">
                     <a href="index.html">
-                        <img src="imgs/logo.png" alt="尋找友誼網站LOGO">
+                        <img src="imgs/homePage/logo.png" alt="尋找友誼網站LOGO">
                         <span>尋找友誼</span>
                     </a>
                 </li>
-                <li>
+                <li class="hvr-pulse-grow">
                     <a href="shop.html">
-                        <img src="imgs/icon/mall.png" alt="虛擬商城icon">
+                        <img src="imgs/homePage/icon/mall.png" alt="虛擬商城icon">
                         <span>虛擬商城</span>
                     </a>
                 </li>
-                <li>
+                <li class="hvr-pulse-grow">
                     <a href="memberCenter.html">
-                        <img src="imgs/icon/member.png" alt="會員中心icon">
+                        <img src="imgs/homePage/icon/member.png" alt="會員中心icon">
                         <span>會員中心</span>
                     </a>
                 </li>
                 <div class="memberInfo">
                     <li class="login">
-                        <img src="imgs/icon/avatar.png" alt="角色頭像icon">
+                        <img src="imgs/homePage/icon/avatar.png" alt="角色頭像icon">
                         <span class="name"><a href="javascript:;">魚翔</a></span>
                         <span><a href="javascript:;">登出</a></span>
                     </li>
                     <li class="coin">
                         <a href="javascript:;">
-                            <img src="imgs/icon/coin.png" alt="持有金額icon">
+                            <img src="imgs/homePage/icon/coin.png" alt="持有金額icon">
                             <span>1500</span>
                         </a>
                     </li>
                     <li class="level">
                         <a href="javascript:;">
-                            <img src="imgs/icon/civilian.png" alt="平民等級icon">
+                            <img src="imgs/homePage/icon/civilian.png" alt="平民等級icon">
                             <span>平民</span>
                         </a>
                     </li>
@@ -194,7 +237,7 @@
                                     <p>{{ message.chat_msg }}</p>
                                 </div>
                                 <div class="avatar">
-                                    <img src="imgs/icon/member0.png" alt="大頭貼">{{ message.user_id }}
+                                    <img src="imgs/homePage/icon/member0.png" alt="大頭貼">{{ message.user_id }}
                                 </div>
                             </div>
                         </li>
@@ -204,7 +247,7 @@
                         <li class="chatRoom_messageReceived" v-if="message.user_id != user_id">
                             <div class="message-received">
                                 <div class="avatar">
-                                    <img src="imgs/icon/member0.png" alt="大頭貼">{{ message.user_id }}
+                                    <img src="imgs/homePage/icon/member0.png" alt="大頭貼">{{ message.user_id }}
                                 </div>
                                 <div class="text">
                                     <p>{{ message.chat_msg }}</p>
@@ -229,7 +272,7 @@
                                     <p>{{ message.chat_msg }}</p>
                                 </div>
                                 <div class="avatar">
-                                    <img src="imgs/icon/member0.png" alt="">
+                                    <img src="imgs/homePage/icon/member0.png" alt="">
                                 </div>
                             </div>
                         </li>
@@ -238,7 +281,7 @@
                         <li class="chatRoom_messageReceived" v-if="message.user_id != user_id">
                             <div class="message-received">
                                 <div class="avatar">
-                                    <img src="imgs/icon/member0.png" alt="大頭貼">
+                                    <img src="imgs/homePage/icon/member0.png" alt="大頭貼">
                                 </div>
                                 <div class="text">
                                     <p>{{ message.chat_msg }}</p>
@@ -283,7 +326,7 @@
                             <!-- 好友大頭貼、暱稱 -->
                             <div class="friendInfo">
                                 <div class="avatar">
-                                    <img src="imgs/tree_04.png" alt="大頭貼">
+                                    <img src="imgs/homePage/tree_04.png" alt="大頭貼">
                                 </div>
                                 <!-- 點擊user名字可以產生聊天視窗 -->
                                 <div class="friendName" v-on:click="private_chat(friend)">
@@ -300,7 +343,7 @@
                                 </div>
 
                                 <div class="roomVisit">
-                                    <a href="javascript:;"><img src="imgs/icon/home.png" alt="房間ICON"></a>
+                                    <a href="javascript:;"><img src="imgs/homePage/icon/home.png" alt="房間ICON"></a>
                                 </div>
 
                                 <div class="moreAction">
@@ -323,7 +366,7 @@
                         <div class="friendList_friend" v-for="friend in offline_friends()">
                             <div class="friendInfo">
                                 <div class="avatar">
-                                    <img src="imgs/tree_04.png" alt="大頭貼">
+                                    <img src="imgs/homePage/tree_04.png" alt="大頭貼">
                                 </div>
                                 <div class="friendName">
                                     <p>{{ friend }}</p>
@@ -336,7 +379,7 @@
                                 </div>
 
                                 <div class="roomVisit">
-                                    <a href="javascript:;"><img src="imgs/icon/home.png" alt="房間ICON"></a>
+                                    <a href="javascript:;"><img src="imgs/homePage/icon/home.png" alt="房間ICON"></a>
                                 </div>
 
                                 <div class="moreAction">
@@ -351,7 +394,7 @@
                         <div class="friendList_friend">
                             <div class="friendInfo">
                                 <div class="avatar">
-                                    <img src="imgs/tree_04.png" alt="大頭貼">
+                                    <img src="imgs/homePage/tree_04.png" alt="大頭貼">
                                 </div>
                                 <div class="friendName">
                                     <p>佩佩</p>
@@ -365,7 +408,7 @@
                                 </div>
 
                                 <div class="roomVisit">
-                                    <a href="javascript:;"><img src="imgs/icon/home.png" alt="房間ICON"></a>
+                                    <a href="javascript:;"><img src="imgs/homePage/icon/home.png" alt="房間ICON"></a>
                                 </div>
 
                                 <div class="moreAction">
@@ -385,7 +428,7 @@
                         <div class="friendList_friend">
                             <div class="friendInfo">
                                 <div class="avatar">
-                                    <img src="imgs/tree_04.png" alt="大頭貼">
+                                    <img src="imgs/homePage/tree_04.png" alt="大頭貼">
                                 </div>
                                 <div class="friendName">
                                     <p>毛筆</p>
@@ -395,11 +438,11 @@
                             <div class="friendAction">
                                 <!-- 接受好友申請 -->
                                 <div class="requestAccept">
-                                    <a href="javascript:;"><img src="imgs/icon/accept.png" alt="接受ICON"></a>
+                                    <a href="javascript:;"><img src="imgs/homePage/icon/accept.png" alt="接受ICON"></a>
                                 </div>
                                 <!-- 拒絕好友申請 -->
                                 <div class="requestRefuse">
-                                    <a href="javascript:;"><img src="imgs/icon/refuse.png" alt="拒絕ICON"></a>
+                                    <a href="javascript:;"><img src="imgs/homePage/icon/refuse.png" alt="拒絕ICON"></a>
                                 </div>
                             </div>
                         </div>
@@ -416,11 +459,11 @@
     <div class="common_notifications disabledScrollOnHover">
         <div class="notifications_actionBox">
             <button class="button button-notifications">
-                <img src="imgs/icon/notice.png" alt="通知按鈕圖片">
+                <img src="imgs/homePage/icon/notice.png" alt="通知按鈕圖片">
                 <span>通知</span>
             </button>
             <button class="button button-robot">
-                <img src="imgs/icon/robot.png" alt="客服機器人圖片">
+                <img src="imgs/homePage/icon/robot.png" alt="客服機器人圖片">
                 <span>客服魷魚</span>
             </button>
         </div>
@@ -466,18 +509,18 @@
     </div>
 
     <!-- 登入 -->
-    <div class="loginBox">
+    <div class="loginBox collapse">
         <div class="loginContent">
             <div class="intro">
                 <div class="logo">
-                    <img src="imgs/loginBox/logo.png" alt="Logo" />
-                    <h2>收集友誼</h2>
+                    <img src="imgs/homePage/loginBox/logo.png" alt="Logo" />
+                    <h1>收集友誼</h1>
                 </div>
                 <div class="drawing">
-                    <img src="imgs/loginBox/logingBg.png" alt="Login Background" />
+                    <img src="imgs/homePage/loginBox/logingBg.png" alt="Login Background" />
                 </div>
                 <div class="slogan">
-                    <p>線上魷魚，即時友誼</p>
+                    <p>即時交友聊天</p>
                 </div>
             </div>
             <div class="loginForm">
@@ -490,43 +533,65 @@
                         </div>
                         <div class="inputField">
                             <label for="memPsw">密碼</label>
-                            <input type="text" name="memPsw" id="memPsw" /> 
+                            <input type="text" name="memPsw" id="memPsw" />
                         </div>
-                        <a href="javascript:;">忘記密碼？</a>
+                        <div class="forgetPsw">
+                            <a href="javascript:;">忘記密碼？</a>
+                        </div>
                     </div>
                     <div class="submitBtns">
-                        <input class="createRole" type="submit" value="創角" />
-                        <input type="button" value="登入" onclick="login()"/>
-                        <input class="godMode" type="submit" value="上帝模式" />
+                        <div class="submitBtns-login">
+                            <input type="submit" value="創角" class="button button-createRole" />
+                            <input type="button" value="登入" class="button button-login" onclick="login()" />
+                        </div>
+                        <div class="submitBtns-godMode ">
+                            <input class="button button-godMode button-hover-shine" type="submit" value="上帝模式" />
+                        </div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 
-    <div class="createBox">
-        <div class="createContent">
-            <form action="">
-                <div class="inputField">
-                    <label for="gender">性別</label><input type="text" name="gender" id="gender" />
-                </div>
-                <div class="inputField">
-                    <label for="birthday">生日</label><input type="text" name="birthday" id="birthday" />
-                </div>
-                <div class="inputField">
-                    <label for="memName">姓名</label><input type="text" name="memName" id="memName" />
-                </div>
-                <div class="inputField">
-                    <label for="email">信箱</label><input type="email" name="email" id="email" />
-                </div>
-                <div class="inputField">
-                    <label for="memPsw">密碼</label><input type="password" name="memPsw" id="memPsw" />
-                </div>
-                <div class="inputField">
-                    <label for="checkMemPsw">確認密碼</label><input type="password" name="checkMemPsw" id="checkMemPsw" />
-                </div>
-            </form>
-            <div class="styling">
+
+    <div class="newCharacter">
+        <div class="newCharacter_content">
+            <div class="newCharacter_info">
+                <form action="" class="mem_info">
+                    <table class="mem_table">
+                        <tbody>
+                            <tr class="mem_gender">
+                                <th><label for="gender">性別</label></th>
+                                <td><label for="male">男</label><input type="radio" name="gender" id="male">
+                                    <label for="female">女</label><input type="radio" name="gender" id="female">
+                                    <label for="other">其他</label><input type="radio" name="gender" id="other"></td>
+                            </tr>
+                            <tr>
+                                <th><label for="birthday">生日</label></th>
+                                <td><input type="date" name="birthday" id="birthday"></td>
+                            </tr>
+                            <tr>
+                                <th><label for="memName">暱稱</label></th>
+                                <td><input type="text" name="memName" id="memName"></td>
+                            </tr>
+                            <tr>
+                                <th><label for="email">信箱</label></th>
+                                <td><input type="email" name="email" id="email"></td>
+                            </tr>
+                            <tr>
+                                <th><label for="memPsw">密碼</label></th>
+                                <td><input type="password" name="memPsw" id="memPsw"></td>
+                            </tr>
+                            <tr>
+                                <th><label for="checkPsw">確認密碼</label></th>
+                                <td><input type="password" name="checkPsw" id="checkPsw"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+
+            <div class="newCharacter_customization">
                 <div class="shapes">
                     <ul class="styles">
                         <li id="headStyle" class="active">
@@ -539,16 +604,16 @@
                         <div class="heads">
                             <ul>
                                 <li>
-                                    <img src="imgs/createBox/head1.png" alt="Head 1" /><img
-                                        src="imgs/createBox/head2.png" alt="Head 2" />
+                                    <img src="imgs/homePage/createBox/head1.png" alt="Head 1" /><img
+                                        src="imgs/homePage/createBox/head2.png" alt="Head 2" />
                                 </li>
                                 <li>
-                                    <img src="imgs/createBox/head3.png" alt="Head 3" /><img alt="Head 4"
-                                        src="imgs/createBox/head4.png" />
+                                    <img src="imgs/homePage/createBox/head3.png" alt="Head 3" /><img alt="Head 4"
+                                        src="imgs/homePage/createBox/head4.png" />
                                 </li>
                                 <li>
-                                    <img src="imgs/createBox/head5.png" alt="Head 5" /><img
-                                        src="imgs/createBox/head6.png" alt="Head 6" />
+                                    <img src="imgs/homePage/createBox/head5.png" alt="Head 5" /><img
+                                        src="imgs/homePage/createBox/head6.png" alt="Head 6" />
                                 </li>
                             </ul>
                         </div>
@@ -556,16 +621,16 @@
                         <div class="facialFeatures">
                             <ul>
                                 <li>
-                                    <img src="imgs/createBox/face1.png" alt="Head 1" /><img
-                                        src="imgs/createBox/face2.png" alt="Head 2" />
+                                    <img src="imgs/homePage/createBox/face1.png" alt="Head 1" /><img
+                                        src="imgs/homePage/createBox/face2.png" alt="Head 2" />
                                 </li>
                                 <li>
-                                    <img src="imgs/createBox/face3.png" alt="Head 3" /><img alt="Head 4"
-                                        src="imgs/createBox/face4.png" />
+                                    <img src="imgs/homePage/createBox/face3.png" alt="Head 3" /><img alt="Head 4"
+                                        src="imgs/homePage/createBox/face4.png" />
                                 </li>
                                 <li>
-                                    <img src="imgs/createBox/face5.png" alt="Head 5" /><img
-                                        src="imgs/createBox/face6.png" alt="Head 6" />
+                                    <img src="imgs/homePage/createBox/face5.png" alt="Head 5" /><img
+                                        src="imgs/homePage/createBox/face6.png" alt="Head 6" />
                                 </li>
                             </ul>
                         </div>
@@ -573,9 +638,9 @@
                 </div>
                 <div class="appearance">
                     <div class="squidBorn">
-                        <img src="imgs/createBox/squid.png" alt="Faceless Squid" />
-                        <img class="headFeature" src="imgs/createBox/head1.png" alt="Head" />
-                        <img class="faceFeature" src="imgs/createBox/face1.png" alt="Face Feature" />
+                        <img src="imgs/homePage/createBox/squid.png" alt="Faceless Squid" />
+                        <img class="headFeature" src="imgs/homePage/createBox/head1.png" alt="Head" />
+                        <img class="faceFeature" src="imgs/homePage/createBox/face1.png" alt="Face Feature" />
                     </div>
                 </div>
             </div>
@@ -585,15 +650,20 @@
             </div>
         </div>
     </div>
-    <!-- 到這裡 -->
+
+
+
+
 
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js'></script>
     <script src="https://kit.fontawesome.com/629062769a.js"></script>
     <script src="js/main.js"></script>
     <script src="js/loginBox.js"></script>
-    <script src="js/createBox.js"></script>
+    <script src="js/newCharacter.js"></script>
+    <script src="js/chat.js"></script>
 </body>
 
 </html>
