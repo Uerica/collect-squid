@@ -73,7 +73,7 @@
 .button-active,
 .button:active {
     box-shadow: 0 0 0 1px rgba(0,0,0, 0.15) inset, 0 0 6px rgba(0,0,0, 0.20) inset;
-    border-color: #000\9;
+    /* border-color: #000\9; */
 }
 
 .button[disabled],
@@ -108,6 +108,46 @@ a.button-selected {
     color: #333;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
     background: #fff;
+}
+
+.button-check {
+    color: #fff;
+    border: 3px solid #f6f6f6;
+    background-color: #fa7979;
+    position: relative;
+    top: -3px;
+    left: -3px;
+    -webkit-box-shadow: 2px 2px #e7867e;
+            box-shadow: 2px 2px #e7867e;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+}
+
+.button-check:hover {
+    top: 0;
+    left: 0;
+    -webkit-box-shadow: 0 0 transparent;
+            box-shadow: 0 0 transparent;
+}
+
+.button-cancel {
+    color: #fff;
+    border: 3px solid #f6f6f6;
+    background-color: #4C566A;
+    position: relative;
+    top: -3px;
+    left: -3px;
+    -webkit-box-shadow: 2px 2px #4C566A;
+            box-shadow: 2px 2px #4C566A;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+}
+
+.button-cancel:hover {
+    top: 0;
+    left: 0;
+    -webkit-box-shadow: 0 0 transparent;
+            box-shadow: 0 0 transparent;
 }
 
 /* Button Groups */

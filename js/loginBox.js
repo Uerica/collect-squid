@@ -1,7 +1,7 @@
 $(".loginForm form").submit(function(e) {
     e.preventDefault();
   });
-  $(".createRole").click(function() {
+  $(".button-createRole").click(function() {
     $(".loginBox").css({ display: "none" });
-    $(".createBox").css({ display: "flex" });
+    $(".newCharacter").css({ display: "flex" });
   });

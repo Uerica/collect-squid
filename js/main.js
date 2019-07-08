@@ -179,7 +179,7 @@ function switchPage() {
   $("#btnCancel-room").click(function (e) {
     e.preventDefault();
     $(".checkBox-room").toggleClass("collapse");
-  }); 
+  });
 
   $("#btnCancel-event").click(function (e) {
     e.preventDefault();
@@ -188,23 +188,120 @@ function switchPage() {
 }
 
 function chatBtnMousemove() {
-  $('.friendList_open').mouseenter(function(){
+  $('.friendList_open').mouseenter(function () {
     $('.friendList_openBtn').css('transform', 'translateY(0)');
   })
   setInterval(() => {
-    $('.friendList_open').mouseleave(function(){
+    $('.friendList_open').mouseleave(function () {
       $('.friendList_openBtn').css('transform', 'translateY(100%)');
     })
   }, 2000);
 }
 
 function chatBtnLeaveTimer() {
-  
+
 }
 
 $(document).ready(function () {
   // resizeScreen();
 });
+
+
+function animation() {
+  // smoke------------------------------------------------
+  var smoke = document.getElementById("smoke");
+  for (var i = 0; i < 20; i++) {//煙的數量
+    var smokeDiv = document.createElement("div");
+    smoke.appendChild(smokeDiv);
+    smokeDiv.setAttribute("class", "particle");
+  }
+  // smoke------------------------------------------------
+  // spray------------------------------------------------
+  function spray() {
+    var Particle, canvas, colors, createParticle, ctx, gravity, height, initParticles, particles, render, width;
+    canvas = document.getElementById('spray');
+    ctx = canvas.getContext('2d');
+    width = canvas.width = 600;
+    height = canvas.height = 600;
+    particles = [];
+    colors = ['#029DAF', '#E5D599', '#FFC219', '#F07C19', '#E32551'];
+    gravity = 0.04;
+
+    initParticles = function () {
+      var i = 0;
+      while (i < 200) {
+        setTimeout(createParticle, 20 * i, i);
+        i++;
+      }
+    }
+
+    createParticle = function (i) {
+      var color, opacity, p, size, vx, vy, x, y;
+      x = width * 0.5;
+      y = height * 0.5;
+      vx = -2 + Math.random() * 4;
+      vy = Math.random() * -3;
+      size = 5 + Math.random() * 5;
+      color = colors[i % colors.length];
+      opacity = 0.5 + Math.random() * 0.5;
+      p = new Particle(x, y, vx, vy, size, color, opacity);
+      particles.push(p);
+    }
+
+    Particle = function (x, y, vx, vy, size, color, opacity) {
+      function reset() {
+        x = width * 0.5;
+        y = height * 0.5;
+        opacity = 0.5 + Math.random() * 0.5;
+        vx = -2 + Math.random() * 4;
+        vy = Math.random() * -3;
+      }
+      this.update = function () {
+        if (opacity - 0.005 > 0) {
+          opacity -= 0.005;
+        } else {
+          reset();
+        }
+        vy += gravity;
+        x += vx;
+        y += vy;
+      };
+      this.draw = function () {
+        ctx.globalAlpha = opacity;
+        ctx.fillStyle = color;
+        ctx.fillRect(x, y, size, size);
+      }
+    }
+
+    render = function () {
+      ctx.clearRect(0, 0, width, height);
+      var i = 0;
+      while (i < particles.length) {
+        particles[i].update();
+        particles[i].draw();
+        i++;
+      }
+      requestAnimationFrame(render);
+    }
+
+    initParticles();
+    render();
+
+    sprayTimer();
+
+    function sprayTimer() {
+      var time = 3000;
+      a = setTimeout(sprayOpacity, time);
+      function sprayOpacity() {
+        canvas.style.opacity = 0;
+        setTimeout(() => canvas.style.opacity = 1, time);
+        setTimeout(sprayOpacity, time * 2);
+      }
+    }
+  }
+  spray();
+  // spray------------------------------------------------
+}
 
 
 window.addEventListener('load', function () {
@@ -216,6 +313,7 @@ window.addEventListener('load', function () {
   loginBoxNoScroll();
   switchPage();
   chatBtnMousemove();
+  animation();
 });
 
 window.addEventListener('mousemove', function (e) {
