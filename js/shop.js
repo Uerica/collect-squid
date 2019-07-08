@@ -90,7 +90,7 @@ function bedAnimation() {
 
   TweenMax.fromTo("#squid_foot1", 1,
     {
-      y: -10,
+      y: -20,
       rotation: 20,
     }, {
       rotation: -20,
@@ -102,7 +102,7 @@ function bedAnimation() {
     {
       rotation: 20,
     }, {
-      y: -10,
+      y: -20,
       rotation: -20,
       repeat: -1,
       yoyo: true,
@@ -112,7 +112,7 @@ function bedAnimation() {
     {
       rotation: 20,
     }, {
-      y: -10,
+      y: -20,
       rotation: -20,
       repeat: -1,
       yoyo: true,
