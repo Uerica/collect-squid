@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import "mixin";
 @import "variables";
 @import "dressingRoom";
@@ -10,11 +11,11 @@
 //     outline: 1px solid #f00 !important;
 // }
 
-// 卷軸css
+// css
 
 
 
-// js用
+// js
 .collapse {
   display: none!important;
 }
@@ -25,7 +26,7 @@
 
 
 
-// 全域設定
+// 
 
 // html {
 //   background: url(../imgs/homepage01.png) no-repeat center center fixed; 
@@ -151,7 +152,7 @@ img {
     }
 }
 
-//手機navbar
+
 .menuMobile {
   position: absolute;
   top: 10px;
@@ -393,7 +394,7 @@ img {
   }
 }
 
-// 手機css動畫
+
 .menuMobile {
   &_overlay.open{
     opacity: 1;
@@ -419,7 +420,7 @@ img {
   }
 }
 
-// 聊天群組
+
 .chatGroup {
   display: flex;
   width: 50%;
@@ -629,7 +630,7 @@ img {
 }
 
 
-// 好友列表
+
 .friendList {
   width: 94%;
   height: 79%;

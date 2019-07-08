@@ -1,6 +1,8 @@
+@charset "UTF-8";
 @import "variable";
 @import "mixin";
 @import "publicElement";
+
 
 h2,
 h3,
@@ -39,7 +41,7 @@ input {
     color: #666;
     background-color: #e6e6e6;
   }
-  // 繪圖區塊
+  
   .paintArea {
     width: 23%;
     padding-top: 10%;

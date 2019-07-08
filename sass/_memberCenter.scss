@@ -1,11 +1,5 @@
-// 通知&客服機器人
 
-
-
-
-
-
-// 會員中心
+@charset "UTF-8";
 @media screen and (max-width:670px){
 .memBg{ /*?????*/
     width: 100%;
@@ -31,7 +25,7 @@
             // margin: auto;
             display: flex;
             justify-content: center;
-            /*align-items: center; 沒效果*/
+            /*align-items: center; */
             padding-top: 8%;
             align-items: flex-start;
         }
@@ -101,25 +95,25 @@
                 
 
 
-        /*留言記錄*/
+       
         .msgRecord{
-            width: 100%; /*原667px*/
-            height: 86%; /*原315px*/
+            width: 100%; /*667px*/
+            height: 86%; /*315px*/
             background-color: #ffd200;
             position: absolute;
             bottom: 60px;
         display: none;
         }
             .msgRecordInnerBG{
-                width: 90%; /*原608px*/
-                height: 90%; /*原284px*/
+                width: 90%; /*608px*/
+                height: 90%; /*284px*/
                 background-color: #fff;
                 margin: auto;
                 margin-top: 3%;
                 overflow-y: scroll;
             }
 
-            /* scroll樣式 */
+            /* scroll */
                 /* width */
                 ::-webkit-scrollbar {
                     width: 8px;
@@ -141,7 +135,7 @@
 
             
             .msgRecordText{
-                width: 90%; /*原535px*/
+                width: 90%; /*535px*/
                 height: 112px;
                 background-color: #fff;
                 border: 2px solid #575fac;
@@ -165,25 +159,25 @@
 
 
 
-        /*揪團記錄*/
+     
         .groupRecord{
-            width: 100%; /*原667px*/
-            height: 86%; /*原315px*/
+            width: 100%; /*667px*/
+            height: 86%; /*315px*/
             background-color: #ffd200;
             position: absolute;
             bottom: 60px;
         display: none;
         }
             .groupRecordInnerBG{
-                width: 90%; /*原608px*/
-                height: 90%; /*原284px*/
+                width: 90%; /*608px*/
+                height: 90%; /*284px*/
                 background-color: #fff;
                 margin: auto;
                 margin-top: 3%;
                 overflow-y: scroll;
             }
 
-            /* scroll樣式 */
+            /* scroll*/
                 /* width */
                 ::-webkit-scrollbar {
                     width: 8px;
@@ -205,7 +199,7 @@
 
             
             .groupRecordText{
-                width: 90%; /*原535px*/
+                width: 90%; /*535px*/
                 height: 112px;
                 background-color: #fff;
                 border: 2px solid #575fac;
@@ -230,25 +224,24 @@
 
 
 
-        /*購物記錄*/
         .shopRecord{
-            width: 100%; /*原667px*/
-            height: 86%; /*原315px*/
+            width: 100%; /*667px*/
+            height: 86%; /*315px*/
             background-color: #ffd200;
             position: absolute;
             bottom: 60px;
         display: none;
         }
             .shopRecordInnerBG{
-                width: 90%; /*原608px*/
-                height: 90%; /*原284px*/
+                width: 90%; /*608px*/
+                height: 90%; /*284px*/
                 background-color: #fff;
                 margin: auto;
                 margin-top: 3%;
                 overflow-y: scroll;
             }
 
-            /* scroll樣式 */
+          
                 /* width */
                 ::-webkit-scrollbar {
                     width: 8px;
@@ -270,7 +263,7 @@
 
             
             .shopRecordText{
-                width: 90%; /*原535px*/
+                width: 90%; /*535px*/
                 height: 112px;
                 background-color: #fff;
                 border: 2px solid #575fac;
@@ -384,7 +377,7 @@
                 // margin: auto;
                 display: flex;
                 justify-content: center;
-                /*align-items: center; 沒效果*/
+                /*align-items: center; */
                 padding-top: 8%;
                 align-items: flex-start;
                 
@@ -453,9 +446,9 @@
                         cursor: pointer;
                     }
 
-    /* 電腦版 記錄區 */
+ 
         .recordArea_web{
-            width: 60%; /*原1122px*/
+            width: 60%; /*1122px*/
             height: 40vh; /*540px*/
             // background-color: rgb(65, 185, 41);
             margin: 50px auto;
