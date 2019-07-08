@@ -1,5 +1,5 @@
 // 手機版下方 記錄區
-$(window).onload(funciton(){
+$(window).ready(function(){
     $("#msgRecordBtn").click(function () {
         $("#msgRecord").toggle();
         $("#grpRecord").hide();
