@@ -249,7 +249,7 @@ img {
       font-weight: 600;
       font-size: 16px;
       // padding: 2%;
-      // margin:  25% 1% 0;
+      // margin:  25% -51% 0;
       display: inline-block;
     }
     .memberInfo {
@@ -465,7 +465,7 @@ img {
     }
     &_main {
       width: 96.5%;
-      height: 82.1%;
+      height: 82.51%;
       background-color: #fff;
       // margin: 0em .6em .6em .6em;
       border-radius: 10px;
@@ -1100,22 +1100,25 @@ img {
 $num-particles: 20;//煙的數量
 #smoke {
 	position: absolute;
-	top: -60%;
+	top: -10%;
   left: 60%;
-	width: 100%;
-	height: 100%;
-	filter: blur(calc(0 * 0.2rem));//blur(calc(模糊 * 0.2rem))
-	// overflow: hidden;
+	// width: 100%;
+	// height: 100%;
+  filter: blur(calc(0 * 0.2rem));//blur(calc(模糊 * 0.2rem))
+  @include rwd(tablet) {
+    top: -80%;
+  }
+  @include rwd(mobile) {
+    top: -110%;
+  }
 }
 
 .particle {
-    position: absolute;
-    left: 0px;
-    bottom: 50%;
-    animation-fill-mode: both;
-    border-radius: 50%;
-    offset-rotate: 0deg;
-    background-image: radial-gradient(circle at 25% 0%, rgba(230, 230, 230, 0.75), rgba(230, 230, 230, 0.75));
+  position: absolute;
+  animation-fill-mode: both;
+  border-radius: 50%;
+  offset-rotate: 0deg;
+  background-image: radial-gradient(circle at 25% 0%, rgba(230, 230, 230, 0.75), rgba(230, 230, 230, 0.75));
 }
 
 @for $i from 1 through $num-particles {
@@ -1135,7 +1138,19 @@ $num-particles: 20;//煙的數量
     height: #{$size}rem;
 		animation: smoke-#{$i} #{$particle-speed}ms #{$animation-timing} #{$animation-delay * 5}ms infinite normal;
 		offset-path: path(quote($offset-path));
-		background-color: $background-color;
+    background-color: $background-color;
+    @include rwd(tablet) {
+      width: #{$size*.8}rem;
+      height: #{$size*.8}rem;
+    }
+    @include rwd(mobile) {
+      width: #{$size*.5}rem;
+      height: #{$size*.5}rem;
+    }
+    @include rwd(mobile-xs) {
+      width: #{$size*.2}rem;
+      height: #{$size*.2}rem;
+    }
   }
 	
 	@keyframes smoke-#{$i} {
@@ -1147,7 +1162,17 @@ $num-particles: 20;//煙的數量
 		100% {//translateX(calc(角度 * 1vh)
 			offset-distance: 100%;
 			transform: scale(#{random() * 0.75 + 0.5}) translateX(calc(50 * 1vh)) scaleX(#{random() * 4 + 2}) scaleY(#{random() * 0.5 + 1.5}) rotate(#{random() * 90deg});
-			opacity: 0;
+      opacity: 0;
+
+      @include rwd(tablet) {
+        transform: translateX(calc(60 * 1vh));
+      }
+      @include rwd(mobile) {
+        transform: translateX(calc(80 * 1vh));
+      }
+      @include rwd(mobile-xs) {
+        transform: translateX(calc(500 * 1vh));
+      }
 		}
 	}
 }
@@ -1155,8 +1180,9 @@ $num-particles: 20;//煙的數量
 // fountain------------------------------------------------------
 #spray{
   position: absolute;
+  width: 100%;
   left: 50%;
-  bottom: -15%;
+  bottom: 33%;
   transform: translateX(-50%);
   pointer-events: none;
   transition: 1s;
@@ -1164,6 +1190,105 @@ $num-particles: 20;//煙的數量
 // fountain------------------------------------------------------
 // cup------------------------------------------------------
 
+.cup img {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  bottom: 0%;
+}
+.cup #cup_squid{
+  // top: 10%;
+  transform: translate(-46%,-60%);
+  // bottom: unset;
+  @include rwd(tablet) {
+    width: 50%;
+  }
+  @include rwd(mobile) {
+    width: 45%;
+  }
+}
+
+.g_apple img{
+  visibility: hidden;
+}
+
+// #cup #hand {
+//   left: 155px;
+//   top: 160px;
+//   transform: translateY(0%) scaleY(1);
+//   transform-origin: center bottom;
+//   z-index: unset; }
+
+@keyframes comeOut {
+  0% {
+    transform: translate(-46%,-60%);
+    // top: 50px; 
+  }
+  20% {
+    transform: translate(-46%,-66.33%);
+    // top: 40px; 
+  }
+  40% {
+    transform: translate(-46%,-69.495%);
+    // top: 35px; 
+  }
+  60% {
+    transform: translate(-46%,-69.495%);
+    // top: 35px; 
+  }
+  80% {
+    transform: translate(-46%,-66.33%);
+    // top: 40px; 
+  }
+  100% {
+    transform: translate(-46%,-60%);
+    // top: 50px; 
+  } 
+}
+
+// @keyframes rub {
+//   0% {
+//     top: 140px; }
+//   3% {
+//     top: 120px; }
+//   6% {
+//     top: 100px; }
+//   9% {
+//     top: 80px; }
+//   25% {
+//     transform: scaleY(-1);
+//     top: 80px; }
+//   30% {
+//     transform: rotate(20deg) scaleY(-1);
+//     top: 80px;
+//     z-index: 1; }
+//   35% {
+//     transform: rotate(-20deg) scaleY(-1);
+//     top: 80px; }
+//   40% {
+//     transform: rotate(20deg) scaleY(-1);
+//     top: 80px; }
+//   45% {
+//     transform: rotate(-20deg) scaleY(-1);
+//     top: 80px; }
+//   50% {
+//     transform: rotate(20deg) scaleY(-1);
+//     top: 80px; }
+//   60% {
+//     transform: scaleY(0.5);
+//     top: 80px; }
+//   70% {
+//     transform: scaleY(0.5);
+//     top: 90px; }
+//   80% {
+//     transform: scaleY(0.5);
+//     top: 100px; } }
+
+.cup:hover #cup_squid {
+  animation: comeOut 5s linear 1; }
+
+.cup:hover #hand {
+  animation: rub 5s linear .5s 1; }
 // cup------------------------------------------------------
 
 .loginBox {
