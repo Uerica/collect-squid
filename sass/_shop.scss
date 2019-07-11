@@ -271,29 +271,53 @@
   transform: translate(-50%);
 }
 #squid{
-  width: 50%;
+  width: 20%;
   margin: auto;
-  position: relative;
-  top: 100px;
+  position: absolute;
+  left: 50%;
   z-index: 1;
+  transform: translate(-50%);
   // transform: rotate(55.7deg);
 }
-#squid_body{
+#head_box{
   position: absolute;
-  left: 49%;
-  bottom: 0px;
+  left: 51.5%;
+  transform: translate(-50%,-70%);
+  max-width: unset;
+  width: 145%;
+  @include rwd(tablet) {
+    width: 135%;
+    transform: translate(-53%,-70%);
+  }
+  @include rwd(mobile) {
+    width: 135%;
+    transform: translate(-57%,-70%);
+  }
+  @include rwd(mobile-xs) {
+    width: 135%;
+    transform: translate(-61%,-70%);
+  }
+}
+#squid_body{
+  width: 100%;
+  position: relative;
+  left: 50%;
+  // bottom: 0px;
   transform: translate(-50%);
 }
 .foots{
   display: flex;
   justify-content: space-around;
-  width: 40%;
+  width: 100%;
   position: absolute;
-  top: 88%;
+  top: 60%;
   left: 50%;
   transform: translate(-50%);
   z-index: -1;
-  // overflow: hidden;
+  overflow: hidden;
+  img{
+    width: 20.3%;
+  }
 }
 .show_item{
   width: 55%;
