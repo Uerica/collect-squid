@@ -6,9 +6,9 @@
 @import "memberCenter";
 @import "findFriend";
 
-* {
-    outline: 1px solid #f00 !important;
-}
+// * {
+//     outline: 1px solid #f00 !important;
+// }
 
 // 卷軸css
 
@@ -1203,6 +1203,7 @@ $num-particles: 20;//煙的數量
   }
   @include rwd(mobile) {
     width: 45%;
+    bottom: 5%;
   }
 }
 .g_apple img{
@@ -1210,88 +1211,94 @@ $num-particles: 20;//煙的數量
 }
 
 .cup #cup_hand {
-  left: 40%;
-  top: 160px;
+  position: absolute;
+  width: 4.5%;
+  height: 11%;
+  left: 38%;
+  bottom: 35%;
   transform: translateY(0%) scaleY(1);
   transform-origin: center bottom;
-  z-index: unset; }
+  z-index: unset;
+}
+.cup #cup_hand #rag{
+  border-radius: 3px;
+  max-width: unset;
+  width: 300%;
+  height: 100%;
+  position: absolute;
+  bottom: 100%;
+}
 
 @keyframes comeOut {
   0% {
     transform: translate(-46%,-60%);
-    // top: 50px; 
   }
   20% {
     transform: translate(-46%,-66.33%);
-    // top: 40px; 
   }
   40% {
     transform: translate(-46%,-69.495%);
-    // top: 35px; 
   }
   60% {
     transform: translate(-46%,-69.495%);
-    // top: 35px; 
   }
   80% {
     transform: translate(-46%,-66.33%);
-    // top: 40px; 
   }
   100% {
     transform: translate(-46%,-60%);
-    // top: 50px; 
   } 
 }
 
 @keyframes rub {
   0% {
-    top: 140px;
+    bottom: 40%;
   }
   3% {
-    top: 120px;
+    bottom: 50%;
   }
   6% {
-    top: 100px;
+    bottom: 55%;
   }
   9% {
-    top: 80px;
+    bottom: 60%;
   }
   25% {
     transform: scaleY(-1);
-    top: 80px;
+    bottom: 60%;
   }
   30% {
     transform: rotate(20deg) scaleY(-1);
-    top: 80px;
     z-index: 1;
+    bottom: 60%;
   }
   35% {
     transform: rotate(-20deg) scaleY(-1);
-    top: 80px;
+    bottom: 60%;
   }
   40% {
     transform: rotate(20deg) scaleY(-1);
-    top: 80px;
+    bottom: 60%;
   }
   45% {
     transform: rotate(-20deg) scaleY(-1);
-    top: 80px;
+    bottom: 60%;
   }
   50% {
     transform: rotate(20deg) scaleY(-1);
-    top: 80px;
+    bottom: 60%;
   }
   60% {
     transform: scaleY(0.5);
-    top: 80px;
+    bottom: 60%;
   }
   70% {
     transform: scaleY(0.5);
-    top: 90px;
+    bottom: 55%;
   }
   80% {
     transform: scaleY(0.5);
-    top: 100px;
+    bottom: 50%;
   }
 }
 
