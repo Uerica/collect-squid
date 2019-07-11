@@ -1197,9 +1197,7 @@ $num-particles: 20;//煙的數量
   bottom: 0%;
 }
 .cup #cup_squid{
-  // top: 10%;
   transform: translate(-46%,-60%);
-  // bottom: unset;
   @include rwd(tablet) {
     width: 50%;
   }
@@ -1207,17 +1205,16 @@ $num-particles: 20;//煙的數量
     width: 45%;
   }
 }
-
 .g_apple img{
   visibility: hidden;
 }
 
-// #cup #hand {
-//   left: 155px;
-//   top: 160px;
-//   transform: translateY(0%) scaleY(1);
-//   transform-origin: center bottom;
-//   z-index: unset; }
+.cup #cup_hand {
+  left: 40%;
+  top: 160px;
+  transform: translateY(0%) scaleY(1);
+  transform-origin: center bottom;
+  z-index: unset; }
 
 @keyframes comeOut {
   0% {
@@ -1246,48 +1243,62 @@ $num-particles: 20;//煙的數量
   } 
 }
 
-// @keyframes rub {
-//   0% {
-//     top: 140px; }
-//   3% {
-//     top: 120px; }
-//   6% {
-//     top: 100px; }
-//   9% {
-//     top: 80px; }
-//   25% {
-//     transform: scaleY(-1);
-//     top: 80px; }
-//   30% {
-//     transform: rotate(20deg) scaleY(-1);
-//     top: 80px;
-//     z-index: 1; }
-//   35% {
-//     transform: rotate(-20deg) scaleY(-1);
-//     top: 80px; }
-//   40% {
-//     transform: rotate(20deg) scaleY(-1);
-//     top: 80px; }
-//   45% {
-//     transform: rotate(-20deg) scaleY(-1);
-//     top: 80px; }
-//   50% {
-//     transform: rotate(20deg) scaleY(-1);
-//     top: 80px; }
-//   60% {
-//     transform: scaleY(0.5);
-//     top: 80px; }
-//   70% {
-//     transform: scaleY(0.5);
-//     top: 90px; }
-//   80% {
-//     transform: scaleY(0.5);
-//     top: 100px; } }
+@keyframes rub {
+  0% {
+    top: 140px;
+  }
+  3% {
+    top: 120px;
+  }
+  6% {
+    top: 100px;
+  }
+  9% {
+    top: 80px;
+  }
+  25% {
+    transform: scaleY(-1);
+    top: 80px;
+  }
+  30% {
+    transform: rotate(20deg) scaleY(-1);
+    top: 80px;
+    z-index: 1;
+  }
+  35% {
+    transform: rotate(-20deg) scaleY(-1);
+    top: 80px;
+  }
+  40% {
+    transform: rotate(20deg) scaleY(-1);
+    top: 80px;
+  }
+  45% {
+    transform: rotate(-20deg) scaleY(-1);
+    top: 80px;
+  }
+  50% {
+    transform: rotate(20deg) scaleY(-1);
+    top: 80px;
+  }
+  60% {
+    transform: scaleY(0.5);
+    top: 80px;
+  }
+  70% {
+    transform: scaleY(0.5);
+    top: 90px;
+  }
+  80% {
+    transform: scaleY(0.5);
+    top: 100px;
+  }
+}
 
 .cup:hover #cup_squid {
   animation: comeOut 5s linear 1; }
 
-.cup:hover #hand {
+.cup:hover #cup_hand {
   animation: rub 5s linear .5s 1; }
 // cup------------------------------------------------------
 
