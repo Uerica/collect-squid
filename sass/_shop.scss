@@ -12,6 +12,14 @@
   width: 50%;
   height: 66%;
   position: relative;
+  margin-top: 12%;
+  @include rwd(tablet) {
+    margin-top: 16%;
+  }
+  @include rwd(mobile) {
+    width: 55%;
+    margin-top: 12%;
+  }
 }
 .shed{
   width: 106%;
@@ -36,6 +44,14 @@
   transform: translate(calc(-100% + -35px),50%);
   background-color: #fff;
   border-radius: 10px;
+  @include rwd(tablet) {
+  }
+  @include rwd(mobile) {
+    display: none;
+  }
+  @include rwd(mobile-xs) {
+    display: none;
+  }
 }
 .type::before{
   content: "";
@@ -81,6 +97,14 @@
   height: 33.3333%;
   border-bottom: 10px solid #d8d8d8;
   box-sizing: border-box;
+  @include rwd(tablet) {
+  }
+  @include rwd(mobile) {
+    height: 100%;
+  }
+  @include rwd(mobile-xs) {
+    height: 100%;
+  }
 }
 .chair_row{
   background-color: #92d7e7;
@@ -110,7 +134,15 @@
   padding: 2px;
   margin: auto;
   border-radius: 10px 10px 0px 0px;
-  // font-size: 80%;
+  font-size: 120%;
+  @include rwd(tablet) {
+    font-size: 115%;
+  }
+  @include rwd(mobile) {
+    font-size: 160%;
+  }
+  @include rwd(mobile-xs) {
+  }
 }
 .img_bg{
   width: 70%;
@@ -148,9 +180,13 @@
 }
 .btn_wrap{
   width: 100%;
+  height: 90%;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 .chair_row .img_bg,.chair_row .item_title h3,.chair_row .btn_bg{
   background-color: #e4f2f5;
@@ -186,6 +222,15 @@
   transform: translateY(-50%);
   background: url(../imgs/shop/arrowleft.png) no-repeat center center;
   font-size: 0px;
+  @include rwd(tablet) {
+   
+  }
+  @include rwd(mobile) {
+    left: 0;
+  }
+  @include rwd(mobile-xs) {
+    left: 0;
+  }
 }
 
 .owl-next span {
@@ -197,6 +242,15 @@
   transform: translateY(-50%);
   background: url(../imgs/shop/arrowright.png) no-repeat center center;
   font-size: 0px;
+  @include rwd(tablet) {
+   
+  }
+  @include rwd(mobile) {
+    right: 0;
+  }
+  @include rwd(mobile-xs) {
+    right: 0;
+  }
 }
 
 .price_tag{
@@ -224,10 +278,17 @@
   @include btn();
   display: block;
   cursor: pointer;
-  margin: 4%;
-  font-size: 10%;
   text-align: center;
   transform: translate(-5%);
+  @include rwd(tablet) {
+   
+  }
+  @include rwd(mobile) {
+    font-size: 100%;
+  }
+  @include rwd(mobile-xs) {
+    font-size: 100%;
+  }
 }
 .try{
   background-color: #fff;
@@ -242,7 +303,15 @@
 }
 .light{
   width: 15%;
-  margin: 100px auto;
+  margin: 15% auto;
+  @include rwd(tablet) {
+  }
+  @include rwd(mobile) {
+    width: 20%;
+    margin: 10% auto;
+  }
+  @include rwd(mobile-xs) {
+  }
 }
 .light img{
   width: 100%;
@@ -274,10 +343,20 @@
   width: 20%;
   margin: auto;
   position: absolute;
-  left: 50%;
+  bottom: 400%;
+  left: 45%;
   z-index: 1;
   transform: translate(-50%);
   // transform: rotate(55.7deg);
+  @include rwd(tablet) {
+    bottom: 500%;
+  }
+  @include rwd(mobile) {
+    bottom: 600%;
+  }
+  @include rwd(mobile-xs) {
+    
+  }
 }
 #head_box{
   position: absolute;
@@ -310,7 +389,7 @@
   justify-content: space-around;
   width: 100%;
   position: absolute;
-  top: 60%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%);
   z-index: -1;
@@ -318,61 +397,30 @@
   img{
     width: 20.3%;
   }
+  @include rwd(tablet) {
+  }
+  @include rwd(mobile) {
+    top: 70%;
+  }
+  @include rwd(mobile-xs) {
+  }
 }
 .show_item{
   width: 55%;
-  transform: translateY(15%);
+  position: absolute;
+  left: 50%;
+  bottom: 60%;
+  transform: translate(-50%);
+  transform-origin: bottom;
 }
 .stage{
   width: 80%;
 }
 .tab_title{
   display: none;
-}
-
-
-@include rwd(desktop){
-  .shop_area{
-      margin-top: 12%;
+  @include rwd(tablet) {
   }
-}
-
-
-@include rwd(mobile){
-  .shop_area{
-    width: 55%;
-    margin-top: 80px;
-  }
-  .type{
-    display: none;
-  }
-  .chair_row,.table_row,.bed_row{
-    height: 100%;
-  }
-  .chair_items,.table_items,.bed_items{
-    width: 900%;
-  }
-  .item_title h3{
-    font-size: 28px;
-  }
-  .owl-prev span{
-    left: 0;
-  }
-  .owl-next span{
-    right: 0;
-  }
-  .try,.buy{
-    margin: 15% 5%;
-    font-size: 100%;
-  }
-  .light{
-    width: 20%;
-    margin: 30px auto;
-  }
-  .squid{
-    top: 40px;
-  }
-  .tab_title{
+  @include rwd(mobile) {
     writing-mode: vertical-lr;
     display: flex;
     justify-content: space-between;

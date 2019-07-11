@@ -63,7 +63,6 @@ function bedAnimation() {
       y: 150,
       repeat: -1,
       rotation: 55.7,
-      transformOrigin: "right,bottom",
       repeat: -1,
       yoyo: true,
     },
@@ -88,7 +87,7 @@ function bedAnimation() {
       yoyo: true,
     });
 
-  TweenMax.fromTo("#squid_foot1", 1,
+  TweenMax.fromTo(["#squid_foot1", "#squid_foot2", "#squid_foot3"], 1,
     {
       y: -20,
       rotation: 20,
@@ -99,27 +98,17 @@ function bedAnimation() {
       yoyo: true,
       ease: Power4.easeOut,
     });
-  TweenMax.fromTo("#squid_foot2", 1,
-    {
-      rotation: 20,
-    },
-    {
-      y: -20,
-      rotation: -20,
-      repeat: -1,
-      yoyo: true,
-      ease: Power4.easeOut,
-    });
-  TweenMax.fromTo("#squid_foot3", 1,
-    {
-      rotation: 20,
-    },
-    {
-      y: -20,
-      rotation: -20,
-      repeat: -1,
-      yoyo: true,
-      ease: Power4.easeOut,
-    });
+
+  TweenMax.to("#bed", .7, {
+    scaleY: 1.2,
+    scaleX: .8,
+    repeat: -1,
+    yoyo: true,
+    repeatDelay: .3,
+    ease: Back.easeOut,
+  });
 }
-bedAnimation();
+
+for (var i = 0; i < document.querySelectorAll("#bed_row .try").length; i++) {
+  document.querySelectorAll("#bed_row .try")[i].addEventListener("click", bedAnimation);
+}
