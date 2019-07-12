@@ -671,16 +671,15 @@ img {
     transform: translateY(210px);
     z-index: 30;
     .swiper-wrapper{
+      
         background: transparent;
     }
 }
 
 #furnitureTab.open{
-    transform: translateY(20px);
+    transform: translateY(45px);
     transition: transform .5s cubic-bezier(.36,.57,.53,1.22);
 }
-
-
 
 @include rwd(mobile){
     #furnitureTab{
@@ -757,7 +756,7 @@ img {
 }
 
 #chairTab, #deskTab, #bedTab{ 
-    // padding: 3px; 
+    padding: 10px; 
     // height: 278px;
     background: #fab385;
     display: flex;
@@ -766,12 +765,18 @@ img {
       height: 150px;
     }
 
-    div{
+    @include rwd(tablet){
+      .toMall{
+        height: 100px;
+      }
+    }
+
+    .swiper-slide{
         background: #fff;
         // width: 10%;
         // height: 150px;
-        margin: 5px;
-        padding: 15px;
+        // margin: 5px;
+        padding: 10px;
         border-radius: 10px;
         box-sizing: border-box;
         
@@ -785,6 +790,13 @@ img {
         img{
             width: 60%;
             margin-bottom: 10px;
+        }
+    }
+
+    @include rwd(tablet){
+        .swiper-slide{
+          // width: 20%;
+          height: 100px;
         }
     }
 
@@ -811,17 +823,17 @@ img {
     }
 }
 
-@include rwd(tablet){
-    #chairTab, #deskTab, #bedTab{
-      overflow: hidden;
-      height: 150px;
+// @include rwd(tablet){
+//     #chairTab, #deskTab, #bedTab{
+//       overflow: hidden;
+//       height: 150px;
 
-      div{
-        width: 20%;
-        height: 100px;
-      }
-    }
-}
+//       .swiper-slide{
+//         width: 20%;
+//         height: 100px;
+//       }
+//     }
+// }
 
 .myRoomFurniture{
     position: relative;
