@@ -361,20 +361,20 @@
 #head_box{
   position: absolute;
   left: 51.5%;
-  transform: translate(-50%,-70%);
+  transform: translate(-50%,-72%);
   max-width: unset;
   width: 145%;
   @include rwd(tablet) {
     width: 135%;
-    transform: translate(-53%,-70%);
+    transform: translate(-53%,-72%);
   }
   @include rwd(mobile) {
     width: 135%;
-    transform: translate(-57%,-70%);
+    transform: translate(-57%,-72%);
   }
   @include rwd(mobile-xs) {
     width: 135%;
-    transform: translate(-61%,-70%);
+    transform: translate(-61%,-72%);
   }
 }
 #squid_body{

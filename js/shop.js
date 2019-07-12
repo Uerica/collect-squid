@@ -56,12 +56,26 @@ $('.owl-carousel').owlCarousel({
 
 
 // squid animation
-
+let bedRunning = false;
 function bedAnimation() {
+
+  if (bedRunning) {
+    return;
+  }
+  bedRunning = true
+
+  TweenMax.to("#bed", 1, {
+    scaleY: 1.2,
+    scaleX: .8,
+    repeat: -1,
+    yoyo: true,
+    delay: .1,
+    ease: Back.easeOut,
+  });
+
   TweenMax.fromTo("#squid", 1,
     {
       y: 150,
-      repeat: -1,
       rotation: 55.7,
       repeat: -1,
       yoyo: true,
@@ -98,17 +112,21 @@ function bedAnimation() {
       yoyo: true,
       ease: Power4.easeOut,
     });
-
-  TweenMax.to("#bed", .7, {
-    scaleY: 1.2,
-    scaleX: .8,
-    repeat: -1,
-    yoyo: true,
-    repeatDelay: .3,
-    ease: Back.easeOut,
-  });
 }
 
 for (var i = 0; i < document.querySelectorAll("#bed_row .try").length; i++) {
   document.querySelectorAll("#bed_row .try")[i].addEventListener("click", bedAnimation);
 }
+
+$("#bed_row .try").click(function () {
+  $("#bed").attr("src", $(this).parent().parent().siblings(".img_wrap").children().attr("src"))
+    ;
+});
+
+
+// function chairAnimation(){
+//   TweenMax.to("#squid",1,{
+
+//   });
+// }
+// chairAnimation();
