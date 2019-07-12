@@ -29,10 +29,6 @@ $lg: 997px;
   }
 }
 
-// * {
-//     outline: 1px solid #f00 !important;
-// }
-
 // 卷軸css
 
 ::-webkit-scrollbar-track
@@ -72,6 +68,7 @@ body {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
+    position: relative;
     // &::-webkit-scrollbar {
     //   display: none;
     // }
@@ -673,22 +670,26 @@ img {
     bottom: 0;
     transform: translateY(210px);
     z-index: 30;
+    .swiper-wrapper{
+        background: transparent;
+    }
 }
 
 #furnitureTab.open{
-    transform: translateY(0px);
+    transform: translateY(20px);
     transition: transform .5s cubic-bezier(.36,.57,.53,1.22);
 }
 
-@include rwd(tablet){
-  #furnitureTab{
-    height: 200px; 
-    // transform: translateY(-210px);
-  }
 
-  #furnitureTab.open{
-    // transform: translateY(-25px);
-  }
+
+@include rwd(mobile){
+    #furnitureTab{
+        transform: translateY(210px);
+    }
+
+    #furnitureTab.open{
+        transform: translateY(100px);
+    }
 }
 
 .tabTitle{
@@ -716,7 +717,7 @@ img {
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     padding: 5px;
-    position: relative;
+    // position: relative;
     z-index: 10;
 }
 
@@ -751,21 +752,25 @@ img {
 }
 
 #furnitureTab > .tabContent{ 
-    clear: both; 
+    // clear: both; 
     color: #000; 
 }
 
 #chairTab, #deskTab, #bedTab{ 
-    padding: 10px; 
-    height: 278px;
+    // padding: 3px; 
+    // height: 278px;
     background: #fab385;
     display: flex;
+    
+    .toMall{
+      height: 150px;
+    }
 
     div{
         background: #fff;
-        width: 12.5%;
-        height: 150px;
-        margin: 10px;
+        // width: 10%;
+        // height: 150px;
+        margin: 5px;
         padding: 15px;
         border-radius: 10px;
         box-sizing: border-box;
@@ -808,6 +813,9 @@ img {
 
 @include rwd(tablet){
     #chairTab, #deskTab, #bedTab{
+      overflow: hidden;
+      height: 150px;
+
       div{
         width: 20%;
         height: 100px;
@@ -845,11 +853,11 @@ img {
         position: absolute;
         padding-top: 28%;       
         left: 78%;
-        width: 65%;
+        // width: 65%;
         
         img{
             height: auto;
-            max-width: 30%;
+            width: 90%;
         }
     }
 
@@ -864,6 +872,8 @@ img {
             max-width: 30%;
         }
     }
+
+    
 }
 
 

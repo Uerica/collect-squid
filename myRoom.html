@@ -8,13 +8,12 @@
     
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="sass/css/reset.css">
-    <link rel="stylesheet" href="sass/css/style.css">
-    <link rel="stylesheet" href="sass/css/global.css">
-    <link rel="stylesheet" href="sass/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="sass/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/_room.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
 
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     
     <script src="https://kit.fontawesome.com/629062769a.js"></script>
     <script src="js/room.js"></script>
@@ -22,7 +21,9 @@
 </head>
 
 <body>
-    <div class="bgImage"></div>
+    <div class="bgImage">
+        
+    </div>
     <header class="common_header doNotScrollOnHover">
         <div class="menuMobile">
             <span class="menuMobile_circle"></span>
@@ -230,51 +231,59 @@
                 <li id="bedTabTitle"><a href="#bedTab">床</a></li>
                 <li><a href="#" id="openFurniture">家具更換</a></li>
             </ul>
-            <div id="chairTab" class="tabContent">
-                <div class="item">
-                    <a href="#" class="chairSmallChange">
-                        <img src="images/chair_S_01.png">
-                        <span>木頭硬硬椅</span>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="#" class="chairSmallChange">
-                        <img src="images/chair_S_02.png">
-                        <span>時尚滑溜溜椅</span>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="#" class="chairSmallChange">
-                        <img src="images/chair_S_03.png">
-                        <span>好辣木頭椅</span>
-                    </a>
-                </div>
-                <div class="toMall item">
-                    <a href="#">
-                        <img src="images/cart.png">
-                    </a>
-                </div>
-                <div class="toMall item">
-                    <a href="#">
-                        <img src="images/cart.png">
-                    </a>
-                </div>
-                <div class="toMall item">
-                    <a href="#">
-                        <img src="images/cart.png">
-                    </a>
-                </div>
-                <div class="toMall item">
-                    <a href="#">
-                        <img src="images/cart.png">
-                    </a>
-                </div>
-                <div class="toMall item">
-                    <a href="#">
-                        <img src="images/cart.png">
-                    </a>
+            <div id="chairTab" class="tabContent swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <a href="#" class="chairSmallChange">
+                            <img src="images/chair_S_01.png">
+                            <span>木頭硬硬椅</span>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="#" class="chairSmallChange">
+                            <img src="images/chair_S_02.png">
+                            <span>時尚滑溜溜椅</span>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="#" class="chairSmallChange">
+                            <img src="images/chair_S_03.png">
+                            <span>好辣木頭椅</span>
+                        </a>
+                    </div>
+                    <div class="toMall swiper-slide">
+                        <a href="#">
+                            <img src="images/cart.png">
+                        </a>
+                    </div>
+                    <div class="toMall swiper-slide">
+                        <a href="#">
+                            <img src="images/cart.png">
+                        </a>
+                    </div>
+                    <div class="toMall swiper-slide">
+                        <a href="#">
+                            <img src="images/cart.png">
+                        </a>
+                    </div>
+                    <div class="toMall swiper-slide">
+                        <a href="#">
+                            <img src="images/cart.png">
+                        </a>
+                    </div>
+                    <div class="toMall swiper-slide">
+                        <a href="#">
+                            <img src="images/cart.png">
+                        </a>
+                    </div>
+                    <div class="toMall swiper-slide">
+                        <a href="#">
+                            <img src="images/cart.png">
+                        </a>
+                    </div>
                 </div>
             </div>
+
             <div id="deskTab" class="tabContent">
                 <div>
                     <a href="#" class="deskSmallChange">
@@ -319,7 +328,13 @@
                         <img src="images/cart.png">
                     </a>
                 </div>
+                <div class="toMall">
+                    <a href="#">
+                        <img src="images/cart.png">
+                    </a>
+                </div>
             </div>
+            
             <div id="bedTab" class="tabContent">
                 <div>
                     <a href="#" class="bedSmallChange">
@@ -364,14 +379,42 @@
                         <img src="images/cart.png">
                     </a>
                 </div>
+                <div class="toMall">
+                    <a href="#">
+                        <img src="images/cart.png">
+                    </a>
+                </div>
             </div>
-        </section>
+        </section>  
 
-
-        
     </content>
 
-    <!-- <script src="js/owl.carousel.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
+
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+          slidesPerView: 9,
+          spaceBetween: 0,
+          slidesPerGroup: 9,
+          loop: false,
+          loopFillGroupWithBlank: false,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+
+          breakpoints: {
+            768: {
+              slidesPerView: 5,
+              spaceBetween: 0,
+            }
+          }
+        });
+    </script>
     
 </body>
 

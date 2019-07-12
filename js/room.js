@@ -10,10 +10,10 @@ function menuMobileTransform() {
 
 // 家具tab切換
 $(function(){
-    var $li = $('ul.tabTitle li');
-    $($li.eq(0).addClass('active').find('a').attr('href')).siblings('.tabContent').hide();
+    var $li = $('.tabTitle li');
+    $($('.tabTitle li').eq(0).addClass('active').find('a').attr('href')).siblings('.tabContent').hide();
     
-    $li.click(function(){
+    $('.tabTitle li').click(function(){
         $($(this).find('a').attr('href')).show().siblings('.tabContent').hide();
         $(this).addClass('active').siblings('.active').removeClass('active');
         
@@ -62,23 +62,11 @@ $(document).ready(function() {
         });
     });
 
- //    $('.owl-carousel').owlCarousel({
-	//     loop:true,
-	//     margin:10,
-	//     nav:true,
-	//     responsive:{
-	        
-	//         1000:{
-	//             items:8
-	//         }
-	//     }
-	// })
+  //owl
+    
 
 
 });
-
-
-
 
 
 window.addEventListener('load', function() {
