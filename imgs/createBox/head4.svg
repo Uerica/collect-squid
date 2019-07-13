@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="208" height="178.031" viewBox="0 0 208 178.031">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #ff8282;
+        fill-rule: evenodd;
+      }
+    </style>
+    <clipPath id="clip-path">
+      <rect x="-0.016" y="0.016" width="208" height="178"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#clip-path)">
+    <g id="head4">
+      <path id="多邊形_1_拷貝_27" data-name="多邊形 1 拷貝 27" class="cls-1" d="M150.651,77.567c8.695,16.1,15.5,6,33.833,27.624,32.4,38.2-14.436,72.806-80.651,72.806-66.11,0-112.168-33.832-80.71-72.574,18.323-22.567,25.15-11.663,33.9-27.856,2.376-4.4-8.765-7.32-8.765-28.086,0-70.377,109.851-60.781,109.851-2.112C158.107,52.677,147.84,72.364,150.651,77.567Z" transform="translate(-0.016 0.016)"/>
+    </g>
+  </g>
+</svg>

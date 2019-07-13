@@ -249,27 +249,40 @@
                 </div>
                 <div class="myItem">
                   <a class="changeHat" href="javascript:;"
-                    ><img src="imgs/dressingRoom/furHat.png" alt="Fur Hat"
+                    ><img src="imgs/dressingRoom/nobleCoolHat.png" alt="Fur Hat"
                   /></a>
                 </div>
                 <div class="myItem">
                   <a class="changeHat" href="javascript:;"
-                    ><img src="imgs/dressingRoom/bearHat.png" alt="Bear Hat"
+                    ><img src="imgs/dressingRoom/nobleCrisHat.png" alt="Fur Hat"
                   /></a>
                 </div>
                 <div class="myItem">
                   <a class="changeHat" href="javascript:;"
-                    ><img src="imgs/dressingRoom/winterHat.png" alt="Winter Hat"
+                    ><img
+                      src="imgs/dressingRoom/nobleCowboyHat.png"
+                      alt="Bear Hat"
                   /></a>
                 </div>
                 <div class="myItem">
                   <a class="changeHat" href="javascript:;"
-                    ><img src="imgs/dressingRoom/furHat.png" alt="Fur Hat"
+                    ><img
+                      src="imgs/dressingRoom/royalRobinHat.png"
+                      alt="Winter Hat"
                   /></a>
                 </div>
                 <div class="myItem">
                   <a class="changeHat" href="javascript:;"
-                    ><img src="imgs/dressingRoom/bearHat.png" alt="Bear Hat"
+                    ><img
+                      src="imgs/dressingRoom/royalScholorHat.png"
+                      alt="Fur Hat"
+                  /></a>
+                </div>
+                <div class="myItem">
+                  <a class="changeHat" href="javascript:;"
+                    ><img
+                      src="imgs/dressingRoom/royalPoliceHat.png"
+                      alt="Bear Hat"
                   /></a>
                 </div>
               </div>
@@ -306,7 +319,7 @@
                 <div class="myItem">
                   <a class="changeClo" href="javascript:;">
                     <img
-                      src="imgs/dressingRoom/shirtClo.png"
+                      src="imgs/dressingRoom/nobleCloBrown.png"
                       alt="Shirt clothes"
                     />
                   </a>
@@ -314,7 +327,7 @@
                 <div class="myItem">
                   <a class="changeClo" href="javascript:;">
                     <img
-                      src="imgs/dressingRoom/plaidClo.png"
+                      src="imgs/dressingRoom/nobleCloCyan.png"
                       alt="Plaid clothes"
                     />
                   </a>
@@ -322,7 +335,7 @@
                 <div class="myItem">
                   <a class="changeClo" href="javascript:;">
                     <img
-                      src="imgs/dressingRoom/cowboyClo.png"
+                      src="imgs/dressingRoom/nobleCloGreen.png"
                       alt="Cowboy clothes"
                     />
                   </a>
@@ -361,7 +374,7 @@
                 <div class="myItem">
                   <a class="changeShoes" href="javascript:;">
                     <img
-                      src="imgs/dressingRoom/whiteShoes.png"
+                      src="imgs/dressingRoom/nobleShoesBlue.png"
                       alt="White Shoes"
                     />
                   </a>
@@ -369,7 +382,7 @@
                 <div class="myItem">
                   <a class="changeShoes" href="javascript:;">
                     <img
-                      src="imgs/dressingRoom/yellowShoes.png"
+                      src="imgs/dressingRoom/nobleShoesGreen.png"
                       alt="Yellow Shoes"
                     />
                   </a>
@@ -377,7 +390,31 @@
                 <div class="myItem">
                   <a class="changeShoes" href="javascript:;">
                     <img
-                      src="imgs/dressingRoom/brownShoes.png"
+                      src="imgs/dressingRoom/nobleShoesYellow.png"
+                      alt="Brown Shoes"
+                    />
+                  </a>
+                </div>
+                <div class="myItem">
+                  <a class="changeShoes" href="javascript:;">
+                    <img
+                      src="imgs/dressingRoom/royalShoesRed.png"
+                      alt="Brown Shoes"
+                    />
+                  </a>
+                </div>
+                <div class="myItem">
+                  <a class="changeShoes" href="javascript:;">
+                    <img
+                      src="imgs/dressingRoom/royalShoesWhite.png"
+                      alt="Brown Shoes"
+                    />
+                  </a>
+                </div>
+                <div class="myItem">
+                  <a class="changeShoes" href="javascript:;">
+                    <img
+                      src="imgs/dressingRoom/royalShoesPurple.png"
                       alt="Brown Shoes"
                     />
                   </a>
@@ -402,25 +439,33 @@
                   <span class="subTitle">大小</span>
                   <!-- 筆畫大小 -->
                   <ul>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
+                    <li id="2w"></li>
+                    <li id="5w"></li>
+                    <li id="8w"></li>
+                    <li id="12w"></li>
+                    <li id="20w"></li>
                   </ul>
                 </li>
                 <li class="colorBar">
                   <span class="subTitle">顏色</span>
-                  <div id="colorPicker"></div>
+                  <input
+                    type="range"
+                    class="colorPicker"
+                    step="1"
+                    min="0"
+                    max="360"
+                    value="0"
+                  />
                 </li>
+                <li id="clearAll">我要重畫</li>
               </ul>
             </div>
             <!-- 繪製衣服區 -->
             <div class="drawingArea">
               <span>2. 繪製你的衣服</span>
-              <div class="drawingPart">
-                <img src="imgs/dressingRoom/whiteShirt.png" alt="White Shirt" />
-              </div>
+              <canvas class="drawingFrame">
+                <!-- <img src="imgs/dressingRoom/whiteShirt.png" alt="White Shirt" /> -->
+              </canvas>
             </div>
           </div>
           <a id="confirmBtn" href="javascript:;">確認保存</a>

@@ -1064,13 +1064,21 @@ img {
   }
   .createContent {
     display: flex;
-    flex-flow: column nowrap;
-    justify-content: space-between;
-    width: 37%;
-    padding: 2%;
-    border: 3px solid #f6f6f6;
-    border-radius: 10px;
-    background-color: #f8b853;
+    justify-content: center;
+    align-items: center;
+    .createFrame {
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: space-between;
+      width: 50%;
+      padding: 2%;
+      border: 3px solid #f6f6f6;
+      border-radius: 10px;
+      background-color: #f8b853;
+    }
+    .mobile_btns {
+      display: none;
+    }
     form {
       display: flex;
       flex-flow: row wrap;
@@ -1152,6 +1160,11 @@ img {
               position: relative;
               img {
                 width: 40%;
+                cursor: pointer;
+              }
+              svg {
+                width: 40%;
+                height: 30%;
                 cursor: pointer;
               }
               &::after {
@@ -1247,17 +1260,33 @@ img {
       .appearance {
         display: flex;
         justify-content: center;
-        align-items: center;
+        align-items: flex-end;
         width: 48%;
+        padding-bottom: 4%;
         border: 2px solid #f8b853;
         border-radius: 10px;
         background-color: #ffedd6;
         .squidBorn {
-          width: 50%;
+          width: 65%;
           position: relative;
+          top: 10%;
           text-align: center;
           svg {
+            width: 65%;
+          }
+          .head {
+            position: absolute;
+            top: -25%;
+            left: 0;
+            right: 0;
+            margin: auto;
             width: 100%;
+          }
+          #head3 {
+            top: -18%;
+          }
+          #head4 {
+            top: -25%;
           }
           .headFeature {
             position: absolute;
@@ -1272,7 +1301,7 @@ img {
             left: 0;
             right: 0;
             margin: auto;
-            top: 40%;
+            top: 26%;
             z-index: 100;
           }
         }
@@ -1300,7 +1329,7 @@ img {
           box-shadow: 0 0 transparent;
         }
       }
-      #backToLoginBtn {
+      .backToLoginBtn {
         background-color: #fff;
         color: #fa7979;
       }
@@ -1308,10 +1337,117 @@ img {
   }
 }
 
-@media screen and (min-width: 1500px) {
+// @media screen and (min-width: 1500px) {
+//   .createBox {
+//     .createContent {
+//       .createFrame {
+//         width: 60%;
+//       }
+//     }
+//   }
+// }
+
+@media screen and (max-width: 737px) {
+  .loginBox {
+    .loginContent {
+      width: 80%;
+    }
+  }
   .createBox {
     .createContent {
-      width: 35%;
+      flex-flow: column nowrap;
+      width: 90%;
+      padding: 2% 2% 1%;
+      border: 2px solid #fff;
+      background-color: #f8b853;
+      border-radius: 10px;
+      .createFrame {
+        flex-flow: row nowrap;
+        width: 100%;
+        padding: 0;
+        border: none;
+        background-color: transparent;
+        border-radius: 0;
+        form {
+          width: 38%;
+          padding: 2%;
+          box-sizing: border-box;
+          .inputField {
+            width: 100%;
+          }
+        }
+        .styling {
+          width: 60%;
+          padding: 2%;
+          box-sizing: border-box;
+          margin-top: 0;
+          .shapes {
+            width: 50%;
+            .changeStyle {
+              .heads {
+                li {
+                  svg {
+                    width: 45%;
+                    height: 100%;
+                  }
+                }
+              }
+            }
+          }
+          .appearance {
+            width: 47%;
+            .squidBorn {
+              height: 87%;
+              .faceFeature {
+                top: 37%;
+              }
+              .head {
+                top: -17%;
+              }
+              #head3 {
+                top: -8%;
+              }
+              #head4 {
+                top: -25%;
+              }
+            }
+          }
+        }
+        .btns {
+          display: none;
+        }
+      }
+      .mobile_btns {
+        display: flex;
+        width: 40%;
+        justify-content: space-between;
+        padding: 2% 0 0;
+        text-align: center;
+        a {
+          display: inline-block;
+          padding: 1% 2%;
+          margin: 0 4%;
+          width: 45%;
+          border: 3px solid #f1f1f1;
+          border-radius: 20px;
+          color: #fff;
+          background-color: #fa7979;
+          position: relative;
+          top: -3px;
+          left: -3px;
+          box-shadow: 3px 3px #e7867e;
+          transition: 0.3s;
+          &:hover {
+            top: 0;
+            left: 0;
+            box-shadow: 0 0 transparent;
+          }
+        }
+        .backToLoginBtn {
+          background-color: #fff;
+          color: #fa7979;
+        }
+      }
     }
   }
 }

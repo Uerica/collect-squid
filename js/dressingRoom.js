@@ -9,7 +9,7 @@ function init() {
   $("#cancelBtn").click(cancel);
   $("#confirmBtn").click(confirm);
   activeOwl();
-  displayBar();
+  // displayBar();
   targetCaro();
   menuMobileTransform();
 
@@ -28,6 +28,97 @@ function init() {
   $(".changeShoes img").click(function() {
     let shoesSrc = $(this).attr("src");
     $(".changedShoes").attr("src", shoesSrc);
+  });
+
+  let strokeColor;
+  $(".colorPicker").change(() => {
+    strokeColor = setColor();
+    console.log(strokeColor);
+  });
+
+  let strokeWidth;
+  $("#2w").click(() => {
+    strokeWidth = 2;
+    console.log(2);
+  });
+  $("#5w").click(() => {
+    strokeWidth = 5;
+    console.log(5);
+  });
+  $("#8w").click(() => {
+    strokeWidth = 8;
+    console.log(8);
+  });
+  $("#12w").click(() => {
+    strokeWidth = 12;
+    console.log(12);
+  });
+  $("#20w").click(() => {
+    strokeWidth = 20;
+    console.log(20);
+  });
+
+  const canvas = document.querySelector(".drawingFrame");
+  canvas.width = 420;
+  canvas.height = 250;
+
+  const context = canvas.getContext("2d");
+
+  let whiteShirt = new Image();
+  whiteShirt.src = "../imgs/dressingRoom/whiteShirt.png";
+  whiteShirt.addEventListener("load", function() {
+    context.drawImage(
+      whiteShirt,
+      25,
+      25,
+      canvas.width - 50,
+      canvas.height - 50
+    );
+  });
+
+  let painting = false;
+
+  function startPosition(e) {
+    painting = true;
+    draw(e);
+  }
+
+  function finishedPosition() {
+    painting = false;
+    context.beginPath();
+  }
+
+  function draw(e) {
+    if (!painting) return;
+    context.lineWidth = strokeWidth;
+    context.lineCap = "round";
+    context.strokeStyle = `${strokeColor}`;
+
+    const canLeft = $(".drawingFrame").offset().left + 10;
+    const canTop = $(".drawingFrame").offset().top;
+    context.lineTo(e.clientX - canLeft, e.clientY - canTop);
+    context.stroke();
+    context.beginPath();
+    context.moveTo(e.clientX - canLeft, e.clientY - canTop);
+  }
+
+  canvas.addEventListener("mousedown", startPosition);
+  canvas.addEventListener("mouseup", finishedPosition);
+  canvas.addEventListener("mousemove", draw);
+
+  document.getElementById("clearAll").addEventListener("click", () => {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    let whiteShirt = new Image();
+    whiteShirt.src = "../imgs/dressingRoom/whiteShirt.png";
+    whiteShirt.addEventListener("load", function() {
+      context.drawImage(
+        whiteShirt,
+        25,
+        25,
+        canvas.width - 50,
+        canvas.height - 50
+      );
+    });
   });
 }
 
@@ -91,45 +182,6 @@ function caroAnima(className, skewX) {
   }
 }
 
-// 顏色選擇器
-function displayBar() {
-  let r = 255;
-  let g = 0;
-  let b = 0;
-
-  while (b < 255) {
-    b++;
-    addColor(r, g, b);
-  }
-  while (r > 0) {
-    r--;
-    addColor(r, g, b);
-  }
-  while (g < 255) {
-    g++;
-    addColor(r, g, b);
-  }
-  while (b > 0) {
-    b--;
-    addColor(r, g, b);
-  }
-  while (r < 255) {
-    r++;
-    addColor(r, g, b);
-  }
-  while (g > 0) {
-    g--;
-    addColor(r, g, b);
-  }
-}
-
-function addColor(r, g, b) {
-  const hex = dechex(r) + dechex(g) + dechex(b);
-  $("#colorPicker").append(
-    `<span id="${hex}" style="background-color:#${hex}"</span>`
-  );
-}
-
 // 換服裝
 function changeSuit(suitSrc) {
   let src = $(this).attr("src");
@@ -162,6 +214,11 @@ function menuMobileTransform() {
     $(".menuMobile_overlay").toggleClass("open");
     $(".menuMobile").toggleClass("open");
   });
+}
+
+function setColor() {
+  var hue = document.querySelector(".colorPicker").value;
+  return `hsl(${hue}, 100%, 50%)`;
 }
 
 window.onload = init;
