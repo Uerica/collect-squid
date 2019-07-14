@@ -1,3 +1,5 @@
+import { TimelineMax } from "gsap";
+
 // 手機選單動畫
 function menuMobileTransform() {
   $(".menuMobile_link").click(function (e) {
@@ -165,6 +167,7 @@ $("#bed_row .try").click(function () {
 let chairRunning = false;
 function chairAnimation() {
 
+<<<<<<< HEAD
 
 
   if (chairRunning) {
@@ -198,3 +201,12 @@ $("#chair_row .try").click(function () {
 });
 // chairAnimation();
 // chairAnimation----------------------------------------
+=======
+// function chairAnimation(){
+//   var tl = new TimelineMax({
+
+//   });
+
+// }
+// chairAnimation();
+>>>>>>> 8c7bbab7fec8e546e192b7b62b09ad05dd17fbb1
