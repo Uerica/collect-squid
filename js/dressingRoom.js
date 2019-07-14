@@ -7,11 +7,12 @@ function init() {
   $("#startBtn").click(startDraw);
   $(".whiteShirt").click(startDraw);
   $("#cancelBtn").click(cancel);
-  $("#confirmBtn").click(confirm);
+  $("#confirmBtn").click(saveImg);
   activeOwl();
   // displayBar();
   targetCaro();
   menuMobileTransform();
+  drawingClothes();
 
   // 換服裝
   // 帽子
@@ -28,97 +29,6 @@ function init() {
   $(".changeShoes img").click(function() {
     let shoesSrc = $(this).attr("src");
     $(".changedShoes").attr("src", shoesSrc);
-  });
-
-  let strokeColor;
-  $(".colorPicker").change(() => {
-    strokeColor = setColor();
-    console.log(strokeColor);
-  });
-
-  let strokeWidth;
-  $("#2w").click(() => {
-    strokeWidth = 2;
-    console.log(2);
-  });
-  $("#5w").click(() => {
-    strokeWidth = 5;
-    console.log(5);
-  });
-  $("#8w").click(() => {
-    strokeWidth = 8;
-    console.log(8);
-  });
-  $("#12w").click(() => {
-    strokeWidth = 12;
-    console.log(12);
-  });
-  $("#20w").click(() => {
-    strokeWidth = 20;
-    console.log(20);
-  });
-
-  const canvas = document.querySelector(".drawingFrame");
-  canvas.width = 420;
-  canvas.height = 250;
-
-  const context = canvas.getContext("2d");
-
-  let whiteShirt = new Image();
-  whiteShirt.src = "../imgs/dressingRoom/whiteShirt.png";
-  whiteShirt.addEventListener("load", function() {
-    context.drawImage(
-      whiteShirt,
-      25,
-      25,
-      canvas.width - 50,
-      canvas.height - 50
-    );
-  });
-
-  let painting = false;
-
-  function startPosition(e) {
-    painting = true;
-    draw(e);
-  }
-
-  function finishedPosition() {
-    painting = false;
-    context.beginPath();
-  }
-
-  function draw(e) {
-    if (!painting) return;
-    context.lineWidth = strokeWidth;
-    context.lineCap = "round";
-    context.strokeStyle = `${strokeColor}`;
-
-    const canLeft = $(".drawingFrame").offset().left + 10;
-    const canTop = $(".drawingFrame").offset().top;
-    context.lineTo(e.clientX - canLeft, e.clientY - canTop);
-    context.stroke();
-    context.beginPath();
-    context.moveTo(e.clientX - canLeft, e.clientY - canTop);
-  }
-
-  canvas.addEventListener("mousedown", startPosition);
-  canvas.addEventListener("mouseup", finishedPosition);
-  canvas.addEventListener("mousemove", draw);
-
-  document.getElementById("clearAll").addEventListener("click", () => {
-    context.clearRect(0, 0, canvas.width, canvas.height);
-    let whiteShirt = new Image();
-    whiteShirt.src = "../imgs/dressingRoom/whiteShirt.png";
-    whiteShirt.addEventListener("load", function() {
-      context.drawImage(
-        whiteShirt,
-        25,
-        25,
-        canvas.width - 50,
-        canvas.height - 50
-      );
-    });
   });
 }
 
@@ -196,9 +106,9 @@ function cancel() {
   $(".lightBox").css({ display: "none" });
 }
 
-function confirm() {
-  $(".lightBox").css({ display: "none" });
-}
+// function confirm() {
+//   $(".lightBox").css({ display: "none" });
+// }
 
 function dechex(dec) {
   var hex = dec.toString(16);
@@ -219,6 +129,105 @@ function menuMobileTransform() {
 function setColor() {
   var hue = document.querySelector(".colorPicker").value;
   return `hsl(${hue}, 100%, 50%)`;
+}
+
+function drawingClothes() {
+  let strokeColor;
+  $(".colorPicker").change(() => (strokeColor = setColor()));
+
+  let strokeWidth;
+  $("#2w").click(() => (strokeWidth = 2));
+  $("#5w").click(() => (strokeWidth = 5));
+  $("#8w").click(() => (strokeWidth = 8));
+  $("#12w").click(() => (strokeWidth = 12));
+  $("#20w").click(() => (strokeWidth = 20));
+
+  const canvas = document.querySelector(".drawingFrame");
+  canvas.width = 420;
+  canvas.height = 250;
+
+  const context = canvas.getContext("2d");
+
+  let whiteShirt = new Image();
+  whiteShirt.src = "imgs/dressingRoom/whiteShirt.png";
+  whiteShirt.addEventListener("load", function() {
+    context.drawImage(
+      whiteShirt,
+      25,
+      25,
+      canvas.width - 50,
+      canvas.height - 50
+    );
+  });
+
+  let painting = false;
+
+  function startPosition(e) {
+    painting = true;
+    draw(e);
+  }
+
+  function finishedPosition() {
+    painting = false;
+    context.beginPath();
+  }
+
+  function draw(e) {
+    if (!painting) return;
+    context.lineWidth = strokeWidth;
+    context.lineCap = "round";
+    context.strokeStyle = `${strokeColor}`;
+
+    const canLeft = $(".drawingFrame").offset().left + 10;
+    const canTop = $(".drawingFrame").offset().top;
+    context.lineTo(e.clientX - canLeft, e.clientY - canTop);
+    context.stroke();
+    context.beginPath();
+    context.moveTo(e.clientX - canLeft, e.clientY - canTop);
+  }
+
+  canvas.addEventListener("mousedown", startPosition);
+  canvas.addEventListener("mouseup", finishedPosition);
+  canvas.addEventListener("mousemove", draw);
+
+  document.getElementById("clearAll").addEventListener("click", () => {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    let whiteShirt = new Image();
+    whiteShirt.src = "imgs/dressingRoom/whiteShirt.png";
+    whiteShirt.addEventListener("load", function() {
+      context.drawImage(
+        whiteShirt,
+        25,
+        25,
+        canvas.width - 50,
+        canvas.height - 50
+      );
+    });
+  });
+}
+
+function saveImg() {
+  const canvas = document.querySelector(".drawingFrame");
+  const dataURL = canvas.toDataURL("image/png");
+  document.querySelector("#drawnImage").value = dataURL;
+  const formData = new FormData(document.getElementById("drawingForm"));
+
+  const xhr = new XMLHttpRequest();
+
+  xhr.onload = () => {
+    if (xhr.status == 200) {
+      if (xhr.responseText == "error") {
+        alert("Error");
+      } else {
+        alert("Successfully uploaded");
+      }
+    } else {
+      alert(xhr.status);
+    }
+  };
+
+  xhr.open("POST", "drawingFinished.php", true);
+  xhr.send(formData);
 }
 
 window.onload = init;
