@@ -8,28 +8,38 @@ function init() {
   $(".whiteShirt").click(startDraw);
   $("#cancelBtn").click(cancel);
   $("#confirmBtn").click(saveImg);
+  $("#confirmDressing").click(saveDressing);
   activeOwl();
   // displayBar();
   targetCaro();
   menuMobileTransform();
   drawingClothes();
 
+  let hatSrc = "imgs/dressingRoom/furHat.png";
+  let clothSrc = "imgs/dressingRoom/cowBoyClo.png";
+  let shoesSrc = "imgs/dressingRoom/whiteShoes.png";
+
   // 換服裝
   // 帽子
   $(".changeHat img").click(function() {
-    let hatSrc = $(this).attr("src");
+    hatSrc = $(this).attr("src");
     $(".changedHat").attr("src", hatSrc);
+    dressingCanvas(shoesSrc, clothSrc, hatSrc);
   });
   // 衣服
   $(".changeClo img").click(function() {
-    let clothSrc = $(this).attr("src");
+    clothSrc = $(this).attr("src");
     $(".changedClo").attr("src", clothSrc);
+    dressingCanvas(shoesSrc, clothSrc, hatSrc);
   });
   // 鞋子
   $(".changeShoes img").click(function() {
-    let shoesSrc = $(this).attr("src");
+    shoesSrc = $(this).attr("src");
     $(".changedShoes").attr("src", shoesSrc);
+    dressingCanvas(shoesSrc, clothSrc, hatSrc);
   });
+
+  // dressingCanvas();
 }
 
 // 一屏畫面 RWD
@@ -106,6 +116,37 @@ function cancel() {
   $(".lightBox").css({ display: "none" });
 }
 
+function dressingCanvas(inShoes, inClo, inHat) {
+  const dressingZone = document.querySelector("#dressingCanvas");
+  dressingZone.width = 286;
+  dressingZone.height = 613;
+  const dW = dressingZone.width;
+  const dH = dressingZone.height;
+  const dressingCtx = dressingZone.getContext("2d");
+  // dressingCtx.globalCompositeOperation = "destination-over";
+  let shoes = new Image();
+  // shoes.src = "imgs/dressingRoom/whiteShoes.png";
+  shoes.src = inShoes;
+  shoes.addEventListener("load", function() {
+    dressingCtx.drawImage(shoes, 0, dH * 0.928, dW, dH * 0.0685);
+  });
+  let squid = new Image();
+  squid.src = "imgs/dressingRoom/squid_center.png";
+  squid.addEventListener("load", function() {
+    dressingCtx.drawImage(squid, 0, dH * 0.17, dW, dH * 0.795);
+  });
+  let clo = new Image();
+  clo.src = inClo;
+  clo.addEventListener("load", function() {
+    dressingCtx.drawImage(clo, dW * 0.158, dH * 0.672, dW * 0.685, dH * 0.185);
+  });
+  let hat = new Image();
+  hat.src = inHat;
+  hat.addEventListener("load", function() {
+    dressingCtx.drawImage(hat, dW * 0.077, 0, dW * 0.846, dH * 0.303);
+  });
+}
+
 // function confirm() {
 //   $(".lightBox").css({ display: "none" });
 // }
@@ -142,21 +183,21 @@ function drawingClothes() {
   $("#12w").click(() => (strokeWidth = 12));
   $("#20w").click(() => (strokeWidth = 20));
 
-  const canvas = document.querySelector(".drawingFrame");
-  canvas.width = 420;
-  canvas.height = 250;
+  const drawingCanvas = document.querySelector(".drawingFrame");
+  drawingCanvas.width = 420;
+  drawingCanvas.height = 250;
 
-  const context = canvas.getContext("2d");
+  const drawingCtx = drawingCanvas.getContext("2d");
 
   let whiteShirt = new Image();
   whiteShirt.src = "imgs/dressingRoom/whiteShirt.png";
   whiteShirt.addEventListener("load", function() {
-    context.drawImage(
+    drawingCtx.drawImage(
       whiteShirt,
       25,
       25,
-      canvas.width - 50,
-      canvas.height - 50
+      drawingCanvas.width - 50,
+      drawingCanvas.height - 50
     );
   });
 
@@ -169,29 +210,29 @@ function drawingClothes() {
 
   function finishedPosition() {
     painting = false;
-    context.beginPath();
+    drawingCtx.beginPath();
   }
 
   function draw(e) {
     if (!painting) return;
-    context.lineWidth = strokeWidth;
-    context.lineCap = "round";
-    context.strokeStyle = `${strokeColor}`;
+    drawingCtx.lineWidth = strokeWidth;
+    drawingCtx.lineCap = "round";
+    drawingCtx.strokeStyle = `${strokeColor}`;
 
     const canLeft = $(".drawingFrame").offset().left + 10;
     const canTop = $(".drawingFrame").offset().top;
-    context.lineTo(e.clientX - canLeft, e.clientY - canTop);
-    context.stroke();
-    context.beginPath();
-    context.moveTo(e.clientX - canLeft, e.clientY - canTop);
+    drawingCtx.lineTo(e.clientX - canLeft, e.clientY - canTop);
+    drawingCtx.stroke();
+    drawingCtx.beginPath();
+    drawingCtx.moveTo(e.clientX - canLeft, e.clientY - canTop);
   }
 
-  canvas.addEventListener("mousedown", startPosition);
-  canvas.addEventListener("mouseup", finishedPosition);
-  canvas.addEventListener("mousemove", draw);
+  drawingCanvas.addEventListener("mousedown", startPosition);
+  drawingCanvas.addEventListener("mouseup", finishedPosition);
+  drawingCanvas.addEventListener("mousemove", draw);
 
   document.getElementById("clearAll").addEventListener("click", () => {
-    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.clearRect(0, 0, drawingCanvas.width, drawingCanvas.height);
     let whiteShirt = new Image();
     whiteShirt.src = "imgs/dressingRoom/whiteShirt.png";
     whiteShirt.addEventListener("load", function() {
@@ -199,16 +240,16 @@ function drawingClothes() {
         whiteShirt,
         25,
         25,
-        canvas.width - 50,
-        canvas.height - 50
+        drawingCanvas.width - 50,
+        drawingCanvas.height - 50
       );
     });
   });
 }
 
 function saveImg() {
-  const canvas = document.querySelector(".drawingFrame");
-  const dataURL = canvas.toDataURL("image/png");
+  const drawingCanvas = document.querySelector(".drawingFrame");
+  const dataURL = drawingCanvas.toDataURL("image/png");
   document.querySelector("#drawnImage").value = dataURL;
   const formData = new FormData(document.getElementById("drawingForm"));
 
@@ -227,6 +268,30 @@ function saveImg() {
   };
 
   xhr.open("POST", "drawingFinished.php", true);
+  xhr.send(formData);
+}
+
+function saveDressing() {
+  const drawingCanvas = document.querySelector("#dressingCanvas");
+  const dataURL = drawingCanvas.toDataURL("image/png");
+  document.querySelector("#dressedSquid").value = dataURL;
+  const formData = new FormData(document.getElementById("dressedForm"));
+
+  const xhr = new XMLHttpRequest();
+
+  xhr.onload = () => {
+    if (xhr.status == 200) {
+      if (xhr.responseText == "error") {
+        alert("Error");
+      } else {
+        alert("Successfully uploaded");
+      }
+    } else {
+      alert(xhr.status);
+    }
+  };
+
+  xhr.open("POST", "dressedSquid.php", true);
   xhr.send(formData);
 }
 

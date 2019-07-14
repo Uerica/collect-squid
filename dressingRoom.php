@@ -240,28 +240,29 @@
       <!-- 阿魷換新衣區塊 -->
       <div class="squidArea">
         <div class="dressingZone">
-          <!-- 光溜溜的阿魷 -->
-          <img src="imgs/dressingRoom/squid_center.png" alt="Squid" />
-          <!-- 帽子 -->
-          <img
-            class="changedHat"
-            src="imgs/dressingRoom/furHat.png"
-            alt="Changed Hat"
-          />
-          <!-- 衣服 -->
-          <img
-            class="changedClo"
-            src="imgs/dressingRoom/cowboyClo.png"
-            alt="Changed Clothes"
-          />
-          <!-- 鞋子 -->
-          <img
-            class="changedShoes"
-            src="imgs/dressingRoom/whiteShoes.png"
-            alt="Changed Shoes"
-          />
-        </div>
+            <img src="imgs/dressingRoom/squid_center.png" alt="Squid" />
+            <img
+              class="changedHat"
+              src="imgs/dressingRoom/furHat.png"
+              alt="Changed Hat"
+            />
+            <img
+              class="changedClo"
+              src="imgs/dressingRoom/cowboyClo.png"
+              alt="Changed Clothes"
+            />
+            <img
+              class="changedShoes"
+              src="imgs/dressingRoom/whiteShoes.png"
+              alt="Changed Shoes"
+            />
+          </div>
+        <form action="post" accept-charset="utf-8" id="dressedForm">
+          <input type="hidden" id="dressedSquid" name="dressedSquid">
+          <canvas id="dressingCanvas"></canvas>
+        </form>
       </div>
+      <button id="confirmDressing">完成穿著</button>
       <!-- 衣櫃區塊 -->
       <div class="clothesArea">
         <div class="wardrobe">

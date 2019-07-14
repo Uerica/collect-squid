@@ -88,6 +88,13 @@ input {
     width: 25%;
     padding: 19% 5% 0 5%;
     box-sizing: border-box;
+    position: relative;
+    canvas {
+      position: absolute;
+      top: 200px;
+      left: -400px;
+      display: none;
+    }
     .dressingZone {
       position: relative;
       img {
