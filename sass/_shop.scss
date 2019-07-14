@@ -131,15 +131,15 @@
 }
 .item_title h3{
   width: 60%;
-  padding: 2px;
+  padding: 2% 5%;
   margin: auto;
   border-radius: 10px 10px 0px 0px;
-  font-size: 120%;
+  // font-size: 120%;
   @include rwd(tablet) {
-    font-size: 115%;
+    font-size: 60%;
   }
   @include rwd(mobile) {
-    font-size: 160%;
+    font-size: 110%;
   }
   @include rwd(mobile-xs) {
   }
@@ -339,7 +339,7 @@
   bottom: 16%;
   transform: translate(-50%);
 }
-#squid{
+.squid{
   width: 20%;
   margin: auto;
   position: absolute;
@@ -348,6 +348,11 @@
   z-index: 1;
   transform: translate(-50%);
   // transform: rotate(55.7deg);
+}
+#chair_squid{}
+#table_squid{}
+#bed_squid{
+  display: none;
 }
 #head_box{
   position: absolute;

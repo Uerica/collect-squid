@@ -183,25 +183,54 @@ $("#bed_row .try").click(function () {
 let chairRunning = false;
 function chairAnimation() {
 
+  if (jQuery(window).width() < 768) {
+    $("#squid").css({
+      left: "45%",
+      bottom: "600%",
+    });
+    $("#head_box").css({
+      width: "135%",
+      transform: "translate(-57%,-72%)",
+    });
+    $(".foots").css({
+      bottom: "-120%",
+    });
+  } else if (jQuery(window).width() < 1025) {
+    $("#squid").css({
+      left: "45%",
+      bottom: "500%",
+    });
+    $("#head_box").css({
+      width: "140%",
+      transform: "translate(-53%,-72%)",
+    });
+    $(".foots").css({
+      bottom: "-100%",
+    });
+  }
+  else {
+    $("#squid_head").css({
 
+    });
+  }
 
   if (chairRunning) {
     return;
   }
   chairRunning = true;
 
-  tl = new TimelineMax({
-    repeat: -1,
-    yoyo: true,
-  });
-  tl.to("#squid_foot1", 1, {
-    scaleY: 1.8,
-    repeatDelay: 1,
-  }),
-    tl.to("#squid_foot1", 1, {
-      scaleY: .6,
-      repeatDelay: 1,
-    })
+  // tl = new TimelineMax({
+  //   repeat: -1,
+  //   yoyo: true,
+  // });
+  // tl.to("#squid_foot1", 1, {
+  //   scaleY: 1.8,
+  //   repeatDelay: 1,
+  // }),
+  //   tl.to("#squid_foot1", 1, {
+  //     scaleY: .6,
+  //     repeatDelay: 1,
+  //   })
 }
 
 $("#chair_row .try").click(function () {
@@ -209,6 +238,7 @@ $("#chair_row .try").click(function () {
   $("#table").css("display", "none");
   $("#chair").css("display", "block");
   $("#chair").attr("src", $(this).parent().parent().siblings(".img_wrap").children().attr("src"));
+  chairAnimation();
 });
 
 // chairAnimation();
