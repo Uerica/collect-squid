@@ -1,4 +1,3 @@
-import { TimelineMax } from "gsap";
 
 // 手機選單動畫
 function menuMobileTransform() {
@@ -100,7 +99,7 @@ function bedAnimation() {
   }
   bedRunning = true
 
-  TweenMax.to("#bed", 1, {
+  var bed1 = TweenMax.to("#bed", 1, {
     scaleY: 1.2,
     scaleX: .8,
     repeat: -1,
@@ -109,7 +108,7 @@ function bedAnimation() {
     ease: Back.easeOut,
   });
 
-  TweenMax.fromTo("#squid", 1,
+  var bed2 = TweenMax.fromTo("#squid", 1,
     {
       y: 150,
       rotation: 55.7,
@@ -124,7 +123,7 @@ function bedAnimation() {
       yoyo: true,
     });
 
-  TweenMax.fromTo("#squid_head", 1,
+  var bed3 = TweenMax.fromTo("#squid_head", 1,
     {
       x: 0,
       rotation: 0,
@@ -137,7 +136,7 @@ function bedAnimation() {
       yoyo: true,
     });
 
-  TweenMax.fromTo(["#squid_foot1", "#squid_foot2", "#squid_foot3"], 1,
+  var bed4 = TweenMax.fromTo(["#squid_foot1", "#squid_foot2", "#squid_foot3"], 1,
     {
       y: -20,
       rotation: 20,
@@ -148,10 +147,26 @@ function bedAnimation() {
       yoyo: true,
       ease: Power4.easeOut,
     });
-}
 
-for (var i = 0; i < document.querySelectorAll("#bed_row .try").length; i++) {
-  document.querySelectorAll("#bed_row .try")[i].addEventListener("click", bedAnimation);
+  $("#bed_row .try").click(function () {
+    bed1.play();
+    bed2.play();
+    bed3.play();
+    bed4.play();
+  });
+
+  $("#chair_row .try").click(function () {
+    bed1.kill();
+    bed2.kill();
+    bed3.kill();
+    bed4.kill();
+  });
+  $("#table_row .try").click(function () {
+    bed1.kill();
+    bed2.kill();
+    bed3.kill();
+    bed4.kill();
+  });
 }
 
 $("#bed_row .try").click(function () {
@@ -159,6 +174,7 @@ $("#bed_row .try").click(function () {
   $("#table").css("display", "none");
   $("#chair").css("display", "none");
   $("#bed").attr("src", $(this).parent().parent().siblings(".img_wrap").children().attr("src"));
+  bedAnimation();
 });
 // bedAnimation----------------------------------------
 
@@ -167,7 +183,6 @@ $("#bed_row .try").click(function () {
 let chairRunning = false;
 function chairAnimation() {
 
-<<<<<<< HEAD
 
 
   if (chairRunning) {
@@ -189,24 +204,12 @@ function chairAnimation() {
     })
 }
 
-for (var i = 0; i < document.querySelectorAll("#chair_row .try").length; i++) {
-  document.querySelectorAll("#chair_row .try")[i].addEventListener("click", chairAnimation);
-}
-
 $("#chair_row .try").click(function () {
   $("#bed").css("display", "none");
   $("#table").css("display", "none");
   $("#chair").css("display", "block");
   $("#chair").attr("src", $(this).parent().parent().siblings(".img_wrap").children().attr("src"));
 });
+
 // chairAnimation();
 // chairAnimation----------------------------------------
-=======
-// function chairAnimation(){
-//   var tl = new TimelineMax({
-
-//   });
-
-// }
-// chairAnimation();
->>>>>>> 8c7bbab7fec8e546e192b7b62b09ad05dd17fbb1
