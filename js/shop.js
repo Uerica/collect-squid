@@ -55,9 +55,43 @@ $('.owl-carousel').owlCarousel({
 });
 
 
-// squid animation
+// 試用動畫
+
+// bedAnimation----------------------------------------
 let bedRunning = false;
 function bedAnimation() {
+
+  if (jQuery(window).width() < 768) {
+    $("#squid").css({
+      left: "45%",
+      bottom: "600%",
+    });
+    $("#head_box").css({
+      width: "135%",
+      transform: "translate(-57%,-72%)",
+    });
+    $(".foots").css({
+      bottom: "-120%",
+    });
+  } else if (jQuery(window).width() < 1025) {
+    $("#squid").css({
+      left: "45%",
+      bottom: "500%",
+    });
+    $("#head_box").css({
+      width: "140%",
+      transform: "translate(-53%,-72%)",
+    });
+    $(".foots").css({
+      bottom: "-100%",
+    });
+  }
+  else {
+    $("#squid").css({
+      left: "45%",
+      bottom: "400%",
+    });
+  }
 
   if (bedRunning) {
     return;
@@ -119,14 +153,48 @@ for (var i = 0; i < document.querySelectorAll("#bed_row .try").length; i++) {
 }
 
 $("#bed_row .try").click(function () {
-  $("#bed").attr("src", $(this).parent().parent().siblings(".img_wrap").children().attr("src"))
-    ;
+  $("#bed").css("display", "block");
+  $("#table").css("display", "none");
+  $("#chair").css("display", "none");
+  $("#bed").attr("src", $(this).parent().parent().siblings(".img_wrap").children().attr("src"));
 });
+// bedAnimation----------------------------------------
 
 
-// function chairAnimation(){
-//   TweenMax.to("#squid",1,{
+// chairAnimation----------------------------------------
+let chairRunning = false;
+function chairAnimation() {
 
-//   });
-// }
+
+
+  if (chairRunning) {
+    return;
+  }
+  chairRunning = true;
+
+  tl = new TimelineMax({
+    repeat: -1,
+    yoyo: true,
+  });
+  tl.to("#squid_foot1", 1, {
+    scaleY: 1.8,
+    repeatDelay: 1,
+  }),
+    tl.to("#squid_foot1", 1, {
+      scaleY: .6,
+      repeatDelay: 1,
+    })
+}
+
+for (var i = 0; i < document.querySelectorAll("#chair_row .try").length; i++) {
+  document.querySelectorAll("#chair_row .try")[i].addEventListener("click", chairAnimation);
+}
+
+$("#chair_row .try").click(function () {
+  $("#bed").css("display", "none");
+  $("#table").css("display", "none");
+  $("#chair").css("display", "block");
+  $("#chair").attr("src", $(this).parent().parent().siblings(".img_wrap").children().attr("src"));
+});
 // chairAnimation();
+// chairAnimation----------------------------------------
