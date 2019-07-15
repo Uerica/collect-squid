@@ -7,15 +7,9 @@
 @import "findFriend";
 @import "events";
 
-<<<<<<< HEAD
 // * {
 //     outline: 1px solid #f00 !important;
 // }
-=======
-* {
-  outline: 1px solid #f00 !important;
-}
->>>>>>> 8d271ce79e160d80dec1a7956947f6c56c643dce
 
 // 卷軸css
 
@@ -907,40 +901,39 @@ img {
     }
   }
 }
-<<<<<<< HEAD
 // bus------------------------------------------------------
 @keyframes vibrateAnim {
   0% {
-      left: 1px;
+    left: 1px;
   }
   25% {
-      left: 0;
+    left: 0;
   }
   50% {
-      left: 1px;
+    left: 1px;
   }
   75% {
-      left: 0;
+    left: 0;
   }
   100% {
-      left: 3px;
+    left: 3px;
   }
 }
-#bus:hover{
+#bus:hover {
   position: relative;
   animation: vibrateAnim 0.3s linear 3;
 }
-#busBox a{
+#busBox a {
   position: relative;
 }
-$num-particles: 20;//煙的數量
+$num-particles: 20; //煙的數量
 #smoke {
-	position: absolute;
-	top: -10%;
+  position: absolute;
+  top: -10%;
   left: 60%;
-	// width: 100%;
-	// height: 100%;
-  filter: blur(calc(0 * 0.2rem));//blur(calc(模糊 * 0.2rem))
+  // width: 100%;
+  // height: 100%;
+  filter: blur(calc(0 * 0.2rem)); //blur(calc(模糊 * 0.2rem))
   @include rwd(tablet) {
     top: -80%;
   }
@@ -954,50 +947,63 @@ $num-particles: 20;//煙的數量
   animation-fill-mode: both;
   border-radius: 50%;
   offset-rotate: 0deg;
-  background-image: radial-gradient(circle at 25% 0%, rgba(230, 230, 230, 0.75), rgba(230, 230, 230, 0.75));
+  background-image: radial-gradient(
+    circle at 25% 0%,
+    rgba(230, 230, 230, 0.75),
+    rgba(230, 230, 230, 0.75)
+  );
 }
 
 @for $i from 1 through $num-particles {
   $size: random() * 1 + 1;
 
-  $particle-speed: random() * 750 + 2000;//煙飄的速度
-	$animation-timing: linear;
+  $particle-speed: random() * 750 + 2000; //煙飄的速度
+  $animation-timing: linear;
   $animation-delay: random() * 1500;
-	$start-x: random() * 100 - 50;
-	$mid-x: random() * 200 - 100;
-	$end-x: random() * 50;
-	$offset-path: 'M 50 200, C #{$start-x} 100 #{$mid-x} 50 #{$end-x} -50';
-	$background-color: hsl(0, 0%, random() * 50 + 50);
+  $start-x: random() * 100 - 50;
+  $mid-x: random() * 200 - 100;
+  $end-x: random() * 50;
+  $offset-path: "M 50 200, C #{$start-x} 100 #{$mid-x} 50 #{$end-x} -50";
+  $background-color: hsl(0, 0%, random() * 50 + 50);
 
-    #busBox:hover .particle:nth-child(#{$i}) {
+  #busBox:hover .particle:nth-child(#{$i}) {
     width: #{$size}rem;
     height: #{$size}rem;
-		animation: smoke-#{$i} #{$particle-speed}ms #{$animation-timing} #{$animation-delay * 5}ms infinite normal;
-		offset-path: path(quote($offset-path));
+    animation: smoke-#{$i}
+      #{$particle-speed}ms
+      #{$animation-timing}
+      #{$animation-delay *
+      5}ms
+      infinite
+      normal;
+    offset-path: path(quote($offset-path));
     background-color: $background-color;
     @include rwd(tablet) {
-      width: #{$size*.8}rem;
-      height: #{$size*.8}rem;
+      width: #{$size * 0.8}rem;
+      height: #{$size * 0.8}rem;
     }
     @include rwd(mobile) {
-      width: #{$size*.5}rem;
-      height: #{$size*.5}rem;
+      width: #{$size * 0.5}rem;
+      height: #{$size * 0.5}rem;
     }
     @include rwd(mobile-xs) {
-      width: #{$size*.2}rem;
-      height: #{$size*.2}rem;
+      width: #{$size * 0.2}rem;
+      height: #{$size * 0.2}rem;
     }
   }
-	
-	@keyframes smoke-#{$i} {
-		0% {
-			offset-distance: 0%;
-			transform: scale(1) rotate(#{random() * 30deg});
-			opacity: 1;
-		}
-		100% {//translateX(calc(角度 * 1vh)
-			offset-distance: 100%;
-			transform: scale(#{random() * 0.75 + 0.5}) translateX(calc(50 * 1vh)) scaleX(#{random() * 4 + 2}) scaleY(#{random() * 0.5 + 1.5}) rotate(#{random() * 90deg});
+
+  @keyframes smoke-#{$i} {
+    0% {
+      offset-distance: 0%;
+      transform: scale(1) rotate(#{random() * 30deg});
+      opacity: 1;
+    }
+    100% {
+      //translateX(calc(角度 * 1vh)
+      offset-distance: 100%;
+      transform: scale(#{random() * 0.75 + 0.5}) translateX(calc(50 * 1vh))
+        scaleX(#{random() * 4 + 2}) scaleY(#{random() * 0.5 + 1.5})
+        rotate(#{random() * 90deg});
       opacity: 0;
 
       @include rwd(tablet) {
@@ -1009,12 +1015,12 @@ $num-particles: 20;//煙的數量
       @include rwd(mobile-xs) {
         transform: translateX(calc(500 * 1vh));
       }
-		}
-	}
+    }
+  }
 }
 // bus------------------------------------------------------
 // fountain------------------------------------------------------
-#spray{
+#spray {
   position: absolute;
   width: 100%;
   left: 50%;
@@ -1032,8 +1038,8 @@ $num-particles: 20;//煙的數量
   transform: translate(-50%);
   bottom: 0%;
 }
-.cup #cup_squid{
-  transform: translate(-46%,-60%);
+.cup #cup_squid {
+  transform: translate(-46%, -60%);
   @include rwd(tablet) {
     width: 50%;
   }
@@ -1042,7 +1048,7 @@ $num-particles: 20;//煙的數量
     bottom: 5%;
   }
 }
-.g_apple img{
+.g_apple img {
   visibility: hidden;
 }
 
@@ -1056,7 +1062,7 @@ $num-particles: 20;//煙的數量
   transform-origin: center bottom;
   z-index: unset;
 }
-.cup #cup_hand #rag{
+.cup #cup_hand #rag {
   border-radius: 3px;
   max-width: unset;
   width: 300%;
@@ -1067,23 +1073,23 @@ $num-particles: 20;//煙的數量
 
 @keyframes comeOut {
   0% {
-    transform: translate(-46%,-60%);
+    transform: translate(-46%, -60%);
   }
   20% {
-    transform: translate(-46%,-66.33%);
+    transform: translate(-46%, -66.33%);
   }
   40% {
-    transform: translate(-46%,-69.495%);
+    transform: translate(-46%, -69.495%);
   }
   60% {
-    transform: translate(-46%,-69.495%);
+    transform: translate(-46%, -69.495%);
   }
   80% {
-    transform: translate(-46%,-66.33%);
+    transform: translate(-46%, -66.33%);
   }
   100% {
-    transform: translate(-46%,-60%);
-  } 
+    transform: translate(-46%, -60%);
+  }
 }
 
 @keyframes rub {
@@ -1139,13 +1145,13 @@ $num-particles: 20;//煙的數量
 }
 
 .cup:hover #cup_squid {
-  animation: comeOut 5s linear 1; }
+  animation: comeOut 5s linear 1;
+}
 
 .cup:hover #cup_hand {
-  animation: rub 5s linear .5s 1; }
+  animation: rub 5s linear 0.5s 1;
+}
 // cup------------------------------------------------------
-=======
->>>>>>> 8d271ce79e160d80dec1a7956947f6c56c643dce
 
 .loginBox {
   position: fixed;
