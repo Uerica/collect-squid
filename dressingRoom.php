@@ -1,3 +1,44 @@
+<?php
+  $errMsg = '';
+  try {
+    require_once('connectSquid.php');
+    // 從資料庫抓帽子
+    $hatsSQL = '
+    SELECT * 
+    FROM product_clothing
+    WHERE clo_type = :clo_type;
+    ';
+    $hats = $pdo->prepare($hatsSQL);
+    $hats->bindValue(':clo_type', 1);
+    $hats->execute();
+
+    // 從資料庫抓衣服
+    $clothesSQL = '
+    SELECT *
+    FROM product_clothing
+    WHERE clo_type = :clo_type;
+    ';
+    $clothes = $pdo->prepare($clothesSQL);
+    $clothes->bindValue(':clo_type', 2);
+    $clothes->execute();
+
+    // 從資料庫抓鞋子
+    $shoesSQL = '
+    SELECT *
+    FROM product_clothing
+    WHERE clo_type = :clo_type;
+    ';
+    $shoes = $pdo->prepare($shoesSQL);
+    $shoes->bindValue(':clo_type', 3);
+    $shoes->execute();
+
+  } catch(PDOException $e) {
+    $errMsg .= $e->getMessage()."<br>";
+    $errMsg .= $e->getLine()."<br>";
+  }
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -199,28 +240,29 @@
       <!-- 阿魷換新衣區塊 -->
       <div class="squidArea">
         <div class="dressingZone">
-          <!-- 光溜溜的阿魷 -->
-          <img src="imgs/dressingRoom/squid_center.png" alt="Squid" />
-          <!-- 帽子 -->
-          <img
-            class="changedHat"
-            src="imgs/dressingRoom/furHat.png"
-            alt="Changed Hat"
-          />
-          <!-- 衣服 -->
-          <img
-            class="changedClo"
-            src="imgs/dressingRoom/cowboyClo.png"
-            alt="Changed Clothes"
-          />
-          <!-- 鞋子 -->
-          <img
-            class="changedShoes"
-            src="imgs/dressingRoom/whiteShoes.png"
-            alt="Changed Shoes"
-          />
-        </div>
+            <img src="imgs/dressingRoom/squid_center.png" alt="Squid" />
+            <img
+              class="changedHat"
+              src="imgs/dressingRoom/furHat.png"
+              alt="Changed Hat"
+            />
+            <img
+              class="changedClo"
+              src="imgs/dressingRoom/cowboyClo.png"
+              alt="Changed Clothes"
+            />
+            <img
+              class="changedShoes"
+              src="imgs/dressingRoom/whiteShoes.png"
+              alt="Changed Shoes"
+            />
+          </div>
+        <form action="post" accept-charset="utf-8" id="dressedForm">
+          <input type="hidden" id="dressedSquid" name="dressedSquid">
+          <canvas id="dressingCanvas"></canvas>
+        </form>
       </div>
+      <button id="confirmDressing">完成穿著</button>
       <!-- 衣櫃區塊 -->
       <div class="clothesArea">
         <div class="wardrobe">
@@ -232,59 +274,18 @@
             <div class="hats storage">
               <div class="leftBtn"></div>
               <div class="owl-carousel owl-theme">
-                <div class="myItem">
-                  <a class="changeHat" href="javascript:;"
-                    ><img src="imgs/dressingRoom/furHat.png" alt="Fur Hat"
-                  /></a>
-                </div>
-                <div class="myItem">
-                  <a class="changeHat" href="javascript:;"
-                    ><img src="imgs/dressingRoom/bearHat.png" alt="Bear Hat"
-                  /></a>
-                </div>
-                <div class="myItem">
-                  <a class="changeHat" href="javascript:;"
-                    ><img src="imgs/dressingRoom/winterHat.png" alt="Winter Hat"
-                  /></a>
-                </div>
-                <div class="myItem">
-                  <a class="changeHat" href="javascript:;"
-                    ><img src="imgs/dressingRoom/nobleCowboyHat.png" alt="Fur Hat"
-                  /></a>
-                </div>
-                <div class="myItem">
-                  <a class="changeHat" href="javascript:;"
-                    ><img src="imgs/dressingRoom/nobleCrisHat.png" alt="Fur Hat"
-                  /></a>
-                </div>
-                <div class="myItem">
-                  <a class="changeHat" href="javascript:;"
-                    ><img
-                      src="imgs/dressingRoom/nobleOldHat.png"
-                      alt="Bear Hat"
-                  /></a>
-                </div>
-                <div class="myItem">
-                  <a class="changeHat" href="javascript:;"
-                    ><img
-                      src="imgs/dressingRoom/royalRobinHat.png"
-                      alt="Winter Hat"
-                  /></a>
-                </div>
-                <div class="myItem">
-                  <a class="changeHat" href="javascript:;"
-                    ><img
-                      src="imgs/dressingRoom/royalScholorHat.png"
+                <?php 
+                  while($hatRow = $hats->fetch(PDO::FETCH_ASSOC)) {
+                ?>
+                  <div class="myItem">
+                    <a class="changeHat" href="javascript:;"
+                      ><img src="<?php echo $hatRow["clo_img_url"]; ?>" 
                       alt="Fur Hat"
-                  /></a>
-                </div>
-                <div class="myItem">
-                  <a class="changeHat" href="javascript:;"
-                    ><img
-                      src="imgs/dressingRoom/royalPoliceHat.png"
-                      alt="Bear Hat"
-                  /></a>
-                </div>
+                    /></a>
+                  </div>
+                <?php
+                }
+                ?>
               </div>
               <div class="rightBtn"></div>
             </div>
@@ -292,54 +293,20 @@
             <div class="clothes storage">
               <div class="leftBtn"></div>
               <div class="owl-carousel owl-theme">
-                <div class="myItem">
-                  <a class="changeClo" href="javascript:;">
-                    <img
-                      src="imgs/dressingRoom/shirtClo.png"
-                      alt="Shirt clothes"
-                    />
-                  </a>
-                </div>
-                <div class="myItem">
-                  <a class="changeClo" href="javascript:;">
-                    <img
-                      src="imgs/dressingRoom/plaidClo.png"
-                      alt="Plaid clothes"
-                    />
-                  </a>
-                </div>
-                <div class="myItem">
-                  <a class="changeClo" href="javascript:;">
-                    <img
-                      src="imgs/dressingRoom/cowboyClo.png"
-                      alt="Cowboy clothes"
-                    />
-                  </a>
-                </div>
-                <div class="myItem">
-                  <a class="changeClo" href="javascript:;">
-                    <img
-                      src="imgs/dressingRoom/nobleCloBrown.png"
-                      alt="Shirt clothes"
-                    />
-                  </a>
-                </div>
-                <div class="myItem">
-                  <a class="changeClo" href="javascript:;">
-                    <img
-                      src="imgs/dressingRoom/nobleCloCyan.png"
-                      alt="Plaid clothes"
-                    />
-                  </a>
-                </div>
-                <div class="myItem">
-                  <a class="changeClo" href="javascript:;">
-                    <img
-                      src="imgs/dressingRoom/nobleCloGreen.png"
-                      alt="Cowboy clothes"
-                    />
-                  </a>
-                </div>
+                <?php
+                  while($clothRow = $clothes->fetch(PDO::FETCH_ASSOC)) {
+                ?>
+                  <div class="myItem">
+                    <a class="changeClo" href="javascript:;">
+                      <img
+                        src="<?php echo $clothRow["clo_img_url"]; ?>"
+                        alt="Shirt clothes"
+                      />
+                    </a>
+                  </div>
+                <?php
+                  }
+                ?>
               </div>
               <div class="rightBtn"></div>
             </div>
@@ -347,78 +314,20 @@
             <div class="shoes storage">
               <div class="leftBtn"></div>
               <div class="owl-carousel owl-theme">
-                <div class="myItem">
-                  <a class="changeShoes" href="javascript:;">
-                    <img
-                      src="imgs/dressingRoom/whiteShoes.png"
-                      alt="White Shoes"
-                    />
-                  </a>
-                </div>
-                <div class="myItem">
-                  <a class="changeShoes" href="javascript:;">
-                    <img
-                      src="imgs/dressingRoom/yellowShoes.png"
-                      alt="Yellow Shoes"
-                    />
-                  </a>
-                </div>
-                <div class="myItem">
-                  <a class="changeShoes" href="javascript:;">
-                    <img
-                      src="imgs/dressingRoom/brownShoes.png"
-                      alt="Brown Shoes"
-                    />
-                  </a>
-                </div>
-                <div class="myItem">
-                  <a class="changeShoes" href="javascript:;">
-                    <img
-                      src="imgs/dressingRoom/nobleShoesBlue.png"
-                      alt="White Shoes"
-                    />
-                  </a>
-                </div>
-                <div class="myItem">
-                  <a class="changeShoes" href="javascript:;">
-                    <img
-                      src="imgs/dressingRoom/nobleShoesGreen.png"
-                      alt="Yellow Shoes"
-                    />
-                  </a>
-                </div>
-                <div class="myItem">
-                  <a class="changeShoes" href="javascript:;">
-                    <img
-                      src="imgs/dressingRoom/nobleShoesYellow.png"
-                      alt="Brown Shoes"
-                    />
-                  </a>
-                </div>
-                <div class="myItem">
-                  <a class="changeShoes" href="javascript:;">
-                    <img
-                      src="imgs/dressingRoom/royalShoesRed.png"
-                      alt="Brown Shoes"
-                    />
-                  </a>
-                </div>
-                <div class="myItem">
-                  <a class="changeShoes" href="javascript:;">
-                    <img
-                      src="imgs/dressingRoom/royalShoesWhite.png"
-                      alt="Brown Shoes"
-                    />
-                  </a>
-                </div>
-                <div class="myItem">
-                  <a class="changeShoes" href="javascript:;">
-                    <img
-                      src="imgs/dressingRoom/royalShoesPurple.png"
-                      alt="Brown Shoes"
-                    />
-                  </a>
-                </div>
+                <?php 
+                  while($shoeRow = $shoes->fetch(PDO::FETCH_ASSOC)) {
+                ?>
+                  <div class="myItem">
+                    <a class="changeShoes" href="javascript:;">
+                      <img
+                        src="<?php echo $shoeRow["clo_img_url"]; ?>"
+                        alt="White Shoes"
+                      />
+                    </a>
+                  </div>
+                <?php
+                  }
+                ?>
               </div>
               <div class="rightBtn"></div>
             </div>
@@ -462,10 +371,12 @@
             </div>
             <!-- 繪製衣服區 -->
             <div class="drawingArea">
-              <span>2. 繪製你的衣服</span>
-              <canvas class="drawingFrame">
-                <!-- <img src="imgs/dressingRoom/whiteShirt.png" alt="White Shirt" /> -->
-              </canvas>
+              <form id="drawingForm" action="post" accept-charset="utf-8">
+                <span>2. 繪製你的衣服</span>
+                <input type="hidden" id="drawnImage" name="drawnImage">
+                <canvas class="drawingFrame">
+                </canvas>
+              </form>
             </div>
           </div>
           <a id="confirmBtn" href="javascript:;">確認保存</a>
