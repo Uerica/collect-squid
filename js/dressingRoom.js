@@ -1,161 +1,111 @@
 function init() {
-  // 視窗RWD
-  let bodySize = [];
-  let htmlSize = [];
-  window.addEventListener("resize", function() {
-    if (innerWidth / innerHeight > 1.75) {
-      bodySize[0] = document.body.clientWidth;
-      bodySize[1] = document.body.clientHeight;
-      htmlSize[0] = document.documentElement.clientWidth;
-      htmlSize[1] = document.documentElement.clientHeight;
-      gameSizing("body", htmlSize[0], htmlSize[1]);
-    } else {
-      gameSizing("body", bodySize[0], bodySize[1]);
-    }
-  });
+  // RWD
+  window.addEventListener("resize", gameSizing);
 
+  // 按鈕
   $(".lightBox").css({ display: "none" });
-
-  // 燈箱按鈕
   $("#startBtn").click(startDraw);
   $(".whiteShirt").click(startDraw);
   $("#cancelBtn").click(cancel);
-  $("#confirmBtn").click(confirm);
+  $("#confirmBtn").click(saveImg);
+  $("#confirmDressing").click(saveDressing);
+  activeOwl();
+  // displayBar();
+  targetCaro();
+  menuMobileTransform();
+  drawingClothes();
 
-  // 顏色選擇器
-  let r = 255;
-  let g = 0;
-  let b = 0;
+  let hatSrc = "imgs/dressingRoom/furHat.png";
+  let clothSrc = "imgs/dressingRoom/cowBoyClo.png";
+  let shoesSrc = "imgs/dressingRoom/whiteShoes.png";
 
-  while (b < 255) {
-    b++;
-    displayBar(r, g, b);
-  }
-  while (r > 0) {
-    r--;
-    displayBar(r, g, b);
-  }
-  while (g < 255) {
-    g++;
-    displayBar(r, g, b);
-  }
-  while (b > 0) {
-    b--;
-    displayBar(r, g, b);
-  }
-  while (r < 255) {
-    r++;
-    displayBar(r, g, b);
-  }
-  while (g > 0) {
-    g--;
-    displayBar(r, g, b);
-  }
+  // 換服裝
+  // 帽子
+  $(".changeHat img").click(function() {
+    hatSrc = $(this).attr("src");
+    $(".changedHat").attr("src", hatSrc);
+    dressingCanvas(shoesSrc, clothSrc, hatSrc);
+  });
+  // 衣服
+  $(".changeClo img").click(function() {
+    clothSrc = $(this).attr("src");
+    $(".changedClo").attr("src", clothSrc);
+    dressingCanvas(shoesSrc, clothSrc, hatSrc);
+  });
+  // 鞋子
+  $(".changeShoes img").click(function() {
+    shoesSrc = $(this).attr("src");
+    $(".changedShoes").attr("src", shoesSrc);
+    dressingCanvas(shoesSrc, clothSrc, hatSrc);
+  });
 
-  // 貓頭鷹幻燈片
+  // dressingCanvas();
+}
+
+// 一屏畫面 RWD
+function gameSizing() {
+  let bodySize = [];
+  let htmlSize = [];
+  if (innerWidth / innerHeight > 1.75) {
+    bodySize[0] = document.body.clientWidth;
+    bodySize[1] = document.body.clientHeight;
+    htmlSize[0] = document.documentElement.clientWidth;
+    htmlSize[1] = document.documentElement.clientHeight;
+    querySize("body", htmlSize[0], htmlSize[1]);
+  } else {
+    querySize("body", bodySize[0], bodySize[1]);
+  }
+}
+
+function querySize(tag, w, h) {
+  document.querySelector(tag).style.width = w + "px";
+  document.querySelector(tag).style.height = h + "px";
+}
+
+// 貓頭鷹幻燈片
+function activeOwl() {
   $(".owl-carousel").owlCarousel({
     loop: false,
     nav: true,
     responsive: {
+      0: {
+        items: 2
+      },
       1000: {
         items: 3
       }
     },
     dots: false
   });
-
-  $(".shoes .owl-prev").click(function() {
-    const hatImgs = document.querySelectorAll(".shoes img");
-    for (let i = 0; i < hatImgs.length; i++) {
-      TweenMax.from(hatImgs[i], 2, {
-        skewX: -20,
-        ease: Elastic.easeOut.config(1, 0.2),
-        transformOrigin: "bottom"
-      });
-    }
-  });
-
-  $(".hats .owl-next").click(function() {
-    const hatImgs = document.querySelectorAll(".hats img");
-    for (let i = 0; i < hatImgs.length; i++) {
-      TweenMax.from(hatImgs[i], 2, {
-        skewX: 20,
-        ease: Elastic.easeOut.config(1, 0.2),
-        transformOrigin: "bottom"
-      });
-    }
-  });
-  $(".hats .owl-prev").click(function() {
-    const hatImgs = document.querySelectorAll(".hats img");
-    for (let i = 0; i < hatImgs.length; i++) {
-      TweenMax.from(hatImgs[i], 2, {
-        skewX: -20,
-        ease: Elastic.easeOut.config(1, 0.2),
-        transformOrigin: "bottom"
-      });
-    }
-  });
-
-  $(".clothes .owl-next").click(function() {
-    const hatImgs = document.querySelectorAll(".clothes img");
-    for (let i = 0; i < hatImgs.length; i++) {
-      TweenMax.from(hatImgs[i], 2, {
-        skewX: 20,
-        ease: Elastic.easeOut.config(1, 0.2),
-        transformOrigin: "bottom"
-      });
-    }
-  });
-  $(".clothes .owl-prev").click(function() {
-    const hatImgs = document.querySelectorAll(".clothes img");
-    for (let i = 0; i < hatImgs.length; i++) {
-      TweenMax.from(hatImgs[i], 2, {
-        skewX: -20,
-        ease: Elastic.easeOut.config(1, 0.2),
-        transformOrigin: "bottom"
-      });
-    }
-  });
-
-  $(".shoes .owl-next").click(function() {
-    const hatImgs = document.querySelectorAll(".shoes img");
-    for (let i = 0; i < hatImgs.length; i++) {
-      TweenMax.from(hatImgs[i], 2, {
-        skewX: 20,
-        ease: Elastic.easeOut.config(1, 0.2),
-        transformOrigin: "bottom"
-      });
-    }
-  });
-
-  // 換服裝
-  // 先換帽帽
-  $(".changeHat img").click(function() {
-    let hatSrc = $(this).attr("src");
-    $(".changedHat").attr("src", hatSrc);
-  });
-  // 再換衣服
-  $(".changeClo img").click(function() {
-    let clothSrc = $(this).attr("src");
-    $(".changedClo").attr("src", clothSrc);
-  });
-  // 最後換鞋鞋
-  $(".changeShoes img").click(function() {
-    let shoesSrc = $(this).attr("src");
-    $(".changedShoes").attr("src", shoesSrc);
-  });
 }
 
-function gameSizing(tag, w, h) {
-  document.querySelector(tag).style.width = w + "px";
-  document.querySelector(tag).style.height = h + "px";
+// 幻燈片動畫
+function targetCaro() {
+  // 向左
+  $(".hats .owl-prev").click(() => caroAnima(".hats img", -20));
+  $(".clothes .owl-prev").click(() => caroAnima(".clothes img", -20));
+  $(".shoes .owl-prev").click(() => caroAnima(".shoes img", -20));
+  // 向右
+  $(".hats .owl-next").click(() => caroAnima(".hats img", 20));
+  $(".clothes .owl-next").click(() => caroAnima(".clothes img", 20));
+  $(".shoes .owl-next").click(() => caroAnima(".shoes img", 20));
 }
 
-function displayBar(r, g, b) {
-  const hex = dechex(r) + dechex(g) + dechex(b);
-  $("#colorPicker").append(
-    `<span id="${hex}" style="background-color:#${hex}"</span>`
-  );
+function caroAnima(className, skewX) {
+  const imgs = document.querySelectorAll(className);
+  for (let i = 0; i < imgs.length; i++) {
+    TweenMax.from(imgs[i], 2, {
+      skewX,
+      ease: Elastic.easeOut.config(1, 0.2),
+      transformOrigin: "bottom"
+    });
+  }
+}
+
+// 換服裝
+function changeSuit(suitSrc) {
+  let src = $(this).attr("src");
+  $(suitSrc).attr("src", src);
 }
 
 function startDraw() {
@@ -166,14 +116,183 @@ function cancel() {
   $(".lightBox").css({ display: "none" });
 }
 
-function confirm() {
-  $(".lightBox").css({ display: "none" });
+function dressingCanvas(inShoes, inClo, inHat) {
+  const dressingZone = document.querySelector("#dressingCanvas");
+  dressingZone.width = 286;
+  dressingZone.height = 613;
+  const dW = dressingZone.width;
+  const dH = dressingZone.height;
+  const dressingCtx = dressingZone.getContext("2d");
+  // dressingCtx.globalCompositeOperation = "destination-over";
+  let shoes = new Image();
+  // shoes.src = "imgs/dressingRoom/whiteShoes.png";
+  shoes.src = inShoes;
+  shoes.addEventListener("load", function() {
+    dressingCtx.drawImage(shoes, 0, dH * 0.928, dW, dH * 0.0685);
+  });
+  let squid = new Image();
+  squid.src = "imgs/dressingRoom/squid_center.png";
+  squid.addEventListener("load", function() {
+    dressingCtx.drawImage(squid, 0, dH * 0.17, dW, dH * 0.795);
+  });
+  let clo = new Image();
+  clo.src = inClo;
+  clo.addEventListener("load", function() {
+    dressingCtx.drawImage(clo, dW * 0.158, dH * 0.672, dW * 0.685, dH * 0.185);
+  });
+  let hat = new Image();
+  hat.src = inHat;
+  hat.addEventListener("load", function() {
+    dressingCtx.drawImage(hat, dW * 0.077, 0, dW * 0.846, dH * 0.303);
+  });
 }
+
+// function confirm() {
+//   $(".lightBox").css({ display: "none" });
+// }
 
 function dechex(dec) {
   var hex = dec.toString(16);
   if (hex.length == 1) hex = "0" + hex;
   return hex;
+}
+
+// 手機選單動畫
+function menuMobileTransform() {
+  $(".menuMobile_link").click(function(e) {
+    e.preventDefault();
+
+    $(".menuMobile_overlay").toggleClass("open");
+    $(".menuMobile").toggleClass("open");
+  });
+}
+
+function setColor() {
+  var hue = document.querySelector(".colorPicker").value;
+  return `hsl(${hue}, 100%, 50%)`;
+}
+
+function drawingClothes() {
+  let strokeColor;
+  $(".colorPicker").change(() => (strokeColor = setColor()));
+
+  let strokeWidth;
+  $("#2w").click(() => (strokeWidth = 2));
+  $("#5w").click(() => (strokeWidth = 5));
+  $("#8w").click(() => (strokeWidth = 8));
+  $("#12w").click(() => (strokeWidth = 12));
+  $("#20w").click(() => (strokeWidth = 20));
+
+  const drawingCanvas = document.querySelector(".drawingFrame");
+  drawingCanvas.width = 420;
+  drawingCanvas.height = 250;
+
+  const drawingCtx = drawingCanvas.getContext("2d");
+
+  let whiteShirt = new Image();
+  whiteShirt.src = "imgs/dressingRoom/whiteShirt.png";
+  whiteShirt.addEventListener("load", function() {
+    drawingCtx.drawImage(
+      whiteShirt,
+      25,
+      25,
+      drawingCanvas.width - 50,
+      drawingCanvas.height - 50
+    );
+  });
+
+  let painting = false;
+
+  function startPosition(e) {
+    painting = true;
+    draw(e);
+  }
+
+  function finishedPosition() {
+    painting = false;
+    drawingCtx.beginPath();
+  }
+
+  function draw(e) {
+    if (!painting) return;
+    drawingCtx.lineWidth = strokeWidth;
+    drawingCtx.lineCap = "round";
+    drawingCtx.strokeStyle = `${strokeColor}`;
+
+    const canLeft = $(".drawingFrame").offset().left + 10;
+    const canTop = $(".drawingFrame").offset().top;
+    drawingCtx.lineTo(e.clientX - canLeft, e.clientY - canTop);
+    drawingCtx.stroke();
+    drawingCtx.beginPath();
+    drawingCtx.moveTo(e.clientX - canLeft, e.clientY - canTop);
+  }
+
+  drawingCanvas.addEventListener("mousedown", startPosition);
+  drawingCanvas.addEventListener("mouseup", finishedPosition);
+  drawingCanvas.addEventListener("mousemove", draw);
+
+  document.getElementById("clearAll").addEventListener("click", () => {
+    context.clearRect(0, 0, drawingCanvas.width, drawingCanvas.height);
+    let whiteShirt = new Image();
+    whiteShirt.src = "imgs/dressingRoom/whiteShirt.png";
+    whiteShirt.addEventListener("load", function() {
+      context.drawImage(
+        whiteShirt,
+        25,
+        25,
+        drawingCanvas.width - 50,
+        drawingCanvas.height - 50
+      );
+    });
+  });
+}
+
+function saveImg() {
+  const drawingCanvas = document.querySelector(".drawingFrame");
+  const dataURL = drawingCanvas.toDataURL("image/png");
+  document.querySelector("#drawnImage").value = dataURL;
+  const formData = new FormData(document.getElementById("drawingForm"));
+
+  const xhr = new XMLHttpRequest();
+
+  xhr.onload = () => {
+    if (xhr.status == 200) {
+      if (xhr.responseText == "error") {
+        alert("Error");
+      } else {
+        alert("Successfully uploaded");
+      }
+    } else {
+      alert(xhr.status);
+    }
+  };
+
+  xhr.open("POST", "drawingFinished.php", true);
+  xhr.send(formData);
+}
+
+function saveDressing() {
+  const drawingCanvas = document.querySelector("#dressingCanvas");
+  const dataURL = drawingCanvas.toDataURL("image/png");
+  document.querySelector("#dressedSquid").value = dataURL;
+  const formData = new FormData(document.getElementById("dressedForm"));
+
+  const xhr = new XMLHttpRequest();
+
+  xhr.onload = () => {
+    if (xhr.status == 200) {
+      if (xhr.responseText == "error") {
+        alert("Error");
+      } else {
+        alert("Successfully uploaded");
+      }
+    } else {
+      alert(xhr.status);
+    }
+  };
+
+  xhr.open("POST", "dressedSquid.php", true);
+  xhr.send(formData);
 }
 
 window.onload = init;
