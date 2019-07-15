@@ -35,65 +35,21 @@
     </div> -->
 
     <div class="gameWorld">
-        <div class="gameWorld_house gameWorld_object">
-            <a href="javascript:;"><img src="imgs/homePage/house_tag.png" alt=""></a>
-        </div>
-        <div class="gameWorld_fountain gameWorld_object">
-            <canvas id="spray"></canvas>
-            <a href="javascript:;"><img src="imgs/homePage/fountain.png" alt=""></a>
-        </div>
-        <div id="busBox" class="gameWorld_bus gameWorld_object">
-            <div id="smoke"></div>
-            <a href="javascript:;"><img src="imgs/homePage/bus.png" alt="" id="bus"></a>
-        </div>
-        <div class="gameWorld_cup gameWorld_object">
-            <a href="javascript:;">
-                <div class="cup">
-                    <img src="imgs/homePage/cup01.png" alt="">
-                    <img id="cup_squid" src="imgs/homePage/squid.png" alt="">
-                    <div id="cup_hand">
-                        <img src="imgs/homePage/hand.png" alt="">
-                        <img id="rag" src="imgs/homePage/rag.png" alt="">
-                    </div>
-                    <img src="imgs/homePage/cup02.png" alt="">
-                </div>
-                <div class="g_apple">
-                    <img src="imgs/homePage/cup.png" alt="">
-                </div>
-            </a>
-        </div>
-    </div>
-
-    <div class="gameWorld_switchPage">
-        <div class="checkBox checkBox-room collapse">
-            <div class="checkBox_content">
-                <div class="checkBox_title">
-                    <h3>前往我的房間</h3>
-                </div>
-                <div class="checkBox_hint">
-                    <p>要前往我的房間嗎?</p>
-                </div>
-                <div class="checkBox_btn">
-                    <button class="button button-cancel" id="btnCancel-room">取消</button>
-                    <a href="myRoom.html" class="button button-check">確認</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="checkBox checkBox-event collapse">
-            <div class="checkBox_content">
-                <div class="checkBox_title">
-                    <h3>前往揪團活動</h3>
-                </div>
-                <div class="checkBox_hint">
-                    <p>要前往揪團活動專區嗎?</p>
-                </div>
-                <div class="checkBox_btn">
-                    <button class="button button-cancel" id="btnCancel-event">取消</button>
-                    <a href="event.html" class="button button-check">確認</a>
-                </div>
-            </div>
-        </div>
+      <!-- <div class="gameWorld_bgImage">
+                    <img src="imgs/homepage01.png" alt="" draggable="false" oncontextmenu="return false">
+                </div> -->
+      <div class="gameWorld_house gameWorld_object">
+        <img src="imgs/house_tag.png" alt="" />
+      </div>
+      <div class="gameWorld_fountain gameWorld_object">
+        <img src="imgs/fountain.png" alt="" />
+      </div>
+      <div class="gameWorld_bus gameWorld_object">
+        <img src="imgs/bus.png" alt="" />
+      </div>
+      <div class="gameWorld_cup gameWorld_object">
+        <img src="imgs/cup.png" alt="" />
+      </div>
     </div>
 
     <header class="common_header disabledScrollOnHover">
@@ -911,7 +867,3 @@
     <script src="js/createBox.js"></script>
   </body>
 </html>
-<<<<<<< HEAD
-
-=======
->>>>>>> benson
