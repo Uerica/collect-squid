@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+    <title>find</title>
+</head>
+<body>
+    <header class="common_header disabledScrollOnHover">
+            <div class="menuMobile">
+                <span class="menuMobile_circle"></span>
+                <a href="#" class="menuMobile_link">
+                    <span class="menuMobile_icon">
+                        <span class="menuMobile_line menuMobile_line-1"></span>
+                        <span class="menuMobile_line menuMobile_line-2"></span>
+                        <span class="menuMobile_line menuMobile_line-3"></span>
+                    </span>
+                </a>
+            </div>
+    
+            <div class="menuMobile_overlay">
+                <ul class="memberInfo">
+                    <li class="coin">
+                        <a href="javascript:;">
+                            <img src="imgs/icon/coin.png" alt="持有金額icon">
+                            <span>1500</span>
+                        </a>
+                    </li>
+                    <li class="logo">
+                        <a href="index.html">
+                            <img src="imgs/logo.png" alt="尋找友誼網站LOGO">
+                            <span>尋找友誼</span>
+                        </a>
+                    </li>
+                    <li class="login">
+                        <img src="imgs/icon/avatar.png" alt="角色頭像icon">
+                        <span class="name">
+                            <a href="javascript:;">魚翔</a>
+                        </span>
+                        <span>
+                            <a href="javascript:;">登出</a>
+                        </span>
+                    </li>
+                </ul>
+                <nav class="menuMobile_nav">
+                    <li><a href="myRoom.html"> <img src="imgs/icon/room.png" alt="我的房間icon">
+                            <span>我的房間</span></a></li>
+                    <li><a href="dressingRoom.html"><img src="imgs/icon/fittingRoom.png" alt="換衣間icon">
+                            <span>換衣間</span></a></li>
+                    <li><a href="findfriend.html"> <img src="imgs/icon/friend.png" alt="找朋友icon">
+                            <span>找朋友</span></a></li>
+                    <li><a href="javascript:;"> <img src="imgs/icon/events.png" alt="揪團活動icon">
+                            <span>揪團活動</span></a></li>
+                    <li><a href="shop.html"> <img src="imgs/icon/mall.png" alt="虛擬商城icon">
+                            <span>虛擬商城</span></a></li>
+                    <li><a href="memberCenter.html"> <img src="imgs/icon/member.png" alt="會員中心icon">
+                            <span>會員中心</span></a></li>
+                    <li><a href="javascript:;"> <img src="imgs/icon/robot.png" alt="客服機器人_icon">
+                            <span>客服機器人</span></a></li>
+                    <li><a href="javascript:;"> <img src="imgs/icon/notice02.png" alt="通知_icon">
+                            <span>通知</span></a></li>
+                </nav>
+            </div>
+    
+            <nav class="menuDesktop">
+                <ul>
+                    <li>
+                        <a href="myRoom.html">
+                            <img src="imgs/icon/room.png" alt="我的房間icon">
+                            <span>我的房間</span>
+                        </a>
+                    </li>
+                    <li><a href="dressingRoom.html">
+                            <img src="imgs/icon/fittingRoom.png" alt="換衣間icon">
+                            <span>換衣間</span></a>
+                    </li>
+                    <li>
+                        <a href="findfriend.html">
+                            <img src="imgs/icon/friend.png" alt="找朋友icon">
+                            <span>找朋友</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;">
+                            <img src="imgs/icon/events.png" alt="揪團活動icon">
+                            <span>揪團活動</span>
+                        </a>
+                    </li>
+                    <li class="logo">
+                        <a href="index.html">
+                            <img src="imgs/logo.png" alt="尋找友誼網站LOGO">
+                            <span>尋找友誼</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="shop.html">
+                            <img src="imgs/icon/mall.png" alt="虛擬商城icon">
+                            <span>虛擬商城</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="memberCenter.html">
+                            <img src="imgs/icon/member.png" alt="會員中心icon">
+                            <span>會員中心</span>
+                        </a>
+                    </li>
+                    <div class="memberInfo">
+                        <li class="login">
+                            <img src="imgs/icon/avatar.png" alt="角色頭像icon">
+                            <span class="name"><a href="javascript:;">魚翔</a></span>
+                            <span><a href="javascript:;">登出</a></span>
+                        </li>
+                        <li class="coin">
+                            <a href="javascript:;">
+                                <img src="imgs/icon/coin.png" alt="持有金額icon">
+                                <span>1500</span>
+                            </a>
+                        </li>
+                        <li class="level">
+                            <a href="javascript:;">
+                                <img src="imgs/icon/civilian.png" alt="平民等級icon">
+                                <span>平民</span>
+                            </a>
+                        </li>
+                    </div>
+                </ul>
+            </nav>
+        </header>
+    <div class="findFriend">
+        <embed class="findFriend_embed" src="img/find_bg.svg" type="">
+        <!-- 篩選燈箱 -->
+        <div class="fromBox_wrap">
+            <!-- 燈箱黃色背景 -->
+            <div class="fromBox_bg">
+                <!-- 燈箱白色背景 -->
+                <div class="fromBox">
+                    <!-- 篩選區 標題+篩選欄 -->
+                    <div class="fromSelect">
+                        <h1>搜尋好友</h1>
+                        <form action="">
+                            
+                            <div>
+                                <!-- 選擇性別 -->
+                                <select name="gender">
+                                    <option selected disabled>選擇性別</option>
+                                    <option value="male">男</option>
+                                    <option value="female">女</option>
+                                    <option value="allgender">性別全選</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <!-- 選擇星座 -->
+                                <select name="sign">
+                                    <option selected disabled>選擇星座</option>
+                                    <option value="牡羊座">牡羊座</option>
+                                    <option value="金牛座">金牛座</option>
+                                    <option value="雙子座">雙子座</option>
+                                    <option value="巨蟹座">巨蟹座</option>
+                                    <option value="獅子座">獅子座</option>
+                                    <option value="處女座">處女座</option>
+                                    <option value="天秤座">天秤座</option>
+                                    <option value="天蠍座">天蠍座</option>
+                                    <option value="射手座">射手座</option>
+                                    <option value="摩羯座">摩羯座</option>
+                                    <option value="水瓶座">水瓶座</option>
+                                    <option value="扣扣看">扣扣看</option>
+                                    <option value="allsign">星座全選</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <!-- 選擇興趣 -->
+                                <select name="interest">
+                                    <option selected disabled>選擇興趣</option>
+                                    <option value="我愛php!">我愛php!</option>
+                                    <option value="套套看">套套看</option>
+                                    <option value="找相機">找相機</option>
+                                    <option value="設計頭型">設計頭型</option>
+                                    <option value="打魚翔拳">打魚翔拳</option>
+                                    <option value="套套看">套套看</option>
+                                    <option value="修冷氣">修冷氣</option>
+                                    <option value="喝一杯">喝一杯</option>
+                                    <option value="allinterest">興趣全選</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- 按鈕在這 -->
+                <div class="selectBtn">
+                    <input onclick="startSearch()" type="button" value="開始搜尋" />
+                </div>
+            </div>
+        </div>
+
+        <div class="showFriend_wrap">
+            <!-- 朋友角色與輪盤 -->
+            <div class="showFriend_interact">
+                <!-- 找朋友檔案 -->
+                <div class="profileBox_bg">
+                    <div class="profileBox">
+                        <div class="profile">
+                            <p>ID:<span id="userid">9453</span></p>
+                            <p>暱稱:<span id="nickname">魷魚軟軟</span></p>
+                            <p>性別:<span id="gender">男</span></p>
+                            <p>星座:<span id="constellation">水瓶座</span></p>
+                            <p>興趣:<span id="habit">我愛php!</span></p>
+                        </div> 
+                    </div>
+                    <!-- 按鈕底加 -->
+                    <div class="btns">
+                        <input type="submit" value="拜訪房間" id="visitRoom" />
+                        <input type="submit" value="加好友" id="addFriend" />
+                    </div>
+                </div>
+                <!-- 阿魷底加 -->
+                <div class="Role">
+                    <svg id="阿魷" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 250 418">
+                        <path id="矩形_2_拷貝_23" data-name="矩形 2 拷貝 23" class="cls-1"
+                            d="M914.128,225.538H1055.32a15,15,0,0,1,15,15v251.7a15,15,0,0,1-15,15H914.128a15,15,0,0,1-15-15v-251.7A15,15,0,0,1,914.128,225.538Z"
+                            transform="translate(-862 -155)" />
+                        <path id="多邊形_1_拷貝_23" data-name="多邊形 1 拷貝 23" class="cls-1"
+                            d="M1080.74,214.493Q1174.49,333.509,987,333.509T893.256,214.493Q987,95.477,1080.74,214.493Z"
+                            transform="translate(-862 -155)" />
+                        <path id="矩形_3_拷貝_24" data-name="矩形 3 拷貝 24" class="cls-1"
+                            d="M936.857,441.5h12.565a5.423,5.423,0,0,1,5.424,5.423V567.577A5.423,5.423,0,0,1,949.422,573H936.857a5.423,5.423,0,0,1-5.424-5.423V446.919A5.423,5.423,0,0,1,936.857,441.5Z"
+                            transform="translate(-862 -155)" />
+                        <path id="矩形_3_拷貝_24-2" data-name="矩形 3 拷貝 24" class="cls-1"
+                            d="M980.742,441.5h12.541a5.423,5.423,0,0,1,5.423,5.423V567.577A5.423,5.423,0,0,1,993.283,573H980.742a5.423,5.423,0,0,1-5.423-5.423V446.919A5.423,5.423,0,0,1,980.742,441.5Z"
+                            transform="translate(-862 -155)" />
+                        <path id="矩形_3_拷貝_24-3" data-name="矩形 3 拷貝 24" class="cls-1"
+                            d="M1024.58,441.5h12.56a5.426,5.426,0,0,1,5.43,5.423V567.577a5.426,5.426,0,0,1-5.43,5.423h-12.56a5.426,5.426,0,0,1-5.43-5.423V446.919A5.426,5.426,0,0,1,1024.58,441.5Z"
+                            transform="translate(-862 -155)" />
+                        <path id="橢圓_2_拷貝_19" data-name="橢圓 2 拷貝 19" class="cls-2"
+                            d="M945.338,338.83a14.093,14.093,0,1,1-13.9,14.092A14,14,0,0,1,945.338,338.83Z"
+                            transform="translate(-862 -155)" />
+                        <path id="橢圓_2_拷貝_19-2" data-name="橢圓 2 拷貝 19" class="cls-2"
+                            d="M1019.39,338.83a14.093,14.093,0,1,1-13.93,14.092A14.007,14.007,0,0,1,1019.39,338.83Z"
+                            transform="translate(-862 -155)" />
+                        <path id="矩形_44" data-name="矩形 44" class="cls-3"
+                            d="M898.425,407.245h60.94c8.489,0,16.983,10.24,25.83,10.24,7.311,0,14.975-10.24,22.075-10.24h64.7v81.92a20.335,20.335,0,0,1-20.18,20.479H918.6a20.331,20.331,0,0,1-20.179-20.479v-81.92Z"
+                            transform="translate(-862 -155)" />
+                        <path id="橢圓_15" data-name="橢圓 15" class="cls-4"
+                            d="M987.992,429.639A6.067,6.067,0,1,1,982,435.706,6.03,6.03,0,0,1,987.992,429.639Z"
+                            transform="translate(-862 -155)" />
+                        <path id="橢圓_15_拷貝" data-name="橢圓 15 拷貝" class="cls-4"
+                            d="M987.992,449.785a6.08,6.08,0,1,1-5.991,6.08A6.037,6.037,0,0,1,987.992,449.785Z"
+                            transform="translate(-862 -155)" />
+                        <path id="矩形_45" data-name="矩形 45" class="cls-5"
+                            d="M158.06,274.625H192a0,0,0,0,1,0,0v26.508A7.867,7.867,0,0,1,184.133,309H165.927a7.867,7.867,0,0,1-7.867-7.867V274.625a0,0,0,0,1,0,0Z" />
+                        <path id="橢圓_15_拷貝_2" data-name="橢圓 15 拷貝 2" class="cls-4"
+                            d="M987.992,470.057A6.054,6.054,0,1,1,982,476.111,6.024,6.024,0,0,1,987.992,470.057Z"
+                            transform="translate(-862 -155)" />
+                        <path id="形狀_782" data-name="形狀 782" class="cls-2"
+                            d="M951.807,381.671v-3.656s11.616,6.093,35.013,6.093c22.71,0,30.52-6.093,30.52-6.093v3.656s-7.39,6.093-29.875,6.093C963.861,387.764,951.807,381.671,951.807,381.671Z"
+                            transform="translate(-862 -155)" />
+                    </svg>
+                </div>
+                <!-- 輪盤區 -->
+                <div class="prizeWheel">
+                    <img class="pw_prev" src="img/prev.png" alt="上一步">            
+                    <img class="pw_body" src="img/pwBody.png" alt="我是輪盤">
+                    <img class="pw_next" src="img/next.png" alt="上一步">
+                </div>
+            </div>
+        </div>
+
+        
+    </div>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js'></script>
+    <script>
+    function startSearch() {
+        $(".fromBox_wrap").css("display","none");
+        $(".showFriend_wrap").css("display","block");
+    }
+
+    var degree = 0;
+    var profile_index = 0;
+    var profiles = [
+        {
+            userid: "9453",
+            username: "軟軟",
+            gender: "男",
+            constellation: "水瓶座",
+            habit: "我愛php!",
+            avatar_color: "#f3f3f3"
+        },
+        {
+            userid: "9527",
+            username: "硬硬",
+            gender: "男",
+            constellation: "摩羯座",
+            habit: "套套看",
+            avatar_color: "yellow"
+        },
+        {
+            userid: "9487",
+            username: "好辣",
+            gender: "女",
+            constellation: "摩羯座",
+            habit: "找相機",
+            avatar_color: "pink"
+        },
+        {
+            userid: "9981",
+            username: "詩詩",
+            gender: "女",
+            constellation: "雙子座",
+            habit: "設計頭型",
+            avatar_color: "red"
+        },
+        {
+            userid: "9898",
+            username: "魚翔",
+            gender: "男",
+            constellation: "摩羯座",
+            habit: "打魚翔拳",
+            avatar_color: "yellow"
+        },
+        {
+            userid: "520520",
+            username: "長長",
+            gender: "男",
+            constellation: "巨蠍座",
+            habit: "扣扣看",
+            avatar_color: "blue"
+        },
+        {
+            userid: "79979",
+            username: "內內",
+            gender: "女",
+            constellation: "牡羊座",
+            habit: "修冷氣",
+            avatar_color: "red"
+        },
+        {
+            userid: "54321",
+            username: "酒酒",
+            gender: "女",
+            constellation: "雙魚座",
+            habit: "喝一杯",
+            avatar_color: "yellow"
+        }
+        ];
+
+        $(".prizeWheel .pw_prev").click(function (e) {
+            degree = degree - 45;
+            spin(degree);
+            profile_index = profile_index - 1;
+            if (profile_index < 0) {
+                profile_index = profiles.length - 1;
+            }
+            change_profile();
+        });
+
+        $(".prizeWheel .pw_next").click(function (e) {
+            degree = degree + 45;
+            spin(degree);
+            profile_index = profile_index + 1;
+            if (profile_index >= profiles.length) {
+                profile_index = 0;
+            }
+            change_profile();
+        });
+
+        function spin(degree) {
+            $(".prizeWheel .pw_body").animate(
+                {
+                    degrees: degree
+                },
+                {
+                    step: function (now, fx) {
+                        $(this).css({
+                            "-webkit-transform": "rotate(" + now + "deg)",
+                            "-moz-transform": "rotate(" + now + "deg)",
+                            transform: "rotate(" + now + "deg)"
+                        });
+                    }
+                }
+            );
+        }
+
+        function change_profile() {
+            var profile = profiles[profile_index];
+            var profile_elem = $(".profileBox .profile")[0];
+            profile_elem.querySelector("#userid").innerHTML = profile.userid;
+            profile_elem.querySelector("#nickname").innerHTML = profile.username;
+            profile_elem.querySelector("#gender").innerHTML = profile.gender;
+            profile_elem.querySelector("#constellation").innerHTML = profile.constellation;
+            profile_elem.querySelector("#habit").innerHTML = profile.habit;
+            $(".Role .cls-3").css("fill", profile.avatar_color);
+        }
+    </script>
+</body>
+</html>
