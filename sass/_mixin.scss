@@ -1,4 +1,4 @@
-// 左右置中
+@charset "UTF-8";
 @mixin absHzCenter() {
   position: absolute;
   left: 0;
@@ -6,7 +6,7 @@
   margin: auto;
 }
 
-// 上下置中
+
 @mixin absVtCenter() {
   position: absolute;
   top: 0;
