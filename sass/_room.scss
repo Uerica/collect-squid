@@ -438,8 +438,27 @@ img {
         }
     }
 
+    @include rwd(tablet) {
+        .lightbox{
+            width: 100%;
+            height: 100%;
+            border-radius: 0px;
+
+            .message{
+                height: 60%;
+                overflow: scroll;
+            }
+        }
+    }
+
+    .msgInputArea{
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center;
+    }
+
     .msgInput{
-        width: 650px;
+        width: 80%;
         height: 40px;
         border: none;
         border-radius: 10px;
@@ -447,6 +466,28 @@ img {
         font-size: 20px;
         padding: 10px;
         margin-right: 10px;
+        box-sizing: border-box;
+    }
+
+    .textCount{
+        width: 5%;
+        box-sizing: border-box;
+    }
+
+    .msgBtn{
+      width: 10%;
+      box-sizing: border-box;
+    }
+
+    @include rwd(tablet){
+      .msgInput{
+        width: 73%;
+      }
+
+      .textCount{
+        display: inline-block;
+        margin-right: 2%;
+      }
     }
 
     .msgSend{
@@ -614,7 +655,31 @@ img {
                 line-height: 1.8;
                 border-radius: 10px;
                 width: 300px;
+                margin-bottom: 20px;
             }
+
+            .getHeart{
+                display: flex;
+                flex-flow: row wrap;
+                align-items: center;
+
+                img{
+                  margin-right: 10px;
+                }
+
+                span{
+                  color: #fff;
+                }
+            }
+
+            @include rwd(tablet){
+              .getHeart{
+                img{
+                  width: 30%;
+                }
+              }
+            }
+            
 
             .btns{
                 a{
@@ -671,13 +736,13 @@ img {
     transform: translateY(210px);
     z-index: 30;
     .swiper-wrapper{
-      
+
         background: transparent;
     }
 }
 
 #furnitureTab.open{
-    transform: translateY(45px);
+    transform: translateY(55px);
     transition: transform .5s cubic-bezier(.36,.57,.53,1.22);
 }
 
@@ -762,7 +827,7 @@ img {
     display: flex;
     
     .toMall{
-      height: 150px;
+      height: 140px;
     }
 
     @include rwd(tablet){
