@@ -96,20 +96,16 @@
 
 @mixin rwd($viewport) {
   @if $viewport == mobile {
-      @media all and (max-width: $sm){
-          @content;
-      }
-  }
-  
-  @else if $viewport == tablet {
-      @media all and (max-width: $md){
-          @content;
-      }
-  }
-  
-  @else if $viewport == desktop {
-      @media all and (min-width: $lg){
-          @content;
-      }
+    @media all and (max-width: $sm) {
+      @content;
+    }
+  } @else if $viewport == tablet {
+    @media all and (max-width: $md) {
+      @content;
+    }
+  } @else if $viewport == desktop {
+    @media all and (min-width: $lg) {
+      @content;
+    }
   }
 }

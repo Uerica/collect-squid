@@ -1,393 +1,383 @@
 // 房間
-.lightboxBg{
+.lightboxBg {
+  position: absolute;
+  z-index: 99;
+  width: 100%;
+  height: 100%;
+  // background: rgba(0,0,0,.7);
+  // #775c4c
+  display: none;
+
+  .lightbox {
+    width: 50%;
+    height: 70%;
+    background: #f8b853;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
     position: absolute;
-    z-index: 99;
+    border-radius: 15px;
+    padding: 1% 3%;
+    box-sizing: border-box;
+
+    #cancel {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-top: 25px;
+      font-size: 26px;
+      margin-bottom: 20px;
+    }
+
+    .message {
+      background: #fff;
+      width: 100%;
+      height: 70%;
+      border-radius: 10px;
+      padding: 30px;
+      box-sizing: border-box;
+
+      ul {
+        li {
+          margin-bottom: 30px;
+          display: flex;
+          flex-flow: row wrap;
+
+          img {
+            margin-right: 10px;
+          }
+          span {
+            padding: 10px;
+            border: 2px solid #ff8d8d;
+            border-radius: 20px;
+          }
+        }
+      }
+    }
+  }
+
+  .msgInput {
+    width: 650px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    margin-top: 10px;
+    font-size: 20px;
+    padding: 10px;
+    margin-right: 10px;
+  }
+
+  .msgSend {
+    font-family: "Noto Sans TC";
+    font-size: 18px;
+    display: inline-block;
+    margin-top: 20px;
+    margin-left: 10px;
+    padding: 5px 10px;
+    border: 3px solid #f1f1f1;
+    border-radius: 20px;
+    color: #fff;
+    background: #fa7979;
+    position: relative;
+    z-index: 20;
+    top: -3px;
+    left: -3px;
+    box-shadow: 3px 3px #e7867e;
+    transition: 0.3s;
+    &:hover {
+      top: 0;
+      left: 0;
+      box-shadow: 0 0 transparent;
+    }
+  }
+}
+
+.lightboxBg.show {
+  display: block;
+}
+
+.myRoomBg {
+  font-size: 0;
+
+  .leftWall {
+    max-width: 500px;
+    width: 20%;
+    height: 80%;
+    background: #85afb6;
+    position: absolute;
+    display: inline-block;
+    clip-path: polygon(0 0, 100% 0, 100% 81%, 0% 100%);
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 81%, 0% 100%);
+    padding: 8% 2% 2% 2%;
+    box-sizing: border-box;
+  }
+
+  .middleWall {
+    width: 55%;
+    height: 65%;
+    background: #ffd189;
+    position: absolute;
+    display: inline-block;
+    top: 0;
+    left: 20%;
+    padding: 7% 2% 2% 2%;
+    box-sizing: border-box;
+  }
+
+  .picUpload {
     width: 100%;
     height: 100%;
-    // background: rgba(0,0,0,.7);
-    // #775c4c
-    display: none;
+    background: rgba(255, 255, 255, 0.6);
+    margin: 0 auto;
+    border-radius: 20px;
+    box-shadow: 4px 4px 3px 0 #dab375;
+    padding: 6% 2% 2% 2%;
+    box-sizing: border-box;
+    position: relative;
+  }
 
-    .lightbox{
+  .messageBoard {
+    position: relative;
+    z-index: 14;
+    span {
+      color: #000;
+      display: inline-block;
+      margin: 0 0 0 5%;
+      font-size: 16px;
+      padding: 6px 10px;
+      background: #fff;
+      border-radius: 8px;
+      border: 4px solid #ff8d8d;
+    }
+
+    img {
+      width: 20%;
+      height: auto;
+      max-width: 100%;
+      max-height: 100%;
+      padding-top: 15px;
+    }
+
+    &:hover img {
+      transform: rotate(2deg);
+      transition: transform 0.3s;
+    }
+  }
+
+  .rightWall {
+    width: 25%;
+    height: 65%;
+    background: #39526b;
+    position: absolute;
+    display: inline-block;
+    top: 0;
+    right: 0;
+
+    .roomIntro {
+      font-size: 16px;
+      position: absolute;
+      top: 20%;
+      display: flex;
+      flex-flow: column wrap;
+      align-items: center;
+      left: 15%;
+
+      h3 {
+        color: #fff;
+        margin-bottom: 20px;
+        font-size: 20px;
+        letter-spacing: 1px;
+      }
+
+      p {
+        background: #fff;
+        padding: 15px;
+        line-height: 1.6;
+        border-radius: 10px;
+        width: 300px;
+      }
+
+      .btns {
+        a {
+          display: inline-block;
+          margin-top: 20px;
+          margin-right: 10px;
+          padding: 10px 15px;
+          border: 3px solid #f1f1f1;
+          border-radius: 20px;
+          color: #fff;
+          background: #fa7979;
+          position: relative;
+          z-index: 20;
+          top: -3px;
+          left: -3px;
+          box-shadow: 3px 3px #e7867e;
+          transition: 0.3s;
+          &:hover {
+            top: 0;
+            left: 0;
+            box-shadow: 0 0 transparent;
+          }
+        }
+      }
+    }
+  }
+}
+
+#furnitureTab {
+  width: 100%;
+  height: 250px;
+  position: fixed;
+  bottom: 0;
+  transform: translateY(210px);
+  z-index: 100;
+}
+
+#furnitureTab.open {
+  transform: translateY(0px);
+  transition: transform 0.5s cubic-bezier(0.36, 0.57, 0.53, 1.22);
+}
+
+.tabTitle {
+  font-size: 0;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-end;
+}
+
+#furnitureTab > ul > li {
+  border-bottom: 3px solid #fff;
+  height: 30px;
+  line-height: 30px;
+  background: #ffd189;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  padding: 5px;
+}
+
+#furnitureTab > ul > li a {
+  color: #000;
+  font-size: 16px;
+  display: block;
+  padding: 0 15px;
+}
+
+#furnitureTab > ul > li.active {
+  background: #fab385;
+  border-bottom: 3px solid #fab385;
+}
+
+#furnitureTab > .tabContent {
+  clear: both;
+  color: #000;
+}
+
+#chairTab,
+#deskTab,
+#bedTab {
+  padding: 10px;
+  height: 250px;
+  background: #fab385;
+  display: flex;
+
+  div {
+    background: #fff;
+    width: 12.5%;
+    height: 150px;
+    margin: 10px;
+    padding: 15px;
+    border-radius: 10px;
+    box-sizing: border-box;
+
+    a {
+      display: flex;
+      flex-flow: column wrap;
+      align-items: center;
+      justify-content: center;
+    }
+
+    img {
+      width: 60%;
+      margin-bottom: 10px;
+    }
+  }
+
+  .toMall {
+    background: #f6c067;
+    border: 3px solid #fff;
+    position: relative;
+
+    a {
+      display: block;
+      width: 100%;
+      height: 100%;
+
+      img {
+        position: absolute;
         width: 50%;
-        height: 70%;
-        background: #f8b853;
         left: 0;
         right: 0;
         top: 0;
         bottom: 0;
         margin: auto;
-        position: absolute;
-        border-radius: 15px;
-        padding: 1% 3%;
-        box-sizing: border-box;
-
-        #cancel{
-            position: absolute;
-            top: 10px;
-            right: 10px;
-        }
-
-        h2{
-            text-align: center;
-            margin-top: 25px;
-            font-size: 26px;
-            margin-bottom: 20px;
-        }
-
-        .message{
-            background: #fff;
-            width: 100%;
-            height: 70%;
-            border-radius: 10px;
-            padding: 30px;
-            box-sizing: border-box;
-
-            ul{
-                li{
-                    margin-bottom: 30px;
-                    display: flex;
-                    flex-flow: row wrap;
-
-                    img{
-                        margin-right: 10px;
-                    }
-                    span{
-                        padding: 10px;
-                        border: 2px solid #ff8d8d;
-                        border-radius: 20px;
-                    }
-                }
-            }
-        }
+      }
     }
-
-    .msgInput{
-        width: 650px;
-        height: 40px;
-        border: none;
-        border-radius: 10px;
-        margin-top: 10px;
-        font-size: 20px;
-        padding: 10px;
-        margin-right: 10px;
-    }
-
-    .msgSend{
-        font-family: 'Noto Sans TC';
-        font-size: 18px;
-        display: inline-block;
-        margin-top: 20px;
-        margin-left: 10px;
-        padding: 5px 10px;
-        border: 3px solid #f1f1f1;
-        border-radius: 20px;
-        color: #fff;
-        background: #fa7979;
-        position: relative;
-        z-index: 20;
-        top: -3px;
-        left: -3px;
-        box-shadow: 3px 3px #e7867e;
-        transition: .3s;
-        &:hover{
-            top: 0;
-            left: 0;
-            box-shadow: 0 0 transparent;
-        }  
-    }
+  }
 }
 
-.lightboxBg.show{
-    display: block;
-}
+.myRoomFurniture {
+  position: relative;
+  .bed {
+    position: absolute;
+    padding-top: 25%;
+    left: 10%;
+    width: 65%;
 
-.myRoomBg{
-    font-size: 0;
-
-    .leftWall{
-        max-width: 500px;
-        width: 20%;
-        height: 80%;
-        background: #85afb6;
-        position: absolute;
-        display: inline-block;
-        clip-path: polygon(0 0, 100% 0, 100% 81%, 0% 100%);
-        -webkit-clip-path: polygon(0 0, 100% 0, 100% 81%, 0% 100%);
-        padding: 8% 2% 2% 2%;
-        box-sizing: border-box;
+    img {
+      height: auto;
+      max-width: 50%;
     }
+  }
 
-    .middleWall{
-        width: 55%;
-        height: 65%;
-        background: #ffd189;
-        position: absolute;
-        display: inline-block;
-        top: 0;
-        left: 20%;
-        padding: 7% 2% 2% 2%;
-        box-sizing: border-box;
+  .chair {
+    position: absolute;
+    padding-top: 25%;
+    left: 60%;
+    width: 40%;
+
+    img {
+      height: auto;
+      max-width: 30%;
     }
+  }
 
-    .picUpload{
-        width: 100%;
-        height: 100%;
-        background: rgba(255,255,255,.6);
-        margin: 0 auto;
-        border-radius: 20px;
-        box-shadow: 4px 4px 3px 0 #dab375;
-        padding: 6% 2% 2% 2%;
-        box-sizing: border-box;
-        position: relative;   
+  .desk {
+    position: absolute;
+    padding-top: 28%;
+    left: 78%;
+    width: 65%;
+
+    img {
+      height: auto;
+      max-width: 30%;
     }
+  }
 
-    .messageBoard{
-        position: relative;
-        z-index: 14;
-        span{
-            color: #000;
-            display: inline-block;
-            margin: 0 0 0 5%;
-            font-size: 16px;
-            padding: 6px 10px;
-            background: #fff;
-            border-radius: 8px;
-            border: 4px solid #ff8d8d;
-        }
+  .character {
+    position: absolute;
+    padding-top: 20%;
+    left: 47%;
+    width: 40%;
 
-        img{
-            width: 20%;
-            height: auto;
-            max-width: 100%;
-            max-height: 100%;
-            padding-top: 15px;
-        }
-
-        &:hover img{
-            transform: rotate(2deg);
-            transition: transform .3s;
-        }
+    img {
+      height: auto;
+      max-width: 30%;
     }
-
-    .rightWall{
-        width: 25%;
-        height: 65%;
-        background: #39526b;
-        position: absolute;
-        display: inline-block;
-        top: 0;
-        right: 0;
-
-        .roomIntro{
-            font-size: 16px;
-            position: absolute;
-            top: 20%;
-            display: flex;
-            flex-flow: column wrap;
-            align-items: center;
-            left: 15%;
-
-            h3{
-                color: #fff;
-                margin-bottom: 20px;
-                font-size: 20px;
-                letter-spacing: 1px;
-            }
-
-            p{
-                background: #fff;
-                padding: 15px;
-                line-height: 1.6;
-                border-radius: 10px;
-                width: 300px;
-            }
-
-            .btns{
-                a{
-                    display: inline-block;
-                    margin-top: 20px;
-                    margin-right: 10px;
-                    padding: 10px 15px;
-                    border: 3px solid #f1f1f1;
-                    border-radius: 20px;
-                    color: #fff;
-                    background: #fa7979;
-                    position: relative;
-                    z-index: 20;
-                    top: -3px;
-                    left: -3px;
-                    box-shadow: 3px 3px #e7867e;
-                    transition: .3s;
-                    &:hover{
-                        top: 0;
-                        left: 0;
-                        box-shadow: 0 0 transparent;
-                    }  
-                }   
-            
-            }
-        }
-
-
-    }
+  }
 }
-
-#furnitureTab{ 
-    width: 100%; 
-    height: 250px; 
-    position: fixed;
-    bottom: 0;
-    transform: translateY(210px);
-    z-index: 100;
-}
-
-#furnitureTab.open{
-    transform: translateY(0px);
-    transition: transform .5s cubic-bezier(.36,.57,.53,1.22);
-}
-
-.tabTitle{
-    font-size: 0;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: flex-end;
-}
-
-#furnitureTab > ul > li{ 
-    border-bottom: 3px solid #fff;
-    height: 30px; 
-    line-height: 30px; 
-    background: #ffd189;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    padding: 5px;
-}
-
-#furnitureTab > ul > li a{ 
-    color: #000; 
-    font-size: 16px;
-    display: block;
-    padding: 0 15px;
-}
-
-#furnitureTab > ul > li.active{ 
-    background: #fab385;
-    border-bottom: 3px solid #fab385;
-}
-
-#furnitureTab > .tabContent{ 
-    clear: both; 
-    color: #000; 
-}
-
-#chairTab, #deskTab, #bedTab{ 
-    padding: 10px; 
-    height: 250px;
-    background: #fab385;
-    display: flex;
-
-    div{
-        background: #fff;
-        width: 12.5%;
-        height: 150px;
-        margin: 10px;
-        padding: 15px;
-        border-radius: 10px;
-        box-sizing: border-box;
-        
-        a{
-            display: flex;
-            flex-flow: column wrap;
-            align-items: center;
-            justify-content: center;
-        }
-
-        img{
-            width: 60%;
-            margin-bottom: 10px;
-        }
-    }
-
-    .toMall{
-        background: #f6c067;
-        border: 3px solid #fff;
-        position: relative;
-
-        a{
-            display: block;
-            width: 100%;
-            height: 100%;
-
-            img{
-                position: absolute;
-                width: 50%;
-                left: 0;
-                right: 0;
-                top: 0;
-                bottom: 0;
-                margin: auto;
-            }
-        }
-    }
-}
-
-.myRoomFurniture{
-    position: relative;
-    .bed{
-        position: absolute;
-        padding-top: 25%;       
-        left: 10%;
-        width: 65%;
-        
-        img{
-            height: auto;
-            max-width: 50%;
-        }
-    }
-
-    .chair{
-        position: absolute;
-        padding-top: 25%;       
-        left: 60%;
-        width: 40%;
-        
-        img{
-            height: auto;
-            max-width: 30%;
-        }
-    }
-
-    .desk{
-        position: absolute;
-        padding-top: 28%;       
-        left: 78%;
-        width: 65%;
-        
-        img{
-            height: auto;
-            max-width: 30%;
-        }
-    }
-
-    .character{
-        position: absolute;
-        padding-top: 20%;       
-        left: 47%;
-        width: 40%;
-        
-        img{
-            height: auto;
-            max-width: 30%;
-        }
-    }
-}
-
-
-
-
-
-
-
-
-

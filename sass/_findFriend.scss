@@ -1,195 +1,195 @@
 // 整個檔案貼上去
 .findFriend {
-    /* 找朋友背景 */
-    background-image: url("../img/findbg.png");
-    width: 100%;
-    height: 100vh;
-    background-size: cover;
-  
-    /* 按鈕樣式 */
-    .selectBtn input {
-      display: inline-block;
-      width: 45%;
-      margin: 2% -4px;
-      padding: 3% 4%;
-      border: 3px solid #f6f6f6;
-      font-size: 16px;
-      border-radius: 20px;
-      color: #fff;
-      background-color: #fa7979;
-      position: relative;
-      top: -3px;
-      left: -3px;
-      -webkit-box-shadow: 3px 3px #e7867e;
-      box-shadow: 3px 3px #e7867e;
-      -webkit-transition: 0.3s;
-      transition: 0.3s;
-  
-      &:hover {
-        top: 0;
-        left: 0;
-        -webkit-box-shadow: 0 0 transparent;
-        box-shadow: 0 0 transparent;
-      }
-    }
-  
-    .friendSelect {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      background-color: #87d1f4;
-  
-      .card {
-        position: relative;
-      }
-      .select {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        h1 {
-          color: #663535;
-          font-size: 30px;
-          line-height: 100px;
-        }
-      }
-    }
-  
-    .friendSelect .select h1,
-    .selectBtn {
-      text-align: center;
-    }
-  
-    .select_form select {
-      appearance: none;
-      -moz-appearance: none;
-      -webkit-appearance: none;
-      width: 250px;
-      height: 50px;
-      padding: 3%;
-      border: 3px solid #f8b853;
-      border-radius: 10px;
-      background-color: #fff;
-      display: block;
-      margin-bottom: 80px;
-      color: #f8b853;
-      font-size: 20px;
-    }
-  
-    /* 搜尋後出現先隱藏 */
-    .showFriend {
-      display: none;
-    }
-  
-    /* 讓魷魚置中 */
-    .showFriend_persFile .squid_profile {
-      display: flex;
-      justify-content: center;
-      position: relative;
-      .squid {
-          width: auto;
-      }
-    }
-  
-    /* 魷魚檔案外框 */
-    .showFriend_persFile .profile {
-      position: absolute;
-      top: 30%;
-      right: 10%;
-      .txt {
-        /* 文字樣式 */
-        width: 60%;
-        font-size: 20px;
-        letter-spacing: 5px;
-        line-height: 40px;
-        color: #663535;
-        position: absolute;
-        top: 40%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
-      .btns {
-        position: absolute;
-        width: 60%;
-        left: 0;
-        right: 0;
-        margin: auto;
-        bottom: 8%;
-        input {
-          display: inline-block;
-          width: 40%;
-          padding: 3%;
-          border: 3px solid #f1f1f1;
-          border-radius: 20px;
-          color: #fff;
-          font-size: 16px;
-          background-color: #fa7979;
-          position: relative;
-          top: -3px;
-          left: -3px;
-          box-shadow: 3px 3px #e7867e;
-          transition: 0.3s;
-          &:hover {
-            top: 0;
-            left: 0;
-            box-shadow: 0 0 transparent;
-          }
-        }
-        #visitRoom {
-          background-color: #fff;
-          color: #fa7979;
-          margin-right: 4%;
-        }
-      }
-    }
-  
-    .showFriend_prizeWheel {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-around;
-    }
-  
-    .prizeWheel_body {
-      position: fixed;
-    }
+  /* 找朋友背景 */
+  background-image: url("../img/findbg.png");
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
 
-    .prizeWheel {
-      &_prev {
-        margin-top: 200px;
-      }
-      &_next {
-        margin-top: 200px;
-      }
-    }
-  
-    /* 啊魷的部分~ */
-    .cls-1 {
-      fill: #ff8d8d;
-    }
-  
-    .cls-1,
-    .cls-2,
-    .cls-3,
-    .cls-4 {
-      fill-rule: evenodd;
-    }
-  
-    .cls-2 {
-      fill: #4b4b4b;
-    }
-  
-    .cls-3 {
-      fill: #f3f3f3;
-    }
-  
-    .cls-4 {
-      fill: #5d8bae;
-    }
-  
-    .cls-5 {
-      fill: #58c7cb;
+  /* 按鈕樣式 */
+  .selectBtn input {
+    display: inline-block;
+    width: 45%;
+    margin: 2% -4px;
+    padding: 3% 4%;
+    border: 3px solid #f6f6f6;
+    font-size: 16px;
+    border-radius: 20px;
+    color: #fff;
+    background-color: #fa7979;
+    position: relative;
+    top: -3px;
+    left: -3px;
+    -webkit-box-shadow: 3px 3px #e7867e;
+    box-shadow: 3px 3px #e7867e;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+
+    &:hover {
+      top: 0;
+      left: 0;
+      -webkit-box-shadow: 0 0 transparent;
+      box-shadow: 0 0 transparent;
     }
   }
+
+  .friendSelect {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: #87d1f4;
+
+    .card {
+      position: relative;
+    }
+    .select {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      h1 {
+        color: #663535;
+        font-size: 30px;
+        line-height: 100px;
+      }
+    }
+  }
+
+  .friendSelect .select h1,
+  .selectBtn {
+    text-align: center;
+  }
+
+  .select_form select {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    width: 250px;
+    height: 50px;
+    padding: 3%;
+    border: 3px solid #f8b853;
+    border-radius: 10px;
+    background-color: #fff;
+    display: block;
+    margin-bottom: 80px;
+    color: #f8b853;
+    font-size: 20px;
+  }
+
+  /* 搜尋後出現先隱藏 */
+  .showFriend {
+    display: none;
+  }
+
+  /* 讓魷魚置中 */
+  .showFriend_persFile .squid_profile {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    .squid {
+      width: auto;
+    }
+  }
+
+  /* 魷魚檔案外框 */
+  .showFriend_persFile .profile {
+    position: absolute;
+    top: 30%;
+    right: 10%;
+    .txt {
+      /* 文字樣式 */
+      width: 60%;
+      font-size: 20px;
+      letter-spacing: 5px;
+      line-height: 40px;
+      color: #663535;
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .btns {
+      position: absolute;
+      width: 60%;
+      left: 0;
+      right: 0;
+      margin: auto;
+      bottom: 8%;
+      input {
+        display: inline-block;
+        width: 40%;
+        padding: 3%;
+        border: 3px solid #f1f1f1;
+        border-radius: 20px;
+        color: #fff;
+        font-size: 16px;
+        background-color: #fa7979;
+        position: relative;
+        top: -3px;
+        left: -3px;
+        box-shadow: 3px 3px #e7867e;
+        transition: 0.3s;
+        &:hover {
+          top: 0;
+          left: 0;
+          box-shadow: 0 0 transparent;
+        }
+      }
+      #visitRoom {
+        background-color: #fff;
+        color: #fa7979;
+        margin-right: 4%;
+      }
+    }
+  }
+
+  .showFriend_prizeWheel {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+  }
+
+  .prizeWheel_body {
+    position: fixed;
+  }
+
+  .prizeWheel {
+    &_prev {
+      margin-top: 200px;
+    }
+    &_next {
+      margin-top: 200px;
+    }
+  }
+
+  /* 啊魷的部分~ */
+  .cls-1 {
+    fill: #ff8d8d;
+  }
+
+  .cls-1,
+  .cls-2,
+  .cls-3,
+  .cls-4 {
+    fill-rule: evenodd;
+  }
+
+  .cls-2 {
+    fill: #4b4b4b;
+  }
+
+  .cls-3 {
+    fill: #f3f3f3;
+  }
+
+  .cls-4 {
+    fill: #5d8bae;
+  }
+
+  .cls-5 {
+    fill: #58c7cb;
+  }
+}

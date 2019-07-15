@@ -239,7 +239,8 @@
       </div>
       <!-- 阿魷換新衣區塊 -->
       <div class="squidArea">
-        <div class="dressingZone">
+          <button id="confirmDressing">我穿好了</button>
+          <div class="dressingZone">
             <img src="imgs/dressingRoom/squid_center.png" alt="Squid" />
             <img
               class="changedHat"
@@ -257,12 +258,11 @@
               alt="Changed Shoes"
             />
           </div>
-        <form action="post" accept-charset="utf-8" id="dressedForm">
-          <input type="hidden" id="dressedSquid" name="dressedSquid">
-          <canvas id="dressingCanvas"></canvas>
-        </form>
+          <form action="post" accept-charset="utf-8" id="dressedForm">
+            <input type="hidden" id="dressedSquid" name="dressedSquid">
+            <canvas id="dressingCanvas"></canvas>
+          </form>
       </div>
-      <button id="confirmDressing">完成穿著</button>
       <!-- 衣櫃區塊 -->
       <div class="clothesArea">
         <div class="wardrobe">
