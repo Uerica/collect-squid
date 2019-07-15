@@ -196,6 +196,21 @@ try {
 
                         <div class="item">
                             <div class="wrap">
+                                <div class="level_block" 
+                                    <?php 
+                                        if ($member->mem_lv >= $chairRow->mem_lv){ echo "style='display:none'"; } 
+                                    ?>><span id="level_block_text">需要
+                                    <span 
+                                    <?php
+                                        if($chairRow->mem_lv == 2){ echo "style='color:#1e668d'"; }
+                                        if($chairRow->mem_lv == 3){ echo "style='color:#9999dd'"; }
+                                    ?>>
+                                    <?php
+                                        if($chairRow->mem_lv == 2){ echo "貴族階級"; }
+                                        if($chairRow->mem_lv == 3){ echo "皇族階級"; }
+                                    ?>
+                                    </span>才能購買<br>前往加入<a href="">認識更多好友</a></span>
+                                </div>
                                 <div class="item_title">
                                     <h3><?php echo $chairRow->furn_name ?></h3>
                                 </div>
@@ -210,15 +225,8 @@ try {
                                     <span class="btn_bg">
                                         <div class="btn_wrap">
                                             <span class="try">試用</span>
-                                            <span class="buy">
-                                                <?php
-                                                if ($member->mem_lv >= $chairRow->mem_lv) {
-                                                    echo "購買";
-                                                } else {
-                                                    echo "無法購買";
-                                                };
-                                                ?>
-                                            </span></div>
+                                            <span class="buy">購買</span>
+                                        </div>
                                     </span>
                                 </div>
                             </div>
@@ -238,6 +246,21 @@ try {
 
                         <div class="item">
                             <div class="wrap">
+                            <div class="level_block" 
+                                    <?php 
+                                        if ($member->mem_lv >= $tableRow->mem_lv){ echo "style='display:none'"; } 
+                                    ?>><span id="level_block_text">需要
+                                    <span 
+                                    <?php
+                                        if($tableRow->mem_lv == 2){ echo "style='color:#1e668d'"; }
+                                        if($tableRow->mem_lv == 3){ echo "style='color:#9999dd'"; }
+                                    ?>>
+                                    <?php
+                                        if($tableRow->mem_lv == 2){ echo "貴族階級"; }
+                                        if($tableRow->mem_lv == 3){ echo "皇族階級"; }
+                                    ?>
+                                    </span>才能購買<br>前往加入<a href="">認識更多好友</a></span>
+                                </div>
                                 <div class="item_title">
                                     <h3><?php echo $tableRow->furn_name ?></h3>
                                 </div>
@@ -275,6 +298,21 @@ try {
 
                         <div class="item">
                             <div class="wrap">
+                            <div class="level_block" 
+                                    <?php 
+                                        if ($member->mem_lv >= $bedRow->mem_lv){ echo "style='display:none'"; } 
+                                    ?>><span id="level_block_text">需要
+                                    <span 
+                                    <?php
+                                        if($bedRow->mem_lv == 2){ echo "style='color:#1e668d'"; }
+                                        if($bedRow->mem_lv == 3){ echo "style='color:#9999dd'"; }
+                                    ?>>
+                                    <?php
+                                        if($bedRow->mem_lv == 2){ echo "貴族階級"; }
+                                        if($bedRow->mem_lv == 3){ echo "皇族階級"; }
+                                    ?>
+                                    </span>才能購買<br>前往加入<a href="">認識更多好友</a></span>
+                                </div>
                                 <div class="item_title">
                                     <h3><?php echo $bedRow->furn_name ?></h3>
                                 </div>
