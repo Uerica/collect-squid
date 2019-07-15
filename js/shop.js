@@ -1,3 +1,4 @@
+
 // 手機選單動畫
 function menuMobileTransform() {
   $(".menuMobile_link").click(function (e) {
@@ -55,16 +56,50 @@ $('.owl-carousel').owlCarousel({
 });
 
 
-// squid animation
+// 試用動畫
+
+// bedAnimation----------------------------------------
 let bedRunning = false;
 function bedAnimation() {
+
+  if (jQuery(window).width() < 768) {
+    $("#squid").css({
+      left: "45%",
+      bottom: "600%",
+    });
+    $("#head_box").css({
+      width: "135%",
+      transform: "translate(-57%,-72%)",
+    });
+    $(".foots").css({
+      bottom: "-120%",
+    });
+  } else if (jQuery(window).width() < 1025) {
+    $("#squid").css({
+      left: "45%",
+      bottom: "500%",
+    });
+    $("#head_box").css({
+      width: "140%",
+      transform: "translate(-53%,-72%)",
+    });
+    $(".foots").css({
+      bottom: "-100%",
+    });
+  }
+  else {
+    $("#squid").css({
+      left: "45%",
+      bottom: "400%",
+    });
+  }
 
   if (bedRunning) {
     return;
   }
   bedRunning = true
 
-  TweenMax.to("#bed", 1, {
+  var bed1 = TweenMax.to("#bed", 1, {
     scaleY: 1.2,
     scaleX: .8,
     repeat: -1,
@@ -73,7 +108,7 @@ function bedAnimation() {
     ease: Back.easeOut,
   });
 
-  TweenMax.fromTo("#squid", 1,
+  var bed2 = TweenMax.fromTo("#squid", 1,
     {
       y: 150,
       rotation: 55.7,
@@ -88,7 +123,7 @@ function bedAnimation() {
       yoyo: true,
     });
 
-  TweenMax.fromTo("#squid_head", 1,
+  var bed3 = TweenMax.fromTo("#squid_head", 1,
     {
       x: 0,
       rotation: 0,
@@ -101,7 +136,7 @@ function bedAnimation() {
       yoyo: true,
     });
 
-  TweenMax.fromTo(["#squid_foot1", "#squid_foot2", "#squid_foot3"], 1,
+  var bed4 = TweenMax.fromTo(["#squid_foot1", "#squid_foot2", "#squid_foot3"], 1,
     {
       y: -20,
       rotation: 20,
@@ -112,21 +147,99 @@ function bedAnimation() {
       yoyo: true,
       ease: Power4.easeOut,
     });
-}
 
-for (var i = 0; i < document.querySelectorAll("#bed_row .try").length; i++) {
-  document.querySelectorAll("#bed_row .try")[i].addEventListener("click", bedAnimation);
+  $("#bed_row .try").click(function () {
+    bed1.play();
+    bed2.play();
+    bed3.play();
+    bed4.play();
+  });
+
+  $("#chair_row .try").click(function () {
+    bed1.kill();
+    bed2.kill();
+    bed3.kill();
+    bed4.kill();
+  });
+  $("#table_row .try").click(function () {
+    bed1.kill();
+    bed2.kill();
+    bed3.kill();
+    bed4.kill();
+  });
 }
 
 $("#bed_row .try").click(function () {
-  $("#bed").attr("src", $(this).parent().parent().siblings(".img_wrap").children().attr("src"))
-    ;
+  $("#bed").css("display", "block");
+  $("#table").css("display", "none");
+  $("#chair").css("display", "none");
+  $("#bed").attr("src", $(this).parent().parent().siblings(".img_wrap").children().attr("src"));
+  bedAnimation();
+});
+// bedAnimation----------------------------------------
+
+
+// chairAnimation----------------------------------------
+let chairRunning = false;
+function chairAnimation() {
+
+  if (jQuery(window).width() < 768) {
+    $("#squid").css({
+      left: "45%",
+      bottom: "600%",
+    });
+    $("#head_box").css({
+      width: "135%",
+      transform: "translate(-57%,-72%)",
+    });
+    $(".foots").css({
+      bottom: "-120%",
+    });
+  } else if (jQuery(window).width() < 1025) {
+    $("#squid").css({
+      left: "45%",
+      bottom: "500%",
+    });
+    $("#head_box").css({
+      width: "140%",
+      transform: "translate(-53%,-72%)",
+    });
+    $(".foots").css({
+      bottom: "-100%",
+    });
+  }
+  else {
+    $("#squid_head").css({
+
+    });
+  }
+
+  if (chairRunning) {
+    return;
+  }
+  chairRunning = true;
+
+  // tl = new TimelineMax({
+  //   repeat: -1,
+  //   yoyo: true,
+  // });
+  // tl.to("#squid_foot1", 1, {
+  //   scaleY: 1.8,
+  //   repeatDelay: 1,
+  // }),
+  //   tl.to("#squid_foot1", 1, {
+  //     scaleY: .6,
+  //     repeatDelay: 1,
+  //   })
+}
+
+$("#chair_row .try").click(function () {
+  $("#bed").css("display", "none");
+  $("#table").css("display", "none");
+  $("#chair").css("display", "block");
+  $("#chair").attr("src", $(this).parent().parent().siblings(".img_wrap").children().attr("src"));
+  chairAnimation();
 });
 
-
-// function chairAnimation(){
-//   TweenMax.to("#squid",1,{
-
-//   });
-// }
 // chairAnimation();
+// chairAnimation----------------------------------------

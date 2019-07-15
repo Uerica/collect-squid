@@ -131,15 +131,15 @@
 }
 .item_title h3{
   width: 60%;
-  padding: 2px;
+  padding: 2% 5%;
   margin: auto;
   border-radius: 10px 10px 0px 0px;
-  font-size: 120%;
+  // font-size: 120%;
   @include rwd(tablet) {
-    font-size: 115%;
+    font-size: 60%;
   }
   @include rwd(mobile) {
-    font-size: 160%;
+    font-size: 110%;
   }
   @include rwd(mobile-xs) {
   }
@@ -208,6 +208,28 @@
 }
 .item{
   height: 100%;
+}
+.level_block{
+  text-align: center;
+  justify-content: space-between;
+  width: 105%;
+  height: 105%;
+  background-color: rgba(254,254,254,.85);
+  position: relative;
+  z-index: 10;
+  border-radius: 10px;
+  top: 45%;
+  left: 52.5%;
+  transform: translate(-52.5%,-50%);
+  #level_block_text{
+    position: absolute;
+    width: 100%;
+    top: 40%;
+    transform: translate(-50%);
+  }
+  a{
+    color: #fea2a0;
+  }
 }
 .owl-nav {
   height: 0px;
@@ -339,24 +361,20 @@
   bottom: 16%;
   transform: translate(-50%);
 }
-#squid{
+.squid{
   width: 20%;
   margin: auto;
   position: absolute;
-  bottom: 400%;
-  left: 45%;
+  bottom: 150%;
+  left: 50%;
   z-index: 1;
   transform: translate(-50%);
   // transform: rotate(55.7deg);
-  @include rwd(tablet) {
-    bottom: 500%;
-  }
-  @include rwd(mobile) {
-    bottom: 600%;
-  }
-  @include rwd(mobile-xs) {
-    
-  }
+}
+#chair_squid{}
+#table_squid{}
+#bed_squid{
+  display: none;
 }
 #head_box{
   position: absolute;
@@ -364,18 +382,6 @@
   transform: translate(-50%,-72%);
   max-width: unset;
   width: 145%;
-  @include rwd(tablet) {
-    width: 135%;
-    transform: translate(-53%,-72%);
-  }
-  @include rwd(mobile) {
-    width: 135%;
-    transform: translate(-57%,-72%);
-  }
-  @include rwd(mobile-xs) {
-    width: 135%;
-    transform: translate(-61%,-72%);
-  }
 }
 #squid_body{
   width: 100%;
@@ -388,30 +394,36 @@
   display: flex;
   justify-content: space-around;
   width: 100%;
+  height: 100%;
   position: absolute;
-  top: 45%;
+  bottom: -80%;
   left: 50%;
   transform: translate(-50%);
   z-index: -1;
-  overflow: hidden;
+  // overflow: hidden;
   img{
     width: 20.3%;
   }
   @include rwd(tablet) {
+    bottom: -70%;
   }
   @include rwd(mobile) {
-    top: 70%;
+    bottom: -70%;
   }
   @include rwd(mobile-xs) {
   }
 }
 .show_item{
+  width: 100%;
+}
+#bed,#table,#chair{
   width: 55%;
   position: absolute;
   left: 50%;
   bottom: 60%;
   transform: translate(-50%);
   transform-origin: bottom;
+  display: none;
 }
 .stage{
   width: 80%;
