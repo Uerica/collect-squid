@@ -6,7 +6,7 @@ $find_cardRadius:10px;
 $find_border:3px solid;
 $find_mb : 300px;
 $find_md  : 996px;
-$find_dsk : 1200px;
+$find_dsk : 1280px;
 $find_fullWidth:100%;
 
 // 字體RWD
@@ -15,13 +15,12 @@ $find_fullWidth:100%;
         font-size: 5px;
     }
     @media screen and (min-width:$find_md){
-     font-size: 10px;
+        font-size: 10px;
      }
      @media screen and (min-width:$find_dsk){
-     font-size: 15px;
+        font-size: 15px;
      }
 }
-
 // 不要裝飾
 @mixin find_noDecoration {
     appearance: none;
@@ -29,7 +28,6 @@ $find_fullWidth:100%;
     -webkit-appearance: none;
     text-decoration: none;
 }
-
 //一屏背景的size
 @mixin find_bgsize {
     width: 100%;
@@ -37,7 +35,6 @@ $find_fullWidth:100%;
     overflow: hidden;
     background-size: cover;
 }
-
 //找朋友燈箱背景的style
 @mixin find_fromBox_bg_style{
     width: 30%;
@@ -46,8 +43,8 @@ $find_fullWidth:100%;
     border:$find_border #fff;
     box-sizing: border-box;
     background-color:$find_mainYellow;
+    margin-top: 10vh;
 }
-
 //找朋友燈箱內容的style
 @mixin find_fromBox_style{
     width: 80%;
@@ -56,21 +53,18 @@ $find_fullWidth:100%;
     box-sizing: border-box;
     background-color: #fff;
 }
-
 // 陰影yoyo
 @mixin find_shadow {
     -webkit-box-shadow: 3px 3px 5px #aaa;
 	-moz-box-shadow: 3px 3px 5px #aaa;
     box-shadow: 3px 3px 5px #aaa;
 }
-
 //flex左右垂直置中,設父層
 @mixin find_flexCenter {
     display:flex;
     justify-content: center;
     align-items: center;
 }
-
 // 行高計算
 @mixin find_fontSize($fontSize) {
     font-size: $fontSize;
@@ -128,7 +122,6 @@ $find_fullWidth:100%;
     } 
 }
 
-
 // 找朋友開始拉~
 .findFriend{
     @include fontRwd();
@@ -141,8 +134,8 @@ $find_fullWidth:100%;
     //首先是我的篩選頁面拉
     .fromBox_wrap{
         @include find_flexCenter();
-        display:none;
-        // background:rgba(148, 199, 246, 0.3);
+        @include find_bgsize();
+        background:rgba(148, 199, 246, 0.3);
 
         //篩選燈箱底加
         .fromBox_bg{
@@ -217,6 +210,7 @@ $find_fullWidth:100%;
 
     //找到朋友摟!
     .showFriend_wrap{
+        display:none;
         .showFriend_interact{
             widows:$find_fullWidth;
             flex-flow: column;
