@@ -24,15 +24,10 @@
 }
 .shed {
   width: 106%;
-<<<<<<< HEAD
   max-width: unset;
-  transform: translate(-3%,-85%);
+  transform: translate(-3%, -85%);
   position: relative;
   z-index: 5;
-=======
-  transform: translate(-3%, -85%);
-  float: left;
->>>>>>> benson
 }
 .item_group {
   width: 100%;
@@ -103,15 +98,6 @@
 .bed_row {
   width: 100%;
   height: 33.3333%;
-<<<<<<< HEAD
-=======
-}
-.chair_hidden,
-.table_hidden,
-.bed_hidden {
-  width: 100%;
-  height: 100%;
->>>>>>> benson
   border-bottom: 10px solid #d8d8d8;
   box-sizing: border-box;
   @include rwd(tablet) {
@@ -123,47 +109,30 @@
     height: 100%;
   }
 }
-<<<<<<< HEAD
-.chair_row{
+.chair_row {
   background-color: #92d7e7;
 }
-.table_row{
+.table_row {
   background-color: #f9e3b2;
 }
-.bed_row{
+.bed_row {
   background-color: #97d7d9;
 }
 
-.wrap{
+.wrap {
   width: 90%;
   height: 90%;
   margin: auto;
-=======
-.chair_hidden {
-  background-color: #92d7e7;
-}
-.table_hidden {
-  background-color: #f9e3b2;
-}
-.bed_hidden {
-  background-color: #97d7d9;
-}
-.arrow_left {
-  width: 30px;
-  height: 50px;
-  background: url(/imgs/shop/arrowleft.png) no-repeat center center;
->>>>>>> benson
   position: absolute;
   bottom: 0;
   left: 50%;
   transform: translate(-50%);
 }
-<<<<<<< HEAD
-.item_title{
+.item_title {
   text-align: center;
   width: 70%;
 }
-.item_title h3{
+.item_title h3 {
   width: 60%;
   padding: 2% 5%;
   margin: auto;
@@ -178,41 +147,13 @@
   @include rwd(mobile-xs) {
   }
 }
-.img_bg{
+.img_bg {
   width: 70%;
   height: 80%;
   border-radius: 10px 10px 0px 10px;
-=======
-.arrow_right {
-  width: 30px;
-  height: 50px;
-  background: url(/imgs/shop/arrowright.png) no-repeat center center;
-  position: absolute;
-  z-index: 1;
-  top: 50%;
-  right: 2px;
-  transform: translateY(-50%);
-  cursor: pointer;
-}
-.chair_items,
-.table_items,
-.bed_items {
-  position: absolute;
-  height: 100%;
-  display: flex;
-}
-.item {
->>>>>>> benson
   position: relative;
 }
-<<<<<<< HEAD
-.img_wrap{
-=======
-.item_bg {
-  width: 60%;
-}
-.wrap {
->>>>>>> benson
+.img_wrap {
   width: 80%;
   height: 80%;
   background-color: #fff;
@@ -221,17 +162,16 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
 }
-<<<<<<< HEAD
-.img_wrap img{
+.img_wrap img {
   width: 100%;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
 }
-.btn_bg{
+.btn_bg {
   width: 42%;
   height: 60%;
   padding: 3px 0px;
@@ -241,110 +181,62 @@
   transform: translate(100%);
   border-radius: 0px 10px 10px 0px;
 }
-.btn_wrap{
+.btn_wrap {
   width: 100%;
   height: 90%;
   position: absolute;
-=======
-.item_bg {
-  height: 100%;
-  border-radius: 10px 10px 0px 10px;
-  padding: 15px;
-  text-align: center;
-  position: relative;
->>>>>>> benson
   top: 50%;
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 }
-<<<<<<< HEAD
-.chair_row .img_bg,.chair_row .item_title h3,.chair_row .btn_bg{
+.chair_row .img_bg,
+.chair_row .item_title h3,
+.chair_row .btn_bg {
   background-color: #e4f2f5;
 }
-.table_row .img_bg,.table_row .item_title h3,.table_row .btn_bg{
+.table_row .img_bg,
+.table_row .item_title h3,
+.table_row .btn_bg {
   background-color: #f9f5eb;
 }
-.bed_row .img_bg,.bed_row .item_title h3,.bed_row .btn_bg{
+.bed_row .img_bg,
+.bed_row .item_title h3,
+.bed_row .btn_bg {
   background-color: #e5f2f3;
 }
-.owl-stage-outer{
+.owl-stage-outer {
   height: 100%;
 }
-.owl-stage{
+.owl-stage {
   height: 100%;
 }
-.owl-item{
+.owl-item {
   height: 100%;
 }
-.item{
-=======
-.chair_items .item_bg,
-.chair_items .item_title {
-  background-color: #e4f2f5;
-}
-.table_items .item_bg,
-.table_items .item_title {
-  background-color: #f9f5eb;
-}
-.bed_items .item_bg,
-.bed_items .item_title {
-  background-color: #e5f2f3;
-}
-.item_title {
-  width: 60%;
-  height: 20%;
-  border-radius: 10px 10px 0px 0px;
-  position: absolute;
-  left: 50%;
-  z-index: 1;
-  transform: translate(-50%, -100%);
-}
-.item_title h3 {
-  font-size: 20px;
-  margin: 2px;
-}
-.img_wrap {
-  height: 85%;
-  background-color: #fff;
-  box-shadow: 1px 3px #ddd inset;
-  border-radius: 10px;
-  padding: 10px;
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-}
-.img_wrap img {
->>>>>>> benson
+.item {
   height: 100%;
 }
-<<<<<<< HEAD
-.level_block{
+.level_block {
   text-align: center;
   justify-content: space-between;
   width: 105%;
   height: 105%;
-  background-color: rgba(254,254,254,.85);
-=======
-
-.table_items .img_wrap img {
-  width: 100%;
-  height: unset;
->>>>>>> benson
+  background-color: rgba(254, 254, 254, 0.85);
   position: relative;
   z-index: 10;
   border-radius: 10px;
   top: 45%;
   left: 52.5%;
-  transform: translate(-52.5%,-50%);
-  #level_block_text{
+  transform: translate(-52.5%, -50%);
+  #level_block_text {
     position: absolute;
     width: 100%;
     top: 40%;
     transform: translate(-50%);
   }
-  a{
+  a {
     color: #fea2a0;
   }
 }
@@ -362,7 +254,6 @@
   background: url(../imgs/shop/arrowleft.png) no-repeat center center;
   font-size: 0px;
   @include rwd(tablet) {
-   
   }
   @include rwd(mobile) {
     left: 0;
@@ -372,7 +263,6 @@
   }
 }
 
-<<<<<<< HEAD
 .owl-next span {
   width: 30px;
   height: 50px;
@@ -383,7 +273,6 @@
   background: url(../imgs/shop/arrowright.png) no-repeat center center;
   font-size: 0px;
   @include rwd(tablet) {
-   
   }
   @include rwd(mobile) {
     right: 0;
@@ -393,10 +282,7 @@
   }
 }
 
-.price_tag{
-=======
 .price_tag {
->>>>>>> benson
   width: 50%;
   position: absolute;
   top: 0px;
@@ -414,31 +300,15 @@
   top: 50%;
   left: 50%;
 }
-<<<<<<< HEAD
 
-
-
-.try,.buy{
-=======
-.btn_wrap {
-  width: 35%;
-  height: 60%;
-  border-radius: 0px 10px 10px 0px;
-  background-color: rgba(249, 249, 249, 0.8);
-  position: absolute;
-  right: -35%;
-  bottom: 0px;
-}
 .try,
 .buy {
->>>>>>> benson
   @include btn();
   display: block;
   cursor: pointer;
   text-align: center;
   transform: translate(-5%);
   @include rwd(tablet) {
-   
   }
   @include rwd(mobile) {
     font-size: 100%;
@@ -496,43 +366,38 @@
   bottom: 16%;
   transform: translate(-50%);
 }
-<<<<<<< HEAD
-.squid{
+.squid {
   width: 20%;
   margin: auto;
   position: absolute;
   bottom: 150%;
   left: 50%;
-=======
-.squid {
-  width: 50%;
-  position: relative;
-  top: 100px;
->>>>>>> benson
   z-index: 1;
   transform: translate(-50%);
   // transform: rotate(55.7deg);
 }
-#chair_squid{}
-#table_squid{}
-#bed_squid{
+#chair_squid {
+}
+#table_squid {
+}
+#bed_squid {
   display: none;
 }
-#head_box{
+#head_box {
   position: absolute;
   left: 51.5%;
-  transform: translate(-50%,-72%);
+  transform: translate(-50%, -72%);
   max-width: unset;
   width: 145%;
 }
-#squid_body{
+#squid_body {
   width: 100%;
   position: relative;
   left: 50%;
   // bottom: 0px;
   transform: translate(-50%);
 }
-.foots{
+.foots {
   display: flex;
   justify-content: space-around;
   width: 100%;
@@ -543,7 +408,7 @@
   transform: translate(-50%);
   z-index: -1;
   // overflow: hidden;
-  img{
+  img {
     width: 20.3%;
   }
   @include rwd(tablet) {
@@ -555,14 +420,12 @@
   @include rwd(mobile-xs) {
   }
 }
-<<<<<<< HEAD
-.show_item{
+.show_item {
   width: 100%;
 }
-#bed,#table,#chair{
-=======
-.show_item {
->>>>>>> benson
+#bed,
+#table,
+#chair {
   width: 55%;
   position: absolute;
   left: 50%;
@@ -576,71 +439,9 @@
 }
 .tab_title {
   display: none;
-<<<<<<< HEAD
   @include rwd(tablet) {
   }
   @include rwd(mobile) {
-=======
-}
-
-@include rwd(desktop) {
-  .shop_area {
-    margin-top: 12%;
-  }
-  .chair_items,
-  .table_items,
-  .bed_items {
-    width: 300%;
-  }
-  .item {
-    width: calc(100% / 3);
-    height: 80%;
-  }
-}
-
-@include rwd(mobile) {
-  .shop_area {
-    width: 55%;
-    margin-top: 80px;
-  }
-  .type {
-    display: none;
-  }
-  .chair_row,
-  .table_row,
-  .bed_row {
-    height: 100%;
-  }
-  .chair_items,
-  .table_items,
-  .bed_items {
-    width: 900%;
-  }
-  .item {
-    width: 100%;
-    height: 80%;
-  }
-  .item_title h3 {
-    font-size: 28px;
-  }
-  .price_tag {
-    width: 50%;
-    top: -10%;
-    right: calc(-50% - (-10px));
-  }
-  .try,
-  .buy {
-    margin: 15px 2px;
-  }
-  .light {
-    width: 20%;
-    margin: 30px auto;
-  }
-  .squid {
-    top: 40px;
-  }
-  .tab_title {
->>>>>>> benson
     writing-mode: vertical-lr;
     display: flex;
     justify-content: space-between;
@@ -648,14 +449,8 @@
     position: absolute;
     top: 50%;
     z-index: 1;
-<<<<<<< HEAD
-    transform: translate(-100%,-50%);
-    li{
-=======
-    transform: translate(-100%, 10%);
+    transform: translate(-100%, -50%);
     li {
-      display: inline-block;
->>>>>>> benson
       text-align: center;
       width: 44px;
       height: 50px;
@@ -675,11 +470,7 @@
     }
   }
 }
-<<<<<<< HEAD
 
 // *{
 //   outline: 1px solid #f00 !important;
 // }
-
-=======
->>>>>>> benson
