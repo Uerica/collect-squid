@@ -1,0 +1,323 @@
+
+//所有自訂變數都加上find
+$find_mainYellow:#f8b853;
+$find_titleColor:#663535;
+$find_cardRadius:10px;
+$find_border:3px solid;
+$find_mb : 300px;
+$find_md  : 996px;
+$find_dsk : 1280px;
+$find_fullWidth:100%;
+
+// 字體RWD
+@mixin fontRwd {
+    @media screen and (min-width:$find_mb){
+        font-size: 5px;
+    }
+    @media screen and (min-width:$find_md){
+        font-size: 10px;
+     }
+     @media screen and (min-width:$find_dsk){
+        font-size: 15px;
+     }
+}
+// 不要裝飾
+@mixin find_noDecoration {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    text-decoration: none;
+}
+//一屏背景的size
+@mixin find_bgsize {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background-size: cover;
+}
+//找朋友燈箱背景的style
+@mixin find_fromBox_bg_style{
+    width: 30%;
+    height: 80vh;
+    border-radius:$find_cardRadius;
+    border:$find_border #fff;
+    box-sizing: border-box;
+    background-color:$find_mainYellow;
+    margin-top: 10vh;
+}
+//找朋友燈箱內容的style
+@mixin find_fromBox_style{
+    width: 80%;
+    height: 80%;
+    border-radius:$find_cardRadius;
+    box-sizing: border-box;
+    background-color: #fff;
+}
+// 陰影yoyo
+@mixin find_shadow {
+    -webkit-box-shadow: 3px 3px 5px #aaa;
+	-moz-box-shadow: 3px 3px 5px #aaa;
+    box-shadow: 3px 3px 5px #aaa;
+}
+//flex左右垂直置中,設父層
+@mixin find_flexCenter {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+// 行高計算
+@mixin find_fontSize($fontSize) {
+    font-size: $fontSize;
+    @if($fontSize>=4){
+    line-height:$fontSize*0.5;
+    }
+}
+
+//找朋友按鈕
+@mixin find_btn{
+    border:$find_border #fff;
+    border-radius:$find_cardRadius+5;
+    color: #fff;
+    background-color: #fa7979;
+    -webkit-box-shadow: 4px 4px #e7867e;
+    box-shadow: 4px 4px #e7867e;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+    cursor: pointer;
+    position: relative;
+        &:hover {
+            top: 0;
+            left: 0;
+            -webkit-box-shadow:none;
+            box-shadow:none;
+        }
+}
+
+@mixin roleStyle{
+    .cls-1,
+    .cls-2,
+    .cls-3,
+    .cls-4 {
+        fill-rule: evenodd;
+    }
+
+    .cls-1 {
+        fill: #ff8d8d;
+    }
+
+    .cls-2 {
+        fill: #4b4b4b;
+    }
+
+    .cls-3 {
+        fill: #f3f3f3;
+    }
+
+    .cls-4 {
+        fill: #5d8bae;
+    }
+
+    .cls-5 {
+        fill: #58c7cb;
+    } 
+}
+
+// 找朋友開始拉~
+.findFriend{
+    @include fontRwd();
+    @include find_bgsize();
+    //背景圖
+    .findFriend_embed{
+        position: fixed;
+        z-index: -2;
+    }
+    //首先是我的篩選頁面拉
+    .fromBox_wrap{
+        @include find_flexCenter();
+        @include find_bgsize();
+        background:rgba(148, 199, 246, 0.3);
+
+        //篩選燈箱底加
+        .fromBox_bg{
+            @include find_fromBox_bg_style();
+            @include find_shadow();
+            @include find_flexCenter();
+            flex-flow: column;
+            justify-content: space-around;
+
+            //燈箱白色內容
+            .fromBox{
+                @include find_fromBox_style();
+                
+                //篩選區開始搂
+                .fromSelect{
+                    height: 100%;
+                    text-align: center;
+                    display: flex;
+                    flex-direction: column;
+                
+                    h1{
+                        @include find_fontSize(4em);
+                        color:$find_titleColor;
+                    }
+
+                    form{
+                        flex: 1;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-around;
+                    }
+
+                    div{
+                        // flex: 1;
+                        @include find_flexCenter();
+                    }
+
+                    select{
+                        width: 80%;
+                        // @include find_fontSize(2em);
+                        @include find_noDecoration();
+                        border:$find_border $find_mainYellow;
+                        border-radius:$find_cardRadius;
+                        // margin: 10% 0;
+                        font-family: inherit;
+                        color: $find_mainYellow;
+                    
+                        option{
+                            font-family: inherit;
+                                &:disabled{
+                                    color:#abc;
+                                    opacity: .8;
+                                }
+                            }
+                        }
+                    }
+                }
+        }
+
+        .selectBtn{
+            width: 100%;
+            text-align: center;
+        }
+
+        // margin: auto;
+        .selectBtn input{
+            @include find_fontSize(2em);
+            @include find_btn();
+            width: 30%;
+            @include rwd(mobile) {
+                width: 50%;
+                font-size: 14px;
+            }
+        }
+    }
+
+    //找到朋友摟!
+    .showFriend_wrap{
+        display:none;
+        .showFriend_interact{
+            width:$find_fullWidth;
+            flex-flow: column;
+            padding: 10% 0;
+            @include find_flexCenter();
+            position: relative;
+            @include rwd(mobile) {
+                padding: 0;
+            }
+            .profileBox_bg{
+                background-color:$find_mainYellow;
+                width: 20vw;
+                height: 40vh;
+                position: absolute;
+                top: 20vh;
+                right: 10vw;
+                @include find_flexCenter();
+                flex-flow: column;
+                border:$find_border #fff;
+                @include find_shadow();
+                border-radius: $find_cardRadius;
+                @include rwd(mobile) {
+                    width: 35vw;
+                    height: 75vh;
+                    top: initial;
+                    bottom: 70px;
+                    right: 4vw;
+                }
+                .profileBox{
+                    width: 80%;
+                    height: 70%;
+                    background-color: #fff;
+                    padding: 5%;
+                    box-sizing: border-box;
+                    border-radius: $find_cardRadius;
+                    overflow:hidden;
+                    @include rwd(mobile) {
+                        padding: 0;
+                        display: flex;
+                        justify-content: center;
+                    }
+                    .profile{
+                        p{
+                            @include find_fontSize(1.6em);
+                            line-height: 2em;
+                            color: $find_titleColor;
+                            @include rwd(mobile) {
+                                font-size: 16px;
+                            }
+                        }
+                    }
+                }
+                .btns{
+                    width: 100%;
+                    text-align: center;
+                }
+                .btns input{
+                    @include find_fontSize(1em);
+                    @include find_btn();
+                    width: 30%;
+                    line-height: 2em;
+                    margin:3%;
+                    @include rwd(mobile) {
+                        width: 35%;
+                    }
+                }
+            }
+
+            .Role{
+                width: 13%;
+                svg{
+                    width:$find_fullWidth;
+                    @include roleStyle;
+                }
+                @include rwd(mobile) {
+                    transform: translate(-100px, 100px);
+                }
+            }
+            
+            .prizeWheel{
+                display: flex;
+                justify-content: center;
+                width: 40%;
+                @include rwd(mobile) {
+                    transform: translate(-100px, 100px);
+                }
+
+                .pw_prev{
+                    width: 5vw;
+                    height: 5vw;
+                    transform:translate(0,100%);
+                }
+                .pw_body{
+                    width:$find_fullWidth;
+                }
+                .pw_next{
+                    width: 5vw;
+                    height: 5vw;
+                    transform:translate(0,100%);
+                }
+            }
+        }
+    }
+
+}
+    
