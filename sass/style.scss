@@ -1376,31 +1376,31 @@ $num-particles: 20; //煙的數量
     }
   }
 
-  // @keyframes smoke-#{$i} {
-  //   0% {
-  //     offset-distance: 0%;
-  //     transform: scale(1) rotate(#{random() * 30deg});
-  //     opacity: 1;
-  //   }
-  //   100% {
-  //     //translateX(calc(角度 * 1vh)
-  //     offset-distance: 100%;
-  //     transform: scale(#{random() * 0.75 + 0.5}) translateX(calc(50 * 1vh))
-  //       scaleX(#{random() * 4 + 2}) scaleY(#{random() * 0.5 + 1.5})
-  //       rotate(#{random() * 90deg});
-  //     opacity: 0;
+  @keyframes smoke-#{$i} {
+    0% {
+      offset-distance: 0%;
+      transform: scale(1) rotate(#{random() * 30deg});
+      opacity: 1;
+    }
+    100% {
+      //translateX(calc(角度 * 1vh)
+      offset-distance: 100%;
+      transform: scale(#{random() * 0.75 + 0.5}) translateX(calc(50 * 1vh))
+        scaleX(#{random() * 4 + 2}) scaleY(#{random() * 0.5 + 1.5})
+        rotate(#{random() * 90deg});
+      opacity: 0;
 
-  //     @include rwd(tablet) {
-  //       transform: translateX(calc(60 * 1vh));
-  //     }
-  //     @include rwd(mobile) {
-  //       transform: translateX(calc(80 * 1vh));
-  //     }
-  //     @include rwd(mobile-xs) {
-  //       transform: translateX(calc(500 * 1vh));
-  //     }
-  //   }
-  // }
+      @include rwd(tablet) {
+        transform: translateX(calc(60 * 1vh));
+      }
+      @include rwd(mobile) {
+        transform: translateX(calc(80 * 1vh));
+      }
+      @include rwd(mobile-xs) {
+        transform: translateX(calc(500 * 1vh));
+      }
+    }
+  }
 }
 // bus------------------------------------------------------
 // fountain------------------------------------------------------
