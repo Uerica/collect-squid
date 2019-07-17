@@ -9,7 +9,7 @@ const browsersync = require("browser-sync").create();
 function sass() {
   return src("./sass/*.scss")
     .pipe(style())
-    .pipe(dest("./css"));
+    .pipe(dest("./sass"));
 }
 //browserSync
 function browserSync(done) {
