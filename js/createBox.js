@@ -92,11 +92,6 @@ $(".backToLoginBtn").click(function() {
   $(".loginBox").css({ display: "flex" });
 });
 
-// 創建鈕
-// $(".createRoleBtn").click(function() {
-//   $(".createBox").css({ display: "none" });
-// });
-
 function active(item) {
   item.siblings().removeClass("active");
   item.addClass("active");
@@ -218,29 +213,29 @@ context.fillStyle = "#f00";
 context.fillRect(50, 50, 100, 100);
 context.clearRect(0, 0, 1000, 1000);
 
-$(".createRoleBtn").click(saveRole);
+// $(".createRoleBtn").click(saveRole);
 
-function saveRole() {
-  const drawingCanvas = document.querySelector("#roleCanvas");
-  const dataURL = drawingCanvas.toDataURL("image/png");
-  document.querySelector("#createdSquid").value = dataURL;
-  const formData = new FormData(document.getElementById("creatingForm"));
+// function saveRole() {
+//   const drawingCanvas = document.querySelector("#roleCanvas");
+//   const dataURL = drawingCanvas.toDataURL("image/png");
+//   document.querySelector("#createdSquid").value = dataURL;
+//   const formData = new FormData(document.getElementById("creatingForm"));
 
-  const xhr = new XMLHttpRequest();
+//   const xhr = new XMLHttpRequest();
 
-  xhr.onload = () => {
-    if (xhr.status == 200) {
-      if (xhr.responseText == "error") {
-        alert("Error");
-      } else {
-        alert("創角成功");
-        $(".createBox").css({ display: "none" });
-      }
-    } else {
-      alert(xhr.status);
-    }
-  };
+//   xhr.onload = () => {
+//     if (xhr.status == 200) {
+//       if (xhr.responseText == "error") {
+//         alert("Error");
+//       } else {
+//         alert("創角成功");
+//         $(".createBox").css({ display: "none" });
+//       }
+//     } else {
+//       alert(xhr.status);
+//     }
+//   };
 
-  xhr.open("POST", "createFinished.php", true);
-  xhr.send(formData);
-}
+//   xhr.open("POST", "sendRoleData.php", true);
+//   xhr.send(formData);
+// }

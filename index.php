@@ -602,17 +602,17 @@
           <form action="">
             <div class="personalInfo">
               <div class="inputField">
-                <label for="memId">暱稱</label>
-                <input type="text" name="memId" id="memId" />
+                <label for="mem_name">暱稱</label>
+                <input type="text" name="mem_name" id="login_mem_name" />
               </div>
               <div class="inputField">
-                <label for="memPsw">密碼</label>
-                <input type="text" name="memPsw" id="memPsw" />
+                <label for="mem_pwd">密碼</label>
+                <input type="text" name="mem_pwd" id="login_mem_pwd" />
               </div>
               <a href="javascript:;">忘記密碼？</a>
             </div>
             <div class="submitBtns">
-              <input class="createRole" type="submit" value="創角" />
+              <input class="createRole" type="button" value="創角" />
               <input type="button" value="登入" onclick="login()" />
               <input class="godMode" type="submit" value="上帝模式" />
             </div>
@@ -627,28 +627,28 @@
         <div class="createFrame">
           <form action="">
             <div class="inputField">
-              <label for="gender">性別</label
-              ><input type="text" name="gender" id="gender" />
+              <label for="mem_gender">性別</label
+              ><input type="text" name="mem_gender" id="create_mem_gender" />
             </div>
             <div class="inputField">
               <label for="birthday">生日</label
-              ><input type="text" name="birthday" id="birthday" />
+              ><input type="date" name="mem_dob" id="create_mem_dob" />
             </div>
             <div class="inputField">
-              <label for="memName">姓名</label
-              ><input type="text" name="memName" id="memName" />
+              <label for="mem_name">姓名</label
+              ><input type="text" name="mem_name" id="create_mem_name" />
             </div>
             <div class="inputField">
-              <label for="email">信箱</label
-              ><input type="email" name="email" id="email" />
+              <label for="mem_email">信箱</label
+              ><input type="email" name="mem_email" id="create_mem_email" />
             </div>
             <div class="inputField">
-              <label for="memPsw">密碼</label
-              ><input type="password" name="memPsw" id="memPsw" />
+              <label for="mem_pwd">密碼</label
+              ><input type="password" name="mem_pwd" id="create_mem_pwd" />
             </div>
             <div class="inputField">
-              <label for="checkMemPsw">確認密碼</label
-              ><input type="password" name="checkMemPsw" id="checkMemPsw" />
+              <label for="mem_pwd_checked">確認密碼</label
+              ><input type="password" name="mem_pwd_checked" id="mem_pwd_checked" />
             </div>
           </form>
           <div class="styling">
@@ -1012,6 +1012,7 @@
     <script src="js/main.js"></script>
     <script src="js/loginBox.js"></script>
     <script src="js/createBox.js"></script>
+    <script src="js/createRoleData.js"></script>
     <script src="js/newCharacter.js"></script>
     <!-- <script src="js/chatbot.js"></script> -->
     <script src="js/chat.js"></script>
