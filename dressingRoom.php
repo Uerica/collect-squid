@@ -2,34 +2,45 @@
   $errMsg = '';
   try {
     require_once('connectSquid.php');
+
+    $hatLength = 0;
+    $cloLength = 0;
+    $shoesLength = 0;
+
     // 從資料庫抓帽子
     $hatsSQL = '
     SELECT * 
     FROM product_clothing
-    WHERE clo_type = :clo_type;
+    WHERE clo_type = :clo_type
+    AND mem_lv <= :mem_lv;
     ';
-    $hats = $pdo->prepare($hatsSQL);
+    $hats = $pdo->prepare($hatsSQL); 
     $hats->bindValue(':clo_type', 1);
+    $hats->bindValue(':mem_lv', 1);
     $hats->execute();
 
     // 從資料庫抓衣服
     $clothesSQL = '
     SELECT *
     FROM product_clothing
-    WHERE clo_type = :clo_type;
+    WHERE clo_type = :clo_type
+    AND mem_lv <= :mem_lv;
     ';
     $clothes = $pdo->prepare($clothesSQL);
     $clothes->bindValue(':clo_type', 2);
+    $clothes->bindValue(':mem_lv', 2);
     $clothes->execute();
 
     // 從資料庫抓鞋子
     $shoesSQL = '
     SELECT *
     FROM product_clothing
-    WHERE clo_type = :clo_type;
+    WHERE clo_type = :clo_type
+    AND mem_lv <= :mem_lv;
     ';
     $shoes = $pdo->prepare($shoesSQL);
     $shoes->bindValue(':clo_type', 3);
+    $shoes->bindValue(':mem_lv', 2);
     $shoes->execute();
 
   } catch(PDOException $e) {
@@ -37,6 +48,7 @@
     $errMsg .= $e->getLine()."<br>";
   }
 ?>
+
 
 
 <!DOCTYPE html>
@@ -237,7 +249,7 @@
           </form>
       </div>
       <!-- 衣櫃區塊 -->
-      <div class="clothesArea">
+      <div class="clothesArea" id="app">
         <div class="wardrobe">
           <h3>我的衣櫃</h3>
           <!-- 衣櫃上蓋 -->
@@ -245,10 +257,11 @@
           <div class="storages">
             <!-- 帽子區 -->
             <div class="hats storage">
-              <div class="leftBtn"></div>
+              <div v-if="hatLength > 3" class="leftBtn"></div>
               <div class="owl-carousel owl-theme">
                 <?php 
                   while($hatRow = $hats->fetch(PDO::FETCH_ASSOC)) {
+                    $hatLength++;
                 ?>
                   <div class="myItem">
                     <a class="changeHat" href="javascript:;"
@@ -260,14 +273,15 @@
                 }
                 ?>
               </div>
-              <div class="rightBtn"></div>
+              <div v-if="hatLength > 3" class="rightBtn"></div>
             </div>
             <!-- 衣服區 -->
             <div class="clothes storage">
-              <div class="leftBtn"></div>
+              <div v-if="cloLength > 3" class="leftBtn"></div>
               <div class="owl-carousel owl-theme">
                 <?php
                   while($clothRow = $clothes->fetch(PDO::FETCH_ASSOC)) {
+                    $cloLength++;
                 ?>
                   <div class="myItem">
                     <a class="changeClo" href="javascript:;">
@@ -281,14 +295,15 @@
                   }
                 ?>
               </div>
-              <div class="rightBtn"></div>
+              <div v-if="cloLength > 3" class="rightBtn"></div>
             </div>
             <!-- 鞋子區 -->
             <div class="shoes storage">
-              <div class="leftBtn"></div>
+              <div v-if="shoesLength > 3" class="leftBtn"></div>
               <div class="owl-carousel owl-theme">
                 <?php 
                   while($shoeRow = $shoes->fetch(PDO::FETCH_ASSOC)) {
+                    $shoesLength++;
                 ?>
                   <div class="myItem">
                     <a class="changeShoes" href="javascript:;">
@@ -302,7 +317,7 @@
                   }
                 ?>
               </div>
-              <div class="rightBtn"></div>
+              <div v-if="shoesLength > 3" class="rightBtn"></div>
             </div>
           </div>
         </div>
@@ -360,6 +375,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
     <script src="node_modules/owl.carousel/dist/owl.carousel.min.js"></script>
     <script src="node_modules/gsap/src/minified/TweenMax.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js'></script>
     <script src="js/dressingRoom.js"></script>
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          hatLength: <?php echo $hatLength; ?>,
+          cloLength: <?php echo $cloLength; ?>,
+          shoesLength: <?php echo $shoesLength; ?>
+        }
+      });
+    </script>
   </body>
 </html>

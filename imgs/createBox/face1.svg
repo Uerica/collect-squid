@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="286" height="56.094" viewBox="0 0 286 56.094">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: #4b4b4b;
+      }
+
+      .cls-2 {
+        fill-rule: evenodd;
+      }
+    </style>
+    <clipPath id="clip-path">
+      <rect x="0.297" y="0.188" width="286" height="56"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#clip-path)">
+    <g id="face1">
+      <ellipse id="橢圓_2_拷貝_24" data-name="橢圓 2 拷貝 24" class="cls-1" cx="100.641" cy="15.969" rx="15.906" ry="16.156"/>
+      <circle id="橢圓_2_拷貝_24-2" data-name="橢圓 2 拷貝 24" class="cls-1" cx="185.328" cy="15.969" r="15.938"/>
+      <path id="形狀_782_拷貝_5" data-name="形狀 782 拷貝 5" class="cls-2" d="M105.732,48.74V44.551s13.289,6.982,40.055,6.982c25.979,0,34.916-6.982,34.916-6.982V48.74s-8.455,6.982-34.179,6.982C119.522,55.722,105.732,48.74,105.732,48.74Z" transform="translate(0.297 0.188)"/>
+    </g>
+  </g>
+</svg>

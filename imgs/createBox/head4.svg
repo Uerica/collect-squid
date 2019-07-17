@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="286" height="231" viewBox="0 0 286 231">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #ff8d8d;
+        fill-rule: evenodd;
+      }
+    </style>
+    <clipPath id="clip-path">
+      <rect x="0.5" y="-10" width="286" height="231"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#clip-path)">
+    <g id="head4">
+      <path id="多邊形_1_拷貝_39" data-name="多邊形 1 拷貝 39" class="cls-1" d="M203.436,118.692Q264.374,231.018,142.5,231.017T81.56,118.692Q142.5,6.368,203.436,118.692Z" transform="translate(0.5 -10)"/>
+      <path id="多邊形_1_拷貝_39-2" data-name="多邊形 1 拷貝 39" class="cls-1" d="M49.879,132.331Q-42.748,20,142.505,20.006t92.627,112.325Q142.5,244.656,49.879,132.331Z" transform="translate(0.5 -10)"/>
+    </g>
+  </g>
+</svg>
