@@ -1,4 +1,3 @@
-
 // 手機選單動畫
 function menuMobileTransform() {
   $(".menuMobile_link").click(function (e) {
@@ -18,6 +17,7 @@ $(document).ready(function () {
 // 商店頁籤
 $(window).resize(tab);
 $(window).load(tab);
+
 function tab() {
   var $li = $('ul.tab_title li');
 
@@ -30,8 +30,7 @@ function tab() {
         $(this).addClass('active').siblings('.active').removeClass('active');
       });
     });
-  }
-  else {
+  } else {
     $($li.find('a').attr('href')).siblings('.tab_inner').show();
   }
 }
@@ -39,7 +38,7 @@ function tab() {
 
 // 商店owl.carousel
 $('.owl-carousel').owlCarousel({
-  loop: true,
+  loop: false,
   nav: true,
   dots: false,
   responsive: {
@@ -60,6 +59,7 @@ $('.owl-carousel').owlCarousel({
 
 // bedAnimation----------------------------------------
 let bedRunning = false;
+
 function bedAnimation() {
 
   if (jQuery(window).width() < 768) {
@@ -86,8 +86,7 @@ function bedAnimation() {
     $(".foots").css({
       bottom: "-100%",
     });
-  }
-  else {
+  } else {
     $("#squid").css({
       left: "45%",
       bottom: "400%",
@@ -108,45 +107,39 @@ function bedAnimation() {
     ease: Back.easeOut,
   });
 
-  var bed2 = TweenMax.fromTo("#bed_squid", 1,
-    {
-      y: 150,
-      rotation: 55.7,
-      repeat: -1,
-      yoyo: true,
-    },
-    {
-      y: 0,
-      rotation: 70.7,
-      ease: Power4.easeOut,
-      repeat: -1,
-      yoyo: true,
-    });
+  var bed2 = TweenMax.fromTo("#bed_squid", 1, {
+    y: 150,
+    rotation: 55.7,
+    repeat: -1,
+    yoyo: true,
+  }, {
+    y: 0,
+    rotation: 70.7,
+    ease: Power4.easeOut,
+    repeat: -1,
+    yoyo: true,
+  });
 
-  var bed3 = TweenMax.fromTo("#squid_head", 1,
-    {
-      x: 0,
-      rotation: 0,
-      transformOrigin: "right,bottom",
-    },
-    {
-      x: 10,
-      rotation: 10,
-      repeat: -1,
-      yoyo: true,
-    });
+  var bed3 = TweenMax.fromTo("#squid_head", 1, {
+    x: 0,
+    rotation: 0,
+    transformOrigin: "right,bottom",
+  }, {
+    x: 10,
+    rotation: 10,
+    repeat: -1,
+    yoyo: true,
+  });
 
-  var bed4 = TweenMax.fromTo(["#squid_foot1", "#squid_foot2", "#squid_foot3"], 1,
-    {
-      y: -20,
-      rotation: 20,
-    },
-    {
-      rotation: -20,
-      repeat: -1,
-      yoyo: true,
-      ease: Power4.easeOut,
-    });
+  var bed4 = TweenMax.fromTo(["#squid_foot1", "#squid_foot2", "#squid_foot3"], 1, {
+    y: -20,
+    rotation: 20,
+  }, {
+    rotation: -20,
+    repeat: -1,
+    yoyo: true,
+    ease: Power4.easeOut,
+  });
 
   $("#bed_row .try").click(function () {
     // bed1.play();
@@ -185,6 +178,7 @@ $("#bed_row .try").click(function () {
 
 // chairAnimation----------------------------------------
 let chairRunning = false;
+
 function chairAnimation() {
 
   if (jQuery(window).width() < 768) {
@@ -211,8 +205,7 @@ function chairAnimation() {
     $(".foots").css({
       bottom: "-100%",
     });
-  }
-  else {
+  } else {
     $("#squid_head").css({
 
     });
@@ -249,26 +242,34 @@ $("#chair_row .try").click(function () {
 // chairAnimation----------------------------------------
 
 
-// buy------------------
+// buy----------------------------------
 $(document).ready(function () {
   $(".buy").click(function () {
-    console.log(this);
-    let xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState == 4) {
-        if (xhr.status == 200) {
-          // document.getElementById("showPanel").innerHTML = xhr.responseText;
-          // alert(xhr.responseText);
-        } else {
-          alert(xhr.status);
+    if (this.innerText != "已購買") {
+      $("#confirmBox").attr("style", "display:block");
+      
+      $("confirm_btn").click(function(){});
+      let buttonText = this;
+      let xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4) {
+          if (xhr.status == 200) {
+            buttonText.innerText = xhr.responseText;
+          } else {
+            alert(xhr.status);
+          }
         }
       }
+      let url = "buy.php";
+      xhr.open("post", url, true);
+      let buyForm = new FormData(this.parentNode);
+      xhr.send(buyForm);
     }
 
-    let url = "buy.php";
-    xhr.open("post", url, true);
-    let buyForm = new FormData(this.parentNode);
-    xhr.send(buyForm);
   });
 });
+// buy---------------------------------
 
+$("#cancel_btn").click(function(){
+  $("#confirmBox").attr("style", "display:none");
+});
