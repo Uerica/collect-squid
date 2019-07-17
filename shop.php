@@ -36,12 +36,12 @@ try {
     $mem_furns = $pdo->prepare($sql);
     $mem_furns->bindValue(":mem_no", "1"); //from session
     $mem_furns->execute();
-
     $mem_furnsArr = array();
     while($mem_furnRow = $mem_furns->fetchObject()){
         array_push($mem_furnsArr,$mem_furnRow->furn_no);
     }
-    print_r($mem_furnsArr);
+    
+    
 } catch (PDOException $e) {
     echo "錯誤 : ", $e->getMessage(), "<br>";
     echo "行號 : ", $e->getLine(), "<br>";
@@ -189,7 +189,10 @@ try {
             </ul>
         </nav>
     </header> -->
-
+<div id="confirmBox" style="display:none">
+    <button id="confirm_btn">確定
+    <button id="cancel_btn">取消
+</div>
     <div class="shop">
         <div class="shop_area">
             <div class="item_group">
@@ -248,15 +251,13 @@ try {
                                             <form action="buy.php" method="get">
                                                 <input type="hidden" value="<?php echo $chairRow->furn_price ?>" name="furn_price">
                                                 <input type="hidden" value="<?php echo $chairRow->furn_no ?>" name="furn_no">
-                                                <span class="buy">
-                                                    <?php
-                                                    if(in_array($chairRow->furn_no,$mem_furnsArr)){
-                                                        echo "已購買";
-                                                    }else {
-                                                        echo "購買";
-                                                    }
-                                                    ?>
-                                                </span>
+                                                <span class="buy"><?php 
+                                                if(in_array($chairRow->furn_no,$mem_furnsArr)){
+                                                    echo "已購買";
+                                                }else {
+                                                    echo "購買";
+                                                }
+                                                ?></span>
                                             </form>
                                         </div>
                                     </span>
@@ -318,7 +319,13 @@ try {
                                             <form action="buy.php" method="get">
                                                 <input type="hidden" value="<?php echo $tableRow->furn_price ?>" name="furn_price">
                                                 <input type="hidden" value="<?php echo $tableRow->furn_no ?>" name="furn_no">
-                                                <span class="buy">購買</span>
+                                                <span class="buy"><?php 
+                                                if(in_array($tableRow->furn_no,$mem_furnsArr)){
+                                                    echo "已購買";
+                                                }else {
+                                                    echo "購買";
+                                                }
+                                                ?></span>
                                             </form>
                                         </div>
                                     </span>
@@ -380,7 +387,13 @@ try {
                                             <form action="buy.php" method="get">
                                                 <input type="hidden" value="<?php echo $bedRow->furn_price ?>" name="furn_price">
                                                 <input type="hidden" value="<?php echo $bedRow->furn_no ?>" name="furn_no">
-                                                <span class="buy">購買</span>
+                                                <span class="buy"><?php 
+                                                if(in_array($bedRow->furn_no,$mem_furnsArr)){
+                                                    echo "已購買";
+                                                }else {
+                                                    echo "購買";
+                                                }
+                                                ?></span>
                                             </form>
                                         </div>
                                     </span>
