@@ -21,4 +21,5 @@ $addFur->bindValue(":furn_no", $furn_no);
 $addFur->bindValue(":pur_time",date("Y-m-d"));
 $addFur->execute();
 
+
 ?>
