@@ -1,3 +1,20 @@
+<<<<<<< HEAD
+=======
+<?php
+$errMsg = "";
+try {
+	require_once("connectDB.php");
+
+	$sql = "select * from member";
+	$products = $pdo->query($sql); 
+	$prodRows = $products->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+	echo "錯誤 : ", $e -> getMessage(), "<br>";
+	echo "行號 : ", $e -> getLine(), "<br>";
+}
+ 
+?>
+>>>>>>> 25148cea57e12471e261d9fc16fe8809f60003e3
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,12 +27,17 @@
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
     <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js'></script> -->
     <script src="js/jquery-3.4.1.min.js"></script>
+<<<<<<< HEAD
     <!-- <script src="js/vue.js"></script> -->
+=======
+    <script src="js/vue.js"></script>
+>>>>>>> 25148cea57e12471e261d9fc16fe8809f60003e3
     
     <title>會員中心</title>
 </head>
 
 <body>
+<<<<<<< HEAD
 
 <?php
 $errMsg = "";
@@ -37,6 +59,8 @@ try {
 ?>
 
 
+=======
+>>>>>>> 25148cea57e12471e261d9fc16fe8809f60003e3
     <!-- Navbar  -->
     <header class="common_header disabledScrollOnHover">
         <div class="menuMobile">
@@ -197,9 +221,15 @@ try {
 
         <div class="memArea">
             <div class="memAreaMiddlebox">
+<<<<<<< HEAD
                 <div class="memPhoto_phone">
                     <img src="imgs/memberCenter/memCenter_photo.png" alt="會員魷魚圖">
                 </div>
+=======
+                <!--<div class="memPhoto_phone">-->
+                <img src="imgs/memberCenter/memCenter_photo.png" alt="會員魷魚圖">
+                <!--</div>-->
+>>>>>>> 25148cea57e12471e261d9fc16fe8809f60003e3
                 <!-- <div class="memFileMidbox"> *****-->
                 <div class="memFile">
                     <!--手機版用-->
@@ -243,7 +273,13 @@ try {
                                     <td></td>
                                 </tr><!-- -->
                             </table>
+<<<<<<< HEAD
                         
+=======
+
+
+                            <!-- </div> *****-->
+>>>>>>> 25148cea57e12471e261d9fc16fe8809f60003e3
                             <div class="memFileInfoBtn">
                                 <button id="Edit_phone" class="btnEdit">編輯基本資料</button>
                             </div>
@@ -312,6 +348,7 @@ try {
                     <!-- 會員資訊欄 -->
                     <div id="memInfo_web" class="memFileWrapInfo">
                         <!-- <form action=""> -->
+<<<<<<< HEAD
                         <?php
                             if($members->rowCount() != 0){
                                 $member = $members->fetch();
@@ -352,6 +389,34 @@ try {
                                 echo "no";
                              }
                             ?>
+=======
+                            <table>
+                                <tr>
+                                    <th>編號:</th>
+                                    <td></td>
+                                    <th>星座:</th>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th>暱稱:</th>
+                                    <td></td>
+                                    <th>帳號:</th>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th>性別:</th>
+                                    <td></td>
+                                    <th>密碼:</th>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th>生日:</th>
+                                    <td></td>
+                                    <th>信箱:</th>
+                                    <td></td>
+                                </tr>
+                            </table>
+>>>>>>> 25148cea57e12471e261d9fc16fe8809f60003e3
 
 
                             <!-- </div> *****-->
@@ -364,12 +429,16 @@ try {
                     <!-- form表單,input輸入 -->
                     <div id="memForm_web" class="memFileWrapFrom">
                         <div class="memFileForm_web">
+<<<<<<< HEAD
                             <form id="myForm_web">
+=======
+>>>>>>> 25148cea57e12471e261d9fc16fe8809f60003e3
                             <table>
                                 <tr>
                                     <th>編號:</th>
                                     <td></td>
                                     <th>星座:</th>
+<<<<<<< HEAD
                                     <td><input type="text" name="mem_sign" value="<?php echo $member["mem_sign"]; ?>"></td>
                                 </tr>
                                 <tr>
@@ -398,6 +467,29 @@ try {
                                 </tr>
                             </table>
                             </form>
+=======
+                                    <td><input type="text"></td>
+                                </tr>
+                                <tr>
+                                    <th>暱稱:</th>
+                                    <td><input type="text"></td>
+                                    <th>帳號:</th>
+                                    <td><input type="text"></td>
+                                </tr>
+                                <tr>
+                                    <th>性別:</th>
+                                    <td><input type="text"></td>
+                                    <th>密碼:</th>
+                                    <td><input type="text"></td>
+                                </tr>
+                                <tr>
+                                    <th>生日:</th>
+                                    <td><input type="text"></td>
+                                    <th>信箱:</th>
+                                    <td><input type="text"></td>
+                                </tr>
+                            </table>
+>>>>>>> 25148cea57e12471e261d9fc16fe8809f60003e3
 
 
                             <!-- </div> *****-->
@@ -450,7 +542,10 @@ try {
 
             </div>
         </div>
+<<<<<<< HEAD
         
+=======
+>>>>>>> 25148cea57e12471e261d9fc16fe8809f60003e3
 
         <div id="grpRecord" class="groupRecord">
 
@@ -552,11 +647,16 @@ try {
 
 
 
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> 25148cea57e12471e261d9fc16fe8809f60003e3
 
         <!-- 電腦版 記錄區 -->
         <div class="recordArea_web">
             <ul class="recordAreaUl_web">
+<<<<<<< HEAD
                 <li id="msgLi" class="yellow">留言記錄</li>
                 <li id="grpLi" class="white">揪團記錄</li>
                 <li id="shopLi" class="white">購物記錄</li>
@@ -592,6 +692,14 @@ try {
             
         ?>
 
+=======
+                    <li id="msgLi" class="yellow">留言記錄</li>
+                    <li id="grpLi" class="white">揪團記錄</li>
+                    <li id="shopLi" class="white">購物記錄</li>
+                </ul>
+
+                
+>>>>>>> 25148cea57e12471e261d9fc16fe8809f60003e3
             <div id="msgRecord_web"class="msgRecord_web">
 
                 <!-- 留言記錄 電腦版 -->
@@ -605,9 +713,15 @@ try {
                             </div>
                             <div class="msgRecordRightWrap">
                                 <div class="msgRecordText">
+<<<<<<< HEAD
                                         <p><?php echo $msgRecord["cmt_cnt"]; ?> <!--魷魚好辣跟她的家都超辣的，希望我或我
                                         的家也能有她一半那麼辣就好了，希望她
                                         能加我好友。留言記錄--></p>
+=======
+                                        <p>魷魚好辣跟她的家都超辣的，希望我或我
+                                        的家也能有她一半那麼辣就好了，希望她
+                                        能加我好友。留言記錄</p>
+>>>>>>> 25148cea57e12471e261d9fc16fe8809f60003e3
                                 </div>
 
                                 <div class="msgRecordEditBtn_web">
@@ -636,6 +750,7 @@ try {
                     </div>
                 </div> -->
 
+<<<<<<< HEAD
         <?php 
              }else{
                 echo "no";
@@ -643,6 +758,8 @@ try {
         ?>
 
 
+=======
+>>>>>>> 25148cea57e12471e261d9fc16fe8809f60003e3
 
                 <!-- form表單,input輸入 -->
                 <div id="msgInput_web" class="msgRecordWrapforinput">
@@ -668,6 +785,7 @@ try {
             </div>
 
 
+<<<<<<< HEAD
 
             <!-- 揪團記錄 抓MySQL內容 -->
         <?php
@@ -699,6 +817,8 @@ try {
             
         ?>
 
+=======
+>>>>>>> 25148cea57e12471e261d9fc16fe8809f60003e3
                 <!-- 揪團記錄 電腦版 -->
             <div id="grpRecord_web" class="grpRecord_web">
                 <div id="msgBlock_web" class="msgRecordWrapforrecord">
@@ -709,9 +829,15 @@ try {
                             </div>
                             <div class="msgRecordRightWrap">
                                 <div class="msgRecordText">
+<<<<<<< HEAD
                                         <p><?php echo $grpRecord["evt_name"]; ?><!--魷魚好辣跟她的家都超辣的，希望我或我
                                         的家也能有她一半那麼辣就好了，希望她
                                         能加我好友。揪團紀錄--></p>
+=======
+                                        <p>魷魚好辣跟她的家都超辣的，希望我或我
+                                        的家也能有她一半那麼辣就好了，希望她
+                                        能加我好友。揪團紀錄</p>
+>>>>>>> 25148cea57e12471e261d9fc16fe8809f60003e3
                                 </div>
 
                                 <div class="msgRecordEditBtn_web">
@@ -723,11 +849,14 @@ try {
                         </div>
                     </div>
                 </div>
+<<<<<<< HEAD
         <?php 
              }else{
                 echo "no";
              }
         ?>
+=======
+>>>>>>> 25148cea57e12471e261d9fc16fe8809f60003e3
                 
 
 
@@ -765,7 +894,11 @@ try {
                             </div>
                             <div class="msgRecordRightWrap">
                                 <div class="msgRecordText">
+<<<<<<< HEAD
                                         <p><!---->魷魚好辣跟她的家都超辣的，希望我或我
+=======
+                                        <p>魷魚好辣跟她的家都超辣的，希望我或我
+>>>>>>> 25148cea57e12471e261d9fc16fe8809f60003e3
                                         的家也能有她一半那麼辣就好了，希望她
                                         能加我好友。購物紀錄</p>
                                 </div>
