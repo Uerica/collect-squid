@@ -1,9 +1,9 @@
 <?php
 $errMsg = "";
 try {
-    $dns = "mysql:host=localhost;port=3306;dbname=dd101g2;charset=utf8";
-    $user = "tumlivein";
-    $psw = "YueGp60208";
+    $dns = "mysql:host=sql.uerica.com;port=3307;dbname=dd101g2;charset=utf8";
+    $user = "dd101g2";
+    $psw = "dd101g2";
     $options = array(PDO::ATTR_CASE => PDO::CASE_NATURAL, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
     $pdo = new PDO($dns, $user, $psw, $options);
 
@@ -22,19 +22,19 @@ try {
     $beds->execute();
 
 
-    $sql = "select * from member where mem_name=:mem_name and mem_pwd=:mem_pwd";
+    $sql = "select * from member where mem_email=:mem_email and mem_pwd=:mem_pwd";
     $members = $pdo->prepare($sql);
-    $members->bindValue(":mem_name", "abc"); //from session
-    $members->bindValue(":mem_pwd", "abc"); //from session
+    $members->bindValue(":mem_email", "hard@gmail.com"); //from session
+    $members->bindValue(":mem_pwd", "hard"); //from session
     $members->execute();
-
+    echo $members->rowCount();
     if ($members->rowCount() != 0) {
         $member = $members->fetchObject();
     }
 
     $sql = "select * from mem_furniture where mem_no=:mem_no";
     $mem_furns = $pdo->prepare($sql);
-    $mem_furns->bindValue(":mem_no", "1"); //from session
+    $mem_furns->bindValue(":mem_no", "3"); //from session
     $mem_furns->execute();
     $mem_furnsArr = array();
     while($mem_furnRow = $mem_furns->fetchObject()){

@@ -63,7 +63,7 @@ let bedRunning = false;
 function bedAnimation() {
 
   if (jQuery(window).width() < 768) {
-    $("#squid").css({
+    $("#bed_squid").css({
       left: "45%",
       bottom: "600%",
     });
@@ -75,7 +75,7 @@ function bedAnimation() {
       bottom: "-120%",
     });
   } else if (jQuery(window).width() < 1025) {
-    $("#squid").css({
+    $("#bed_squid").css({
       left: "45%",
       bottom: "500%",
     });
@@ -86,8 +86,9 @@ function bedAnimation() {
     $(".foots").css({
       bottom: "-100%",
     });
-  } else {
-    $("#squid").css({
+  }
+  else {
+    $("#bed_squid").css({
       left: "45%",
       bottom: "400%",
     });
@@ -107,62 +108,64 @@ function bedAnimation() {
     ease: Back.easeOut,
   });
 
-  var bed2 = TweenMax.fromTo("#bed_squid", 1, {
-    y: 150,
-    rotation: 55.7,
-    repeat: -1,
-    yoyo: true,
-  }, {
-    y: 0,
-    rotation: 70.7,
-    ease: Power4.easeOut,
-    repeat: -1,
-    yoyo: true,
-  });
+  var bed2 = TweenMax.fromTo("#bed_squid", 1,
+    {
+      y: 150,
+      rotation: 55.7,
+      repeat: -1,
+      yoyo: true,
+    },
+    {
+      y: 0,
+      rotation: 70.7,
+      ease: Power4.easeOut,
+      repeat: -1,
+      yoyo: true,
+    });
 
-  var bed3 = TweenMax.fromTo("#squid_head", 1, {
-    x: 0,
-    rotation: 0,
-    transformOrigin: "right,bottom",
-  }, {
-    x: 10,
-    rotation: 10,
-    repeat: -1,
-    yoyo: true,
-  });
+  var bed3 = TweenMax.fromTo("#squid_head", 1,
+    {
+      x: 0,
+      rotation: 0,
+      transformOrigin: "right,bottom",
+    },
+    {
+      x: 10,
+      rotation: 10,
+      repeat: -1,
+      yoyo: true,
+    });
 
-  var bed4 = TweenMax.fromTo(["#squid_foot1", "#squid_foot2", "#squid_foot3"], 1, {
-    y: -20,
-    rotation: 20,
-  }, {
-    rotation: -20,
-    repeat: -1,
-    yoyo: true,
-    ease: Power4.easeOut,
-  });
+  var bed4 = TweenMax.fromTo(["#squid_foot1", "#squid_foot2", "#squid_foot3"], 1,
+    {
+      y: -20,
+      rotation: 20,
+    },
+    {
+      rotation: -20,
+      repeat: -1,
+      yoyo: true,
+      ease: Power4.easeOut,
+    });
 
   $("#bed_row .try").click(function () {
-    // bed1.play();
-    // bed2.play();
-    // bed3.play();
-    // bed4.play();
+    bed1.play();
+    bed2.play();
+    bed3.play();
+    bed4.play();
   });
 
   $("#chair_row .try").click(function () {
-    // bed1.kill();
-    // bed2.kill();
-    // bed3.kill();
-    // bed4.kill();
+    bed1.kill();
+    bed2.kill();
+    bed3.kill();
+    bed4.kill();
   });
   $("#table_row .try").click(function () {
-    bed1.restart();
-    bed2.restart();
-    bed3.restart();
-    bed4.restart();
-    // bed1.kill();
-    // bed2.kill();
-    // bed3.kill();
-    // bed4.kill();
+    bed1.kill();
+    bed2.kill();
+    bed3.kill();
+    bed4.kill();
   });
 }
 
@@ -177,44 +180,44 @@ $("#bed_row .try").click(function () {
 
 
 // chairAnimation----------------------------------------
-let chairRunning = false;
+// let chairRunning = false;
 
-function chairAnimation() {
+// function chairAnimation() {
 
-  if (jQuery(window).width() < 768) {
-    $("#squid").css({
-      left: "45%",
-      bottom: "600%",
-    });
-    $("#head_box").css({
-      width: "135%",
-      transform: "translate(-57%,-72%)",
-    });
-    $(".foots").css({
-      bottom: "-120%",
-    });
-  } else if (jQuery(window).width() < 1025) {
-    $("#squid").css({
-      left: "45%",
-      bottom: "500%",
-    });
-    $("#head_box").css({
-      width: "140%",
-      transform: "translate(-53%,-72%)",
-    });
-    $(".foots").css({
-      bottom: "-100%",
-    });
-  } else {
-    $("#squid_head").css({
+//   if (jQuery(window).width() < 768) {
+//     $("#squid").css({
+//       left: "45%",
+//       bottom: "600%",
+//     });
+//     $("#head_box").css({
+//       width: "135%",
+//       transform: "translate(-57%,-72%)",
+//     });
+//     $(".foots").css({
+//       bottom: "-120%",
+//     });
+//   } else if (jQuery(window).width() < 1025) {
+//     $("#squid").css({
+//       left: "45%",
+//       bottom: "500%",
+//     });
+//     $("#head_box").css({
+//       width: "140%",
+//       transform: "translate(-53%,-72%)",
+//     });
+//     $(".foots").css({
+//       bottom: "-100%",
+//     });
+//   } else {
+//     $("#squid_head").css({
 
-    });
-  }
+//     });
+//   }
 
-  if (chairRunning) {
-    return;
-  }
-  chairRunning = true;
+//   if (chairRunning) {
+//     return;
+//   }
+//   chairRunning = true;
 
   // tl = new TimelineMax({
   //   repeat: -1,
@@ -228,7 +231,7 @@ function chairAnimation() {
   //     scaleY: .6,
   //     repeatDelay: 1,
   //   })
-}
+// }
 
 $("#chair_row .try").click(function () {
   $("#bed").css("display", "none");
