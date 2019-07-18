@@ -1,16 +1,5 @@
 <?php
     session_start();
-
-    function generateRandomString($length = 13) {
-        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $charactersLength = strlen($characters);
-        $randomString = '';
-        for ($i = 0; $i < $length; $i++) {
-            $randomString .= $characters[rand(0, $charactersLength - 1)];
-        }
-        return $randomString;
-    }
-
     $errMsg = '';
     try {
         require_once('connectSquid.php');
@@ -25,16 +14,16 @@
             $lastID = $lastRow["mem_no"] + 1;
             
             $style_no = "imgs/createBox/myRole".$lastID.".png";
-            $mem_name = $_REQUEST["mem_name"];
-            $mem_pwd = $_REQUEST["mem_pwd"];
-            $mem_email = $_REQUEST["mem_email"];
+            $mem_name = trim($_REQUEST["mem_name"]);
+            $mem_pwd = trim($_REQUEST["mem_pwd"]);
+            $mem_email = trim($_REQUEST["mem_email"]);
             $mem_lv = $_REQUEST["mem_lv"];
             $highest_lv = $_REQUEST["highest_lv"];
             $squid_qty = $_REQUEST["squid_qty"];
             $mem_gender = $_REQUEST["mem_gender"];
             $mem_dob = $_REQUEST["mem_dob"];
-            $mem_sign = $_REQUEST["mem_sign"];
-            $mem_avatar = $_REQUEST["mem_avatar"];
+            $mem_sign = trim($_REQUEST["mem_sign"]);
+            $mem_avatar = trim($_REQUEST["mem_avatar"]);
             $pdo->beginTransaction();
             
             // 匯入測試
@@ -85,7 +74,7 @@
             $file = $upload_dir.$fileName.".png";
             $success = file_put_contents($file, $data);
         
-            $SESSION["myRole"] = $file;
+            $_SESSION["myRole"] = $file;
             echo $success ? $file : 'error';
         }
         echo "創角成功~";

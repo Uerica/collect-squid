@@ -11,11 +11,29 @@
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css'/>
     <link rel="stylesheet" href="css/hover.css">
     <link rel="stylesheet" href="css/global.css">
-    <link rel="stylesheet" href="sass/style.css">
+    <!-- <link rel="stylesheet" href="sass/style.css"> -->
+    <link rel="stylesheet" href="css/style.css">
     <title>收集友誼</title>
+    <style>
+      .loginSquid {
+        position: fixed;
+        width: 100px;
+        height: 100px;
+        top: 300px;
+        left: 300px;
+        z-index: 1000;
+      }
+      .loginSquid img {
+        width: 100%;
+      }
+    </style>
 </head>
 
 <body>
+    <div class="loginSquid">
+      <img src="" alt="Penny">
+    </div>
+
     <div class="common_cursor"></div>
 
     <!-- <div class="gameWorld_tutorial">
@@ -607,13 +625,13 @@
               </div>
               <div class="inputField">
                 <label for="mem_pwd">密碼</label>
-                <input type="text" name="mem_pwd" id="login_mem_pwd" />
+                <input type="password" name="mem_pwd" id="login_mem_pwd" />
               </div>
               <a href="javascript:;">忘記密碼？</a>
             </div>
             <div class="submitBtns">
               <input class="createRole" type="button" value="創角" />
-              <input type="button" value="登入" onclick="login()" />
+              <input id="loginBtn" type="button" value="登入"/>
               <input class="godMode" type="submit" value="上帝模式" />
             </div>
           </form>

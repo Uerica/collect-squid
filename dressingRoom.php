@@ -16,7 +16,7 @@
     ';
     $hats = $pdo->prepare($hatsSQL); 
     $hats->bindValue(':clo_type', 1);
-    $hats->bindValue(':mem_lv', 1);
+    $hats->bindValue(':mem_lv', 3);
     $hats->execute();
 
     // 從資料庫抓衣服
@@ -28,7 +28,7 @@
     ';
     $clothes = $pdo->prepare($clothesSQL);
     $clothes->bindValue(':clo_type', 2);
-    $clothes->bindValue(':mem_lv', 2);
+    $clothes->bindValue(':mem_lv', 3);
     $clothes->execute();
 
     // 從資料庫抓鞋子
@@ -40,7 +40,7 @@
     ';
     $shoes = $pdo->prepare($shoesSQL);
     $shoes->bindValue(':clo_type', 3);
-    $shoes->bindValue(':mem_lv', 2);
+    $shoes->bindValue(':mem_lv', 3);
     $shoes->execute();
 
   } catch(PDOException $e) {
@@ -62,7 +62,7 @@
       rel="stylesheet"
       href="node_modules/owl.carousel/dist/assets/owl.carousel.min.css"
     />
-    <!-- <link rel="stylesheet" href="css/style.css" /> -->
+    <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="sass/style.css" />
     <title>收集友誼</title>
   </head>
