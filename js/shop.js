@@ -57,6 +57,24 @@ $('.owl-carousel').owlCarousel({
 
 // 試用動畫
 
+// chairAnimation--------------------------------------
+$("#chair_row .try").click(function () {
+  $("#bed,#table,#bed_squid,#table_squid").css("display", "none");
+  $("#chair,#chair_squid").css("display", "block");
+  $("#chair").attr("src", $(this).parent().parent().siblings(".img_wrap").children().attr("src"));
+});
+// chairAnimation--------------------------------------
+
+
+// tableAnimation--------------------------------------
+$("#table_row .try").click(function () {
+  $("#bed,#chair,#bed_squid,#chair_squid").css("display", "none");
+  $("#table,#table_squid").css("display", "block");
+  $("#table").attr("src", $(this).parent().parent().siblings(".img_wrap").children().attr("src"));
+});
+// tableAnimation--------------------------------------
+
+
 // bedAnimation----------------------------------------
 let bedRunning = false;
 
@@ -86,8 +104,7 @@ function bedAnimation() {
     $(".foots").css({
       bottom: "-100%",
     });
-  }
-  else {
+  } else {
     $("#bed_squid").css({
       left: "45%",
       bottom: "400%",
@@ -108,45 +125,39 @@ function bedAnimation() {
     ease: Back.easeOut,
   });
 
-  var bed2 = TweenMax.fromTo("#bed_squid", 1,
-    {
-      y: 150,
-      rotation: 55.7,
-      repeat: -1,
-      yoyo: true,
-    },
-    {
-      y: 0,
-      rotation: 70.7,
-      ease: Power4.easeOut,
-      repeat: -1,
-      yoyo: true,
-    });
+  var bed2 = TweenMax.fromTo("#bed_squid", 1, {
+    y: 150,
+    rotation: 55.7,
+    repeat: -1,
+    yoyo: true,
+  }, {
+    y: 0,
+    rotation: 70.7,
+    ease: Power4.easeOut,
+    repeat: -1,
+    yoyo: true,
+  });
 
-  var bed3 = TweenMax.fromTo("#squid_head", 1,
-    {
-      x: 0,
-      rotation: 0,
-      transformOrigin: "right,bottom",
-    },
-    {
-      x: 10,
-      rotation: 10,
-      repeat: -1,
-      yoyo: true,
-    });
+  var bed3 = TweenMax.fromTo("#squid_head", 1, {
+    x: 0,
+    rotation: 0,
+    transformOrigin: "right,bottom",
+  }, {
+    x: 10,
+    rotation: 10,
+    repeat: -1,
+    yoyo: true,
+  });
 
-  var bed4 = TweenMax.fromTo(["#squid_foot1", "#squid_foot2", "#squid_foot3"], 1,
-    {
-      y: -20,
-      rotation: 20,
-    },
-    {
-      rotation: -20,
-      repeat: -1,
-      yoyo: true,
-      ease: Power4.easeOut,
-    });
+  var bed4 = TweenMax.fromTo(["#squid_foot1", "#squid_foot2", "#squid_foot3"], 1, {
+    y: -20,
+    rotation: 20,
+  }, {
+    rotation: -20,
+    repeat: -1,
+    yoyo: true,
+    ease: Power4.easeOut,
+  });
 
   $("#bed_row .try").click(function () {
     bed1.play();
@@ -161,6 +172,7 @@ function bedAnimation() {
     bed3.kill();
     bed4.kill();
   });
+
   $("#table_row .try").click(function () {
     bed1.kill();
     bed2.kill();
@@ -170,109 +182,46 @@ function bedAnimation() {
 }
 
 $("#bed_row .try").click(function () {
-  $("#bed").css("display", "block");
-  $("#table").css("display", "none");
-  $("#chair").css("display", "none");
+  $("#chair,#table,#chair_squid,#table_squid").css("display", "none");
+  $("#bed,#bed_squid").css("display", "block");
   $("#bed").attr("src", $(this).parent().parent().siblings(".img_wrap").children().attr("src"));
   bedAnimation();
 });
 // bedAnimation----------------------------------------
 
 
-// chairAnimation----------------------------------------
-// let chairRunning = false;
-
-// function chairAnimation() {
-
-//   if (jQuery(window).width() < 768) {
-//     $("#squid").css({
-//       left: "45%",
-//       bottom: "600%",
-//     });
-//     $("#head_box").css({
-//       width: "135%",
-//       transform: "translate(-57%,-72%)",
-//     });
-//     $(".foots").css({
-//       bottom: "-120%",
-//     });
-//   } else if (jQuery(window).width() < 1025) {
-//     $("#squid").css({
-//       left: "45%",
-//       bottom: "500%",
-//     });
-//     $("#head_box").css({
-//       width: "140%",
-//       transform: "translate(-53%,-72%)",
-//     });
-//     $(".foots").css({
-//       bottom: "-100%",
-//     });
-//   } else {
-//     $("#squid_head").css({
-
-//     });
-//   }
-
-//   if (chairRunning) {
-//     return;
-//   }
-//   chairRunning = true;
-
-  // tl = new TimelineMax({
-  //   repeat: -1,
-  //   yoyo: true,
-  // });
-  // tl.to("#squid_foot1", 1, {
-  //   scaleY: 1.8,
-  //   repeatDelay: 1,
-  // }),
-  //   tl.to("#squid_foot1", 1, {
-  //     scaleY: .6,
-  //     repeatDelay: 1,
-  //   })
-// }
-
-$("#chair_row .try").click(function () {
-  $("#bed").css("display", "none");
-  $("#table").css("display", "none");
-  $("#chair").css("display", "block");
-  $("#chair").attr("src", $(this).parent().parent().siblings(".img_wrap").children().attr("src"));
-  chairAnimation();
-});
-
-// chairAnimation();
-// chairAnimation----------------------------------------
-
-
-// buy----------------------------------
+// buy-------------------------------------------------
 $(document).ready(function () {
+
   $(".buy").click(function () {
     if (this.innerText != "已購買") {
       $("#confirmBox").attr("style", "display:block");
-      
-      $("confirm_btn").click(function(){});
-      let buttonText = this;
-      let xhr = new XMLHttpRequest();
-      xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4) {
-          if (xhr.status == 200) {
-            buttonText.innerText = xhr.responseText;
-          } else {
-            alert(xhr.status);
-          }
+      buyItem = this;
+    }
+  });
+
+  $("#confirm_btn").click(function () {
+    // console.log(buyItem);
+    let xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4) {
+        if (xhr.status == 200) {
+          buyItem.innerText = xhr.responseText;
+        } else {
+          alert(xhr.status);
         }
       }
-      let url = "buy.php";
-      xhr.open("post", url, true);
-      let buyForm = new FormData(this.parentNode);
-      xhr.send(buyForm);
     }
-
+    let url = "buy.php";
+    xhr.open("post", url, true);
+    let buyForm = new FormData(buyItem.parentNode);
+    xhr.send(buyForm);
+    $("#confirmBox").attr("style", "display:none");
   });
-});
-// buy---------------------------------
 
-$("#cancel_btn").click(function(){
-  $("#confirmBox").attr("style", "display:none");
+  $("#cancel_btn").click(function () {
+    $("#confirmBox").attr("style", "display:none");
+  });
+
 });
+// buy-------------------------------------------------

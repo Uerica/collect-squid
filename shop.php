@@ -27,7 +27,6 @@ try {
     $members->bindValue(":mem_email", "hard@gmail.com"); //from session
     $members->bindValue(":mem_pwd", "hard"); //from session
     $members->execute();
-    echo $members->rowCount();
     if ($members->rowCount() != 0) {
         $member = $members->fetchObject();
     }
@@ -430,9 +429,9 @@ try {
                     </div>
                 </div>
                 <div class="show_item">
-                    <img id="bed" src="imgs/shop/bed_01.png" alt="">
-                    <img id="table" src="imgs/shop/desk_L_01.png" alt="">
-                    <img id="chair" src="imgs/shop/chair_L_01.png" alt="">
+                    <img id="bed" src="" alt="">
+                    <img id="table" src="" alt="">
+                    <img id="chair" src="" alt="">
                 </div>
                 <img src="imgs/shop/stage.png" alt="" class="stage">
             </div>
