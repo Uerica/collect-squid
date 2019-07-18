@@ -223,30 +223,39 @@ try {
                     <div id="memInfo_phone" class="memFileWrapInfo">
                         <!-- <form action=""> -->
                         <div class="memInfoWrapTable">
+                        <?php
+                            if($members->rowCount() != 0){
+                                $member = $members->fetch();
+                                $found = true;
+                                // echo "<pre>";
+                                // print_r($member); 
+                                // echo "</pre>";
+
+                        ?>
                             <table>
                                 <tr>
                                     <th>編號:</th>
-                                    <td></td>
+                                    <td><?php echo $member["mem_no"]; ?></td>
                                 </tr>
                                 <tr>
                                     <th>暱稱:</th>
-                                    <td></td>
+                                    <td><?php echo $member["mem_name"]; ?></td>
                                 </tr>
                                 <tr>
                                     <th>性別:</th>
-                                    <td></td>
+                                    <td><?php echo $member["mem_gender"]; ?></td>
                                 </tr>
                                 <tr>
                                     <th>生日:</th>
-                                    <td></td>
+                                    <td><?php echo $member["mem_dob"]; ?></td>
                                 </tr>
                                 <tr>
                                     <th>星座:</th>
-                                    <td></td>
+                                    <td><?php echo $member["mem_sign"]; ?></td>
                                 </tr>
                                 <tr>
                                     <th>帳號:</th>
-                                    <td></td>
+                                    <td><?php echo $member["mem_name"]; ?></td>
                                 </tr>
                                 <tr>
                                     <th>密碼:</th>
@@ -254,10 +263,15 @@ try {
                                 </tr>
                                 <tr>
                                     <th>信箱:</th>
-                                    <td></td>
+                                    <td><?php echo $member["mem_email"]; ?></td>
                                 </tr><!-- -->
                             </table>
-                        
+                            <?php 
+                             }else{
+                                echo "no";
+                             }
+                            ?>
+
                             <div class="memFileInfoBtn">
                                 <button id="Edit_phone" class="btnEdit">編輯基本資料</button>
                             </div>
@@ -432,6 +446,7 @@ try {
         </div>
 
 
+        <!-- 手機版 記錄區 -->
         <div id="msgRecord" class="msgRecord">
             <div class="msgRecordInnerBG">
                 <div class="msgRecordText">
