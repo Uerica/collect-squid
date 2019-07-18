@@ -46,10 +46,10 @@
             align-items: flex-start;
         }
             .memPhoto_phone{
-                width: 30%;
-                height: auto;
+                width: 185px;
+                height: 150px;
                 padding-bottom: 10%;
-                background-color: rgb(32, 179, 68);
+                // background-color: rgb(32, 179, 68);
             }
             .memFile{
                 width: 60%;
@@ -61,12 +61,9 @@
                 position: relative;
                 border-radius: 8px;
                 border:1px solid #575fac;
-                form {
-                    overflow-y: auto;
-                    height: 140px;
-                }
                 
             }
+                
 
                 // 會員資訊欄
                 .memFileWrapInfo{
@@ -78,6 +75,11 @@
                     padding: 4px;
                 // display: none;
                 }
+                    .memInfoWrapTable {
+                    overflow-y: auto;
+                    height: 140px;
+                    }
+
 
                 // form表單,input輸入 欄
                 .memFileWrapFrom{
@@ -89,6 +91,11 @@
                     padding: 4px;
                 display: none;
                 }
+                    .memFileWrapTable{
+                    overflow-y: auto;
+                    height: 140px;
+                    }
+
 
 
             .memFile_web{
@@ -456,6 +463,8 @@
         background:url("../imgs/memberCenter/memBG.jpg") no-repeat center;
         background-size: 100%;
         position: relative;
+        overflow-x: hidden;
+        overflow-y: hidden;
 
         // z-index: -2;
     }
@@ -525,6 +534,36 @@
             100%{left: 1200px;}
         }
 
+        .cloud_5{
+            position: absolute;
+            top: 120px;
+            width: 500px;
+            height: 475px;
+            // right: -100px;
+            
+            animation: cloud_5 16s ease-in-out infinite;
+        }
+        @keyframes cloud_5 {
+            0%{left: -500px;}
+            100%{left: 1900px;}
+        }
+
+        .cloud_6{
+            position: absolute;
+            top: 270px;
+            right: -500px;
+            width: 500px;
+            height: 450px;
+            // right: -100px;
+            // z-index: -1;
+            animation: cloud_6 16s ease-in-out 8s infinite;
+        }
+        @keyframes cloud_6 {
+            0%{right: -500px;}
+            100%{right: 1900px;}
+        }
+
+
 
         .memArea{
             width: 100%;/**/
@@ -545,10 +584,10 @@
                 // flex-direction: column;
             }
                 .memPhoto_phone{
-                    width: 30%;
-                    height: auto;
+                    width: 185px;
+                    height: 80px;
                     padding-bottom: 10%;
-                    background-color: rgb(32, 179, 68);
+                    // background-color: rgb(32, 179, 68);
                 }
                 .memFile{
                     width: 45%;
@@ -745,19 +784,21 @@
                 }
 
 
+
+
+            // 留言記錄 頭
             .msgRecord_web{
                 width: 100%;
                 height: 34.5vh;/*34.5vh*/
                 background-color: #ffc982;
                 border: 3px solid #fff;/*ask???*/
                 border-radius: 0px 8px 8px 8px;
+                overflow-y: auto;
 
                 position: relative;
-                
     
             }
             
-                /* 未出來,問*/
             /* scroll樣式 */
             /* width */
             ::-webkit-scrollbar {
@@ -776,35 +817,78 @@
                 
               }
 
-                
-
-    /**/        .msgRecordWrapFor2_web{
-                   display: flex;
+            //  留言記錄 電腦版
+            //  會員記錄的資訊內容
+                .msgRecordWrapforrecord{
+                    // display: none;
                 }
-                    .msgRecordBox_web{
-                        width: 50%;
+                    .msgRecordWrap{
+                        width: 47%;
                         height: 88px;
                         background-color: #fff;
                         border-radius: 8px;
-                        display: flex;
-                        position: relative;
                         margin: 5px;
                         padding: 5px;
+                        display: inline-block;
+
                     }
+                        .msgRecordWrapforflex{
+                            display: flex;
+                        }
+                            .msgRecordImg{
+                                width: 20%;
+                                height: 88px;
+                                // background-color: green;
+                                margin-right: 3px;
+                            }
+                            .msgRecordRightWrap{
+                                width: 80%;
+                                height: 88px;
+                                // background-color: aqua;
+
+                                position: relative;
+                            }
+                                .msgRecordText{
+                                    width: 100%;
+                                    height: 60%;
+                                    background-color: #fff;
+                                }
+                                    .msgRecordText input{
+                                        width: 100%;
+                                        height: 100%;
+                                    }
+    // /**/        .msgRecordWrapFor2_web{
+    //                display: flex;
+    //             }
+                    // .msgRecordBox_web{
+                    //     width: 50%;
+                    //     height: 88px;
+                    //     background-color: #fff;
+                    //     border-radius: 8px;
+                    //     display: flex;
+                    //     position: relative;
+                    //     margin: 5px;
+                    //     padding: 5px;
+                    // }
+
                         // .msgRecordImg{
                         //     width: 95px;
                         //     height: 166px;
                         // }
-                        .msgRecordText_web{
-                            padding: 5px;
-                        }
+
+                        // .msgRecordText_web{
+                        //     padding: 5px;
+                        // }
+
+
+                        // 按鈕按鈕
                         .msgRecordEditBtn_web{
                             position: absolute;
-                            left: 45%;
-                            bottom: 5px;
+                            right: 3%;
+                            bottom: 0;
                         }
 
-                            .btnEdit_web{
+                            .btnConfirm_web{
                                 width: 72px;
                                 height: 25px;
 
@@ -825,7 +909,28 @@
                     
                                 cursor: pointer;
                             }
-                            .btnDelete_web{
+                            .btnCancel_web{
+                                width: 72px;
+                                height: 25px;
+
+                                border-radius: 20px;
+                                color: #e7867e;
+                                background-color: #fff;
+                                position: relative;
+                                top: -3px;
+                                left: -3px;
+                                box-shadow: 3px 3px #e7867e;
+                                border: 0;
+                                transition: 0.3s;
+                                &:hover{
+                                    top:0;
+                                    left: 0;
+                                    box-shadow: 0 0 transparent;
+                                }
+                                cursor: pointer;
+                            }
+
+                            .btnEdit_web{
                                 width: 72px;
                                 height: 25px;
 
@@ -846,7 +951,70 @@
 
                                 cursor: pointer;
                             }
-                
+
+                            .btnDelete_web{
+                                width: 72px;
+                                height: 25px;
+
+                                border: 3px solid #f1f1f1;
+                                border-radius: 20px;
+                                color: #fff;
+                                background-color: #fa7979;
+                                position: relative;
+                                top: -3px;
+                                left: -3px;
+                                box-shadow: 3px 3px #e7867e;
+                                transition: 0.3s;
+                                &:hover{
+                                    top:0;
+                                    left: 0;
+                                    box-shadow: 0 0 transparent;
+                                }
+                    
+                                cursor: pointer;
+                            }
+
+                                
+
+            
+            // form表單,input輸入
+            .msgRecordWrapforinput{
+            display: none;
+            }
+                .msgRecordWrap{
+                        width: 47%;
+                        height: 88px;
+                        background-color: #fff;
+                        border-radius: 8px;
+                        margin: 5px;
+                        padding: 5px;
+                        display: inline-block;
+
+                    }
+                        .msgRecordWrapforflex{
+                            display: flex;
+                        }
+                            .msgRecordImg{
+                                width: 20%;
+                                height: 88px;
+                                // background-color: green;
+                                margin-right: 3px;
+                            }
+                            .msgRecordRightWrap{
+                                width: 80%;
+                                height: 88px;
+                                // background-color: aqua;
+
+                                position: relative;
+                            }
+                                .msgRecordText{
+                                    width: 100%;
+                                    height: 60%;
+                                    background-color: #fff;
+                                }            
+
+                    // 留言記錄 尾巴
+                    
 
 
             .grpRecord_web{
