@@ -30,7 +30,6 @@ $mem_furnsArr = array();
 while($mem_furnRow = $mem_furns->fetchObject()){
     array_push($mem_furnsArr,$mem_furnRow->furn_no);
 }
-// echo print_r($mem_furnsArr);
 if(in_array($furn_no,$mem_furnsArr)){
     echo "已購買";
 }else {
