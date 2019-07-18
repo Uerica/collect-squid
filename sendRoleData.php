@@ -12,16 +12,21 @@
 
     $errMsg = '';
     $style_no = "imgs/createBox/myRole".generateRandomString().".png";
-    $mem_name = $_REQUEST["mem_name"];
-    $mem_pwd = $_REQUEST["mem_pwd"];
-    $mem_email = $_REQUEST["mem_email"];
+    $mem_name = trim($_REQUEST["mem_name"]);
+    $mem_pwd = trim($_REQUEST["mem_pwd"]);
+    $mem_email = trim($_REQUEST["mem_email"]);
     $mem_lv = $_REQUEST["mem_lv"];
     $highest_lv = $_REQUEST["highest_lv"];
     $squid_qty = $_REQUEST["squid_qty"];
-    $mem_gender = $_REQUEST["mem_gender"];
+    $mem_gender = trim($_REQUEST["mem_gender"]);
     $mem_dob = $_REQUEST["mem_dob"];
-    $mem_sign = $_REQUEST["mem_sign"];
-    $mem_avatar = $_REQUEST["mem_avatar"];
+    $mem_sign = trim($_REQUEST["mem_sign"]);
+    $mem_avatar = trim($_REQUEST["mem_avatar"]);
+
+    echo $mem_name."<br>";
+    echo $mem_pwd."<br>";
+    echo $mem_email."<br>";
+    echo $mem_sign."<br>";
     try {
         require_once('connectSquid.php');
 
@@ -56,19 +61,19 @@
         $pdo->commit();
 
 
-        $upload_dir = "imgs//createBox//";
+        // $upload_dir = "imgs//createBox//";
     
-        $imgDataStr = $_POST['createdSquid'];
-        $imgDataStr = str_replace('data:image/png;base64,', '', $imgDataStr);
+        // $imgDataStr = $_POST['createdSquid'];
+        // $imgDataStr = str_replace('data:image/png;base64,', '', $imgDataStr);
     
-        $data = base64_decode($imgDataStr);
+        // $data = base64_decode($imgDataStr);
     
-        $fileName = 'myRole';
-        $file = $upload_dir.$fileName.".png";
-        $success = file_put_contents($file, $data);
+        // $fileName = 'myRole';
+        // $file = $upload_dir.$fileName.".png";
+        // $success = file_put_contents($file, $data);
     
-        $SESSION["myRole"] = $file;
-        echo $success ? $file : 'error';
+        // $SESSION["myRole"] = $file;
+        // echo $success ? $file : 'error';
 
 
         echo "創角成功~";

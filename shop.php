@@ -2,8 +2,8 @@
 $errMsg = "";
 try {
     $dns = "mysql:host=localhost;port=3306;dbname=dd101g2;charset=utf8";
-    $user = "root";
-    $psw = "qazwsxplmokn";
+    $user = "tumlivein";
+    $psw = "YueGp60208";
     $options = array(PDO::ATTR_CASE => PDO::CASE_NATURAL, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
     $pdo = new PDO($dns, $user, $psw, $options);
 

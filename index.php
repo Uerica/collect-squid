@@ -636,15 +636,15 @@
             </div>
             <div class="inputField">
               <label for="mem_name">姓名</label
-              ><input type="text" name="mem_name" id="create_mem_name" />
+              ><input type="text" name="mem_name" id="create_mem_name" placeholder="不得超過10個字"/>
             </div>
             <div class="inputField">
               <label for="mem_email">信箱</label
-              ><input type="email" name="mem_email" id="create_mem_email" />
+              ><input type="email" name="mem_email" id="create_mem_email" placeholder="需包含@和."/>
             </div>
             <div class="inputField">
               <label for="mem_pwd">密碼</label
-              ><input type="password" name="mem_pwd" id="create_mem_pwd" />
+              ><input type="password" name="mem_pwd" id="create_mem_pwd" placeholder="需包含小寫、大寫和數字"/>
             </div>
             <div class="inputField">
               <label for="mem_pwd_checked">確認密碼</label

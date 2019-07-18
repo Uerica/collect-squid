@@ -3,9 +3,11 @@ $(".createRoleBtn").click(function() {
   //   填入的資料
   const mem_name = document.getElementById("create_mem_name").value;
   const mem_pwd = document.getElementById("create_mem_pwd").value;
+  const mem_pwd_checked = document.getElementById("mem_pwd_checked").value;
   const mem_email = document.getElementById("create_mem_email").value;
   const mem_gender = document.getElementById("create_mem_gender").value;
   const mem_dob = document.getElementById("create_mem_dob").value;
+
   //   自動給值
   const mem_lv = 1;
   const highest_lv = 1;
@@ -16,55 +18,83 @@ $(".createRoleBtn").click(function() {
   const mem_sign = getZodiacSign(date, month);
   const mem_avatar = "img/avatar.png";
 
-  const textXHR = new XMLHttpRequest();
-
-  textXHR.onload = function() {
-    if (textXHR.status == 200) {
-      console.log(textXHR.responseText);
-      console.log("資料匯入成功");
-    } else {
-      console.log(textXHR.responseText);
-    }
-  };
-
-  const url = "sendRoleData.php";
-  textXHR.open("post", url, true);
-  textXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-  const data = `mem_name=${mem_name}
-  &mem_pwd=${mem_pwd}
-  &mem_email=${mem_email}
-  &mem_lv=${mem_lv}
-  &highest_lv=${highest_lv}
-  &squid_qty=${squid_qty}
-  &mem_gender=${mem_gender}
-  &mem_dob=${mem_dob}
-  &mem_sign=${mem_sign}
-  &mem_avatar=${mem_avatar}`;
-  textXHR.send(data);
-
-  const drawingCanvas = document.querySelector("#roleCanvas");
-  const dataURL = drawingCanvas.toDataURL("image/png");
-  document.querySelector("#createdSquid").value = dataURL;
-  const formData = new FormData(document.getElementById("creatingForm"));
-
-  const graphXHR = new XMLHttpRequest();
-
-  graphXHR.onload = () => {
-    if (graphXHR.status == 200) {
-      if (graphXHR.responseText == "error") {
-        alert("Error");
+  // 驗證名字
+  if (mem_name.length > 10) {
+    alert("名字不得超過10個字");
+    return;
+  }
+  // 驗證信箱格式＆是否重複
+  if (!validateEmail(mem_email)) {
+    alert("信箱格式不符");
+    return;
+  }
+  const checkXHR = new XMLHttpRequest();
+  checkXHR.onload = function() {
+    if (checkXHR.status == 200) {
+      if (checkXHR.responseText == "exist") {
+        alert("此信箱已用過");
+        return;
       } else {
-        alert("創角成功");
-        $(".createBox").css({ display: "none" });
+        console.log(checkXHR.responseText);
+        sendData(
+          mem_name,
+          mem_pwd,
+          mem_email,
+          mem_lv,
+          highest_lv,
+          squid_qty,
+          mem_gender,
+          mem_dob,
+          mem_sign,
+          mem_avatar
+        );
       }
     } else {
-      alert(graphXHR.status);
+      alert(checkXHR.status);
+      return;
     }
   };
+  const checkURL = `checkEmail.php?email=${mem_email}`;
+  checkXHR.open("get", checkURL, true);
+  checkXHR.send(null);
 
-  graphXHR.open("POST", "sendRoleData.php", true);
-  graphXHR.send(formData);
+  // 驗證密碼
+  const cond1 = /([a-z]+)/;
+  const cond2 = /([A-Z]+)/;
+  const cond3 = /([0-9]+)/;
+  if (!(mem_pwd.match(cond1) && mem_pwd.match(cond2) && mem_pwd.match(cond3))) {
+    alert("密碼格式不符");
+    return;
+  }
+  // 驗證確認密碼
+  if (mem_pwd != mem_pwd_checked) {
+    alert("兩者密碼不一");
+    return;
+  }
+
+  // 儲存圖片
+  // const drawingCanvas = document.querySelector("#roleCanvas");
+  // const dataURL = drawingCanvas.toDataURL("image/png");
+  // document.querySelector("#createdSquid").value = dataURL;
+  // const formData = new FormData(document.getElementById("creatingForm"));
+
+  // const graphXHR = new XMLHttpRequest();
+
+  // graphXHR.onload = () => {
+  //   if (graphXHR.status == 200) {
+  //     if (graphXHR.responseText == "error") {
+  //       alert("Error");
+  //     } else {
+  //       alert("創角成功");
+  //       $(".createBox").css({ display: "none" });
+  //     }
+  //   } else {
+  //     alert(graphXHR.status);
+  //   }
+  // };
+
+  // graphXHR.open("POST", "sendRoleData.php", true);
+  // graphXHR.send(formData);
 });
 
 // 取得星座
@@ -109,4 +139,53 @@ function getZodiacSign(day, month) {
   } else if ((month == 11 && day >= 23) || (month == 12 && day <= 21)) {
     return zodiacSigns.sagittarius;
   }
+}
+
+// 驗證信箱格式
+function validateEmail(email) {
+  var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
+}
+
+// 傳送資料
+function sendData(
+  mem_name,
+  mem_pwd,
+  mem_email,
+  mem_lv,
+  highest_lv,
+  squid_qty,
+  mem_gender,
+  mem_dob,
+  mem_sign,
+  mem_avatar
+) {
+  const textXHR = new XMLHttpRequest();
+
+  textXHR.onload = function() {
+    if (textXHR.status == 200) {
+      $(".createBox").css({ display: "none" });
+      const worold = document.getElementsByTagName("body")[0];
+      alert(textXHR.responseText);
+      console.log("world");
+    } else {
+      console.log(textXHR.responseText);
+    }
+  };
+
+  const textURL = "sendRoleData.php";
+  textXHR.open("post", textURL, true);
+  textXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+  const data = `mem_name=${mem_name}
+  &mem_pwd=${mem_pwd}
+  &mem_email=${mem_email}
+  &mem_lv=${mem_lv}
+  &highest_lv=${highest_lv}
+  &squid_qty=${squid_qty}
+  &mem_gender=${mem_gender}
+  &mem_dob=${mem_dob}
+  &mem_sign=${mem_sign}
+  &mem_avatar=${mem_avatar}`;
+  textXHR.send(data);
 }
