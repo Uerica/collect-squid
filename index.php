@@ -645,23 +645,27 @@
         <div class="createFrame">
           <form action="">
             <div class="inputField">
-              <label for="mem_gender">性別</label
-              ><input type="text" name="mem_gender" id="create_mem_gender" />
+              <label for="create_mem_gender">性別</label>
+              <select name="mem_gender" id="create_mem_gender">
+                <option value="M">男</option>
+                <option value="L">女</option>
+              </select>
+              <!-- <input type="text" name="mem_gender" id="create_mem_gender" /> -->
             </div>
             <div class="inputField">
-              <label for="birthday">生日</label
+              <label for="create_mem_dob">生日</label
               ><input type="date" name="mem_dob" id="create_mem_dob" />
             </div>
             <div class="inputField">
-              <label for="mem_name">姓名</label
+              <label for="create_mem_name">姓名</label
               ><input type="text" name="mem_name" id="create_mem_name" placeholder="不得超過10個字"/>
             </div>
             <div class="inputField">
-              <label for="mem_email">信箱</label
+              <label for="create_mem_email">信箱</label
               ><input type="email" name="mem_email" id="create_mem_email" placeholder="需包含@和."/>
             </div>
             <div class="inputField">
-              <label for="mem_pwd">密碼</label
+              <label for="create_mem_pwd">密碼</label
               ><input type="password" name="mem_pwd" id="create_mem_pwd" placeholder="需包含小寫、大寫和數字"/>
             </div>
             <div class="inputField">

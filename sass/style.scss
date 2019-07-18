@@ -1740,6 +1740,14 @@ $num-particles: 20; //煙的數量
           border-radius: 20px;
           box-sizing: border-box;
         }
+        select {
+          width: 68%;
+          padding: 2% 3%;
+          border: 2px solid #f8b853;
+          border-radius: 20px;
+          box-sizing: border-box;
+          font-size: 18px;
+        }
       }
     }
     .styling {
