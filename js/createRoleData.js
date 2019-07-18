@@ -167,7 +167,8 @@ function sendData(
       $(".createBox").css({ display: "none" });
       const worold = document.getElementsByTagName("body")[0];
       alert(textXHR.responseText);
-      console.log("world");
+      // console.log("world");
+      setTimeout(sendGraph, 10);
     } else {
       console.log(textXHR.responseText);
     }
@@ -188,4 +189,30 @@ function sendData(
   &mem_sign=${mem_sign}
   &mem_avatar=${mem_avatar}`;
   textXHR.send(data);
+}
+
+// 儲存圖片
+function sendGraph() {
+  const drawingCanvas = document.querySelector("#roleCanvas");
+  const dataURL = drawingCanvas.toDataURL("image/png");
+  document.querySelector("#createdSquid").value = dataURL;
+  const formData = new FormData(document.getElementById("creatingForm"));
+
+  const graphXHR = new XMLHttpRequest();
+
+  graphXHR.onload = function() {
+    if (graphXHR.status == 200) {
+      if (graphXHR.responseText == "error") {
+        alert("Error");
+      } else {
+        console.log(graphXHR.responseText);
+        $(".createBox").css({ display: "none" });
+      }
+    } else {
+      alert(graphXHR.status);
+    }
+  };
+
+  graphXHR.open("POST", "sendRoleData.php", true);
+  graphXHR.send(formData);
 }
