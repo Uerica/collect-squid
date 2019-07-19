@@ -551,12 +551,6 @@
       </div>
 
       <!-- 舉辦燈箱 -->
-      
-        最低報名人數<input id="min_att" name="min_att">
-        報名人數上限<input id="max_att" name="max_att">
-        活動地點<input id="evt_place" name="evt_place">
-        交通資訊<input id="evt_trans_info" name="evt_trans_info">
-        
       <div class="raiseBox">
         <div class="raiseContent">
           <div class="cancelBtn"></div>
@@ -575,7 +569,7 @@
             </div>
             <div class="content">
               <span class="raiseData">2.填寫內容</span>
-              <form action="addEvent.php" method="get">
+              <form id="addEvtForm" method="get">
                 <div class="item">
                   <span>活動名稱</span>
                   <input type="text" id="evt_name" name="evt_name"/>
@@ -585,16 +579,16 @@
                   <input type="date" placeholder="開始時間" id="evt_date" name="evt_date"/>
                 </div>
                 <div class="item">
-                  <span style="visibility: hidden">活動地點</span>
-                  <input type="date" placeholder="結束時間" id="evt_date" name="evt_date"/>
+                  <span>活動地點</span>
+                  <input id="evt_place" name="evt_place">
                 </div>
                 <div class="item">
-                  <span>截止時間</span>
-                  <input type="date" />
+                  <span>報名截止時間</span>
+                  <input type="date" id="enroll_end_date" name="enroll_end_date"/>
                 </div>
                 <div class="item">
                   <span>人數限制</span>
-                  <input type="text" />
+                  <input type="number" id="max_att" min="3" max="20" name="max_att" placeholder="3~20人" />
                 </div>
                 <div class="item">
                   <span>活動描述</span>
