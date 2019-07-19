@@ -1,8 +1,20 @@
 <?php
+    session_start();
+    $_SESSION["mem_no"] = 24;
+    $mem_no = $_SESSION["mem_no"];
     $errMsg = '';
     try {
         require_once('connectSquid.php');
-        // echo "連線成功";
+        $sql = 
+        "SELECT *
+        FROM member
+        WHERE mem_no NOT IN(:mem_no)
+        ORDER BY RAND()
+        LIMIT 1"; 
+        $member = $pdo->prepare($sql);
+        $member->bindValue(":mem_no", $mem_no);
+        $member->execute();
+        $memRow = $member->fetch(PDO::FETCH_ASSOC);
     } catch(PDOException $e) {
         $errMsg .= $e->getMessage()."<br>";
         $errMsg .= $e->getLine()."<br>";
@@ -28,15 +40,24 @@
 
 <body>
     <div class="loginSquid">
-        <div class="onlineFuns">
-            <a class="funIcon goRoom" href="javascript:;" class="onlineFunction"><img src="imgs/characters/goRoomIcon.png" alt="看房間"></a >
-            <a class="funIcon addFriend" href="javascript:;" class="onlineFunction"><img src="imgs/characters/addFriendIcon.png" alt="加好友"></a >
-            <a class="funIcon mute" href="javascript:;" class="onlineFunction"><img src="imgs/characters/muteIcon.png" alt="靜音"></a >
-        </div>
-        <div class="talkingBubble">
-            <p>哈囉哈囉</p>
-        </div>
+      <div class="talkingBubble">
+          <p>哈囉哈囉</p>
+      </div>
+      <span class="roleName"><?php $memRow["mem_name"] ?></span>
       <img id="myRole" src="" alt="Penny">
+    </div>
+      
+    <div class="otherSquid">
+      <div class="onlineFuns">
+        <a class="funIcon goRoom" href="javascript:;" class="onlineFunction"><img src="imgs/characters/goRoomIcon.png" alt="看房間"></a >
+        <a class="funIcon addFriend" href="javascript:;" class="onlineFunction"><img src="imgs/characters/addFriendIcon.png" alt="加好友"></a >
+        <a class="funIcon mute" href="javascript:;" class="onlineFunction"><img src="imgs/characters/muteIcon.png" alt="靜音"></a >
+      </div>
+      <div class="talkingBubble">
+        <p>媽的好辣喔</p>
+      </div>
+      <span class="roleName"><?php echo $memRow["mem_name"] ?></span>
+      <img id="myRole" src="<?php echo $memRow["style_no"] ?>" alt="Penny">
     </div>
 
     <div class="common_cursor"></div>
@@ -1044,6 +1065,7 @@
     <!-- <script src="js/chatbot.js"></script> -->
     <script src="js/chat.js"></script>
     <script src="js/roleFunctions.js"></script>
+    <script src="js/rolePosition.js"></script>
 </body>
 
 </html>
