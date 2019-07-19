@@ -36,7 +36,7 @@
         <div class="talkingBubble">
             <p>哈囉哈囉</p>
         </div>
-      <img src="imgs/createBox/myRole23.png" alt="Penny">
+      <img id="myRole" src="" alt="Penny">
     </div>
 
     <div class="common_cursor"></div>
