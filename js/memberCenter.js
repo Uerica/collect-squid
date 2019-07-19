@@ -139,16 +139,16 @@ $(window).ready(function(){
 
 //.. ajax .........................
 window.addEventListener("load", function(){
-    document.getElementById("confirm_web").onclick = function(){
-        //update member data
-        let xhr = new XMLHttpRequest();
-        xhr.onload = function(){
-            alert(xhr.responseText);
-        }
-        xhr.open("post", "memUpdate.php", true);
-        let myForm = new FormData( document.getElementById("myForm_web"));
-        xhr.send(myForm);
-    };
+    // document.getElementById("confirm_web").onclick = function(){
+    //     //update member data
+    //     let xhr = new XMLHttpRequest();
+    //     xhr.onload = function(){
+    //         alert(xhr.responseText);
+    //     }
+    //     xhr.open("post", "memUpdate.php", true);
+    //     let myForm = new FormData( document.getElementById("myForm_web"));
+    //     xhr.send(myForm);
+    // };
 })
 //.................................
 

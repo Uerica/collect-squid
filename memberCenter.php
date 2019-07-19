@@ -3,7 +3,7 @@ $errMsg = "";
 try {
 	require_once("connectDB.php");
 
-	$sql = "select * from member";
+	$sql = "select * from member";  //...............
 	$products = $pdo->query($sql); 
 	$prodRows = $products->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
@@ -38,11 +38,13 @@ try {
 
 	$sql = "select * from member where mem_email=:email and mem_pwd=:mem_pwd";
     $members = $pdo->prepare($sql); 
-    $members->bindValue(":email","111@abc.com");
+    $members->bindValue(":email","111@abc.co");
     $members->bindValue(":mem_pwd","111");
     $members->execute();
     // $found = false;
-
+    if($members->rowCount() !=0 ){
+        $memberArr = $members->fetchAll();
+    }
 } catch (PDOException $e) {
 	echo "錯誤 : ", $e -> getMessage(), "<br>";
 	echo "行號 : ", $e -> getLine(), "<br>";
@@ -225,7 +227,8 @@ try {
                         <div class="memInfoWrapTable">
                         <?php
                             if($members->rowCount() != 0){
-                                $member = $members->fetch();
+                                // $member = $members->fetch();
+                                $member = $memberArr[0];
                                 $found = true;
                                 // echo "<pre>";
                                 // print_r($member); 
@@ -291,31 +294,36 @@ try {
                                 </tr>
                                 <tr>
                                     <th>暱稱:</th>
-                                    <td><input type="text"></td>
+                                    <td><input type="text" name="mem_name" value="<?php echo $member["mem_name"]; ?>"></td>
                                 </tr>
                                 <tr>
                                     <th>性別:</th>
-                                    <td><input type="text"></td>
+                                    <td>
+                                        <input type="radio" value="男" name="mem_gender" <?php if ($member["mem_gender"]=="男") {
+                                            echo "checked";}?>>男 
+                                        <input type="radio" value="女" name="mem_gender" <?php if ($member["mem_gender"]=="女") {
+                                            echo "checked";}?>>女
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th>生日:</th>
-                                    <td><input type="text"></td>
+                                    <td><input type="date" name="mem_dob" value="<?php echo $member["mem_dob"]; ?>"></td>
                                 </tr>
                                 <tr>
                                     <th>星座:</th>
-                                    <td><input type="text"></td>
+                                    <td><input type="text" name="mem_sign" value="<?php echo $member["mem_sign"]; ?>"></td>
                                 </tr>
                                 <tr>
-                                    <th>帳號:</th>
-                                    <td><input type="text"></td>
+                                    <th>&nbsp;<!--帳號:--></th>
+                                    <td>&nbsp;<!--<input type="text">--></td>
                                 </tr>
                                 <tr>
                                     <th>密碼:</th>
-                                    <td><input type="text"></td>
+                                    <td><input type="password" name="mem_pwd" value="<?php echo $member["mem_pwd"]; ?>"></td>
                                 </tr>
                                 <tr>
                                     <th>信箱:</th>
-                                    <td><input type="text"></td>
+                                    <td><input type="email" name="mem_email" value="<?php echo $member["mem_email"]; ?>"></td>
                                 </tr><!-- -->
                             </table>
 
@@ -342,7 +350,8 @@ try {
                         <!-- <form action=""> -->
                         <?php
                             if($members->rowCount() != 0){
-                                $member = $members->fetch();
+                                // $member = $members->fetch();
+                                $member = $memberArr[0];
                                 $found = true;
                                 // echo "<pre>";
                                 // print_r($member); 
@@ -392,7 +401,7 @@ try {
                     <!-- form表單,input輸入 -->
                     <div id="memForm_web" class="memFileWrapFrom">
                         <div class="memFileForm_web">
-                            <form id="myForm_web">
+                            <form id="myForm_web" action="memUpdate.php">
                             <table>
                                 <tr>
                                     <th>編號:</th>
@@ -410,9 +419,9 @@ try {
                                     <th>性別:</th>
                                     <td>
                 
-                                        <input type="radio" value="男" name="gender" <?php if ($member["mem_gender"]=="男") {
+                                        <input type="radio" value="男" name="mem_gender" <?php if ($member["mem_gender"]=="男") {
                                             echo "checked";}?>>男 
-                                        <input type="radio" value="女" name="gender" <?php if ($member["mem_gender"]=="女") {
+                                        <input type="radio" value="女" name="mem_gender" <?php if ($member["mem_gender"]=="女") {
                                             echo "checked";}?>>女
                                     </td>
                                     <th>密碼:</th>
@@ -422,18 +431,20 @@ try {
                                     <th>生日:</th>
                                     <td><input type="date" name="mem_dob" value="<?php echo $member["mem_dob"]; ?>"></td>
                                     <th>信箱:</th>
-                                    <td><input type="email" name="mem_pwd" value="<?php echo $member["mem_pwd"]; ?>"></td>
+                                    <td><input type="email" name="mem_email" value="<?php echo $member["mem_email"]; ?>"></td>
                                 </tr>
                             </table>
-                            </form>
+                            
 
 
                             <!-- </div> *****-->
                             <div class="memFileBtn">
-                                <input type="submit" id="confirm_web" class="btnConfirm" value="確認修改">
+                                <input type="submit" id="confirm_web" class="btnConfirm" value="確認修改" onclick="console.log(this.form);alert(1);">
                                 <!-- <button></button> -->
                                 <button id="cancel_web" class="btnCanncel">取消</button>
                             </div>
+
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -447,6 +458,37 @@ try {
 
 
         <!-- 手機版 記錄區 -->
+
+                <!-- (手機)留言記錄 抓MySQL內容 -->
+        <?php
+            $errMsg = "";
+            try {
+            	require_once("connectDB.php");
+            
+            	$sql = "select * from board_comment where cmt_cnt=:cmt_cnt";
+                $msgRecords = $pdo->prepare($sql); 
+                $msgRecords->bindValue(":cmt_cnt","小魷你家好漂亮!!"); //???
+                // $msgRecords->bindValue(":mem_pwd","111");
+                $msgRecords->execute();
+                // $found = false;
+            
+            } catch (PDOException $e) {
+            	echo "錯誤 : ", $e -> getMessage(), "<br>";
+            	echo "行號 : ", $e -> getLine(), "<br>";
+            }
+        
+        ?>
+
+        <?php
+            if($msgRecords->rowCount() != 0){
+                $msgRecord = $msgRecords->fetch();
+                $found = true;
+                // echo "<pre>";
+                // print_r($member); 
+                // echo "</pre>";
+            
+        ?>
+
         <div id="msgRecord" class="msgRecord">
             <div class="msgRecordInnerBG">
                 <div class="msgRecordText">
@@ -455,9 +497,9 @@ try {
                         <img src="imgs/memberCenter/member.jpg" alt="人物圖">
                     </div>
                     <div class="msgRecordText_words">
-                        <p>魷魚好辣跟她的家都超辣的，希望我或我
+                        <p><?php echo $msgRecord["cmt_cnt"]; ?><!--魷魚好辣跟她的家都超辣的，希望我或我
                             的家也能有她一半那麼辣就好了，希望她
-                            能加我好友。</p>
+                            能加我好友。--></p>
                     </div>
 
                 </div>
@@ -479,8 +521,43 @@ try {
 
             </div>
         </div>
+        <?php 
+             }else{
+                echo "no";
+             }
+        ?>
+
         
 
+        <!-- (手機)揪團記錄 抓MySQL內容 -->
+        <?php
+            $errMsg = "";
+            try {
+            	require_once("connectDB.php");
+            
+            	$sql = "select * from event where evt_name=:evt_name";
+                $grpRecords = $pdo->prepare($sql); 
+                $grpRecords->bindValue(":evt_name","太魯閣一日遊"); //???
+                // $grpRecords->bindValue(":mem_pwd","111");
+                $grpRecords->execute();
+                // $found = false;
+            
+            } catch (PDOException $e) {
+            	echo "錯誤 : ", $e -> getMessage(), "<br>";
+            	echo "行號 : ", $e -> getLine(), "<br>";
+            }
+        
+        ?>
+
+        <?php
+            if($grpRecords->rowCount() != 0){
+                $grpRecord = $grpRecords->fetch();
+                $found = true;
+                // echo "<pre>";
+                // print_r($member); 
+                // echo "</pre>";
+            
+        ?>
         <div id="grpRecord" class="groupRecord">
 
             <div class="groupRecordInnerBG">
@@ -490,9 +567,9 @@ try {
                         <img src="imgs/memberCenter/member.jpg" alt="人物圖">
                     </div>
                     <div class="groupRecordText_words">
-                        <p>魷魚好辣跟她的家都超辣的，希望我或我
+                        <p><?php echo $grpRecord["evt_name"]; ?><!--魷魚好辣跟她的家都超辣的，希望我或我
                             的家也能有她一半那麼辣就好了，希望她
-                            能加我好友。參加揪團。</p>
+                            能加我好友。參加揪團。--></p>
                     </div>
 
                 </div>
@@ -513,6 +590,12 @@ try {
                 <div class="groupRecordText"></div>
 
             </div>
+        <?php 
+             }else{
+                echo "no";
+             }
+        ?>
+
 
         </div>
         <div id="shopRecord" class="shopRecord">

@@ -18,5 +18,5 @@ try {
 	echo "錯誤 : ", $e -> getMessage(), "<br>";
 	echo "行號 : ", $e -> getLine(), "<br>";
 }
- 
+header("location:memberCenter.php");
 ?>
