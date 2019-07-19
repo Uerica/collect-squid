@@ -7,9 +7,9 @@
 @import "findFriend";
 @import "events";
 
-// * {
-//     outline: 1px solid #f00 !important;
-// }
+* {
+  // outline: 1px solid #f00 !important;
+}
 
 // 卷軸css
 
@@ -1672,7 +1672,7 @@ $num-particles: 20; //煙的數量
             color: #fa7979;
             margin-right: 10%;
           }
-          .godMode {
+          #godMode {
             width: 100%;
             padding-top: 3%;
             background-color: #f65d5d;
@@ -1741,12 +1741,14 @@ $num-particles: 20; //煙的數量
           box-sizing: border-box;
         }
         select {
+          -webkit-appearance: none;
           width: 68%;
           padding: 2% 3%;
           border: 2px solid #f8b853;
+          background-color: #fff;
           border-radius: 20px;
           box-sizing: border-box;
-          font-size: 18px;
+          font-size: 16px;
         }
       }
     }
@@ -2105,6 +2107,71 @@ $num-particles: 20; //煙的數量
 
 .groupSVGs {
   display: none;
+}
+
+.loginSquid {
+  position: fixed;
+  width: 120px;
+  top: 250px;
+  left: calc(50% - 60px);
+  z-index: 1000;
+  text-align: center;
+  img {
+    width: 80%;
+  }
+  .onlineFuns {
+    .funIcon {
+      display: inline-block;
+      width: 30%;
+      height: 30%;
+      margin-right: 5%;
+      margin-left: -4px;
+      padding: 4%;
+      background-color: #fff;
+      border: 3px solid #fa7979;
+      box-sizing: border-box;
+      border-radius: 50%;
+      text-align: center;
+      &:first-child {
+        margin-left: 0;
+        position: relative;
+        top: 20px;
+      }
+      &:last-child {
+        margin-right: 0;
+        position: relative;
+        top: 20px;
+      }
+      &::before {
+        content: "";
+        display: inline-block;
+        height: 100%;
+        width: 0;
+        vertical-align: middle;
+      }
+      img {
+        width: 100%;
+        vertical-align: middle;
+      }
+    }
+  }
+  .talkingBubble {
+    position: absolute;
+    left: 90%;
+    width: 120%;
+    bottom: 60%;
+    box-sizing: border-box;
+    p {
+      display: inline-block;
+      padding: 5%;
+      border: 4px solid #fa7979;
+      background-color: #fff;
+      border-radius: 10px;
+    }
+  }
+  .talkingBubble.invisible {
+    display: none;
+  }
 }
 
 @media screen and (min-width: 1500px) {

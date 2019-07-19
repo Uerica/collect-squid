@@ -1,3 +1,14 @@
+<?php
+    $errMsg = '';
+    try {
+        require_once('connectSquid.php');
+        // echo "連線成功";
+    } catch(PDOException $e) {
+        $errMsg .= $e->getMessage()."<br>";
+        $errMsg .= $e->getLine()."<br>";
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,27 +22,21 @@
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css'/>
     <link rel="stylesheet" href="css/hover.css">
     <link rel="stylesheet" href="css/global.css">
-    <!-- <link rel="stylesheet" href="sass/style.css"> -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="sass/style.css">
     <title>收集友誼</title>
-    <style>
-      .loginSquid {
-        position: fixed;
-        width: 100px;
-        height: 100px;
-        top: 300px;
-        left: 300px;
-        z-index: 1000;
-      }
-      .loginSquid img {
-        width: 100%;
-      }
-    </style>
 </head>
 
 <body>
     <div class="loginSquid">
-      <img src="" alt="Penny">
+        <div class="onlineFuns">
+            <a class="funIcon goRoom" href="javascript:;" class="onlineFunction"><img src="imgs/characters/goRoomIcon.png" alt="看房間"></a >
+            <a class="funIcon addFriend" href="javascript:;" class="onlineFunction"><img src="imgs/characters/addFriendIcon.png" alt="加好友"></a >
+            <a class="funIcon mute" href="javascript:;" class="onlineFunction"><img src="imgs/characters/muteIcon.png" alt="靜音"></a >
+        </div>
+        <div class="talkingBubble">
+            <p>哈囉哈囉</p>
+        </div>
+      <img src="imgs/createBox/myRole23.png" alt="Penny">
     </div>
 
     <div class="common_cursor"></div>
@@ -71,7 +76,7 @@
                             </a>
                         </li>
                         <li class="logo">
-                            <a href="index.html">
+                            <a href="index.php">
                                 <img src="imgs/homePage/logo.png" alt="尋找友誼網站LOGO">
                                 <span>尋找友誼</span>
                             </a>
@@ -117,7 +122,7 @@
                     </a>
                 </li>
                 <li class="hvr-pulse-grow">
-                    <a href="dressingRoom.html">
+                    <a href="dressingRoom.php">
                         <img src="imgs/homePage/icon/fittingRoom.png" alt="換衣間icon">
                         <span>換衣間</span>
                     </a>
@@ -129,19 +134,19 @@
                     </a>
                 </li>
                 <li class="hvr-pulse-grow">
-                    <a href="javascript:;">
+                    <a href="events.html">
                         <img src="imgs/homePage/icon/events.png" alt="揪團活動icon">
                         <span>揪團活動</span>
                     </a>
                 </li>
                 <li class="logo hvr-pulse-grow">
-                    <a href="index.html">
+                    <a href="index.php">
                         <img src="imgs/homePage/logo.png" alt="尋找友誼網站LOGO">
                         <span>尋找友誼</span>
                     </a>
                 </li>
                 <li class="hvr-pulse-grow">
-                    <a href="shop.html">
+                    <a href="shop.php">
                         <img src="imgs/homePage/icon/mall.png" alt="虛擬商城icon">
                         <span>虛擬商城</span>
                     </a>
@@ -632,7 +637,7 @@
             <div class="submitBtns">
               <input class="createRole" type="button" value="創角" />
               <input id="loginBtn" type="button" value="登入"/>
-              <input class="godMode" type="submit" value="上帝模式" />
+              <input id="godMode" type="submit" value="上帝模式" />
             </div>
           </form>
         </div>
@@ -1038,6 +1043,7 @@
     <script src="js/newCharacter.js"></script>
     <!-- <script src="js/chatbot.js"></script> -->
     <script src="js/chat.js"></script>
+    <script src="js/roleFunctions.js"></script>
 </body>
 
 </html>

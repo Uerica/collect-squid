@@ -28,6 +28,22 @@ $(".createRoleBtn").click(function() {
     alert("信箱格式不符");
     return;
   }
+
+  // 驗證密碼
+  const cond1 = /([a-z]+)/;
+  const cond2 = /([A-Z]+)/;
+  const cond3 = /([0-9]+)/;
+  if (!(mem_pwd.match(cond1) && mem_pwd.match(cond2) && mem_pwd.match(cond3))) {
+    alert("密碼格式不符");
+    return;
+  }
+  // 驗證確認密碼
+  if (mem_pwd != mem_pwd_checked) {
+    alert("兩者密碼不一");
+    return;
+  }
+
+  // 驗證帳號有沒有錯誤
   const checkXHR = new XMLHttpRequest();
   checkXHR.onload = function() {
     if (checkXHR.status == 200) {
@@ -57,44 +73,6 @@ $(".createRoleBtn").click(function() {
   const checkURL = `checkEmail.php?email=${mem_email}`;
   checkXHR.open("get", checkURL, true);
   checkXHR.send(null);
-
-  // 驗證密碼
-  const cond1 = /([a-z]+)/;
-  const cond2 = /([A-Z]+)/;
-  const cond3 = /([0-9]+)/;
-  if (!(mem_pwd.match(cond1) && mem_pwd.match(cond2) && mem_pwd.match(cond3))) {
-    alert("密碼格式不符");
-    return;
-  }
-  // 驗證確認密碼
-  if (mem_pwd != mem_pwd_checked) {
-    alert("兩者密碼不一");
-    return;
-  }
-
-  // 儲存圖片
-  // const drawingCanvas = document.querySelector("#roleCanvas");
-  // const dataURL = drawingCanvas.toDataURL("image/png");
-  // document.querySelector("#createdSquid").value = dataURL;
-  // const formData = new FormData(document.getElementById("creatingForm"));
-
-  // const graphXHR = new XMLHttpRequest();
-
-  // graphXHR.onload = () => {
-  //   if (graphXHR.status == 200) {
-  //     if (graphXHR.responseText == "error") {
-  //       alert("Error");
-  //     } else {
-  //       alert("創角成功");
-  //       $(".createBox").css({ display: "none" });
-  //     }
-  //   } else {
-  //     alert(graphXHR.status);
-  //   }
-  // };
-
-  // graphXHR.open("POST", "sendRoleData.php", true);
-  // graphXHR.send(formData);
 });
 
 // 取得星座
