@@ -36,10 +36,10 @@ $errMsg = "";
 try {
 	require_once("connectDB.php");
 
-	$sql = "select * from member where mem_email=:email and mem_pwd=:mem_pwd";
+	$sql = "select * from member where mem_no = :mem_no";
     $members = $pdo->prepare($sql); 
-    $members->bindValue(":email","111@abc.co");
-    $members->bindValue(":mem_pwd","111");
+    $members->bindValue(":mem_no","111");//寫session時改
+    // $members->bindValue(":mem_pwd","111");
     $members->execute();
     // $found = false;
     if($members->rowCount() !=0 ){
