@@ -20,6 +20,18 @@ try {
     $evtAdd->bindValue(":evt_cover_url", '$_REQUEST["evt_cover_url"]');
     $evtAdd->execute();
 
+
+
+    $sql = "INSERT INTO `event_record`(`mem_no`, `evt_no`, `enroll_date`) VALUES (:mem_no,:evt_no,:enroll_date)";
+
+    $evt_no = $pdo->lastInsertId();
+    $joinEvt = $pdo->prepare($sql);
+    $joinEvt->bindValue(":mem_no","1"); //from session
+    $joinEvt->bindValue(":evt_no",$evt_no);
+    $joinEvt->bindValue(":enroll_date", date("Y-m-d"));
+    $joinEvt->execute();
+
+    echo "舉辦活動成功";
 } catch (PDOException $e) {
     echo "錯誤 : ", $e->getMessage(), "<br>";
     echo "行號 : ", $e->getLine(), "<br>";

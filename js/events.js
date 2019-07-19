@@ -186,7 +186,7 @@ $(document).ready(function () {
       xhr.onreadystatechange = function () {
         if (xhr.readyState == 4) {
           if (xhr.status == 200) {
-            alert("舉辦活動成功");
+            alert(xhr.responseText);
           } else {
             alert(xhr.status);
           }
