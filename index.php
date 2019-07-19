@@ -1,18 +1,26 @@
 <?php
     session_start();
-    $_SESSION["mem_no"] = 24;
-    $mem_no = $_SESSION["mem_no"];
+    if(!isset($_SESSION["mem_name"])||($_SESSION["mem_name"] == "")){
+      //沒登入
+    } else {
+      //有登入
+      $mem_name = $_SESSION["mem_name"];
+      $style_no = $_SESSION["style_no"];
+      $mem_lv = $_SESSION["mem_lv"];
+      $mem_avatar = $_SESSION["mem_avatar"];
+      $squid_qty = $_SESSION["squid_qty"];
+    }
     $errMsg = '';
     try {
         require_once('connectSquid.php');
         $sql = 
         "SELECT *
         FROM member
-        WHERE mem_no NOT IN(:mem_no)
+        WHERE mem_name NOT IN(:mem_name)
         ORDER BY RAND()
         LIMIT 1"; 
         $member = $pdo->prepare($sql);
-        $member->bindValue(":mem_no", $mem_no);
+        $member->bindValue(":mem_name", $mem_name);
         $member->execute();
         $memRow = $member->fetch(PDO::FETCH_ASSOC);
     } catch(PDOException $e) {
@@ -39,6 +47,7 @@
 </head>
 
 <body>
+  <div id="app">
     <div class="loginSquid">
       <div class="talkingBubble">
           <p>哈囉哈囉</p>
@@ -200,183 +209,6 @@
             </ul>
         </nav>
     </header>
-
-    <!-- 通知 -->
-    <div class="common_notifications disabledScrollOnHover">
-        <div class="notifications_actionBox">
-            <button class="button button-notifications">
-                <img src="imgs/homePage/icon/notice.png" alt="通知按鈕圖片">
-                <span>通知</span>
-            </button>
-            <button class="button button-robot">
-                <img src="imgs/homePage/icon/robot.png" alt="客服機器人圖片">
-                <span>客服魷魚</span>
-            </button>
-        </div>
-        <div class="notifications_container collapse">
-            <div class="notifications_content">
-                <div class="notifications notifications_friend">
-                    <i class="fas fa-times notifications_delete"></i>
-                    <span>【好友通知】</span>
-                    <p>你現在已經和詩詩成為好友了</p>
-                </div>
-                <div class="notifications notifications_event">
-                    <i class="fas fa-times notifications_delete"></i>
-                    <span>【活動邀請】</span>
-                    <p>好友"詩詩"邀請你參加「與VUE一起浮淺」活動</p>
-                </div>
-                <div class="notifications notifications_room">
-                    <i class="fas fa-times notifications_delete"></i>
-                    <span>【房間留言】</span>
-                    <p>會員"詩詩"在您房間留下了一筆新訊息</p>
-                </div>
-                <div class="notifications notifications_event">
-                    <i class="fas fa-times notifications_delete"></i>
-                    <span>【活動邀請】</span>
-                    <p>好友"詩詩"邀請你參加「與VUE一起浮淺」活動</p>
-                </div>
-                <div class="notifications notifications_room">
-                    <i class="fas fa-times notifications_delete"></i>
-                    <span>【房間留言】</span>
-                    <p>會員"詩詩"在您房間留下了一筆新訊息</p>
-                </div>
-                <div class="notifications notifications_event">
-                    <i class="fas fa-times notifications_delete"></i>
-                    <span>【活動邀請】</span>
-                    <p>好友"詩詩"邀請你參加「與VUE一起浮潛」活動</p>
-                </div>
-                <div class="notifications notifications_room">
-                    <i class="fas fa-times notifications_delete"></i>
-                    <span>【房間留言】</span>
-                    <p>會員"詩詩"在您房間留下了一筆新訊息</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 客服機器人 -->
-    <!-- <div class="commom_robot disabledScrollOnHover">
-        <div class="chatBotBox">
-            <h3>魷魚機器人</h3>
-
-            <div id="chatContainer" class="chatContainer">
-                <div id="chat_A" class="chat_A">
-                    <p>Hi! 很高興為您服務，您可以點擊下方關鍵或是直接輸入詢問內容!</p>
-                </div>
-                <div class="clearfix"></div>
-
-                <div id="chat_Q" class="chat_Q">
-                    <p>^^</p>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-
-
-            <ul class="chatBtn">
-                <li id="index">首頁</li>
-                <li id="myroom">我的房間</li>
-                <li id="dressingRoom">換衣間</li>
-                <li id="findFrnd">找朋友</li>
-                <li id="group">揪團活動</li>
-                <li id="shop">虛擬商城</li>
-                <li id="memCenter">會員中心</li>
-            </ul>
-
-
-            <div class="chatWords">
-                <input type="text" id="chatInput" class="chatInput">
-                <button type="submit" id="chatSubmit" class="chatSubmit">送出</button>
-                <div class="clearfix"></div>
-            </div>
-
-        </div>
-    </div> -->
-
-    <!-- 聊天世界 -->
-    <div class="gameWorld">
-        <div class="gameWorld_bgImage">
-            <img src="imgs/homePage/homepage01.png" alt="" draggable="false" oncontextmenu="return false">
-        </div>
-
-        <div class="gameWorld">
-            <div class="gameWorld_house gameWorld_object">
-                <a href="javascript:;"><img src="imgs/homePage/house_tag.png" alt=""></a>
-            </div>
-            <div class="gameWorld_fountain gameWorld_object">
-                <canvas id="spray"></canvas>
-                <a href="javascript:;"><img src="imgs/homePage/fountain.png" alt=""></a>
-            </div>
-            <div id="busBox" class="gameWorld_bus gameWorld_object">
-                <div id="smoke"></div>
-                <a href="javascript:;"><img src="imgs/homePage/bus.png" alt="" id="bus"></a>
-            </div>
-            <div class="gameWorld_cup gameWorld_object">
-                <a href="javascript:;">
-                    <div class="cup">
-                        <img src="imgs/homePage/cup01.png" alt="">
-                        <img id="cup_squid" src="imgs/homePage/squid.png" alt="">
-                        <div id="cup_hand">
-                            <img src="imgs/homePage/hand.png" alt="">
-                            <img id="rag" src="imgs/homePage/rag.png" alt="">
-                        </div>
-                        <img src="imgs/homePage/cup02.png" alt="">
-                    </div>
-                    <div class="g_apple">
-                        <img src="imgs/homePage/cup.png" alt="">
-                    </div>
-                </a>
-            </div>
-        </div>
-
-        <div class="gameWorld_arrow">
-            <div class="arrow arrow-right">
-                <img src="imgs/homePage/arrow-right.png" alt="">
-            </div>
-            <div class="arrow arrow-left">
-                <img src="imgs/homePage/arrow-left.png" alt="">
-            </div>
-            <div class="arrow arrow-top">
-                <img src="imgs/homePage/arrow-top.png" alt="">
-            </div>
-            <div class="arrow arrow-bottom">
-                <img src="imgs/homePage/arrow-bottom.png" alt="">
-            </div>
-        </div>
-
-        <div class="gameWorld_switchPage">
-            <div class="checkBox checkBox-room collapse">
-                <div class="checkBox_content">
-                    <div class="checkBox_title">
-                        <h3>前往我的房間</h3>
-                    </div>
-                    <div class="checkBox_hint">
-                        <p>要前往我的房間嗎?</p>
-                    </div>
-                    <div class="checkBox_btn">
-                        <button class="button button-cancel" id="btnCancel-room">取消</button>
-                        <a href="myRoom.html" class="button button-check">確認</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="checkBox checkBox-event collapse">
-                <div class="checkBox_content">
-                    <div class="checkBox_title">
-                        <h3>前往揪團活動</h3>
-                    </div>
-                    <div class="checkBox_hint">
-                        <p>要前往揪團活動專區嗎?</p>
-                    </div>
-                    <div class="checkBox_btn">
-                        <button class="button button-cancel" id="btnCancel-event">取消</button>
-                        <a href="event.html" class="button button-check">確認</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="gameWorld_leaderBoard"></div>
-    </div>
 
     <!-- 聊天群組(1.聊天室 2.好友列表) -->
     <!-- Rou:vue.js #chat_app -->
@@ -622,9 +454,6 @@
             </div>
         </div>
     </div>
-    <div class="friendList_open disabledScrollOnHover">
-        <button class="button friendList_openBtn">開啟聊天室</button>
-    </div>
 
     <!-- 登入 -->
     <div class="loginBox">
@@ -643,26 +472,212 @@
         </div>
         <div class="loginForm">
           <h3>會員登入</h3>
-          <form action="">
+          <!-- 登入錯誤訊息 -->
+          <span id="login_failMsg"></span>
+          <!-- 為了擋掉鍵盤enter後不會吃登入function ,form拔掉了-->
+          <div class="loginForm_form">
             <div class="personalInfo">
               <div class="inputField">
                 <label for="mem_name">暱稱</label>
-                <input type="text" name="mem_name" id="login_mem_name" />
+                <input type="text" name="mem_name" id="login_mem_name" v-on:keyup="login_enter" />
               </div>
               <div class="inputField">
                 <label for="mem_pwd">密碼</label>
-                <input type="password" name="mem_pwd" id="login_mem_pwd" />
+                <input type="password" name="mem_pwd" id="login_mem_pwd" v-on:keyup="login_enter" />
               </div>
               <a href="javascript:;">忘記密碼？</a>
             </div>
             <div class="submitBtns">
-              <input class="createRole" type="button" value="創角" />
-              <input id="loginBtn" type="button" value="登入"/>
-              <input id="godMode" type="submit" value="上帝模式" />
+              <input class="createRole" type="button" value="創角" v-on:click="create_role" />
+              <input id="loginBtn" type="button" v-on:click="login_btn" value="登入"/>
+              <input id="godMode" type="submit" value="上帝模式" v-on:click="god_mode" />
             </div>
-          </form>
+          </div>
         </div>
       </div>
+    </div>
+  </div>
+  
+    <!-- 聊天群組click -->
+    <div class="friendList_open disabledScrollOnHover">
+        <button class="button friendList_openBtn">開啟聊天室</button>
+    </div>
+
+    <!-- 通知 -->
+    <div class="common_notifications disabledScrollOnHover">
+        <div class="notifications_actionBox">
+            <button class="button button-notifications">
+                <img src="imgs/homePage/icon/notice.png" alt="通知按鈕圖片">
+                <span>通知</span>
+            </button>
+            <button class="button button-robot">
+                <img src="imgs/homePage/icon/robot.png" alt="客服機器人圖片">
+                <span>客服魷魚</span>
+            </button>
+        </div>
+        <div class="notifications_container collapse">
+            <div class="notifications_content">
+                <div class="notifications notifications_friend">
+                    <i class="fas fa-times notifications_delete"></i>
+                    <span>【好友通知】</span>
+                    <p>你現在已經和詩詩成為好友了</p>
+                </div>
+                <div class="notifications notifications_event">
+                    <i class="fas fa-times notifications_delete"></i>
+                    <span>【活動邀請】</span>
+                    <p>好友"詩詩"邀請你參加「與VUE一起浮淺」活動</p>
+                </div>
+                <div class="notifications notifications_room">
+                    <i class="fas fa-times notifications_delete"></i>
+                    <span>【房間留言】</span>
+                    <p>會員"詩詩"在您房間留下了一筆新訊息</p>
+                </div>
+                <div class="notifications notifications_event">
+                    <i class="fas fa-times notifications_delete"></i>
+                    <span>【活動邀請】</span>
+                    <p>好友"詩詩"邀請你參加「與VUE一起浮淺」活動</p>
+                </div>
+                <div class="notifications notifications_room">
+                    <i class="fas fa-times notifications_delete"></i>
+                    <span>【房間留言】</span>
+                    <p>會員"詩詩"在您房間留下了一筆新訊息</p>
+                </div>
+                <div class="notifications notifications_event">
+                    <i class="fas fa-times notifications_delete"></i>
+                    <span>【活動邀請】</span>
+                    <p>好友"詩詩"邀請你參加「與VUE一起浮潛」活動</p>
+                </div>
+                <div class="notifications notifications_room">
+                    <i class="fas fa-times notifications_delete"></i>
+                    <span>【房間留言】</span>
+                    <p>會員"詩詩"在您房間留下了一筆新訊息</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 客服機器人 -->
+    <!-- <div class="commom_robot disabledScrollOnHover">
+        <div class="chatBotBox">
+            <h3>魷魚機器人</h3>
+
+            <div id="chatContainer" class="chatContainer">
+                <div id="chat_A" class="chat_A">
+                    <p>Hi! 很高興為您服務，您可以點擊下方關鍵或是直接輸入詢問內容!</p>
+                </div>
+                <div class="clearfix"></div>
+
+                <div id="chat_Q" class="chat_Q">
+                    <p>^^</p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+
+            <ul class="chatBtn">
+                <li id="index">首頁</li>
+                <li id="myroom">我的房間</li>
+                <li id="dressingRoom">換衣間</li>
+                <li id="findFrnd">找朋友</li>
+                <li id="group">揪團活動</li>
+                <li id="shop">虛擬商城</li>
+                <li id="memCenter">會員中心</li>
+            </ul>
+
+
+            <div class="chatWords">
+                <input type="text" id="chatInput" class="chatInput">
+                <button type="submit" id="chatSubmit" class="chatSubmit">送出</button>
+                <div class="clearfix"></div>
+            </div>
+
+        </div>
+    </div> -->
+
+    <!-- 聊天世界 -->
+    <div class="gameWorld">
+        <div class="gameWorld_bgImage">
+            <img src="imgs/homePage/homepage01.png" alt="" draggable="false" oncontextmenu="return false">
+        </div>
+
+        <div class="gameWorld">
+            <div class="gameWorld_house gameWorld_object">
+                <a href="javascript:;"><img src="imgs/homePage/house_tag.png" alt=""></a>
+            </div>
+            <div class="gameWorld_fountain gameWorld_object">
+                <canvas id="spray"></canvas>
+                <a href="javascript:;"><img src="imgs/homePage/fountain.png" alt=""></a>
+            </div>
+            <div id="busBox" class="gameWorld_bus gameWorld_object">
+                <div id="smoke"></div>
+                <a href="javascript:;"><img src="imgs/homePage/bus.png" alt="" id="bus"></a>
+            </div>
+            <div class="gameWorld_cup gameWorld_object">
+                <a href="javascript:;">
+                    <div class="cup">
+                        <img src="imgs/homePage/cup01.png" alt="">
+                        <img id="cup_squid" src="imgs/homePage/squid.png" alt="">
+                        <div id="cup_hand">
+                            <img src="imgs/homePage/hand.png" alt="">
+                            <img id="rag" src="imgs/homePage/rag.png" alt="">
+                        </div>
+                        <img src="imgs/homePage/cup02.png" alt="">
+                    </div>
+                    <div class="g_apple">
+                        <img src="imgs/homePage/cup.png" alt="">
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="gameWorld_arrow">
+            <div class="arrow arrow-right">
+                <img src="imgs/homePage/arrow-right.png" alt="">
+            </div>
+            <div class="arrow arrow-left">
+                <img src="imgs/homePage/arrow-left.png" alt="">
+            </div>
+            <div class="arrow arrow-top">
+                <img src="imgs/homePage/arrow-top.png" alt="">
+            </div>
+            <div class="arrow arrow-bottom">
+                <img src="imgs/homePage/arrow-bottom.png" alt="">
+            </div>
+        </div>
+
+        <div class="gameWorld_switchPage">
+            <div class="checkBox checkBox-room collapse">
+                <div class="checkBox_content">
+                    <div class="checkBox_title">
+                        <h3>前往我的房間</h3>
+                    </div>
+                    <div class="checkBox_hint">
+                        <p>要前往我的房間嗎?</p>
+                    </div>
+                    <div class="checkBox_btn">
+                        <button class="button button-cancel" id="btnCancel-room">取消</button>
+                        <a href="myRoom.html" class="button button-check">確認</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="checkBox checkBox-event collapse">
+                <div class="checkBox_content">
+                    <div class="checkBox_title">
+                        <h3>前往揪團活動</h3>
+                    </div>
+                    <div class="checkBox_hint">
+                        <p>要前往揪團活動專區嗎?</p>
+                    </div>
+                    <div class="checkBox_btn">
+                        <button class="button button-cancel" id="btnCancel-event">取消</button>
+                        <a href="event.html" class="button button-check">確認</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="gameWorld_leaderBoard"></div>
     </div>
 
     <!-- 創角 -->
@@ -1051,6 +1066,7 @@
       </svg>
     </div>
     </div>
+
     <!-- Javascript -->
     <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js'></script> -->
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js'></script>
@@ -1058,7 +1074,6 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js'></script>
     <script src="https://kit.fontawesome.com/629062769a.js"></script>
     <script src="js/main.js"></script>
-    <script src="js/loginBox.js"></script>
     <script src="js/createBox.js"></script>
     <script src="js/createRoleData.js"></script>
     <script src="js/newCharacter.js"></script>
@@ -1066,6 +1081,15 @@
     <script src="js/chat.js"></script>
     <script src="js/roleFunctions.js"></script>
     <script src="js/rolePosition.js"></script>
+    <script>
+      $(document).ready(function(){
+        <?php 
+        if(isset($_SESSION['mem_name'])){
+          echo "login('${$_SESSION['mem_name']}');";
+        }
+        ?>
+      });
+    </script>
 </body>
 
 </html>

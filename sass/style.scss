@@ -1609,7 +1609,11 @@ $num-particles: 20; //煙的數量
         text-align: center;
         padding-top: 5px;
       }
-      form {
+      // 登入錯誤訊息
+      #login_failMsg{
+        color:red;
+      }
+      .loginForm_form {
         display: flex;
         flex-flow: column nowrap;
         justify-content: space-between;

@@ -2,7 +2,7 @@
 //vuejs & websocket
 var conn_chat;
 var chat_app = new Vue({
-  el: '#chat_app',
+  el: '#app',
   data: {
     user_id: '',
     friends: ['董董', '曲翑', '揉揉', '詩詩', '華姐'],
@@ -60,6 +60,48 @@ var chat_app = new Vue({
     },
     mark_read_messages_from_someone: function (who) {
       this.unread_messages_from_someone(who).forEach(function (msg) { msg.is_read = true });
+    },
+    // 登入 增加登入成功&錯誤功能
+    login_btn: function() {
+      const xhr = new XMLHttpRequest();
+      xhr.onload = () => {
+        if (xhr.status == 200) {
+          var resp = JSON.parse(xhr.responseText);
+          $(".loginBox").css({ display: "none" });
+          const loginSquid = document.querySelector(".loginSquid #myRole");
+          loginSquid.src = resp.style_no;
+          login(resp.mem_name);
+          console.log(resp);
+        } else {
+          if(xhr.status == 401){
+            $("#login_failMsg").html("帳號密碼錯誤");
+          }else{
+            alert(xhr.status);
+          }
+        }
+      };
+    
+      const mem_name = document.getElementById("login_mem_name").value;
+      const mem_pwd = document.getElementById("login_mem_pwd").value;
+      const url = `getRole.php?mem_name=${mem_name}&mem_pwd=${mem_pwd}`;
+      xhr.open("get", url, true);
+    
+      xhr.send(null);
+    },
+    //loginBtn enter後登入
+    login_enter: function(e){
+      if(e.keyCode== 13 ){
+        this.login_btn();
+      }
+    },
+    // 上帝模式
+    god_mode: function() {
+      $(".loginBox").css({ display: "none" });
+    },
+    // 創角
+    create_role: function() {
+      $(".loginBox").css({ display: "none" });
+      $(".createBox").css({ display: "flex" });
     }
   }
 });
@@ -102,11 +144,10 @@ function initWebsocketServer() {
   };
   conn_chat.onmessage = onMessageListener;
 }
-function login() {
-  var user_id = $('#memId').val();
+function login(user_id) {
   // 告訴server我的user_id
+  console.log(user_id);
   chat_app.user_id = user_id;
-  $('.loginBox').css('display', 'none');
   conn_chat.send(
     JSON.stringify(
       { "msg_type": "LOGIN", "user_id": user_id }
