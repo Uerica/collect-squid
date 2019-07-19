@@ -13,7 +13,14 @@
         $member->bindValue(":mem_name", $mem_name);
         $member->bindValue(":mem_pwd", $mem_pwd);
         $member->execute();
-        $memRow = $member->fetch(PDO::FETCH_ASSOC);
+        if($member->rowCount() > 0) {
+            $memRow = $member->fetch(PDO::FETCH_ASSOC);
+            $memRow["mem_name"];
+            $memRow["mem_no"]
+        }else{
+            // account or password incorrect
+
+        }
 
         echo $memRow["style_no"];
     } catch(PDOException $e) {
