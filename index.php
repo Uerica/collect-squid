@@ -1,20 +1,28 @@
 <?php
     session_start();
-    $_SESSION["mem_no"] = 24;
-    $mem_no = $_SESSION["mem_no"];
+    // $_SESSION["mem_no"] = 24;
+    $mem_no = 24;
     $errMsg = '';
     try {
         require_once('connectSquid.php');
-        $sql = 
+        $meSQL = 
+        "SELECT *
+        FROM member
+        WHERE mem_no = :mem_no";
+        $me = $pdo->prepare($meSQL);
+        $me->bindValue(":mem_no", $mem_no);
+        $me->execute();
+        $meRow = $me->fetch(PDO::FETCH_ASSOC);
+
+        $othersSQL = 
         "SELECT *
         FROM member
         WHERE mem_no NOT IN(:mem_no)
         ORDER BY RAND()
-        LIMIT 1"; 
-        $member = $pdo->prepare($sql);
-        $member->bindValue(":mem_no", $mem_no);
-        $member->execute();
-        $memRow = $member->fetch(PDO::FETCH_ASSOC);
+        LIMIT 3"; 
+        $members = $pdo->prepare($othersSQL);
+        $members->bindValue(":mem_no", $mem_no);
+        $members->execute();
     } catch(PDOException $e) {
         $errMsg .= $e->getMessage()."<br>";
         $errMsg .= $e->getLine()."<br>";
@@ -43,10 +51,13 @@
       <div class="talkingBubble">
           <p>哈囉哈囉</p>
       </div>
-      <span class="roleName"><?php $memRow["mem_name"] ?></span>
+      <span class="roleName"><?php echo $meRow["mem_name"] ?></span>
       <img id="myRole" src="" alt="Penny">
     </div>
-      
+
+    <?php
+    while($memRow = $members->fetch(PDO::FETCH_ASSOC)) {
+    ?>
     <div class="otherSquid">
       <div class="onlineFuns">
         <a class="funIcon goRoom" href="javascript:;" class="onlineFunction"><img src="imgs/characters/goRoomIcon.png" alt="看房間"></a >
@@ -57,8 +68,12 @@
         <p>媽的好辣喔</p>
       </div>
       <span class="roleName"><?php echo $memRow["mem_name"] ?></span>
-      <img id="myRole" src="<?php echo $memRow["style_no"] ?>" alt="Penny">
+      <img id="myRole" src="<?php echo $memRow["style_no"] ?>" alt="<?php echo $memRow["mem_name"] ?>">
     </div>
+    <?php
+    }
+    ?>
+      
 
     <div class="common_cursor"></div>
 
@@ -819,9 +834,9 @@
           </style>
         </defs>
         <rect id="矩形_2_拷貝_26" data-name="矩形 2 拷貝 26" class="cls-1 squidBody" x="45.078" width="195.844" height="322.75" rx="20" ry="20"/>
-        <rect id="矩形_3_拷貝_27" data-name="矩形 3 拷貝 27" class="cls-1 squidBody" x="79.766" y="247.437" width="26.844" height="150.688" rx="5.423" ry="5.423"/>
-        <rect id="矩形_3_拷貝_27-2" data-name="矩形 3 拷貝 27" class="cls-1 squidBody" x="129.922" y="247.437" width="26.781" height="150.688" rx="5.423" ry="5.423"/>
-        <rect id="矩形_3_拷貝_27-3" data-name="矩形 3 拷貝 27" class="cls-1 squidBody" x="180.047" y="247.437" width="26.812" height="150.688" rx="5.423" ry="5.423"/>
+        <rect id="矩形_3_拷貝_27" data-name="矩形 3 拷貝 27" class="cls-1 squidBody" x="73.266" y="247.437" width="25.2" height="150" rx="5.423" ry="5.423"/>
+        <rect id="矩形_3_拷貝_27-2" data-name="矩形 3 拷貝 27" class="cls-1 squidBody" x="129.922" y="247.437" width="25.2" height="150" rx="5.423" ry="5.423"/>
+        <rect id="矩形_3_拷貝_27-3" data-name="矩形 3 拷貝 27" class="cls-1 squidBody" x="186.047" y="247.437" width="25.2" height="150" rx="5.423" ry="5.423"/>
       </svg>
       <svg id="head1" xmlns="http://www.w3.org/2000/svg" width="285.969" height="231" viewBox="0 0 285.969 231">
         <defs>

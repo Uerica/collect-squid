@@ -2114,7 +2114,7 @@ $num-particles: 20; //煙的數量
   width: 120px;
   top: 250px;
   left: calc(50% - 60px);
-  z-index: 100;
+  z-index: 101;
   text-align: center;
   img {
     width: 80%;
@@ -2137,6 +2137,7 @@ $num-particles: 20; //煙的數量
     display: inline-block;
     padding: 20px 20px 5px;
     color: #fff;
+    text-shadow: 0px 0px 3px #000;
     font: 20px;
   }
   .talkingBubble.invisible {

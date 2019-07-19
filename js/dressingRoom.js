@@ -1,4 +1,19 @@
+let style_no;
+
 function init() {
+  const xhr = new XMLHttpRequest();
+  xhr.onload = function() {
+    if (xhr.status == 200) {
+      style_no = xhr.responseText;
+    } else {
+      alert(xhr.status);
+    }
+  };
+
+  const url = "prepareToDress.php";
+  xhr.open("get", url, true);
+  xhr.send(null);
+
   // RWD
   window.addEventListener("resize", gameSizing);
 
@@ -131,14 +146,15 @@ function dressingCanvas(inShoes, inClo, inHat) {
     dressingCtx.drawImage(shoes, 0, dH * 0.928, dW, dH * 0.0685);
   });
   let squid = new Image();
-  squid.src = "imgs/dressingRoom/squid_center.png";
+  // squid.src = "imgs/dressingRoom/squid_center.png";
+  squid.src = style_no;
   squid.addEventListener("load", function() {
-    dressingCtx.drawImage(squid, 0, dH * 0.17, dW, dH * 0.795);
+    dressingCtx.drawImage(squid, 0, dH * 0.165, dW, dH * 0.795);
   });
   let clo = new Image();
   clo.src = inClo;
   clo.addEventListener("load", function() {
-    dressingCtx.drawImage(clo, dW * 0.158, dH * 0.672, dW * 0.685, dH * 0.185);
+    dressingCtx.drawImage(clo, dW * 0.158, dH * 0.66, dW * 0.685, dH * 0.185);
   });
   let hat = new Image();
   hat.src = inHat;
@@ -285,6 +301,7 @@ function saveDressing() {
         alert("Error");
       } else {
         alert("Successfully uploaded");
+        // $_SESSION["dressed_no"] = xhr.responseText;
       }
     } else {
       alert(xhr.status);

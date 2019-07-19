@@ -1,7 +1,20 @@
 <?php
+  session_start();
+  $mem_no = $_SESSION["mem_no"];
+
   $errMsg = '';
   try {
     require_once('connectSquid.php');
+
+    $sql = 
+    "SELECT *
+    FROM member
+    WHERE mem_no = :mem_no
+    ";
+    $member = $pdo->prepare($sql);
+    $member->bindValue(":mem_no", $mem_no);
+    $member->execute();
+    $memRow = $member->fetch(PDO::FETCH_ASSOC);
 
     $hatLength = 0;
     $cloLength = 0;
@@ -62,7 +75,7 @@
       rel="stylesheet"
       href="node_modules/owl.carousel/dist/assets/owl.carousel.min.css"
     />
-    <link rel="stylesheet" href="css/style.css" />
+    <!-- <link rel="stylesheet" href="css/style.css" /> -->
     <link rel="stylesheet" href="sass/style.css" />
     <title>收集友誼</title>
   </head>
@@ -226,7 +239,7 @@
       <div class="squidArea">
           <button id="confirmDressing">我穿好了</button>
           <div class="dressingZone">
-            <img src="imgs/dressingRoom/squid_center.png" alt="Squid" />
+            <img src="<?php echo $memRow["style_no"] ?>" alt="Squid" />
             <img
               class="changedHat"
               src="imgs/dressingRoom/furHat.png"

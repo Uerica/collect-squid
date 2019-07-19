@@ -15,7 +15,11 @@
         $member->execute();
         $memRow = $member->fetch(PDO::FETCH_ASSOC);
 
-        echo $memRow["style_no"];
+        if($memRow["dressed_no"] == '') {
+            echo $memRow["style_no"];
+        } else {
+            echo $memRow["dressed_no"];
+        }
     } catch(PDOException $e) {
         $errMsg .= $e->getMessage()."<br>";
         $errMsg .= $e->getLine()."<br>";

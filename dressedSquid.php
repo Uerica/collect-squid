@@ -1,16 +1,35 @@
 <?php
     session_start();
-    $upload_dir = "imgs//dressingRoom//";
+    try {
+        require_once('connectSquid.php');
+        $mem_no = $_SESSION["mem_no"];
 
-    $imgDataStr = $_POST['dressedSquid'];
-    $imgDataStr = str_replace('data:image/png;base64,', '', $imgDataStr);
+        $upload_dir = "imgs/dressingRoom/";
 
-    $data = base64_decode($imgDataStr);
+        $imgDataStr = $_POST['dressedSquid'];
+        $imgDataStr = str_replace('data:image/png;base64,', '', $imgDataStr);
 
-    $fileName = 'dressedSquid';
-    $file = $upload_dir.$fileName.".png";
-    $success = file_put_contents($file, $data);
+        $data = base64_decode($imgDataStr);
 
-    $SESSION["choTmpName"] = $file;
-    echo $success ? $file : 'error';
+        $fileName = 'dressedSquid'.$mem_no;
+        $file = $upload_dir.$fileName.".png";
+        $success = file_put_contents($file, $data);
+        $_SESSION["dressed_no"] = $file;
+
+        $sql = 
+        "UPDATE member
+        SET dressed_no = :dressed_no
+        WHERE mem_no = :mem_no
+        ";
+        $updateClo = $pdo->prepare($sql);
+        $updateClo->bindValue(":dressed_no", $file);
+        $updateClo->bindValue(":mem_no", $mem_no);
+        $updateClo->execute();
+
+        echo $file;
+    } catch (PDOException $e) {
+
+        echo $success ? $file : 'error';
+    }
+
 ?>

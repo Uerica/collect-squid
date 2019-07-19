@@ -73,11 +73,12 @@
             $fileName = 'myRole'.$lastID;
             $file = $upload_dir.$fileName.".png";
             $success = file_put_contents($file, $data);
-        
+            
+            $_SESSION["mem_no"] = $lastID;
             $_SESSION["myRole"] = $file;
             echo $success ? $file : 'error';
         }
-        echo "創角成功~";
+        // echo "創角成功~";
     } catch (PDOException $e) {
         $errMsg .= $e->getMessage()."<br>";
         $errMsg .= $e->getLine()."<br>";

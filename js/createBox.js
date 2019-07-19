@@ -1,5 +1,5 @@
-let head = "head2";
-let face = "face5";
+let head = "head1";
+let face = "face1";
 let color = "rgb(255, 141, 141)";
 let boxHead = $(".headWrapper");
 let boxBody = $(".bodyWrapper");
