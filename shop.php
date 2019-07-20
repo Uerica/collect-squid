@@ -188,10 +188,10 @@ try {
             </ul>
         </nav>
     </header> -->
-<div id="confirmBox" style="display:none">
-    <button id="confirm_btn">確定
-    <button id="cancel_btn">取消
-</div>
+    <div id="confirmBox" style="display:none">
+        <button id="confirm_btn">確定
+        <button id="cancel_btn">取消
+    </div>
     <div class="shop">
         <div class="shop_area">
             <div class="item_group">
