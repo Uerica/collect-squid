@@ -1,15 +1,18 @@
 <?php
+  // phpinfo();
+  // exit();
+    ob_start();
     session_start();
     if(!isset($_SESSION["mem_name"])||($_SESSION["mem_name"] == "")){
       //沒登入
     } else {
-      //有登入
+      //有登入存阿
       $mem_name = $_SESSION["mem_name"];
       $style_no = $_SESSION["style_no"];
       $mem_lv = $_SESSION["mem_lv"];
       $mem_avatar = $_SESSION["mem_avatar"];
       $squid_qty = $_SESSION["squid_qty"];
-    }
+    };
     $errMsg = '';
     try {
         require_once('connectSquid.php');
@@ -47,27 +50,33 @@
 </head>
 
 <body>
+  <!-- vue -->
   <div id="app">
-    <div class="loginSquid">
+    <!-- 我自己的魷魚 -->
+    <div class="loginSquid" v-if="is_login()">
       <div class="talkingBubble">
-          <p>哈囉哈囉</p>
+          <p>嗨我是自己</p>
       </div>
-      <span class="roleName"><?php $memRow["mem_name"] ?></span>
-      <img id="myRole" src="" alt="Penny">
+      <span class="roleName">{{user_id}}</span>
+      <img id="myRole" :src="style_no" alt="自己的外型">
     </div>
-      
-    <div class="otherSquid">
-      <div class="onlineFuns">
-        <a class="funIcon goRoom" href="javascript:;" class="onlineFunction"><img src="imgs/characters/goRoomIcon.png" alt="看房間"></a >
-        <a class="funIcon addFriend" href="javascript:;" class="onlineFunction"><img src="imgs/characters/addFriendIcon.png" alt="加好友"></a >
-        <a class="funIcon mute" href="javascript:;" class="onlineFunction"><img src="imgs/characters/muteIcon.png" alt="靜音"></a >
+    
+    <!-- 別的魷魚,線上有幾隻產生幾隻 -->
+
+    <template v-for="others_online_user_info in others_online_users_info()">
+      <div class="otherSquid" :style="calcPosition()" >
+        <div class="onlineFuns">
+          <a class="funIcon goRoom" href="javascript:;" class="onlineFunction"><img src="imgs/characters/goRoomIcon.png" alt="看房間"></a >
+          <a class="funIcon addFriend" v-on:click="add_friend(others_online_user_info.mem_name)" href="javascript:;" class="onlineFunction"><img src="imgs/characters/addFriendIcon.png" alt="加好友"></a >
+          <a class="funIcon mute" href="javascript:;" class="onlineFunction"><img src="imgs/characters/muteIcon.png" alt="靜音"></a >
+        </div>
+        <div class="talkingBubble">
+          <p>媽的好辣喔</p>
+        </div>
+        <span class="roleName">{{others_online_user_info.mem_name}}</span>
+        <img id="myRole" :src="others_online_user_info.style_no" alt="Penny">
       </div>
-      <div class="talkingBubble">
-        <p>媽的好辣喔</p>
-      </div>
-      <span class="roleName"><?php echo $memRow["mem_name"] ?></span>
-      <img id="myRole" src="<?php echo $memRow["style_no"] ?>" alt="Penny">
-    </div>
+    </template>
 
     <div class="common_cursor"></div>
 
@@ -102,7 +111,7 @@
                         <li class="coin">
                             <a href="javascript:;">
                                 <img src="imgs/homePage/icon/coin.png" alt="持有金額icon">
-                                <span>1500</span>
+                                <span>{{squid_qty}}</span>
                             </a>
                         </li>
                         <li class="logo">
@@ -114,10 +123,11 @@
                         <li class="login">
                             <img src="imgs/homePage/icon/avatar.png" alt="角色頭像icon">
                             <span class="name">
-                                <a href="javascript:;">魚翔</a>
+                              <a href="javascript:;">{{user_id}}</a>
                             </span>
                             <span>
-                                <a href="javascript:;">登出</a>
+                              <a v-if="is_login()" v-on:click="logout">登出</a>
+                              <a v-else>登入</a>
                             </span>
                         </li>
                     </ul>
@@ -190,19 +200,26 @@
                 <div class="memberInfo">
                     <li class="login">
                         <img src="imgs/homePage/icon/avatar.png" alt="角色頭像icon">
-                        <span class="name"><a href="javascript:;">魚翔</a></span>
-                        <span><a href="javascript:;">登出</a></span>
+                        <span class="name">
+                          <a href="javascript:;">{{user_id}}</a>
+                        </span>
+                        <span>
+                          <a v-if="is_login()" v-on:click="logout">登出</a>
+                          <a v-else>登入</a>
+                        </span>
                     </li>
                     <li class="coin">
                         <a href="javascript:;">
                             <img src="imgs/homePage/icon/coin.png" alt="持有金額icon">
-                            <span>1500</span>
+                            <span>{{squid_qty}}</span>
                         </a>
                     </li>
                     <li class="level">
                         <a href="javascript:;">
-                            <img src="imgs/homePage/icon/civilian.png" alt="平民等級icon">
-                            <span>平民</span>
+                            <img v-if="mem_lv=='1'" src="imgs/homePage/icon/civilian.png" alt="平民等級icon">
+                            <img v-if="mem_lv=='2'" src="imgs/homePage/icon/friend.png" alt="貴族等級icon">
+                            <img v-if="mem_lv=='3'" src="imgs/homePage/icon/friend.png" alt="皇族等級icon">
+                            <span>平民</span>                                                                                    
                         </a>
                     </li>
                 </div>
@@ -394,54 +411,25 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="friendList_friend">
-                            <div class="friendInfo">
-                                <div class="avatar">
-                                    <img src="imgs/homePage/tree_04.png" alt="大頭貼">
-                                </div>
-                                <div class="friendName">
-                                    <p>佩佩</p>
-                                </div>
-                            </div>
-
-                            <div class="friendAction">
-                                <!-- 上線 / 下線狀態 點 -->
-                                <div class="connectStatus">
-                                    <div class="dot dot-offline"></div>
-                                </div>
-
-                                <div class="roomVisit">
-                                    <a href="javascript:;"><img src="imgs/homePage/icon/home.png" alt="房間ICON"></a>
-                                </div>
-
-                                <div class="moreAction">
-                                    <a href="javavscript:;">
-                                        <div class="dot"></div>
-                                        <div class="dot"></div>
-                                        <div class="dot"></div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
                     </li>
 
                     <!-- 好友邀請中 -->
                     <li class="friendList_requestedFriend">
                         <button class="friendList_friendStatus button">好友邀請中</button>
-                        <div class="friendList_friend">
+                        <div class="friendList_friend" v-for="friend in pending_friends">
                             <div class="friendInfo">
                                 <div class="avatar">
                                     <img src="imgs/homePage/tree_04.png" alt="大頭貼">
                                 </div>
                                 <div class="friendName">
-                                    <p>毛筆</p>
+                                    <p>{{friend}}</p>
                                 </div>
                             </div>
 
                             <div class="friendAction">
                                 <!-- 接受好友申請 -->
                                 <div class="requestAccept">
-                                    <a href="javascript:;"><img src="imgs/homePage/icon/accept.png" alt="接受ICON"></a>
+                                    <a href="javascript:;" v-on:click="confirm_friend(friend)"><img src="imgs/homePage/icon/accept.png" alt="接受ICON"></a>
                                 </div>
                                 <!-- 拒絕好友申請 -->
                                 <div class="requestRefuse">
@@ -449,14 +437,30 @@
                                 </div>
                             </div>
                         </div>
-                    </li>
+                    </li> 
+
+                    
+                    <!-- waiting好友agree中 -->
+                    <li class="friendList_waitingFriend">
+                        <button class="friendList_friendStatus button">等待好友同意中</button>
+                        <div class="friendList_friend" v-for="friend in waiting_friends">
+                            <div class="friendInfo">
+                                <div class="avatar">
+                                    <img src="imgs/homePage/tree_04.png" alt="大頭貼">
+                                </div>
+                                <div class="friendName">
+                                    <p>{{friend}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </li> 
                 </ul>
             </div>
         </div>
     </div>
 
     <!-- 登入 -->
-    <div class="loginBox">
+    <div v-if="is_login() == false" class="loginBox">
       <div class="loginContent">
         <div class="intro">
           <div class="logo">
@@ -497,6 +501,7 @@
       </div>
     </div>
   </div>
+  <!-- vue -->
   
     <!-- 聊天群組click -->
     <div class="friendList_open disabledScrollOnHover">
@@ -1081,11 +1086,17 @@
     <script src="js/chat.js"></script>
     <script src="js/roleFunctions.js"></script>
     <script src="js/rolePosition.js"></script>
+    <script scr="js/addFriend.js"></script>
     <script>
       $(document).ready(function(){
         <?php 
-        if(isset($_SESSION['mem_name'])){
-          echo "login('${$_SESSION['mem_name']}');";
+        if(isset($_SESSION["mem_name"])){
+          echo "var mem_name='" . $_SESSION["mem_name"] . "';";
+          echo "var style_no='" . $_SESSION["style_no"] . "';";
+          echo "var mem_lv='" . $_SESSION["mem_lv"] . "';";
+          echo "var mem_avatar='" . $_SESSION["mem_avatar"] . "';";
+          echo "var squid_qty='" . $_SESSION["squid_qty"] . "';";
+          echo "login(mem_name,style_no,mem_lv,mem_avatar,squid_qty);";
         }
         ?>
       });
