@@ -43,7 +43,7 @@ try {
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/backend.css">
+    <link rel="stylesheet" href="sass/style.css">
     <title>收集友誼 後台</title>
 </head>
 
@@ -67,21 +67,21 @@ try {
             <div class="col-2">
                 <div class="nav flex-column nav-pills navColor sidebar" id="v-pills-tab" role="tablist"
                     aria-orientation="vertical">
-                    <a class="nav-link active" id="v-pills-manager-tab" data-toggle="pill" href="#v-pills-manager"
+                    <a class="nav-link active sidebar-list" id="v-pills-manager-tab" data-toggle="pill" href="#v-pills-manager"
                         role="tab" aria-controls="v-pills-manager" aria-selected="true">管理員帳號管理</a>
-                    <a class="nav-link" id="v-pills-member-tab" data-toggle="pill" href="#v-pills-member" role="tab"
+                    <a class="nav-link sidebar-list" id="v-pills-member-tab" data-toggle="pill" href="#v-pills-member" role="tab"
                         aria-controls="v-pills-member" aria-selected="false">會員帳號管理</a>
-                    <a class="nav-link" id="v-pills-furniture-tab" data-toggle="pill" href="#v-pills-furniture"
+                    <a class="nav-link sidebar-list" id="v-pills-furniture-tab" data-toggle="pill" href="#v-pills-furniture"
                         role="tab" aria-controls="v-pills-furniture" aria-selected="false">家具管理</a>
-                    <a class="nav-link" id="v-pills-clothing-tab" data-toggle="pill" href="#v-pills-clothing" role="tab"
+                    <a class="nav-link sidebar-list" id="v-pills-clothing-tab" data-toggle="pill" href="#v-pills-clothing" role="tab"
                         aria-controls="v-pills-clothing" aria-selected="false">服裝管理</a>
-                    <a class="nav-link" id="v-pills-event-tab" data-toggle="pill" href="#v-pills-event" role="tab"
+                    <a class="nav-link sidebar-list" id="v-pills-event-tab" data-toggle="pill" href="#v-pills-event" role="tab"
                         aria-controls="v-pills-event" aria-selected="false">活動圖片管理</a>
-                    <a class="nav-link" id="v-pills-robot-tab" data-toggle="pill" href="#v-pills-robot" role="tab"
+                    <a class="nav-link sidebar-list" id="v-pills-robot-tab" data-toggle="pill" href="#v-pills-robot" role="tab"
                         aria-controls="v-pills-robot" aria-selected="false">機器人管理</a>
                 </div>
             </div>
-            <div class="col-9">
+            <div class="col-9 right-side">
                 <div class="tab-content" id="v-pills-tabContent">
 
                     <!-- 管理員 -->
