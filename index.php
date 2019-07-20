@@ -73,7 +73,7 @@
         </div>
     </div> -->
 
-    <!-- 導覽列 -->
+    <!-- 導覽列Header -->
     <header class="common_header disabledScrollOnHover">
         <div class="menuMobile">
             <span class="menuMobile_circle"></span>
