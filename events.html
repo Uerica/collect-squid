@@ -559,17 +559,19 @@
           </div>
           <div class="flexWrapper">
             <div class="graph">
-              <span class="raiseData">1.上傳照片</span>
-              <div class="picUpload">
-                <input type="file" value="選擇檔案" />
-              </div>
-              <div class="pic">
-                <img src="eventsImg/detailPic.jpg" alt="Detail Pic" />
-              </div>
+              <form id="evtImgForm" enctype="multipart/form-data">
+                <span class="raiseData">1.上傳照片</span>
+                <div class="picUpload">
+                <input id="evt_cover_url" name="evt_cover_url" type="file" value="選擇檔案" />
+                </div>
+                <div class="pic">
+                <img id="imgPreview" src="eventsImg/detailPic.jpg" alt="Detail Pic" />
+                </div>
+              </form>
             </div>
             <div class="content">
               <span class="raiseData">2.填寫內容</span>
-              <form id="addEvtForm" method="get">
+              <form id="addEvtForm">
                 <div class="item">
                   <span>活動名稱</span>
                   <input type="text" id="evt_name" name="evt_name"/>

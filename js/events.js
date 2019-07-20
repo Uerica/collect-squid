@@ -148,35 +148,46 @@ window.onload = init;
 
 // addEvent----------------------
 $(document).ready(function () {
+
+  $("#evt_cover_url").change(function(){
+    console.log();
+    let file = this.files[0];
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    $(reader).load(function(){
+      $("#imgPreview").src = this.result;
+    });
+  });
+
   $("#evt_init").click(function () {
 
-    if ($("#evt_name").val() == "") {
-      alert("活動名稱必填");
-      return;
-    }
+    // if ($("#evt_name").val() == "") {
+    //   alert("活動名稱必填");
+    //   return;
+    // }
 
-    if ($("#evt_date").val() == "" || $("#evt_date").val() < $("#enroll_end_date").val()) {
-      alert("活動時間必填且不能在報名截止時間之前");
-      return;
-    }
+    // if ($("#evt_date").val() == "" || $("#evt_date").val() < $("#enroll_end_date").val()) {
+    //   alert("活動時間必填且不能在報名截止時間之前");
+    //   return;
+    // }
 
-    if ($("#evt_place").val() == "") {
-      alert("活動地點必填");
-      return;
-    }
+    // if ($("#evt_place").val() == "") {
+    //   alert("活動地點必填");
+    //   return;
+    // }
 
-    if ($("#enroll_end_date").val() == "" || $("#enroll_end_date").val() > $("#evt_date").val()) {
-      alert("報名截止時間必填且不能在活動時間之後");
-      return;
-    }
+    // if ($("#enroll_end_date").val() == "" || $("#enroll_end_date").val() > $("#evt_date").val()) {
+    //   alert("報名截止時間必填且不能在活動時間之後");
+    //   return;
+    // }
 
-    if ($("#max_att").val() == "") {
-      alert("人數限制必填3~20人");
-      return;
-    } else if ($("#max_att").val() < 3 || $("#max_att").val() > 20) {
-      alert("人數限制必填3~20人");
-      return;
-    }
+    // if ($("#max_att").val() == "") {
+    //   alert("人數限制必填3~20人");
+    //   return;
+    // } else if ($("#max_att").val() < 3 || $("#max_att").val() > 20) {
+    //   alert("人數限制必填3~20人");
+    //   return;
+    // }
 
     if ($("#evt_desc").val() == "") {
       alert("活動描述必填");
@@ -186,15 +197,17 @@ $(document).ready(function () {
       xhr.onreadystatechange = function () {
         if (xhr.readyState == 4) {
           if (xhr.status == 200) {
+            console.log(addEvtForm);
             alert(xhr.responseText);
           } else {
             alert(xhr.status);
           }
         }
       }
-      let url = "addEvent.php";
-      xhr.open("post", url, true);
-      let addEvtForm = new FormData(document.getElementById("addEvtForm"));
+      xhr.open("post", "addEvent.php", true);
+      xhr.setRequestHeader("content-type","application/x-www-form-urlencoded");
+
+      let addEvtForm = "evt_cover_url="+document.getElementById("evt_cover_url").value;
       xhr.send(addEvtForm);
     }
   });
