@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Examples</title>
+<style type="text/css">
+
+#upDiv{
+	position:relative;
+}
+#upFile{
+	opacity:0;
+}
+#imgPreview {
+	position:absolute;
+	left:0px;
+	top:0px;
+	width:80px;
+}	
+</style>
+</head>
+<body>
+
+<form method="post" enctype="multipart/form-data">
+帳號 <input type="text" name="memId"><br>
+姓名<input type="text" name="memName"><br>	
+</form>
+
+<div id="upDiv">
+	<label>
+		<form id="imageForm" enctype="multipart/form-data">
+			<input type="file" name="upFile" id="upFile">
+		</form>
+		
+		<img src="camera.svg" id="imgPreview">
+	</label>
+</div>
+
+    
+
+<script type="text/javascript">
+window.addEventListener("load", function(){
+	//........
+
+	//.......註冊挑選檔案的change事件
+	document.getElementById("upFile").onchange = function(e){
+		//------------------顯示檔案
+		let file = e.target.files[0];
+		let reader = new FileReader();
+		reader.onload = function (e){
+			document.getElementById("imgPreview").src = e.target.result;
+		}
+
+		reader.readAsDataURL( file );
+
+		//------------------送回server端
+
+		var xhr = new XMLHttpRequest();
+		xhr.onload = function (){
+			if(xhr.status == 200){
+				alert( xhr.responseText )
+			}else{
+				alert( xhr.status);
+			}
+		
+		}
+
+		let formData = new FormData(document.getElementById("imageForm"));
+		xhr.open("post", "fileUpload_ajax.php", true);
+		xhr.send(formData);
+	};
+})	
+</script>
+</body>
+</html>

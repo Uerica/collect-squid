@@ -9,7 +9,7 @@ function init() {
   cancelRegis();
   confirmRegis();
   cancelRaise();
-  confirmRaise();
+  // confirmRaise();
 
   $(".myEvents .eventDescs").scroll(function () {
     let s = $(this).scrollTop();
@@ -91,14 +91,16 @@ function cancelRaise() {
   });
 }
 
-function confirmRaise() {
-  $(".raiseBox .submitWrapper input").click(() => {
-    console.log($(this));
-    $(".raiseBox").css({
-      display: "none"
-    });
-  });
-}
+// function confirmRaise() {
+//   $(".raiseBox .submitWrapper input").click(() => {
+//     console.log($(this));
+//     $(".raiseBox").css({
+//       display: "none"
+//     });
+//   });
+// }
+
+
 
 // 螢幕橫向
 function fullScreenCheck() {
@@ -149,46 +151,40 @@ window.onload = init;
 // addEvent----------------------
 $(document).ready(function () {
 
-  $("#evt_cover_url").change(function(){
-    console.log();
+  $("#evt_cover_url").change(function () {
     let file = this.files[0];
     let reader = new FileReader();
-    reader.readAsDataURL(file);
-    $(reader).load(function(){
-      $("#imgPreview").src = this.result;
+    reader.addEventListener("load", function (e) {
+      $("#imgPreview").attr("src", this.result);
     });
+    reader.readAsDataURL(file);
   });
 
+
   $("#evt_init").click(function () {
-
-    // if ($("#evt_name").val() == "") {
-    //   alert("活動名稱必填");
-    //   return;
-    // }
-
-    // if ($("#evt_date").val() == "" || $("#evt_date").val() < $("#enroll_end_date").val()) {
-    //   alert("活動時間必填且不能在報名截止時間之前");
-    //   return;
-    // }
-
-    // if ($("#evt_place").val() == "") {
-    //   alert("活動地點必填");
-    //   return;
-    // }
-
-    // if ($("#enroll_end_date").val() == "" || $("#enroll_end_date").val() > $("#evt_date").val()) {
-    //   alert("報名截止時間必填且不能在活動時間之後");
-    //   return;
-    // }
-
-    // if ($("#max_att").val() == "") {
-    //   alert("人數限制必填3~20人");
-    //   return;
-    // } else if ($("#max_att").val() < 3 || $("#max_att").val() > 20) {
-    //   alert("人數限制必填3~20人");
-    //   return;
-    // }
-
+    if ($("#evt_name").val() == "") {
+      alert("活動名稱必填");
+      return;
+    }
+    if ($("#evt_date").val() == "" || $("#evt_date").val() < $("#enroll_end_date").val()) {
+      alert("活動時間必填且不能在報名截止時間之前");
+      return;
+    }
+    if ($("#evt_place").val() == "") {
+      alert("活動地點必填");
+      return;
+    }
+    if ($("#enroll_end_date").val() == "" || $("#enroll_end_date").val() > $("#evt_date").val()) {
+      alert("報名截止時間必填且不能在活動時間之後");
+      return;
+    }
+    if ($("#max_att").val() == "") {
+      alert("人數限制必填3~20人");
+      return;
+    } else if ($("#max_att").val() < 3 || $("#max_att").val() > 20) {
+      alert("人數限制必填3~20人");
+      return;
+    }
     if ($("#evt_desc").val() == "") {
       alert("活動描述必填");
       return;
@@ -197,7 +193,11 @@ $(document).ready(function () {
       xhr.onreadystatechange = function () {
         if (xhr.readyState == 4) {
           if (xhr.status == 200) {
-            console.log(addEvtForm);
+            (function confirmRaise() {
+              $(".raiseBox").css({
+                display: "none"
+              });
+            }).call(this);
             alert(xhr.responseText);
           } else {
             alert(xhr.status);
@@ -205,10 +205,32 @@ $(document).ready(function () {
         }
       }
       xhr.open("post", "addEvent.php", true);
-      xhr.setRequestHeader("content-type","application/x-www-form-urlencoded");
-
-      let addEvtForm = "evt_cover_url="+document.getElementById("evt_cover_url").value;
+      let addEvtForm = new FormData(document.getElementById("addEvtForm"));
       xhr.send(addEvtForm);
     }
+  });
+});
+
+
+// 頁籤evt
+$(function () {
+  var $li = $('ul.evt_title li');
+  $($li.eq(0).addClass('active').find('a').attr('href')).siblings('.evt_inner').hide();
+
+  $li.click(function () {
+    $($(this).find('a').attr('href')).show().siblings('.evt_inner').hide();
+    $(this).addClass('active').siblings('.active').removeClass('active');
+  });
+});
+
+
+// 頁籤myEvt
+$(function () {
+  var $li = $('ul.myEvt_title li');
+  $($li.eq(0).addClass('active').find('a').attr('href')).siblings('.myEvt_inner').hide();
+
+  $li.click(function () {
+    $($(this).find('a').attr('href')).show().siblings('.myEvt_inner').hide();
+    $(this).addClass('active').siblings('.active').removeClass('active');
   });
 });
