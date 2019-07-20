@@ -305,7 +305,6 @@
         xhr.onload = () => {
         if (xhr.status == 200) {
             var resp = JSON.parse(xhr.responseText);
-            
             console.debug("findFriend", resp);
             profiles = resp;
             change_profile();
