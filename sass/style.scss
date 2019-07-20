@@ -1067,19 +1067,19 @@ img {
     position: absolute;
     width: 295px;
     height: 312px;
-    left: 840px;
-    top: 510px;
+    left: 820px;
+    top: 575px;
     @include rwd(tablet) {
       width: 17%;
       height: auto;
-      top: 43%;
-      left: 43.2%;
+      top: 48%;
+      left: 42.7%;
     }
     @include rwd(mobile) {
-      top: 36%;
+      top: 44%;
     }
     @include rwd(mobile-xs) {
-      top: 38%;
+      top: 44%;
     }
   }
   &_bus {
@@ -1111,17 +1111,35 @@ img {
     height: 286px;
     top: 860px;
     left: 280px;
+    &Text{
+      position: absolute;
+      bottom: 37%;
+      left: 26%;
+      max-width: 100px;
+    }
     @include rwd(tablet) {
       width: 11%;
       height: auto;
       top: 77%;
       left: 14.5%;
+      &Text {
+        max-width: 55px;
+        bottom: 40%;
+      }
     }
     @include rwd(mobile) {
-      top: 67%;
+      top: 70%;
+      &Text {
+        left: 14%;
+        bottom: 30%;
+      }
     }
     @include rwd(mobile-xs) {
       top: 70%;
+      &Text {
+        left: 9%;
+        bottom: 30%;
+      }
     }
   }
   &_arrow {
@@ -1285,6 +1303,126 @@ img {
       }
     }
   }
+  &_leaderBoard {
+    .checkBox {
+      font-size: 0;
+      position: fixed;
+      // filter: blur(8px);
+      width: 100%;
+      height: 100%;
+      z-index: 130;
+    }
+    .leaderBoard {
+      &_content {
+        width: 50%;
+        height: auto;
+        background-color: $white;
+        border: 3px solid $white;
+        border-radius: 10px;
+
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -45%);
+      }
+      &_title {
+        width: 100%;
+        text-align: center;
+        font-size: 24px;
+        padding: 20px 0px;
+        color: $white;
+        background-color: #fa7979;
+        // f8b853
+        border-radius: 10px 10px 0px 0px;
+        @include rwd(mobile) {
+          font-size: 20px;
+        }
+      }
+      &_showcase {
+        position: relative;
+      }
+      &_medal {
+        position: absolute;
+        z-index: 10;
+        img {
+          width: 100%;
+        }
+      }
+      &_showPlayer {
+        text-align: right;
+        background-color: $white;
+        .player {
+          width: 100%;
+        }
+        .memInfo {
+          font-size: 20px;
+          margin: 2% 0% 0% 0%;
+          position: relative;
+          right: 15%;
+        }
+        .playerName {
+        }
+        .playerHeartSum {
+          color: #ff6b6b;
+          padding-left: 5px;
+          b {
+            font-size: 24px;
+            padding-left: 5px;
+          }
+        }
+        .owl-dots {
+          position: relative;
+          top: -20px;
+        }
+      }
+      &_playerImage {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        z-index: 10;
+        img {
+          max-width: 100%;
+        }
+      }
+      &_btn {
+        width: 100%;
+        text-align: center;
+        align-self: center;
+        font-size: 0;
+        background-color: #fa7979;
+        .button {
+          font-size: 18px;
+          width: 20%;
+          margin: 20px 10px;
+          border: 3px solid #fa7979;
+          border-radius: 30px;
+          background-color: $white;
+          
+          position: relative;
+          top: -3px;
+          left: -3px;
+          box-shadow: 3px 3px #e7867e;
+          transition: 0.3s;
+          &:hover {
+            top: 0;
+            left: 0;
+            box-shadow: 0 0 transparent;
+            background-color: $white;
+          }
+          &-check {
+            color: $white;
+          }
+          &-cancel {
+            color: $white;
+          }
+          @include rwd(mobile) {
+            margin: 0px 5px 5px 5px;
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
 }
 
 // bus------------------------------------------------------
@@ -1408,13 +1546,17 @@ $num-particles: 20; //煙的數量
 // fountain------------------------------------------------------
 #spray {
   position: absolute;
-  width: 100%;
-  left: 50%;
-  bottom: 33%;
+  width: 400%;
+  left: 47.5%;
+  bottom: -84%;
   transform: translateX(-50%);
   pointer-events: none;
   transition: 1s;
   // transform: scale(5.5);
+  @include rwd(tablet) {
+    bottom: -130%;
+  }
+  
 }
 // fountain------------------------------------------------------
 // cup------------------------------------------------------

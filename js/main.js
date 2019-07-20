@@ -178,6 +178,11 @@ function switchPage() {
     $(".checkBox-event").toggleClass("collapse");
   });
 
+  $(".gameWorld_cup").click(function (e) {
+    e.preventDefault();
+    $(".checkBox-leaderBoard").toggleClass("collapse");
+  })
+
   $("#btnCancel-room").click(function (e) {
     e.preventDefault();
     $(".checkBox-room").toggleClass("collapse");
@@ -306,7 +311,7 @@ function animation() {
     sprayTimer();
 
     function sprayTimer() {
-      var time = 2000;
+      var time = 2500;
       a = setTimeout(sprayOpacity, time);
       function sprayOpacity() {
         canvas.style.opacity = 0;

@@ -32,6 +32,7 @@
     <link rel="stylesheet" href="css/reset.css">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css'/>
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
     <link rel="stylesheet" href="css/hover.css">
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="sass/style.css">
@@ -39,26 +40,7 @@
 </head>
 
 <body>
-    <div class="loginSquid">
-      <div class="talkingBubble">
-          <p>哈囉哈囉</p>
-      </div>
-      <span class="roleName"><?php $memRow["mem_name"] ?></span>
-      <img id="myRole" src="" alt="Penny">
-    </div>
-      
-    <div class="otherSquid">
-      <div class="onlineFuns">
-        <a class="funIcon goRoom" href="javascript:;" class="onlineFunction"><img src="imgs/characters/goRoomIcon.png" alt="看房間"></a >
-        <a class="funIcon addFriend" href="javascript:;" class="onlineFunction"><img src="imgs/characters/addFriendIcon.png" alt="加好友"></a >
-        <a class="funIcon mute" href="javascript:;" class="onlineFunction"><img src="imgs/characters/muteIcon.png" alt="靜音"></a >
-      </div>
-      <div class="talkingBubble">
-        <p>媽的好辣喔</p>
-      </div>
-      <span class="roleName"><?php echo $memRow["mem_name"] ?></span>
-      <img id="myRole" src="<?php echo $memRow["style_no"] ?>" alt="Penny">
-    </div>
+
 
     <div class="common_cursor"></div>
 
@@ -298,7 +280,7 @@
             <img src="imgs/homePage/homepage01.png" alt="" draggable="false" oncontextmenu="return false">
         </div>
 
-        <div class="gameWorld">
+        <div class="gameWorld_item">
             <div class="gameWorld_house gameWorld_object">
                 <a href="javascript:;"><img src="imgs/homePage/house_tag.png" alt=""></a>
             </div>
@@ -312,18 +294,23 @@
             </div>
             <div class="gameWorld_cup gameWorld_object">
                 <a href="javascript:;">
-                    <div class="cup">
-                        <img src="imgs/homePage/cup01.png" alt="">
-                        <img id="cup_squid" src="imgs/homePage/squid.png" alt="">
-                        <div id="cup_hand">
-                            <img src="imgs/homePage/hand.png" alt="">
-                            <img id="rag" src="imgs/homePage/rag.png" alt="">
-                        </div>
-                        <img src="imgs/homePage/cup02.png" alt="">
-                    </div>
-                    <div class="g_apple">
-                        <img src="imgs/homePage/cup.png" alt="">
-                    </div>
+                  <div class="gameWorld_cupImg">
+                      <div class="cup">
+                          <img src="imgs/homePage/cup01.png" alt="">
+                          <img id="cup_squid" src="imgs/homePage/squid.png" alt="">
+                          <div id="cup_hand">
+                              <img src="imgs/homePage/hand.png" alt="">
+                              <img id="rag" src="imgs/homePage/rag.png" alt="">
+                          </div>
+                          <img src="imgs/homePage/cup02.png" alt="">
+                      </div>
+                      <div class="g_apple">
+                          <img src="imgs/homePage/cup.png" alt="">
+                      </div>
+                  </div>
+                  <div class="gameWorld_cupText">
+                      <img src="imgs/homePage/cup-text.png" alt="">
+                  </div>
                 </a>
             </div>
         </div>
@@ -375,7 +362,66 @@
             </div>
         </div>
 
-        <div class="gameWorld_leaderBoard"></div>
+        <div class="gameWorld_leaderBoard disabledScrollOnHover">
+          <div class="checkBox checkBox-leaderBoard">
+            <div class="leaderBoard_content">
+              <div class="leaderBoard_title">
+                  <h2>排行榜</h2>
+              </div>
+              <div class="owl-carousel owl-theme leaderBoard_showPlayer">
+                  <div class="leaderBoard_showcase shoecase-gold">
+                      <div class="leaderBoard_medal">
+                        <img src="imgs/homePage/leaderBoard/leaderBoard_rank1.png" alt="排行榜排名獎牌">
+                      </div>
+                          <div class="player player-gold">
+                            <img src="imgs/homePage/leaderBoard/room_pic.png" alt="">
+                            <div class="memInfo">
+                              <span class="playerName">小花</span>
+                              <i class="fas fa-heart playerHeartSum"><b>200</b></i>
+                            </div>
+                          </div>
+                      <div class="leaderBoard_playerImage">
+                        <img src="imgs/homePage/squid2.png" alt="玩家角色圖">
+                      </div>
+                  </div>
+                  <div class="leaderBoard_showcase showcase-gold">
+                      <div class="leaderBoard_medal">
+                        <img src="imgs/homePage/leaderBoard/leaderBoard_rank1.png" alt="排行榜排名獎牌">
+                      </div>
+                          <div class="player player-gold">
+                            <img src="imgs/homePage/leaderBoard/room_pic.png" alt="">
+                            <div class="memInfo">
+                              <span class="playerName">小花</span>
+                              <i class="fas fa-heart playerHeartSum"><b>200</b></i>
+                            </div>
+                          </div>
+                      <div class="leaderBoard_playerImage">
+                        <img src="imgs/homePage/squid2.png" alt="玩家角色圖">
+                      </div>
+                  </div>
+                  <div class="leaderBoard_showcase showcase-gold">
+                      <div class="leaderBoard_medal">
+                        <img src="imgs/homePage/leaderBoard/leaderBoard_rank1.png" alt="排行榜排名獎牌">
+                      </div>
+                          <div class="player player-gold">
+                            <img src="imgs/homePage/leaderBoard/room_pic.png" alt="">
+                            <div class="memInfo">
+                              <span class="playerName">小花</span>
+                              <i class="fas fa-heart playerHeartSum"><b>200</b></i>
+                            </div>
+                          </div>
+                      <div class="leaderBoard_playerImage">
+                        <img src="imgs/homePage/squid2.png" alt="玩家角色圖">
+                      </div>
+                  </div>
+              </div>
+              <div class="leaderBoard_btn">
+                <button class="button btn-visit">拜訪房間</button>
+                <button class="button btn-addFriend">加朋友</button>
+              </div>
+            </div>
+          </div>
+        </div>
     </div>
 
     <!-- 聊天群組(1.聊天室 2.好友列表) -->
@@ -627,7 +673,7 @@
     </div>
 
     <!-- 登入 -->
-    <div class="loginBox">
+    <div class="loginBox collapse">
       <div class="loginContent">
         <div class="intro">
           <div class="logo">
@@ -805,10 +851,12 @@
           </div>
       </div>
     </div>
+
     <form id="creatingForm" action="post" accept-charset="utf-8">
       <input type="hidden" id="createdSquid" name="createdSquid">
       <canvas id="roleCanvas"></canvas>
     </form>
+
     <div class="groupSVGs">
       <svg id="emptySquid" xmlns="http://www.w3.org/2000/svg" width="286" height="398.125" viewBox="0 0 286 398.125">
         <defs>
@@ -1057,6 +1105,7 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js'></script>
     <script src="https://kit.fontawesome.com/629062769a.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/loginBox.js"></script>
     <script src="js/createBox.js"></script>
@@ -1066,6 +1115,7 @@
     <script src="js/chat.js"></script>
     <script src="js/roleFunctions.js"></script>
     <script src="js/rolePosition.js"></script>
+    <script src="js/leaderBoard.js"></script>
 </body>
 
 </html>
