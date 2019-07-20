@@ -113,17 +113,17 @@
                         </li>
                     </ul>
                     <nav class="menuMobile_nav">
-                        <li><a href="myRoom.html"> <img src="imgs/homePage/icon/room.png" alt="我的房間icon">
+                        <li><a href="myRoom.php"> <img src="imgs/homePage/icon/room.png" alt="我的房間icon">
                                 <span>我的房間</span></a></li>
-                        <li><a href="dressingRoom.html"><img src="imgs/homePage/icon/fittingRoom.png" alt="換衣間icon">
+                        <li><a href="dressingRoom.php"><img src="imgs/homePage/icon/fittingRoom.png" alt="換衣間icon">
                                 <span>換衣間</span></a></li>
-                        <li><a href="findfriend.html"> <img src="imgs/homePage/icon/friend.png" alt="找朋友icon">
+                        <li><a href="findfriend.php"> <img src="imgs/homePage/icon/friend.png" alt="找朋友icon">
                                 <span>找朋友</span></a></li>
                         <li><a href="javascript:;"> <img src="imgs/homePage/icon/events.png" alt="揪團活動icon">
                                 <span>揪團活動</span></a></li>
-                        <li><a href="shop.html"> <img src="imgs/homePage/icon/mall.png" alt="虛擬商城icon">
+                        <li><a href="shop.php"> <img src="imgs/homePage/icon/mall.png" alt="虛擬商城icon">
                                 <span>虛擬商城</span></a></li>
-                        <li><a href="memberCenter.html"> <img src="imgs/homePage/icon/member.png" alt="會員中心icon">
+                        <li><a href="memberCenter.php"> <img src="imgs/homePage/icon/member.png" alt="會員中心icon">
                                 <span>會員中心</span></a></li>
                         <li><a href="javascript:;"> <img src="imgs/homePage/icon/robot.png" alt="客服機器人_icon">
                                 <span>客服機器人</span></a></li>
@@ -149,13 +149,13 @@
                     </a>
                 </li>
                 <li class="hvr-pulse-grow">
-                    <a href="findfriend.html">
+                    <a href="findfriend.php">
                         <img src="imgs/homePage/icon/friend.png" alt="找朋友icon">
                         <span>找朋友</span>
                     </a>
                 </li>
                 <li class="hvr-pulse-grow">
-                    <a href="events.html">
+                    <a href="events.php">
                         <img src="imgs/homePage/icon/events.png" alt="揪團活動icon">
                         <span>揪團活動</span>
                     </a>
@@ -173,7 +173,7 @@
                     </a>
                 </li>
                 <li class="hvr-pulse-grow">
-                    <a href="memberCenter.html">
+                    <a href="memberCenter.php">
                         <img src="imgs/homePage/icon/member.png" alt="會員中心icon">
                         <span>會員中心</span>
                     </a>
