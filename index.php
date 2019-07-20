@@ -51,8 +51,8 @@
       <div class="talkingBubble">
           <p>哈囉哈囉</p>
       </div>
-      <span class="roleName"><?php echo $meRow["mem_name"] ?></span>
-      <img id="myRole" src="" alt="Penny">
+      <span class="roleName"></span>
+      <img id="myRole" src="" alt="">
     </div>
 
     <?php
@@ -824,6 +824,10 @@
       <input type="hidden" id="createdSquid" name="createdSquid">
       <canvas id="roleCanvas"></canvas>
     </form>
+    <form id="creatingForm_moving" action="post" accept-charset="utf-8">
+      <input type="hidden" id="createdSquid_moving" name="createdSquid_moving">
+      <canvas id="roleCanvas_moving"></canvas>
+    </form>
     <div class="groupSVGs">
       <svg id="emptySquid" xmlns="http://www.w3.org/2000/svg" width="286" height="398.125" viewBox="0 0 286 398.125">
         <defs>
@@ -837,6 +841,35 @@
         <rect id="矩形_3_拷貝_27" data-name="矩形 3 拷貝 27" class="cls-1 squidBody" x="73.266" y="247.437" width="25.2" height="150" rx="5.423" ry="5.423"/>
         <rect id="矩形_3_拷貝_27-2" data-name="矩形 3 拷貝 27" class="cls-1 squidBody" x="129.922" y="247.437" width="25.2" height="150" rx="5.423" ry="5.423"/>
         <rect id="矩形_3_拷貝_27-3" data-name="矩形 3 拷貝 27" class="cls-1 squidBody" x="186.047" y="247.437" width="25.2" height="150" rx="5.423" ry="5.423"/>
+      </svg>
+      <svg id="emptySquid_moving" xmlns="http://www.w3.org/2000/svg" width="286" height="398.125" viewBox="0 0 286 398.125">
+        <defs>
+          <style>
+            .cls-1, .cls-2 {
+              fill: #ff8d8d;
+            }
+
+            .cls-2, .cls-3 {
+              fill-rule: evenodd;
+            }
+
+            .cls-3 {
+              fill: #f3f3f3;
+            }
+
+            .cls-4 {
+              fill: #5d8bae;
+            }
+
+            .cls-5 {
+              fill: #58c7cb;
+            }
+          </style>
+        </defs>
+        <rect id="矩形_2_拷貝_26" data-name="矩形 2 拷貝 26" class="cls-1 squidBody_moving" x="45.063" y="0.781" width="195.844" height="322.75" rx="20" ry="20"/>
+        <path id="矩形_3_拷貝_27" data-name="矩形 3 拷貝 27" class="cls-2 squidBody_moving" d="M191.463,361.31h14.354a5.423,5.423,0,0,1,5.423,5.423V471.251C211.24,491.5,218,497,218,497c1.2,3.855.964,4.421-1,7l-14,5c-2.48,1.2-8-1-8-4,0,0-8.96-13.5-8.96-33.749V366.733A5.423,5.423,0,0,1,191.463,361.31Z" transform="translate(0.313 -112.094)"/>
+        <path id="矩形_3_拷貝_29" data-name="矩形 3 拷貝 29" class="cls-2 squidBody_moving" d="M135.463,361.31h14.354a5.423,5.423,0,0,1,5.423,5.423V471.251C155.24,491.5,162,497,162,497c1.2,3.855.964,4.421-1,7l-14,5c-2.48,1.2-8-1-8-4,0,0-8.96-13.5-8.96-33.749V366.733A5.423,5.423,0,0,1,135.463,361.31Z" transform="translate(0.313 -112.094)"/>
+        <path id="矩形_3_拷貝_30" data-name="矩形 3 拷貝 30" class="cls-2 squidBody_moving" d="M78.463,361.31H92.817a5.423,5.423,0,0,1,5.423,5.423V471.251C98.24,491.5,105,497,105,497c1.2,3.855.964,4.421-1,7l-14,5c-2.48,1.2-8-1-8-4,0,0-8.96-13.5-8.96-33.749V366.733A5.423,5.423,0,0,1,78.463,361.31Z" transform="translate(0.313 -112.094)"/>
       </svg>
       <svg id="head1" xmlns="http://www.w3.org/2000/svg" width="285.969" height="231" viewBox="0 0 285.969 231">
         <defs>
@@ -1081,6 +1114,7 @@
     <script src="js/chat.js"></script>
     <script src="js/roleFunctions.js"></script>
     <script src="js/rolePosition.js"></script>
+    <script src="js/movingAction.js"></script>
 </body>
 
 </html>

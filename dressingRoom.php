@@ -260,6 +260,10 @@
             <input type="hidden" id="dressedSquid" name="dressedSquid">
             <canvas id="dressingCanvas"></canvas>
           </form>
+          <form action="post" accept-charset="utf-8" id="dressedForm_moving">
+            <input type="hidden" id="dressedSquid_moving" name="dressedSquid_moving">
+            <canvas id="dressingCanvas_moving"></canvas>
+          </form>
       </div>
       <!-- 衣櫃區塊 -->
       <div class="clothesArea" id="app">

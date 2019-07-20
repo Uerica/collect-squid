@@ -15,9 +15,15 @@ $("#loginBtn").click(function() {
   xhr.onload = () => {
     if (xhr.status == 200) {
       $(".loginBox").css({ display: "none" });
-      const loginSquid = document.querySelector(".loginSquid #myRole");
-      loginSquid.src = xhr.responseText;
-      console.log(xhr.responseText);
+      const loginSquidImg = document.querySelector(".loginSquid #myRole");
+      const loginSquidName = document.querySelector(".loginSquid .roleName");
+      const memData = JSON.parse(xhr.responseText);
+      if (memData.dressed_no == "") {
+        loginSquidImg.src = memData.style_no;
+      } else {
+        loginSquidImg.src = memData.dressed_no;
+      }
+      loginSquidName.innerText = memData.mem_name;
     } else {
       alert(xhr.status);
     }

@@ -5,6 +5,8 @@ let boxHead = $(".headWrapper");
 let boxBody = $(".bodyWrapper");
 let boxFace = $(".faceWrapper");
 createSquid(head, face, color);
+setTimeout(() => createSquidMoving(head, face, color), 100);
+// setTimeout(() => createSquidMoving(head, face, color), 100);
 
 // 換 Canvas 和燈箱內頭型
 const headImgs = document.querySelectorAll(".headItems img");
@@ -14,6 +16,7 @@ for (let i = 0; i < headImgs.length; i++) {
     strIndex = src.indexOf("head");
     head = src.substr(strIndex, 5);
     createSquid(head, face, color);
+    setTimeout(() => createSquidMoving(head, face, color), 100);
     boxHead.css({ maskImage: `url(imgs/createBox/${head}.svg)` });
   });
 }
@@ -28,6 +31,7 @@ for (let i = 0; i < faceImgs.length; i++) {
     strIndex = src.indexOf("face");
     face = src.substr(strIndex, 5);
     createSquid(head, face, color);
+    setTimeout(() => createSquidMoving(head, face, color), 100);
     document.querySelector(".faceWrapper img").src = src;
   });
 }
@@ -59,6 +63,7 @@ document.getElementById("redNum").oninput = function() {
   redNum = $("#redNum").val();
   color = `rgb(${redNum}, ${greenNum}, ${blueNum})`;
   createSquid(head, face, color);
+  setTimeout(() => createSquidMoving(head, face, color), 100);
   boxHead.css({ backgroundColor: color });
   boxBody.css({ backgroundColor: color });
 };
@@ -66,6 +71,7 @@ document.getElementById("greenNum").oninput = () => {
   greenNum = $("#greenNum").val();
   color = `rgb(${redNum}, ${greenNum}, ${blueNum})`;
   createSquid(head, face, color);
+  setTimeout(() => createSquidMoving(head, face, color), 100);
   boxHead.css({ backgroundColor: color });
   boxBody.css({ backgroundColor: color });
 };
@@ -73,6 +79,7 @@ document.getElementById("blueNum").oninput = () => {
   blueNum = $("#blueNum").val();
   color = `rgb(${redNum}, ${greenNum}, ${blueNum})`;
   createSquid(head, face, color);
+  setTimeout(() => createSquidMoving(head, face, color), 100);
   boxHead.css({ backgroundColor: color });
   boxBody.css({ backgroundColor: color });
 };
@@ -207,11 +214,75 @@ function createSquid(head, face, color) {
   };
 }
 
-console.log(document.getElementById("roleCanvas"));
-const context = document.getElementById("roleCanvas").getContext("2d");
-context.fillStyle = "#f00";
-context.fillRect(50, 50, 100, 100);
-context.clearRect(0, 0, 1000, 1000);
+// 魷魚創角_走路
+function createSquidMoving(head, face, color) {
+  const roleCanvas = document.getElementById("roleCanvas_moving");
+  roleCanvas.width = 286;
+  roleCanvas.height = 511;
+  const fW = roleCanvas.width;
+  const fH = roleCanvas.height;
+
+  roleCtx = roleCanvas.getContext("2d");
+  roleCtx.clearRect(0, 0, fW, fH);
+
+  const bodyImg = new Image();
+  const headImg = new Image();
+  const faceImg = new Image();
+  const cloImg = new Image();
+
+  const body_p = document.getElementsByClassName("squidBody_moving");
+  for (let i = 0; i < body_p.length; i++) {
+    body_p[i].style.fill = color;
+  }
+  const head_p = document.getElementsByClassName(`${head}_p`);
+  for (let i = 0; i < head_p.length; i++) {
+    head_p[i].style.fill = color;
+  }
+
+  const svgXML_b = new XMLSerializer().serializeToString(
+    document.getElementById("emptySquid_moving")
+  );
+  const svgXML_h = new XMLSerializer().serializeToString(
+    document.getElementById(head)
+  );
+  const svgXML_f = new XMLSerializer().serializeToString(
+    document.getElementById(face)
+  );
+
+  const image64_b =
+    "data:image/svg+xml;base64," +
+    window.btoa(unescape(encodeURIComponent(svgXML_b)));
+  const image64_h =
+    "data:image/svg+xml;base64," +
+    window.btoa(unescape(encodeURIComponent(svgXML_h)));
+  const image64_f =
+    "data:image/svg+xml;base64," +
+    window.btoa(unescape(encodeURIComponent(svgXML_f)));
+
+  bodyImg.src = image64_b;
+  headImg.src = image64_h;
+  faceImg.src = image64_f;
+  cloImg.src = "imgs/createBox/defaultClo.png";
+
+  headImg.onload = () => {
+    setTimeout(() => roleCtx.drawImage(headImg, 0, 0), 10);
+  };
+  faceImg.onload = () => {
+    setTimeout(() => roleCtx.drawImage(faceImg, 0, 243), 10);
+  };
+  cloImg.onload = () => {
+    setTimeout(() => roleCtx.drawImage(cloImg, 45, 320), 10);
+  };
+  bodyImg.onload = () => {
+    setTimeout(() => roleCtx.drawImage(bodyImg, 0, 113), 0);
+  };
+}
+
+// console.log(document.getElementById("roleCanvas"));
+// const context = document.getElementById("roleCanvas").getContext("2d");
+// context.fillStyle = "#f00";
+// context.fillRect(50, 50, 100, 100);
+// context.clearRect(0, 0, 1000, 1000);
 
 // $(".createRoleBtn").click(saveRole);
 

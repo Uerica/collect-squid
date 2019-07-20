@@ -2,6 +2,7 @@
     $errMsg = '';
     $mem_name = $_REQUEST["mem_name"];
     $mem_pwd = $_REQUEST["mem_pwd"];
+    $mem_data = [];
     try {
         require_once('connectSquid.php');
         $sql = 
@@ -15,11 +16,7 @@
         $member->execute();
         $memRow = $member->fetch(PDO::FETCH_ASSOC);
 
-        if($memRow["dressed_no"] == '') {
-            echo $memRow["style_no"];
-        } else {
-            echo $memRow["dressed_no"];
-        }
+        echo json_encode($memRow);
     } catch(PDOException $e) {
         $errMsg .= $e->getMessage()."<br>";
         $errMsg .= $e->getLine()."<br>";

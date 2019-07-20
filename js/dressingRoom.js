@@ -1,10 +1,12 @@
 let style_no;
+let style_moving_no;
 
 function init() {
   const xhr = new XMLHttpRequest();
   xhr.onload = function() {
     if (xhr.status == 200) {
       style_no = xhr.responseText;
+      style_moving_no = xhr.responseText.replace("myRole", "myRole_moving");
     } else {
       alert(xhr.status);
     }
@@ -24,6 +26,9 @@ function init() {
   $("#cancelBtn").click(cancel);
   $("#confirmBtn").click(saveImg);
   $("#confirmDressing").click(saveDressing);
+  $("#confirmDressing").click(function() {
+    setTimeout(saveDressingMoving, 10);
+  });
   activeOwl();
   // displayBar();
   targetCaro();
@@ -40,18 +45,21 @@ function init() {
     hatSrc = $(this).attr("src");
     $(".changedHat").attr("src", hatSrc);
     dressingCanvas(shoesSrc, clothSrc, hatSrc);
+    dressingCanvasMoving(shoesSrc, clothSrc, hatSrc);
   });
   // 衣服
   $(".changeClo img").click(function() {
     clothSrc = $(this).attr("src");
     $(".changedClo").attr("src", clothSrc);
     dressingCanvas(shoesSrc, clothSrc, hatSrc);
+    dressingCanvasMoving(shoesSrc, clothSrc, hatSrc);
   });
   // 鞋子
   $(".changeShoes img").click(function() {
     shoesSrc = $(this).attr("src");
     $(".changedShoes").attr("src", shoesSrc);
     dressingCanvas(shoesSrc, clothSrc, hatSrc);
+    dressingCanvasMoving(shoesSrc, clothSrc, hatSrc);
   });
 
   // dressingCanvas();
@@ -145,22 +153,71 @@ function dressingCanvas(inShoes, inClo, inHat) {
   shoes.addEventListener("load", function() {
     dressingCtx.drawImage(shoes, 0, dH * 0.928, dW, dH * 0.0685);
   });
-  let squid = new Image();
-  // squid.src = "imgs/dressingRoom/squid_center.png";
-  squid.src = style_no;
-  squid.addEventListener("load", function() {
-    dressingCtx.drawImage(squid, 0, dH * 0.165, dW, dH * 0.795);
+  setTimeout(function() {
+    let squid = new Image();
+    // squid.src = "imgs/dressingRoom/squid_center.png";
+    squid.src = style_no;
+    squid.addEventListener("load", function() {
+      dressingCtx.drawImage(squid, 0, dH * 0.165, dW, dH * 0.795);
+    });
+  }, 10);
+  setTimeout(function() {
+    let clo = new Image();
+    clo.src = inClo;
+    clo.addEventListener("load", function() {
+      dressingCtx.drawImage(clo, dW * 0.158, dH * 0.66, dW * 0.685, dH * 0.185);
+    });
+  }, 20);
+  setTimeout(function() {
+    let hat = new Image();
+    hat.src = inHat;
+    hat.addEventListener("load", function() {
+      dressingCtx.drawImage(hat, dW * 0.077, 0, dW * 0.846, dH * 0.303);
+    });
+  }, 20);
+}
+
+// 有動作穿衣服
+function dressingCanvasMoving(inShoes, inClo, inHat) {
+  const dressingZone = document.querySelector("#dressingCanvas_moving");
+  dressingZone.width = 286;
+  dressingZone.height = 613;
+  const dW = dressingZone.width;
+  const dH = dressingZone.height;
+  const dressingCtx = dressingZone.getContext("2d");
+  // dressingCtx.globalCompositeOperation = "destination-over";
+  // dressingCtx.translate(30, 0);
+  // dressingCtx.rotate((30 * Math.PI) / 180);
+  // dressingCtx.translate(-30, 0);
+  // dressingCtx.rotate((-30 * Math.PI) / 180);
+  let shoes = new Image();
+  // shoes.src = "imgs/dressingRoom/whiteShoes.png";
+  shoes.src = inShoes.replace(".png", "Moving.png");
+  shoes.addEventListener("load", function() {
+    dressingCtx.drawImage(shoes, 4, dH * 0.93, dW, dH * 0.0685);
   });
-  let clo = new Image();
-  clo.src = inClo;
-  clo.addEventListener("load", function() {
-    dressingCtx.drawImage(clo, dW * 0.158, dH * 0.66, dW * 0.685, dH * 0.185);
-  });
-  let hat = new Image();
-  hat.src = inHat;
-  hat.addEventListener("load", function() {
-    dressingCtx.drawImage(hat, dW * 0.077, 0, dW * 0.846, dH * 0.303);
-  });
+  setTimeout(function() {
+    let squid = new Image();
+    // squid.src = "imgs/dressingRoom/squid_center.png";
+    squid.src = style_moving_no;
+    squid.addEventListener("load", function() {
+      dressingCtx.drawImage(squid, 0, dH * 0.165, dW, dH * 0.795);
+    });
+  }, 10);
+  setTimeout(function() {
+    let clo = new Image();
+    clo.src = inClo;
+    clo.addEventListener("load", function() {
+      dressingCtx.drawImage(clo, dW * 0.158, dH * 0.66, dW * 0.685, dH * 0.185);
+    });
+  }, 20);
+  setTimeout(function() {
+    let hat = new Image();
+    hat.src = inHat;
+    hat.addEventListener("load", function() {
+      dressingCtx.drawImage(hat, dW * 0.077, 0, dW * 0.846, dH * 0.303);
+    });
+  }, 20);
 }
 
 // function confirm() {
@@ -309,6 +366,31 @@ function saveDressing() {
   };
 
   xhr.open("POST", "dressedSquid.php", true);
+  xhr.send(formData);
+}
+
+function saveDressingMoving() {
+  const drawingCanvas = document.querySelector("#dressingCanvas_moving");
+  const dataURL = drawingCanvas.toDataURL("image/png");
+  document.querySelector("#dressedSquid_moving").value = dataURL;
+  const formData = new FormData(document.getElementById("dressedForm_moving"));
+
+  const xhr = new XMLHttpRequest();
+
+  xhr.onload = () => {
+    if (xhr.status == 200) {
+      if (xhr.responseText == "error") {
+        alert("Error");
+      } else {
+        alert("Successfully uploaded");
+        // $_SESSION["dressed_no"] = xhr.responseText;
+      }
+    } else {
+      alert(xhr.status);
+    }
+  };
+
+  xhr.open("POST", "dressedSquidMoving.php", true);
   xhr.send(formData);
 }
 

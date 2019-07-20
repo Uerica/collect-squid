@@ -1,4 +1,4 @@
 <?php
     session_start();
-    echo $_SESSION["myRole"];
+    echo $_SESSION["myRole"]; 
 ?>

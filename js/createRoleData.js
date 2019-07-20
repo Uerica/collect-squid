@@ -190,6 +190,46 @@ function sendGraph() {
           if (xhr.status == 200) {
             document.getElementById("myRole").src = xhr.responseText;
             console.log(xhr.responseText);
+            setTimeout(sendGraphMoving, 10);
+          } else {
+            alert(xhr.status);
+          }
+        };
+
+        const url = "getRoleBack.php";
+        xhr.open("get", url, true);
+        xhr.send(null);
+      }
+    } else {
+      alert(graphXHR.status);
+    }
+  };
+
+  graphXHR.open("POST", "sendRoleData.php", true);
+  graphXHR.send(formData);
+}
+
+// 儲存圖片_移動
+function sendGraphMoving() {
+  const drawingCanvas = document.querySelector("#roleCanvas_moving");
+  const dataURL = drawingCanvas.toDataURL("image/png");
+  document.querySelector("#createdSquid_moving").value = dataURL;
+  const formData = new FormData(document.getElementById("creatingForm_moving"));
+
+  const graphXHR = new XMLHttpRequest();
+
+  graphXHR.onload = function() {
+    if (graphXHR.status == 200) {
+      if (graphXHR.responseText == "error") {
+        alert("Error");
+      } else {
+        console.log(graphXHR.responseText);
+        $(".createBox").css({ display: "none" });
+        const xhr = new XMLHttpRequest();
+        xhr.onload = function() {
+          if (xhr.status == 200) {
+            // document.getElementById("myRole").src = xhr.responseText;
+            console.log(xhr.responseText);
           } else {
             alert(xhr.status);
           }

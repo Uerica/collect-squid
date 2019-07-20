@@ -2105,6 +2105,15 @@ $num-particles: 20; //煙的數量
   z-index: 1000;
 }
 
+#roleCanvas_moving {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: auto;
+  right: 0;
+  z-index: 1000;
+}
+
 .groupSVGs {
   display: none;
 }
@@ -2113,7 +2122,7 @@ $num-particles: 20; //煙的數量
   position: absolute;
   width: 120px;
   top: 250px;
-  left: calc(50% - 60px);
+  left: 960px;
   z-index: 101;
   text-align: center;
   img {
