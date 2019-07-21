@@ -124,7 +124,7 @@ var chat_app = new Vue({
     },
     has_latest_message: function(who) {
       var foundmsg = this.messages.find(function(msg) {
-        return msg.user_id == who;
+        return msg.user_id == who && ((new Date().getTime() - new Date(msg.chat_time).getTime()) < 5000 );
       });
       return typeof(foundmsg)!=="undefined";
     },
@@ -132,8 +132,9 @@ var chat_app = new Vue({
       var latestmsg = "";
       var index = this.messages.length - 1;
       for( ; index >=0; index--) {
-        if (this.messages[index].user_id == who) {
-          latestmsg = this.messages[index].chat_msg;
+        var msg = this.messages[index];
+        if (msg.user_id == who && ((new Date().getTime() - new Date(msg.chat_time).getTime()) < 5000 )) {
+          latestmsg = msg.chat_msg;
           break;
         }
       }
@@ -299,7 +300,7 @@ function initWebsocketServer() {
             "user_id": chat_app.user_id
           }
         )
-      )
+      );
     }
   };
   conn_chat.onclose = function (e) {
@@ -332,7 +333,7 @@ function login(user_id,style_no,mem_lv,mem_avatar,squid_qty) {
           "user_id": user_id
         }
       )
-    )
+    );
   }
 }
 function chat_to_someone(user_id, to, msg) {
@@ -344,6 +345,7 @@ function chat_to_someone(user_id, to, msg) {
         "chat_type": "USER",
         "chat_to": to,
         "chat_msg": msg,
+        "chat_time": new Date(),
         "is_read": false
       }
     )
@@ -356,6 +358,7 @@ function chat_to_all(user_id, msg) {
         "msg_type": "CHAT",
         "user_id": user_id,
         "chat_type": "ALL",
+        "chat_time": new Date(),
         "chat_msg": msg
       }
     )
