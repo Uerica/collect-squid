@@ -67,16 +67,16 @@ function collaseNotifications() {
 
 // 移除通知
 function closeNotifications() {
-  $('.notifications_delete').click(function(){
+  $(".notifications_delete").click(function() {
     $(this.parentElement).remove();
-  })
+  });
 }
 
 // 關閉排行榜
 function closeLeaderBoard() {
-  $(".leaderBoard_close").click(function () {
+  $(".leaderBoard_close").click(function() {
     $(".checkBox-leaderBoard").toggleClass("collapse");
-  })
+  });
 }
 
 // 聊天室視窗移動
@@ -194,11 +194,11 @@ function switchPage() {
   $(".gameWorld_house").click(function(e) {
     e.preventDefault();
     $(".checkBox-room").toggleClass("collapse");
-    filterBlur('.gameWorld_bgImage');
-    filterBlur('.gameWorld_object',);
-    filterBlur('.gameWorld_arrow',);
-    filterBlur('.loginSquid');
-    filterBlur('.otherSquid');
+    filterBlur(".gameWorld_bgImage");
+    filterBlur(".gameWorld_object");
+    filterBlur(".gameWorld_arrow");
+    filterBlur(".loginSquid");
+    filterBlur(".otherSquid");
   });
 
   $(".gameWorld_bus").click(function(e) {
@@ -206,23 +206,19 @@ function switchPage() {
     $(".checkBox-event").toggleClass("collapse");
   });
 
-<<<<<<< HEAD
-  $("#btnCancel-room").click(function(e) {
-=======
-  $(".gameWorld_cup").click(function (e) {
+  $(".gameWorld_cup").click(function(e) {
     e.preventDefault();
     $(".checkBox-leaderBoard").toggleClass("collapse");
-  })
+  });
 
-  $("#btnCancel-room").click(function (e) {
->>>>>>> ab00a5ec91806771400ef042740c0b0e7edc3f22
+  $("#btnCancel-room").click(function(e) {
     e.preventDefault();
     $(".checkBox-room").toggleClass("collapse");
-    filterBlur('.gameWorld_bgImage');
-    filterBlur('.gameWorld_object',);
-    filterBlur('.gameWorld_arrow',);
-    filterBlur('.loginSquid');
-    filterBlur('.otherSquid');
+    filterBlur(".gameWorld_bgImage");
+    filterBlur(".gameWorld_object");
+    filterBlur(".gameWorld_arrow");
+    filterBlur(".loginSquid");
+    filterBlur(".otherSquid");
   });
 
   $("#btnCancel-event").click(function(e) {
@@ -257,26 +253,14 @@ function isMobileDevice() {
   }
 }
 
-<<<<<<< HEAD
-// 游標
-function cursorAnimated() {
-  let cursor = document.querySelector(".common_cursor");
-  document.addEventListener("mousemove", c => {
-    cursor.setAttribute(
-      "style",
-      "top:" + c.pageY + "px;" + "left:" + c.pageX + "px;"
-    );
-  });
-=======
 // 模糊濾鏡
 function filterBlur(e) {
-  let haveBlurFilter = $(e).css('filter');
+  let haveBlurFilter = $(e).css("filter");
   if (haveBlurFilter) {
-    $(e).css('filter', '');
+    $(e).css("filter", "");
   } else {
-    $(e).css('filter', 'blur(8px)');
+    $(e).css("filter", "blur(8px)");
   }
->>>>>>> ab00a5ec91806771400ef042740c0b0e7edc3f22
 }
 
 function animation() {
