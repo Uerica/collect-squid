@@ -68,7 +68,7 @@
     <!-- 別的魷魚,線上有幾隻產生幾隻 -->
 
     <template v-for="others_online_user_info in others_online_users_info()">
-      <div class="otherSquid" :style="calcPosition()" >
+      <div class="otherSquid" :style="others_online_user_info.position" >
         <div class="onlineFuns">
           <a class="funIcon goRoom" href="javascript:;" class="onlineFunction"><img src="imgs/characters/goRoomIcon.png" alt="看房間"></a >
           <a class="funIcon addFriend" v-on:click="add_friend(others_online_user_info.mem_name)" href="javascript:;" class="onlineFunction"><img src="imgs/characters/addFriendIcon.png" alt="加好友"></a >

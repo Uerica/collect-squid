@@ -61,6 +61,8 @@ var chat_app = new Vue({
         xhr.onload=function (e){
           if(e.currentTarget.status == 200){
             var resp = JSON.parse(e.currentTarget.responseText);
+            //產生初始位置
+            resp.position = chat_app.calcPosition();
             chat_app.online_users_info.push(resp);
           }else{
               console.error( '有人上線 error.', e );
@@ -236,6 +238,8 @@ var onMessageListener = function (e) {
         xhr.onload=function (e){
           if(e.currentTarget.status == 200){
             var resp = JSON.parse(e.currentTarget.responseText);
+            //產生初始位置
+            resp.position = chat_app.calcPosition();
             chat_app.online_users_info.push(resp);
           }else{
               console.error( '更新目前有哪些人在線上 error.', e );
