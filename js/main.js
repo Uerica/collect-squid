@@ -341,20 +341,3 @@ window.addEventListener('load', function () {
 window.addEventListener('mousemove', function (e) {
   // moveScene(e);
 });
-
-
-
-
-// function gameSizing(tag, w, h) {
-//   document.querySelector(tag).style.width = w + "px";
-//   document.querySelector(tag).style.height = h + "px";
-// }
-
-// function gameObject(tag, w, h) {
-//   let mapItems = document.querySelectorAll('.gameWorld_object');
-//   var mapItemsLength = mapItems.length;
-//   for (var i = 0; i < mapItemsLength; i++) {
-//     document.querySelectorAll(tag).style.width = w + "px";
-//     document.querySelectorAll(tag).style.height = h + "px";
-//   }
-// }
