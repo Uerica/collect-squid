@@ -14,6 +14,7 @@
             $lastID = $lastRow["mem_no"] + 1;
             
             $style_no = "imgs/createBox/myRole".$lastID.".png";
+            $style_moving_no = "imgs/createBox/myRole_moving".$lastID.".png";
             $mem_name = trim($_REQUEST["mem_name"]);
             $mem_pwd = trim($_REQUEST["mem_pwd"]);
             $mem_email = trim($_REQUEST["mem_email"]);
@@ -30,12 +31,13 @@
     //         $sql = "INSERT INTO `member` (`mem_no`, `style_no`,  `head_no`, `face_no`, `mem_name`, `mem_pwd`, `mem_email`, `mem_lv`, `highest_lv`, `squid_qty`, `mem_gender`, `mem_dob`, `mem_sign`, `mem_avatar`, `skin`, `poster_img_url`, `mem_intro`) VALUES
     // (2,'img/avatar.png', NULL, NULL, '魷魚軟軟', '12345', 'softsoft@gmail.com', 1, 1, 1000, 'M', '2019-02-08', '水瓶座', 'img/avatar.png', NULL, NULL, NULL)";
     //         $pdo->exec($sql);
-            $sql = "INSERT INTO `member` (`mem_no`, `style_no`,  `head_no`, `face_no`, `mem_name`, `mem_pwd`, `mem_email`, `mem_lv`, `highest_lv`, `squid_qty`, `mem_gender`, `mem_dob`, `mem_sign`, `mem_avatar`, `skin`, `poster_img_url`, `mem_intro`) VALUES
-    (:mem_no , :style_no, :head_no, :face_no, :mem_name, :mem_pwd, :mem_email, :mem_lv, :highest_lv, :squid_qty, :mem_gender, :mem_dob, :mem_sign, :mem_avatar, :skin, :poster_img_url, :mem_intro)";
+            $sql = "INSERT INTO `member` (`mem_no`, `style_no`, `style_moving_no`,  `head_no`, `face_no`, `mem_name`, `mem_pwd`, `mem_email`, `mem_lv`, `highest_lv`, `squid_qty`, `mem_gender`, `mem_dob`, `mem_sign`, `mem_avatar`, `skin`, `poster_img_url`, `mem_intro`) VALUES
+    (:mem_no , :style_no, :style_moving_no, :head_no, :face_no, :mem_name, :mem_pwd, :mem_email, :mem_lv, :highest_lv, :squid_qty, :mem_gender, :mem_dob, :mem_sign, :mem_avatar, :skin, :poster_img_url, :mem_intro)";
             $member = $pdo->prepare($sql);
             $mem_no = $pdo->lastInsertId();
             $member->bindValue(":mem_no", $mem_no);
             $member->bindValue(":style_no", $style_no);
+            $member->bindValue(":style_moving_no", $style_moving_no);
             $member->bindValue(":head_no", NULL);
             $member->bindValue(":face_no", NULL);
             $member->bindValue(":mem_name", $mem_name);
@@ -73,11 +75,36 @@
             $fileName = 'myRole'.$lastID;
             $file = $upload_dir.$fileName.".png";
             $success = file_put_contents($file, $data);
-        
+            
+            $_SESSION["mem_no"] = $lastID;
             $_SESSION["myRole"] = $file;
             echo $success ? $file : 'error';
         }
-        echo "創角成功~";
+        elseif(isset($_REQUEST["createdSquid_moving"]) == true) {
+            $sql = 
+            'SELECT * 
+            FROM member 
+            WHERE  mem_no=(SELECT max(mem_no) FROM member)';
+            $lastMember = $pdo->query($sql);
+            $lastRow = $lastMember->fetch(PDO::FETCH_ASSOC);
+            $lastID = $lastRow["mem_no"];
+
+            $upload_dir = "imgs//createBox//";
+        
+            $imgDataStr = $_POST['createdSquid_moving'];
+            $imgDataStr = str_replace('data:image/png;base64,', '', $imgDataStr);
+        
+            $data = base64_decode($imgDataStr);
+        
+            $fileName = 'myRole_moving'.$lastID;
+            $file = $upload_dir.$fileName.".png";
+            $success = file_put_contents($file, $data);
+            
+            $_SESSION["mem_no"] = $lastID;
+            $_SESSION["myRole_moving"] = $file;
+            echo $success ? $file : 'error';
+        }
+        // echo "創角成功~";
     } catch (PDOException $e) {
         $errMsg .= $e->getMessage()."<br>";
         $errMsg .= $e->getLine()."<br>";

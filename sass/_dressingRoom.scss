@@ -101,10 +101,18 @@ input {
       letter-spacing: 0.07em;
       border-radius: 30px;
     }
-    canvas {
+    #dressedForm {
       position: absolute;
       top: 200px;
       left: -400px;
+      z-index: 1000000;
+      display: none;
+    }
+    #dressedForm_moving {
+      position: absolute;
+      top: 200px;
+      right: -400px;
+      z-index: 1000000;
       display: none;
     }
     .dressingZone {
@@ -120,7 +128,7 @@ input {
       }
       .changedClo {
         @include absHzCenter();
-        top: 61%;
+        top: 62.7%;
         width: 68.7%;
       }
       .changedShoes {
@@ -241,7 +249,7 @@ input {
     width: 100%;
     height: 100%;
     background-color: rgba(39, 39, 39, 0.8);
-    z-index: 100;
+    z-index: 1000;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -312,6 +320,17 @@ input {
           padding: 2% 0 0 0;
           .colorPicker {
             width: 80%;
+            &::-webkit-slider-thumb {
+              -webkit-appearance: none;
+              border: none;
+              width: 16px;
+              height: 24px;
+              background: #f8b853;
+              position: relative;
+              top: -4px;
+              box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+              border-radius: 0;
+            }
             &::-webkit-slider-runnable-track {
               height: 20px;
               border-radius: 10px;
@@ -355,17 +374,6 @@ input {
                 hsl(350, 100%, 50%),
                 hsl(360, 100%, 50%)
               );
-            }
-            &::-webkit-slider-thumb {
-              -webkit-appearance: none;
-              border: none;
-              width: 16px;
-              height: 24px;
-              background: #f8b853;
-              position: relative;
-              top: -4px;
-              box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-              border-radius: 0;
             }
           }
         }

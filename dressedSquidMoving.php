@@ -6,23 +6,23 @@
 
         $upload_dir = "imgs/dressingRoom/";
 
-        $imgDataStr = $_POST['dressedSquid'];
+        $imgDataStr = $_POST['dressedSquid_moving'];
         $imgDataStr = str_replace('data:image/png;base64,', '', $imgDataStr);
 
         $data = base64_decode($imgDataStr);
 
-        $fileName = 'dressedSquid'.$mem_no;
+        $fileName = 'dressedSquidMoving'.$mem_no;
         $file = $upload_dir.$fileName.".png";
         $success = file_put_contents($file, $data);
-        $_SESSION["dressed_no"] = $file;
+        $_SESSION["dressed_moving_no"] = $file;
 
         $sql = 
         "UPDATE member
-        SET dressed_no = :dressed_no
+        SET dressed_moving_no = :dressed_moving_no
         WHERE mem_no = :mem_no
         ";
         $updateClo = $pdo->prepare($sql);
-        $updateClo->bindValue(":dressed_no", $file);
+        $updateClo->bindValue(":dressed_moving_no", $file);
         $updateClo->bindValue(":mem_no", $mem_no);
         $updateClo->execute();
 

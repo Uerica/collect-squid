@@ -4,7 +4,6 @@ $(".createRole").click(function() {
   $(".createBox").css({ display: "flex" });
 });
 
-
 // 上帝模式
 $("#godMode").click(function() {
   $(".loginBox").css({ display: "none" });

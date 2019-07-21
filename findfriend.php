@@ -153,17 +153,17 @@
                             
                             <div>
                                 <!-- 選擇性別 -->
-                                <select name="gender">
+                                <select id="gender" name="gender">
                                     <option selected disabled>選擇性別</option>
-                                    <option value="male">男</option>
-                                    <option value="female">女</option>
+                                    <option value="M">男</option>
+                                    <option value="F">女</option>
                                     <option value="allgender">性別全選</option>
                                 </select>
                             </div>
 
                             <div>
                                 <!-- 選擇星座 -->
-                                <select name="sign">
+                                <select id="sign" name="sign">
                                     <option selected disabled>選擇星座</option>
                                     <option value="牡羊座">牡羊座</option>
                                     <option value="金牛座">金牛座</option>
@@ -183,16 +183,21 @@
 
                             <div>
                                 <!-- 選擇興趣 -->
-                                <select name="interest">
+                                <select id="interest" name="interest">
                                     <option selected disabled>選擇興趣</option>
-                                    <option value="我愛php!">我愛php!</option>
-                                    <option value="套套看">套套看</option>
-                                    <option value="找相機">找相機</option>
-                                    <option value="設計頭型">設計頭型</option>
-                                    <option value="打魚翔拳">打魚翔拳</option>
-                                    <option value="套套看">套套看</option>
-                                    <option value="修冷氣">修冷氣</option>
-                                    <option value="喝一杯">喝一杯</option>
+                                    <option value="1">我愛php</option>
+                                    <option value="2">套套看</option>
+                                    <option value="3">找相機</option>
+                                    <option value="4">設計頭型</option>
+                                    <option value="5">打魚翔拳</option>
+                                    <option value="6">摳摳看"</option>
+                                    <option value="7">修冷氣</option>
+                                    <option value="8">寫書法</option>
+                                    <option value="9">逛夜市</option>
+                                    <option value="10">吃美食</option>
+                                    <option value="11">運動</option>
+                                    <option value="12">踏踏青</option>
+                                    <option value="13">看看海</option>
                                     <option value="allinterest">興趣全選</option>
                                 </select>
                             </div>
@@ -213,11 +218,11 @@
                 <div class="profileBox_bg">
                     <div class="profileBox">
                         <div class="profile">
-                            <p>ID:<span id="userid">9453</span></p>
-                            <p>暱稱:<span id="nickname">魷魚軟軟</span></p>
-                            <p>性別:<span id="gender">男</span></p>
-                            <p>星座:<span id="constellation">水瓶座</span></p>
-                            <p>興趣:<span id="habit">我愛php!</span></p>
+                            <p>ID:<span id="userid"></span></p>
+                            <p>暱稱:<span id="nickname"></span></p>
+                            <p>性別:<span id="gender"></span></p>
+                            <p>星座:<span id="constellation"></span></p>
+                            <p>興趣:<span id="habit"></span></p>
                         </div> 
                     </div>
                     <!-- 按鈕底加 -->
@@ -284,78 +289,39 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js'></script>
     <script>
     function startSearch() {
-        $(".fromBox_wrap").css("display","none");
-        $(".showFriend_wrap").css("display","block");
+        var gender = $("#gender").val();
+        var sign = $("#sign").val();
+        var interest = $("#interest").val();
+        if(gender == null) {
+            gender = "allgender";
+        }
+        if(sign == null) {
+            sign = "allsign";
+        }
+        if(interest == null) {
+            interest = "allinterest";
+        }
+        const xhr = new XMLHttpRequest();
+        xhr.onload = () => {
+        if (xhr.status == 200) {
+            var resp = JSON.parse(xhr.responseText);
+            console.debug("findFriend", resp);
+            profiles = resp;
+            change_profile();
+            $(".fromBox_wrap").css("display","none");
+            $(".showFriend_wrap").css("display","block");
+        } else {
+          console.error("startSearch failed.", xhr);
+        }
+      };
+      const url = `findFriendApi.php?mem_gender=${gender}&mem_sign=${sign}&interest_no=${interest}`;
+      xhr.open("get", url, true);
+      xhr.send(null);
     }
 
     var degree = 0;
     var profile_index = 0;
-    var profiles = [
-        {
-            userid: "9453",
-            username: "軟軟",
-            gender: "男",
-            constellation: "水瓶座",
-            habit: "我愛php!",
-            avatar_color: "#f3f3f3"
-        },
-        {
-            userid: "9527",
-            username: "硬硬",
-            gender: "男",
-            constellation: "摩羯座",
-            habit: "套套看",
-            avatar_color: "yellow"
-        },
-        {
-            userid: "9487",
-            username: "好辣",
-            gender: "女",
-            constellation: "摩羯座",
-            habit: "找相機",
-            avatar_color: "pink"
-        },
-        {
-            userid: "9981",
-            username: "詩詩",
-            gender: "女",
-            constellation: "雙子座",
-            habit: "設計頭型",
-            avatar_color: "red"
-        },
-        {
-            userid: "9898",
-            username: "魚翔",
-            gender: "男",
-            constellation: "摩羯座",
-            habit: "打魚翔拳",
-            avatar_color: "yellow"
-        },
-        {
-            userid: "520520",
-            username: "長長",
-            gender: "男",
-            constellation: "巨蠍座",
-            habit: "扣扣看",
-            avatar_color: "blue"
-        },
-        {
-            userid: "79979",
-            username: "內內",
-            gender: "女",
-            constellation: "牡羊座",
-            habit: "修冷氣",
-            avatar_color: "red"
-        },
-        {
-            userid: "54321",
-            username: "酒酒",
-            gender: "女",
-            constellation: "雙魚座",
-            habit: "喝一杯",
-            avatar_color: "yellow"
-        }
-        ];
+    var profiles = [];
 
         $(".prizeWheel .pw_prev").click(function (e) {
             degree = degree - 45;
@@ -397,11 +363,16 @@
         function change_profile() {
             var profile = profiles[profile_index];
             var profile_elem = $(".profileBox .profile")[0];
-            profile_elem.querySelector("#userid").innerHTML = profile.userid;
-            profile_elem.querySelector("#nickname").innerHTML = profile.username;
-            profile_elem.querySelector("#gender").innerHTML = profile.gender;
-            profile_elem.querySelector("#constellation").innerHTML = profile.constellation;
-            profile_elem.querySelector("#habit").innerHTML = profile.habit;
+            profile_elem.querySelector("#userid").innerHTML = profile.mem_no;
+            profile_elem.querySelector("#nickname").innerHTML = profile.mem_name;
+            // profile_elem.querySelector("#gender").innerHTML = profile.mem_gender;
+            if(profile.mem_gender=="F"){
+                profile_elem.querySelector("#gender").innerHTML = '女';
+            }else{
+                profile_elem.querySelector("#gender").innerHTML = '男';
+            }
+            profile_elem.querySelector("#constellation").innerHTML = profile.mem_sign;
+            profile_elem.querySelector("#habit").innerHTML = profile.interest_names;
             $(".Role .cls-3").css("fill", profile.avatar_color);
         }
     </script>

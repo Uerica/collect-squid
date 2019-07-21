@@ -16,6 +16,7 @@
         if($member->rowCount() > 0) {
             $memRow = $member->fetch(PDO::FETCH_ASSOC);
             //抓出來存session
+            $_SESSION["mem_no"] =  $memRow["mem_no"];
             $_SESSION["mem_name"] =  $memRow["mem_name"];
             $_SESSION["style_no"] =  $memRow["style_no"];
             $_SESSION["mem_lv"] =  $memRow["mem_lv"];
