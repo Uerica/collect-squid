@@ -178,6 +178,11 @@ function switchPage() {
     $(".checkBox-event").toggleClass("collapse");
   });
 
+  $(".gameWorld_cup").click(function (e) {
+    e.preventDefault();
+    $(".checkBox-leaderBoard").toggleClass("collapse");
+  })
+
   $("#btnCancel-room").click(function (e) {
     e.preventDefault();
     $(".checkBox-room").toggleClass("collapse");
@@ -306,7 +311,7 @@ function animation() {
     sprayTimer();
 
     function sprayTimer() {
-      var time = 2000;
+      var time = 2500;
       a = setTimeout(sprayOpacity, time);
       function sprayOpacity() {
         canvas.style.opacity = 0;
@@ -336,20 +341,3 @@ window.addEventListener('load', function () {
 window.addEventListener('mousemove', function (e) {
   // moveScene(e);
 });
-
-
-
-
-// function gameSizing(tag, w, h) {
-//   document.querySelector(tag).style.width = w + "px";
-//   document.querySelector(tag).style.height = h + "px";
-// }
-
-// function gameObject(tag, w, h) {
-//   let mapItems = document.querySelectorAll('.gameWorld_object');
-//   var mapItemsLength = mapItems.length;
-//   for (var i = 0; i < mapItemsLength; i++) {
-//     document.querySelectorAll(tag).style.width = w + "px";
-//     document.querySelectorAll(tag).style.height = h + "px";
-//   }
-// }

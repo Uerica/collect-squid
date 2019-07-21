@@ -43,6 +43,7 @@
     <link rel="stylesheet" href="css/reset.css">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css'/>
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
     <link rel="stylesheet" href="css/hover.css">
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="sass/style.css">
@@ -77,19 +78,6 @@
         <img id="myRole" :src="others_online_user_info.style_no" alt="Penny">
       </div>
     </template>
-
-    <div class="common_cursor"></div>
-
-    <!-- <div class="gameWorld_tutorial">
-        <div class="tutorial_cover">
-            <div class="tutorial_house">
-                <div class="cover cover-house">
-                    <img src="imgs/homePage/coverHouse.png" alt="">
-                </div>
-                <div class="desc desc-house"></div>
-            </div>
-        </div>
-    </div> -->
 
     <!-- 導覽列 -->
     <header class="common_header disabledScrollOnHover">
@@ -682,7 +670,66 @@
             </div>
         </div>
 
-        <div class="gameWorld_leaderBoard"></div>
+        <div class="gameWorld_leaderBoard disabledScrollOnHover">
+          <div class="checkBox checkBox-leaderBoard">
+            <div class="leaderBoard_content">
+              <div class="leaderBoard_title">
+                  <h2>排行榜</h2>
+              </div>
+              <div class="owl-carousel owl-theme leaderBoard_showPlayer">
+                  <div class="leaderBoard_showcase shoecase-gold">
+                      <div class="leaderBoard_medal">
+                        <img src="imgs/homePage/leaderBoard/leaderBoard_rank1.png" alt="排行榜排名獎牌">
+                      </div>
+                          <div class="player player-gold">
+                            <img src="imgs/homePage/leaderBoard/room_pic.png" alt="">
+                            <div class="memInfo">
+                              <span class="playerName">小花</span>
+                              <i class="fas fa-heart playerHeartSum"><b>200</b></i>
+                            </div>
+                          </div>
+                      <div class="leaderBoard_playerImage">
+                        <img src="imgs/homePage/squid2.png" alt="玩家角色圖">
+                      </div>
+                  </div>
+                  <div class="leaderBoard_showcase showcase-gold">
+                      <div class="leaderBoard_medal">
+                        <img src="imgs/homePage/leaderBoard/leaderBoard_rank1.png" alt="排行榜排名獎牌">
+                      </div>
+                          <div class="player player-gold">
+                            <img src="imgs/homePage/leaderBoard/room_pic.png" alt="">
+                            <div class="memInfo">
+                              <span class="playerName">小花</span>
+                              <i class="fas fa-heart playerHeartSum"><b>200</b></i>
+                            </div>
+                          </div>
+                      <div class="leaderBoard_playerImage">
+                        <img src="imgs/homePage/squid2.png" alt="玩家角色圖">
+                      </div>
+                  </div>
+                  <div class="leaderBoard_showcase showcase-gold">
+                      <div class="leaderBoard_medal">
+                        <img src="imgs/homePage/leaderBoard/leaderBoard_rank1.png" alt="排行榜排名獎牌">
+                      </div>
+                          <div class="player player-gold">
+                            <img src="imgs/homePage/leaderBoard/room_pic.png" alt="">
+                            <div class="memInfo">
+                              <span class="playerName">小花</span>
+                              <i class="fas fa-heart playerHeartSum"><b>200</b></i>
+                            </div>
+                          </div>
+                      <div class="leaderBoard_playerImage">
+                        <img src="imgs/homePage/squid2.png" alt="玩家角色圖">
+                      </div>
+                  </div>
+              </div>
+              <div class="leaderBoard_btn">
+                <button class="button btn-visit">拜訪房間</button>
+                <button class="button btn-addFriend">加朋友</button>
+              </div>
+            </div>
+          </div>
+        </div>
     </div>
 
     <!-- 創角 -->
@@ -1078,6 +1125,7 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js'></script>
     <script src="https://kit.fontawesome.com/629062769a.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/createBox.js"></script>
     <script src="js/createRoleData.js"></script>
@@ -1086,6 +1134,7 @@
     <script src="js/chat.js"></script>
     <script src="js/roleFunctions.js"></script>
     <script src="js/rolePosition.js"></script>
+    <script src="js/leaderBoard.js"></script>
     <script scr="js/addFriend.js"></script>
     <script>
       $(document).ready(function(){
