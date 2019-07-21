@@ -1,0 +1,196 @@
+.backend {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    .navbar{
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+        0 1px 5px 0 rgba(0, 0, 0, 0.12);
+        font-size: 20px;
+        &-bg{
+            background-color: #ff8d8d;
+        }
+        &-font{
+            a{
+                color: #331c1c;
+            }
+        }
+    }
+    
+    .sidebar {
+        font-size: 20px;
+        height: 100vh;
+        background-color: #f6f6f6;
+        &-list {
+            color: #331c1c;
+            background-color: #f6f6f6;
+        }
+    }
+    
+    .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+        color: #fff;
+        background-color: #41a0ff;
+    }
+    
+    
+    .newManager td, .newManager th{
+        /* vertical-align: middle; */
+    }
+    
+    .btn {
+        &:hover {
+            color: #fff;
+        }
+        &-new{
+            float:right;
+            margin: 1em 0em;
+        }
+        &-search {
+            justify-content: flex-end;
+            .form-control, button {
+                flex: 0.2 1 auto;
+                margin: 1em 0em;
+            }
+        }
+        &-editing {
+            background-color: #28a745;
+            border-color: #28a745;
+            color: #fff;
+            &:hover {
+                background-color: #218838;
+            }
+            &Furn {
+                background-color: #28a745;
+                border-color: #28a745;
+                color: #fff;
+                &:hover {
+                    background-color: #218838;
+                }
+            }
+            &Clo {
+                background-color: #28a745;
+                border-color: #28a745;
+                color: #fff;
+                &:hover {
+                    background-color: #218838;
+                }
+            }
+        }
+        &-avaliable {
+            background-color: #28a745;
+            border-color: #28a745;
+            color: #fff;
+            &:hover {
+                background-color: #218838;
+            }
+        }
+        &-banned {
+            background-color: #dc3545;
+            border-color: #dc3545;
+            color: #fff;
+            &:hover {
+                background-color: #c82333;
+            }
+        }
+        &-furnOn {
+            background-color: #28a745;
+            border-color: #28a745;
+            color: #fff;
+            &:hover {
+                background-color: #218838;
+            }
+        }
+        &-furnOff {
+            background-color: #dc3545;
+            border-color: #dc3545;
+            color: #fff;
+            &:hover {
+                background-color: #c82333;
+            }
+        }
+        &-cloOn {
+            background-color: #28a745;
+            border-color: #28a745;
+            color: #fff;
+            &:hover {
+                background-color: #218838;
+            }
+        }
+        &-cloOff {
+            background-color: #dc3545;
+            border-color: #dc3545;
+            color: #fff;
+            &:hover {
+                background-color: #c82333;
+            }
+        }
+        &-isBanner {
+            background-color: #28a745;
+            border-color: #28a745;
+            color: #fff;
+            &:hover {
+                background-color: #218838;
+            }
+        }
+        &-isNotBanner {
+            background-color: #dc3545;
+            border-color: #dc3545;
+            color: #fff;
+            &:hover {
+                background-color: #c82333;
+            }
+        }
+    }
+    
+    .furniture, .clothing, .event {
+        img {
+            width: 140px;
+        }
+    }
+    
+    .table-location {
+        vertical-align: middle;
+        text-align: center;
+        th {
+            font-size: 20px;
+        }
+        td {
+            font-size: 20px;
+            vertical-align: middle;
+            text-align: center;
+        }
+        input {
+            margin: auto;
+            width: 50%;
+        }
+    }
+    
+    .newManager {
+        // display: none;
+    }
+    
+    .furniture {
+        .mem_lvl {
+            margin: auto;
+        }
+        .fur_type {
+            margin: auto;
+        }
+    }
+    
+    
+    .clothing {
+        .clo_type {
+            margin: auto;
+        }
+    }
+    
+    .robot {
+        .keyCnt {
+            width: 100%;
+        }
+        .resCnt {
+            width: 100%;
+        }
+    }
+}
+

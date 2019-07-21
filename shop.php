@@ -24,8 +24,8 @@ try {
 
     $sql = "select * from member where mem_email=:mem_email and mem_pwd=:mem_pwd";
     $members = $pdo->prepare($sql);
-    $members->bindValue(":mem_email", "hard@gmail.com"); //from session
-    $members->bindValue(":mem_pwd", "hard"); //from session
+    $members->bindValue(":mem_email", "111@abc.co"); //from session
+    $members->bindValue(":mem_pwd", "111"); //from session
     $members->execute();
     if ($members->rowCount() != 0) {
         $member = $members->fetchObject();
@@ -33,7 +33,7 @@ try {
 
     $sql = "select * from mem_furniture where mem_no=:mem_no";
     $mem_furns = $pdo->prepare($sql);
-    $mem_furns->bindValue(":mem_no", "3"); //from session
+    $mem_furns->bindValue(":mem_no", "1"); //from session
     $mem_furns->execute();
     $mem_furnsArr = array();
     while($mem_furnRow = $mem_furns->fetchObject()){
@@ -188,10 +188,10 @@ try {
             </ul>
         </nav>
     </header> -->
-<div id="confirmBox" style="display:none">
-    <button id="confirm_btn">確定
-    <button id="cancel_btn">取消
-</div>
+    <div id="confirmBox" style="display:none">
+        <button id="confirm_btn">確定
+        <button id="cancel_btn">取消
+    </div>
     <div class="shop">
         <div class="shop_area">
             <div class="item_group">

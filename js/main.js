@@ -65,6 +65,20 @@ function collaseNotifications() {
   });
 }
 
+// 移除通知
+function closeNotifications() {
+  $('.notifications_delete').click(function(){
+    $(this.parentElement).remove();
+  })
+}
+
+// 關閉排行榜
+function closeLeaderBoard() {
+  $(".leaderBoard_close").click(function () {
+    $(".checkBox-leaderBoard").toggleClass("collapse");
+  })
+}
+
 // 聊天室視窗移動
 function moveScene(e) {
   // console.log(e.target);
@@ -175,11 +189,16 @@ function loginBoxNoScroll() {
   }
 }
 
-// 我的房間&活動巴士換頁
+// 我的房間、活動巴士、排行榜開關燈箱
 function switchPage() {
   $(".gameWorld_house").click(function(e) {
     e.preventDefault();
     $(".checkBox-room").toggleClass("collapse");
+    filterBlur('.gameWorld_bgImage');
+    filterBlur('.gameWorld_object',);
+    filterBlur('.gameWorld_arrow',);
+    filterBlur('.loginSquid');
+    filterBlur('.otherSquid');
   });
 
   $(".gameWorld_bus").click(function(e) {
@@ -187,9 +206,23 @@ function switchPage() {
     $(".checkBox-event").toggleClass("collapse");
   });
 
+<<<<<<< HEAD
   $("#btnCancel-room").click(function(e) {
+=======
+  $(".gameWorld_cup").click(function (e) {
+    e.preventDefault();
+    $(".checkBox-leaderBoard").toggleClass("collapse");
+  })
+
+  $("#btnCancel-room").click(function (e) {
+>>>>>>> ab00a5ec91806771400ef042740c0b0e7edc3f22
     e.preventDefault();
     $(".checkBox-room").toggleClass("collapse");
+    filterBlur('.gameWorld_bgImage');
+    filterBlur('.gameWorld_object',);
+    filterBlur('.gameWorld_arrow',);
+    filterBlur('.loginSquid');
+    filterBlur('.otherSquid');
   });
 
   $("#btnCancel-event").click(function(e) {
@@ -224,6 +257,7 @@ function isMobileDevice() {
   }
 }
 
+<<<<<<< HEAD
 // 游標
 function cursorAnimated() {
   let cursor = document.querySelector(".common_cursor");
@@ -233,6 +267,16 @@ function cursorAnimated() {
       "top:" + c.pageY + "px;" + "left:" + c.pageX + "px;"
     );
   });
+=======
+// 模糊濾鏡
+function filterBlur(e) {
+  let haveBlurFilter = $(e).css('filter');
+  if (haveBlurFilter) {
+    $(e).css('filter', '');
+  } else {
+    $(e).css('filter', 'blur(8px)');
+  }
+>>>>>>> ab00a5ec91806771400ef042740c0b0e7edc3f22
 }
 
 function animation() {
@@ -329,7 +373,7 @@ function animation() {
     sprayTimer();
 
     function sprayTimer() {
-      var time = 2000;
+      var time = 2500;
       a = setTimeout(sprayOpacity, time);
       function sprayOpacity() {
         canvas.style.opacity = 0;
@@ -346,12 +390,13 @@ window.addEventListener("load", function() {
   menuMobileTransform();
   chooseFriend();
   collapseChatGroup();
+  closeLeaderBoard();
+  closeNotifications();
   scrollLeftTimer();
   collaseNotifications();
   loginBoxNoScroll();
   switchPage();
   chatBtnMousemove();
-  cursorAnimated();
   animation();
   const xhr = new XMLHttpRequest();
   xhr.onload = function() {
@@ -371,17 +416,3 @@ window.addEventListener("load", function() {
 window.addEventListener("mousemove", function(e) {
   // moveScene(e);
 });
-
-// function gameSizing(tag, w, h) {
-//   document.querySelector(tag).style.width = w + "px";
-//   document.querySelector(tag).style.height = h + "px";
-// }
-
-// function gameObject(tag, w, h) {
-//   let mapItems = document.querySelectorAll('.gameWorld_object');
-//   var mapItemsLength = mapItems.length;
-//   for (var i = 0; i < mapItemsLength; i++) {
-//     document.querySelectorAll(tag).style.width = w + "px";
-//     document.querySelectorAll(tag).style.height = h + "px";
-//   }
-// }

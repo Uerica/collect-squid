@@ -1,7 +1,23 @@
 <?php
+  // phpinfo();
+  // exit();
+    ob_start();
     session_start();
+<<<<<<< HEAD
     // $_SESSION["mem_no"] = 24;
     $mem_no = 24;
+=======
+    if(!isset($_SESSION["mem_name"])||($_SESSION["mem_name"] == "")){
+      //沒登入
+    } else {
+      //有登入存阿
+      $mem_name = $_SESSION["mem_name"];
+      $style_no = $_SESSION["style_no"];
+      $mem_lv = $_SESSION["mem_lv"];
+      $mem_avatar = $_SESSION["mem_avatar"];
+      $squid_qty = $_SESSION["squid_qty"];
+    };
+>>>>>>> ab00a5ec91806771400ef042740c0b0e7edc3f22
     $errMsg = '';
     try {
         require_once('connectSquid.php');
@@ -17,12 +33,20 @@
         $othersSQL = 
         "SELECT *
         FROM member
-        WHERE mem_no NOT IN(:mem_no)
+        WHERE mem_name NOT IN(:mem_name)
         ORDER BY RAND()
+<<<<<<< HEAD
         LIMIT 3"; 
         $members = $pdo->prepare($othersSQL);
         $members->bindValue(":mem_no", $mem_no);
         $members->execute();
+=======
+        LIMIT 1"; 
+        $member = $pdo->prepare($sql);
+        $member->bindValue(":mem_name", $mem_name);
+        $member->execute();
+        $memRow = $member->fetch(PDO::FETCH_ASSOC);
+>>>>>>> ab00a5ec91806771400ef042740c0b0e7edc3f22
     } catch(PDOException $e) {
         $errMsg .= $e->getMessage()."<br>";
         $errMsg .= $e->getLine()."<br>";
@@ -40,6 +64,7 @@
     <link rel="stylesheet" href="css/reset.css">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css'/>
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
     <link rel="stylesheet" href="css/hover.css">
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="sass/style.css">
@@ -47,10 +72,14 @@
 </head>
 
 <body>
-    <div class="loginSquid">
+  <!-- vue -->
+  <div id="app">
+    <!-- 我自己的魷魚 -->
+    <div class="loginSquid" v-if="is_login()">
       <div class="talkingBubble">
-          <p>哈囉哈囉</p>
+          <p>嗨我是自己</p>
       </div>
+<<<<<<< HEAD
       <span class="roleName"></span>
       <img id="myRole" src="" alt="">
     </div>
@@ -74,19 +103,28 @@
     }
     ?>
       
+=======
+      <span class="roleName">{{user_id}}</span>
+      <img id="myRole" :src="style_no" alt="自己的外型">
+    </div>
+    
+    <!-- 別的魷魚,線上有幾隻產生幾隻 -->
+>>>>>>> ab00a5ec91806771400ef042740c0b0e7edc3f22
 
-    <div class="common_cursor"></div>
-
-    <!-- <div class="gameWorld_tutorial">
-        <div class="tutorial_cover">
-            <div class="tutorial_house">
-                <div class="cover cover-house">
-                    <img src="imgs/homePage/coverHouse.png" alt="">
-                </div>
-                <div class="desc desc-house"></div>
-            </div>
+    <template v-for="others_online_user_info in others_online_users_info()">
+      <div class="otherSquid" :style="calcPosition()" >
+        <div class="onlineFuns">
+          <a class="funIcon goRoom" href="javascript:;" class="onlineFunction"><img src="imgs/characters/goRoomIcon.png" alt="看房間"></a >
+          <a class="funIcon addFriend" v-on:click="add_friend(others_online_user_info.mem_name)" href="javascript:;" class="onlineFunction"><img src="imgs/characters/addFriendIcon.png" alt="加好友"></a >
+          <a class="funIcon mute" href="javascript:;" class="onlineFunction"><img src="imgs/characters/muteIcon.png" alt="靜音"></a >
         </div>
-    </div> -->
+        <div class="talkingBubble">
+          <p>媽的好辣喔</p>
+        </div>
+        <span class="roleName">{{others_online_user_info.mem_name}}</span>
+        <img id="myRole" :src="others_online_user_info.style_no" alt="Penny">
+      </div>
+    </template>
 
     <!-- 導覽列 -->
     <header class="common_header disabledScrollOnHover">
@@ -108,7 +146,7 @@
                         <li class="coin">
                             <a href="javascript:;">
                                 <img src="imgs/homePage/icon/coin.png" alt="持有金額icon">
-                                <span>1500</span>
+                                <span>{{squid_qty}}</span>
                             </a>
                         </li>
                         <li class="logo">
@@ -120,25 +158,26 @@
                         <li class="login">
                             <img src="imgs/homePage/icon/avatar.png" alt="角色頭像icon">
                             <span class="name">
-                                <a href="javascript:;">魚翔</a>
+                              <a href="javascript:;">{{user_id}}</a>
                             </span>
                             <span>
-                                <a href="javascript:;">登出</a>
+                              <a v-if="is_login()" v-on:click="logout">登出</a>
+                              <a v-else>登入</a>
                             </span>
                         </li>
                     </ul>
                     <nav class="menuMobile_nav">
-                        <li><a href="myRoom.html"> <img src="imgs/homePage/icon/room.png" alt="我的房間icon">
+                        <li><a href="myRoom.php"> <img src="imgs/homePage/icon/room.png" alt="我的房間icon">
                                 <span>我的房間</span></a></li>
-                        <li><a href="dressingRoom.html"><img src="imgs/homePage/icon/fittingRoom.png" alt="換衣間icon">
+                        <li><a href="dressingRoom.php"><img src="imgs/homePage/icon/fittingRoom.png" alt="換衣間icon">
                                 <span>換衣間</span></a></li>
-                        <li><a href="findfriend.html"> <img src="imgs/homePage/icon/friend.png" alt="找朋友icon">
+                        <li><a href="findfriend.php"> <img src="imgs/homePage/icon/friend.png" alt="找朋友icon">
                                 <span>找朋友</span></a></li>
                         <li><a href="javascript:;"> <img src="imgs/homePage/icon/events.png" alt="揪團活動icon">
                                 <span>揪團活動</span></a></li>
-                        <li><a href="shop.html"> <img src="imgs/homePage/icon/mall.png" alt="虛擬商城icon">
+                        <li><a href="shop.php"> <img src="imgs/homePage/icon/mall.png" alt="虛擬商城icon">
                                 <span>虛擬商城</span></a></li>
-                        <li><a href="memberCenter.html"> <img src="imgs/homePage/icon/member.png" alt="會員中心icon">
+                        <li><a href="memberCenter.php"> <img src="imgs/homePage/icon/member.png" alt="會員中心icon">
                                 <span>會員中心</span></a></li>
                         <li><a href="javascript:;"> <img src="imgs/homePage/icon/robot.png" alt="客服機器人_icon">
                                 <span>客服機器人</span></a></li>
@@ -164,13 +203,13 @@
                     </a>
                 </li>
                 <li class="hvr-pulse-grow">
-                    <a href="findfriend.html">
+                    <a href="findfriend.php">
                         <img src="imgs/homePage/icon/friend.png" alt="找朋友icon">
                         <span>找朋友</span>
                     </a>
                 </li>
                 <li class="hvr-pulse-grow">
-                    <a href="events.html">
+                    <a href="events.php">
                         <img src="imgs/homePage/icon/events.png" alt="揪團活動icon">
                         <span>揪團活動</span>
                     </a>
@@ -188,7 +227,7 @@
                     </a>
                 </li>
                 <li class="hvr-pulse-grow">
-                    <a href="memberCenter.html">
+                    <a href="memberCenter.php">
                         <img src="imgs/homePage/icon/member.png" alt="會員中心icon">
                         <span>會員中心</span>
                     </a>
@@ -196,202 +235,32 @@
                 <div class="memberInfo">
                     <li class="login">
                         <img src="imgs/homePage/icon/avatar.png" alt="角色頭像icon">
-                        <span class="name"><a href="javascript:;">魚翔</a></span>
-                        <span><a href="javascript:;">登出</a></span>
+                        <span class="name">
+                          <a href="javascript:;">{{user_id}}</a>
+                        </span>
+                        <span>
+                          <a v-if="is_login()" v-on:click="logout">登出</a>
+                          <a v-else>登入</a>
+                        </span>
                     </li>
                     <li class="coin">
                         <a href="javascript:;">
                             <img src="imgs/homePage/icon/coin.png" alt="持有金額icon">
-                            <span>1500</span>
+                            <span>{{squid_qty}}</span>
                         </a>
                     </li>
                     <li class="level">
                         <a href="javascript:;">
-                            <img src="imgs/homePage/icon/civilian.png" alt="平民等級icon">
-                            <span>平民</span>
+                            <img v-if="mem_lv=='1'" src="imgs/homePage/icon/civilian.png" alt="平民等級icon">
+                            <img v-if="mem_lv=='2'" src="imgs/homePage/icon/friend.png" alt="貴族等級icon">
+                            <img v-if="mem_lv=='3'" src="imgs/homePage/icon/friend.png" alt="皇族等級icon">
+                            <span>平民</span>                                                                                    
                         </a>
                     </li>
                 </div>
             </ul>
         </nav>
     </header>
-
-    <!-- 通知 -->
-    <div class="common_notifications disabledScrollOnHover">
-        <div class="notifications_actionBox">
-            <button class="button button-notifications">
-                <img src="imgs/homePage/icon/notice.png" alt="通知按鈕圖片">
-                <span>通知</span>
-            </button>
-            <button class="button button-robot">
-                <img src="imgs/homePage/icon/robot.png" alt="客服機器人圖片">
-                <span>客服魷魚</span>
-            </button>
-        </div>
-        <div class="notifications_container collapse">
-            <div class="notifications_content">
-                <div class="notifications notifications_friend">
-                    <i class="fas fa-times notifications_delete"></i>
-                    <span>【好友通知】</span>
-                    <p>你現在已經和詩詩成為好友了</p>
-                </div>
-                <div class="notifications notifications_event">
-                    <i class="fas fa-times notifications_delete"></i>
-                    <span>【活動邀請】</span>
-                    <p>好友"詩詩"邀請你參加「與VUE一起浮淺」活動</p>
-                </div>
-                <div class="notifications notifications_room">
-                    <i class="fas fa-times notifications_delete"></i>
-                    <span>【房間留言】</span>
-                    <p>會員"詩詩"在您房間留下了一筆新訊息</p>
-                </div>
-                <div class="notifications notifications_event">
-                    <i class="fas fa-times notifications_delete"></i>
-                    <span>【活動邀請】</span>
-                    <p>好友"詩詩"邀請你參加「與VUE一起浮淺」活動</p>
-                </div>
-                <div class="notifications notifications_room">
-                    <i class="fas fa-times notifications_delete"></i>
-                    <span>【房間留言】</span>
-                    <p>會員"詩詩"在您房間留下了一筆新訊息</p>
-                </div>
-                <div class="notifications notifications_event">
-                    <i class="fas fa-times notifications_delete"></i>
-                    <span>【活動邀請】</span>
-                    <p>好友"詩詩"邀請你參加「與VUE一起浮潛」活動</p>
-                </div>
-                <div class="notifications notifications_room">
-                    <i class="fas fa-times notifications_delete"></i>
-                    <span>【房間留言】</span>
-                    <p>會員"詩詩"在您房間留下了一筆新訊息</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 客服機器人 -->
-    <!-- <div class="commom_robot disabledScrollOnHover">
-        <div class="chatBotBox">
-            <h3>魷魚機器人</h3>
-
-            <div id="chatContainer" class="chatContainer">
-                <div id="chat_A" class="chat_A">
-                    <p>Hi! 很高興為您服務，您可以點擊下方關鍵或是直接輸入詢問內容!</p>
-                </div>
-                <div class="clearfix"></div>
-
-                <div id="chat_Q" class="chat_Q">
-                    <p>^^</p>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-
-
-            <ul class="chatBtn">
-                <li id="index">首頁</li>
-                <li id="myroom">我的房間</li>
-                <li id="dressingRoom">換衣間</li>
-                <li id="findFrnd">找朋友</li>
-                <li id="group">揪團活動</li>
-                <li id="shop">虛擬商城</li>
-                <li id="memCenter">會員中心</li>
-            </ul>
-
-
-            <div class="chatWords">
-                <input type="text" id="chatInput" class="chatInput">
-                <button type="submit" id="chatSubmit" class="chatSubmit">送出</button>
-                <div class="clearfix"></div>
-            </div>
-
-        </div>
-    </div> -->
-
-    <!-- 聊天世界 -->
-    <div class="gameWorld">
-        <div class="gameWorld_bgImage">
-            <img src="imgs/homePage/homepage01.png" alt="" draggable="false" oncontextmenu="return false">
-        </div>
-
-        <div class="gameWorld">
-            <div class="gameWorld_house gameWorld_object">
-                <a href="javascript:;"><img src="imgs/homePage/house_tag.png" alt=""></a>
-            </div>
-            <div class="gameWorld_fountain gameWorld_object">
-                <canvas id="spray"></canvas>
-                <a href="javascript:;"><img src="imgs/homePage/fountain.png" alt=""></a>
-            </div>
-            <div id="busBox" class="gameWorld_bus gameWorld_object">
-                <div id="smoke"></div>
-                <a href="javascript:;"><img src="imgs/homePage/bus.png" alt="" id="bus"></a>
-            </div>
-            <div class="gameWorld_cup gameWorld_object">
-                <a href="javascript:;">
-                    <div class="cup">
-                        <img src="imgs/homePage/cup01.png" alt="">
-                        <img id="cup_squid" src="imgs/homePage/squid.png" alt="">
-                        <div id="cup_hand">
-                            <img src="imgs/homePage/hand.png" alt="">
-                            <img id="rag" src="imgs/homePage/rag.png" alt="">
-                        </div>
-                        <img src="imgs/homePage/cup02.png" alt="">
-                    </div>
-                    <div class="g_apple">
-                        <img src="imgs/homePage/cup.png" alt="">
-                    </div>
-                </a>
-            </div>
-        </div>
-
-        <div class="gameWorld_arrow">
-            <div class="arrow arrow-right">
-                <img src="imgs/homePage/arrow-right.png" alt="">
-            </div>
-            <div class="arrow arrow-left">
-                <img src="imgs/homePage/arrow-left.png" alt="">
-            </div>
-            <div class="arrow arrow-top">
-                <img src="imgs/homePage/arrow-top.png" alt="">
-            </div>
-            <div class="arrow arrow-bottom">
-                <img src="imgs/homePage/arrow-bottom.png" alt="">
-            </div>
-        </div>
-
-        <div class="gameWorld_switchPage">
-            <div class="checkBox checkBox-room collapse">
-                <div class="checkBox_content">
-                    <div class="checkBox_title">
-                        <h3>前往我的房間</h3>
-                    </div>
-                    <div class="checkBox_hint">
-                        <p>要前往我的房間嗎?</p>
-                    </div>
-                    <div class="checkBox_btn">
-                        <button class="button button-cancel" id="btnCancel-room">取消</button>
-                        <a href="myRoom.html" class="button button-check">確認</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="checkBox checkBox-event collapse">
-                <div class="checkBox_content">
-                    <div class="checkBox_title">
-                        <h3>前往揪團活動</h3>
-                    </div>
-                    <div class="checkBox_hint">
-                        <p>要前往揪團活動專區嗎?</p>
-                    </div>
-                    <div class="checkBox_btn">
-                        <button class="button button-cancel" id="btnCancel-event">取消</button>
-                        <a href="event.html" class="button button-check">確認</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="gameWorld_leaderBoard"></div>
-    </div>
 
     <!-- 聊天群組(1.聊天室 2.好友列表) -->
     <!-- Rou:vue.js #chat_app -->
@@ -577,54 +446,25 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="friendList_friend">
-                            <div class="friendInfo">
-                                <div class="avatar">
-                                    <img src="imgs/homePage/tree_04.png" alt="大頭貼">
-                                </div>
-                                <div class="friendName">
-                                    <p>佩佩</p>
-                                </div>
-                            </div>
-
-                            <div class="friendAction">
-                                <!-- 上線 / 下線狀態 點 -->
-                                <div class="connectStatus">
-                                    <div class="dot dot-offline"></div>
-                                </div>
-
-                                <div class="roomVisit">
-                                    <a href="javascript:;"><img src="imgs/homePage/icon/home.png" alt="房間ICON"></a>
-                                </div>
-
-                                <div class="moreAction">
-                                    <a href="javavscript:;">
-                                        <div class="dot"></div>
-                                        <div class="dot"></div>
-                                        <div class="dot"></div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
                     </li>
 
                     <!-- 好友邀請中 -->
                     <li class="friendList_requestedFriend">
                         <button class="friendList_friendStatus button">好友邀請中</button>
-                        <div class="friendList_friend">
+                        <div class="friendList_friend" v-for="friend in pending_friends">
                             <div class="friendInfo">
                                 <div class="avatar">
                                     <img src="imgs/homePage/tree_04.png" alt="大頭貼">
                                 </div>
                                 <div class="friendName">
-                                    <p>毛筆</p>
+                                    <p>{{friend}}</p>
                                 </div>
                             </div>
 
                             <div class="friendAction">
                                 <!-- 接受好友申請 -->
                                 <div class="requestAccept">
-                                    <a href="javascript:;"><img src="imgs/homePage/icon/accept.png" alt="接受ICON"></a>
+                                    <a href="javascript:;" v-on:click="confirm_friend(friend)"><img src="imgs/homePage/icon/accept.png" alt="接受ICON"></a>
                                 </div>
                                 <!-- 拒絕好友申請 -->
                                 <div class="requestRefuse">
@@ -632,17 +472,30 @@
                                 </div>
                             </div>
                         </div>
-                    </li>
+                    </li> 
+
+                    
+                    <!-- waiting好友agree中 -->
+                    <li class="friendList_waitingFriend">
+                        <button class="friendList_friendStatus button">等待好友同意中</button>
+                        <div class="friendList_friend" v-for="friend in waiting_friends">
+                            <div class="friendInfo">
+                                <div class="avatar">
+                                    <img src="imgs/homePage/tree_04.png" alt="大頭貼">
+                                </div>
+                                <div class="friendName">
+                                    <p>{{friend}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </li> 
                 </ul>
             </div>
         </div>
     </div>
-    <div class="friendList_open disabledScrollOnHover">
-        <button class="button friendList_openBtn">開啟聊天室</button>
-    </div>
 
     <!-- 登入 -->
-    <div class="loginBox">
+    <div v-if="is_login() == false" class="loginBox">
       <div class="loginContent">
         <div class="intro">
           <div class="logo">
@@ -658,26 +511,368 @@
         </div>
         <div class="loginForm">
           <h3>會員登入</h3>
-          <form action="">
+          <!-- 登入錯誤訊息 -->
+          <span id="login_failMsg"></span>
+          <!-- 為了擋掉鍵盤enter後不會吃登入function ,form拔掉了-->
+          <div class="loginForm_form">
             <div class="personalInfo">
               <div class="inputField">
                 <label for="mem_name">暱稱</label>
-                <input type="text" name="mem_name" id="login_mem_name" />
+                <input type="text" name="mem_name" id="login_mem_name" v-on:keyup="login_enter" />
               </div>
               <div class="inputField">
                 <label for="mem_pwd">密碼</label>
-                <input type="password" name="mem_pwd" id="login_mem_pwd" />
+                <input type="password" name="mem_pwd" id="login_mem_pwd" v-on:keyup="login_enter" />
               </div>
               <a href="javascript:;">忘記密碼？</a>
             </div>
             <div class="submitBtns">
-              <input class="createRole" type="button" value="創角" />
-              <input id="loginBtn" type="button" value="登入"/>
-              <input id="godMode" type="submit" value="上帝模式" />
+              <input class="createRole" type="button" value="創角" v-on:click="create_role" />
+              <input id="loginBtn" type="button" v-on:click="login_btn" value="登入"/>
+              <input id="godMode" type="submit" value="上帝模式" v-on:click="god_mode" />
             </div>
-          </form>
+          </div>
         </div>
       </div>
+    </div>
+  </div>
+  <!-- vue -->
+  
+    <!-- 聊天群組click -->
+    <div class="friendList_open disabledScrollOnHover">
+        <button class="button friendList_openBtn">開啟聊天室</button>
+    </div>
+
+    <!-- 通知 -->
+    <div class="common_notifications disabledScrollOnHover">
+        <div class="notifications_actionBox">
+            <button class="button button-notifications">
+                <img src="imgs/homePage/icon/notice.png" alt="通知按鈕圖片">
+                <span>通知</span>
+            </button>
+            <button class="button button-robot">
+                <img src="imgs/homePage/icon/robot.png" alt="客服機器人圖片">
+                <span>客服魷魚</span>
+            </button>
+        </div>
+        <div class="notifications_container collapse">
+            <div class="notifications_content">
+                <div class="notifications notifications_friend">
+                    <i class="fas fa-times notifications_delete"></i>
+                    <span>【好友通知】</span>
+                    <p>你現在已經和詩詩成為好友了</p>
+                </div>
+                <div class="notifications notifications_event">
+                    <i class="fas fa-times notifications_delete"></i>
+                    <span>【活動邀請】</span>
+                    <p>好友"詩詩"邀請你參加「與VUE一起浮淺」活動</p>
+                </div>
+                <div class="notifications notifications_room">
+                    <i class="fas fa-times notifications_delete"></i>
+                    <span>【房間留言】</span>
+                    <p>會員"詩詩"在您房間留下了一筆新訊息</p>
+                </div>
+                <div class="notifications notifications_event">
+                    <i class="fas fa-times notifications_delete"></i>
+                    <span>【活動邀請】</span>
+                    <p>好友"詩詩"邀請你參加「與VUE一起浮淺」活動</p>
+                </div>
+                <div class="notifications notifications_room">
+                    <i class="fas fa-times notifications_delete"></i>
+                    <span>【房間留言】</span>
+                    <p>會員"詩詩"在您房間留下了一筆新訊息</p>
+                </div>
+                <div class="notifications notifications_event">
+                    <i class="fas fa-times notifications_delete"></i>
+                    <span>【活動邀請】</span>
+                    <p>好友"詩詩"邀請你參加「與VUE一起浮潛」活動</p>
+                </div>
+                <div class="notifications notifications_room">
+                    <i class="fas fa-times notifications_delete"></i>
+                    <span>【房間留言】</span>
+                    <p>會員"詩詩"在您房間留下了一筆新訊息</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 客服機器人 -->
+    <!-- <div class="commom_robot disabledScrollOnHover">
+        <div class="chatBotBox">
+            <h3>魷魚機器人</h3>
+
+            <div id="chatContainer" class="chatContainer">
+                <div id="chat_A" class="chat_A">
+                    <p>Hi! 很高興為您服務，您可以點擊下方關鍵或是直接輸入詢問內容!</p>
+                </div>
+                <div class="clearfix"></div>
+
+                <div id="chat_Q" class="chat_Q">
+                    <p>^^</p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+
+            <ul class="chatBtn">
+                <li id="index">首頁</li>
+                <li id="myroom">我的房間</li>
+                <li id="dressingRoom">換衣間</li>
+                <li id="findFrnd">找朋友</li>
+                <li id="group">揪團活動</li>
+                <li id="shop">虛擬商城</li>
+                <li id="memCenter">會員中心</li>
+            </ul>
+
+
+            <div class="chatWords">
+                <input type="text" id="chatInput" class="chatInput">
+                <button type="submit" id="chatSubmit" class="chatSubmit">送出</button>
+                <div class="clearfix"></div>
+            </div>
+
+        </div>
+    </div> -->
+
+    <!-- 聊天世界 -->
+    <div class="gameWorld">
+        <div class="gameWorld_bgImage">
+            <img src="imgs/homePage/homepage01.png" alt="" draggable="false" oncontextmenu="return false">
+        </div>
+
+        <div class="gameWorld_mapItem">
+            <div class="gameWorld_house gameWorld_object">
+                <a href="javascript:;"><img src="imgs/homePage/house_tag.png" alt=""></a>
+            </div>
+            <div class="gameWorld_fountain gameWorld_object">
+                <canvas id="spray"></canvas>
+                <a href="javascript:;"><img src="imgs/homePage/fountain.png" alt=""></a>
+            </div>
+            <div id="busBox" class="gameWorld_bus gameWorld_object">
+                <div id="smoke"></div>
+                <a href="javascript:;"><img src="imgs/homePage/bus.png" alt="" id="bus"></a>
+            </div>
+            <div class="gameWorld_cup gameWorld_object">
+              <a href="javascript:;">
+                <div class="gameWorld_cupImg">
+                    <div class="cup">
+                        <img src="imgs/homePage/cup01.png" alt="">
+                        <img id="cup_squid" src="imgs/homePage/squid.png" alt="">
+                        <div id="cup_hand">
+                            <img src="imgs/homePage/hand.png" alt="">
+                            <img id="rag" src="imgs/homePage/rag.png" alt="">
+                        </div>
+                        <img src="imgs/homePage/cup02.png" alt="">
+                    </div>
+                    <div class="g_apple">
+                        <img src="imgs/homePage/cup.png" alt="">
+                    </div>
+                </div>
+                <div class="gameWorld_cupText">
+                    <img src="imgs/homePage/cup-text.png" alt="">
+                </div>
+              </a>
+          </div>
+        </div>
+
+        <div class="gameWorld_arrow">
+            <div class="arrow arrow-right">
+                <img src="imgs/homePage/arrow-right.png" alt="">
+            </div>
+            <div class="arrow arrow-left">
+                <img src="imgs/homePage/arrow-left.png" alt="">
+            </div>
+            <div class="arrow arrow-top">
+                <img src="imgs/homePage/arrow-top.png" alt="">
+            </div>
+            <div class="arrow arrow-bottom">
+                <img src="imgs/homePage/arrow-bottom.png" alt="">
+            </div>
+        </div>
+
+        <div class="gameWorld_switchPage">
+            <div class="checkBox checkBox-room collapse">
+                <div class="checkBox_content">
+                    <div class="checkBox_title">
+                        <h3>前往我的房間</h3>
+                    </div>
+                    <div class="checkBox_hint">
+                        <p>要前往我的房間嗎?</p>
+                    </div>
+                    <div class="checkBox_btn">
+                        <button class="button button-cancel" id="btnCancel-room">取消</button>
+                        <a href="myRoom.html" class="button button-check">確認</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="checkBox checkBox-event collapse">
+                <div class="checkBox_content">
+                    <div class="checkBox_title">
+                        <h3>前往揪團活動</h3>
+                    </div>
+                    <div class="checkBox_hint">
+                        <p>要前往揪團活動專區嗎?</p>
+                    </div>
+                    <div class="checkBox_btn">
+                        <button class="button button-cancel" id="btnCancel-event">取消</button>
+                        <a href="event.html" class="button button-check">確認</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="gameWorld_leaderBoard disabledScrollOnHover">
+          <div class="checkBox checkBox-leaderBoard collapse">
+            <div class="leaderBoard_content">
+              <i class="fas fa-times leaderBoard_close" aria-hidden="true"></i>
+              <div class="leaderBoard_title">
+                  <h2>排行榜</h2>
+              </div>
+              <div class="owl-carousel owl-theme leaderBoard_showPlayer">
+                  <div class="leaderBoard_showcase shoecase-gold">
+                      <div class="leaderBoard_medal">
+                        <img src="imgs/homePage/leaderBoard/medal_gold.png" alt="排行榜排名獎牌">
+                      </div>
+                          <div class="player player-gold">
+                            <img src="imgs/homePage/leaderBoard/room_pic.png" alt="">
+                            <div class="memInfo">
+                              <span class="playerName">小花</span>
+                              <i class="fas fa-heart playerHeartSum"><b>200</b></i>
+                            </div>
+                          </div>
+                      <div class="leaderBoard_playerImage">
+                        <img src="imgs/homePage/squid2.png" alt="玩家角色圖">
+                      </div>
+                  </div>
+                  <div class="leaderBoard_showcase showcase-gold">
+                      <div class="leaderBoard_medal">
+                        <img src="imgs/homePage/leaderBoard/medal_silver.png" alt="排行榜排名獎牌">
+                      </div>
+                          <div class="player player-gold">
+                            <img src="imgs/homePage/leaderBoard/room_pic.png" alt="">
+                            <div class="memInfo">
+                              <span class="playerName">小花</span>
+                              <i class="fas fa-heart playerHeartSum"><b>200</b></i>
+                            </div>
+                          </div>
+                      <div class="leaderBoard_playerImage">
+                        <img src="imgs/homePage/squid2.png" alt="玩家角色圖">
+                      </div>
+                  </div>
+                  <div class="leaderBoard_showcase showcase-gold">
+                      <div class="leaderBoard_medal">
+                        <img src="imgs/homePage/leaderBoard/medal_bronze.png" alt="排行榜排名獎牌">
+                      </div>
+                          <div class="player player-gold">
+                            <img src="imgs/homePage/leaderBoard/room_pic.png" alt="">
+                            <div class="memInfo">
+                              <span class="playerName">小花</span>
+                              <i class="fas fa-heart playerHeartSum"><b>200</b></i>
+                            </div>
+                          </div>
+                      <div class="leaderBoard_playerImage">
+                        <img src="imgs/homePage/squid2.png" alt="玩家角色圖">
+                      </div>
+                  </div>
+                  <div class="leaderBoard_showcase showcase-4th">
+                      <div class="leaderBoard_medal">
+                        <img src="imgs/homePage/leaderBoard/medal_4th.png" alt="排行榜排名獎牌">
+                      </div>
+                          <div class="player player-gold">
+                            <img src="imgs/homePage/leaderBoard/room_pic.png" alt="">
+                            <div class="memInfo">
+                              <span class="playerName">小花</span>
+                              <i class="fas fa-heart playerHeartSum"><b>200</b></i>
+                            </div>
+                          </div>
+                      <div class="leaderBoard_playerImage">
+                        <img src="imgs/homePage/squid2.png" alt="玩家角色圖">
+                      </div>
+                  </div>
+                  <div class="leaderBoard_showcase showcase-5th">
+                      <div class="leaderBoard_medal">
+                        <img src="imgs/homePage/leaderBoard/medal_5th.png" alt="排行榜排名獎牌">
+                      </div>
+                          <div class="player player-gold">
+                            <img src="imgs/homePage/leaderBoard/room_pic.png" alt="">
+                            <div class="memInfo">
+                              <span class="playerName">小花</span>
+                              <i class="fas fa-heart playerHeartSum"><b>200</b></i>
+                            </div>
+                          </div>
+                      <div class="leaderBoard_playerImage">
+                        <img src="imgs/homePage/squid2.png" alt="玩家角色圖">
+                      </div>
+                  </div>
+                  <div class="leaderBoard_showcase showcase-6th">
+                      <div class="leaderBoard_medal">
+                        <img src="imgs/homePage/leaderBoard/medal_6th.png" alt="排行榜排名獎牌">
+                      </div>
+                          <div class="player player-gold">
+                            <img src="imgs/homePage/leaderBoard/room_pic.png" alt="">
+                            <div class="memInfo">
+                              <span class="playerName">小花</span>
+                              <i class="fas fa-heart playerHeartSum"><b>200</b></i>
+                            </div>
+                          </div>
+                      <div class="leaderBoard_playerImage">
+                        <img src="imgs/homePage/squid2.png" alt="玩家角色圖">
+                      </div>
+                  </div>
+                  <div class="leaderBoard_showcase showcase-7th">
+                      <div class="leaderBoard_medal">
+                        <img src="imgs/homePage/leaderBoard/medal_7th.png" alt="排行榜排名獎牌">
+                      </div>
+                          <div class="player player-gold">
+                            <img src="imgs/homePage/leaderBoard/room_pic.png" alt="">
+                            <div class="memInfo">
+                              <span class="playerName">小花</span>
+                              <i class="fas fa-heart playerHeartSum"><b>200</b></i>
+                            </div>
+                          </div>
+                      <div class="leaderBoard_playerImage">
+                        <img src="imgs/homePage/squid2.png" alt="玩家角色圖">
+                      </div>
+                  </div>
+                  <div class="leaderBoard_showcase showcase-8th">
+                      <div class="leaderBoard_medal">
+                        <img src="imgs/homePage/leaderBoard/medal_8th.png" alt="排行榜排名獎牌">
+                      </div>
+                          <div class="player player-gold">
+                            <img src="imgs/homePage/leaderBoard/room_pic.png" alt="">
+                            <div class="memInfo">
+                              <span class="playerName">小花</span>
+                              <i class="fas fa-heart playerHeartSum"><b>200</b></i>
+                            </div>
+                          </div>
+                      <div class="leaderBoard_playerImage">
+                        <img src="imgs/homePage/squid2.png" alt="玩家角色圖">
+                      </div>
+                  </div>
+                  <div class="leaderBoard_showcase showcase-9th">
+                      <div class="leaderBoard_medal">
+                        <img src="imgs/homePage/leaderBoard/medal_9th.png" alt="排行榜排名獎牌">
+                      </div>
+                          <div class="player player-gold">
+                            <img src="imgs/homePage/leaderBoard/room_pic.png" alt="">
+                            <div class="memInfo">
+                              <span class="playerName">小花</span>
+                              <i class="fas fa-heart playerHeartSum"><b>200</b></i>
+                            </div>
+                          </div>
+                      <div class="leaderBoard_playerImage">
+                        <img src="imgs/homePage/squid2.png" alt="玩家角色圖">
+                      </div>
+                  </div>
+              </div>
+              <div class="leaderBoard_btn">
+                <button class="button btn-visit">拜訪房間</button>
+                <button class="button btn-addFriend">加朋友</button>
+              </div>
+            </div>
+          </div>
+        </div>
     </div>
 
     <!-- 創角 -->
@@ -1099,14 +1294,15 @@
       </svg>
     </div>
     </div>
+
     <!-- Javascript -->
     <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js'></script> -->
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js'></script>
     <script src="https://kit.fontawesome.com/629062769a.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
-    <script src="js/loginBox.js"></script>
     <script src="js/createBox.js"></script>
     <script src="js/createRoleData.js"></script>
     <script src="js/newCharacter.js"></script>
@@ -1114,7 +1310,26 @@
     <script src="js/chat.js"></script>
     <script src="js/roleFunctions.js"></script>
     <script src="js/rolePosition.js"></script>
+<<<<<<< HEAD
     <script src="js/movingAction.js"></script>
+=======
+    <script src="js/leaderBoard.js"></script>
+    <script scr="js/addFriend.js"></script>
+    <script>
+      $(document).ready(function(){
+        <?php 
+        if(isset($_SESSION["mem_name"])){
+          echo "var mem_name='" . $_SESSION["mem_name"] . "';";
+          echo "var style_no='" . $_SESSION["style_no"] . "';";
+          echo "var mem_lv='" . $_SESSION["mem_lv"] . "';";
+          echo "var mem_avatar='" . $_SESSION["mem_avatar"] . "';";
+          echo "var squid_qty='" . $_SESSION["squid_qty"] . "';";
+          echo "login(mem_name,style_no,mem_lv,mem_avatar,squid_qty);";
+        }
+        ?>
+      });
+    </script>
+>>>>>>> ab00a5ec91806771400ef042740c0b0e7edc3f22
 </body>
 
 </html>
