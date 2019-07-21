@@ -28,23 +28,38 @@ $(function(){
     
 });
 
+//上傳圖片，圖片預覽
+function fileChange(){
+  var file = document.getElementById('selectPicInput').files[0];
+
+  var readFile = new FileReader();
+  readFile.readAsDataURL(file);
+  readFile.addEventListener('load',function(){
+    var image = document.getElementById('picUploadImg');
+    image.src = this.result;
+    $("input[name='imagestring']").val(this.result);
+  });
+
+  document.getElementById('submitPic').style.display = 'block';
+}
+
 $(document).ready(function() {
 
 	//換椅子
     $(".chairSmallChange img").click(function() {
-	    let chairSrc = $(this).attr("src").replace("S","L");
+	    let chairSrc = $(this).attr("src");
 	    $(".chair img").attr("src", chairSrc);
   	});
 
-    //換桌子
+    //換桌子K
   	$(".deskSmallChange img").click(function() {
-	    let deskSrc = $(this).attr("src").replace("S","L");
+	    let deskSrc = $(this).attr("src");
 	    $(".desk img").attr("src", deskSrc);
 	});
 
-	//換床
+	  //換床
   	$(".bedSmallChange img").click(function() {
-	    let bedSrc = $(this).attr("src").replace("S","L");
+	    let bedSrc = $(this).attr("src");
 	    $(".bed img").attr("src", bedSrc);
 	});
 
@@ -55,20 +70,23 @@ $(document).ready(function() {
         });
     });
 
-	//留言板關閉
+	  //留言板關閉
     $('#cancel').click(function(){
         $('.lightboxBg').css({ 
         	display: "none" 
         });
+    }); 
+
+    //點選上傳圖片按鈕
+    $("#selectPic").click(function(){
+        $("#selectPicInput").trigger('click');
     });
-
-  //owl
-    
-
 
 });
 
 
+
 window.addEventListener('load', function() {
   menuMobileTransform();
+  document.getElementById('selectPicInput').onchange = fileChange;
 });
