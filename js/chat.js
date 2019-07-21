@@ -65,18 +65,17 @@ var chat_app = new Vue({
           }else{
               console.error( '有人上線 error.', e );
           }
-        }
-        
+        };
         var url = "getRole.php?mem_name="+user;
         xhr.open("Get", url, true);
         xhr.send( null );
     },
     others_online_users_info:function(){
-      return this.online_users_info.filter(function (e) { return e.mem_name != chat_app.user_id });
+      return this.online_users_info.filter(function (e) { return e.mem_name != chat_app.user_id; });
     },
     user_offline: function (user) {
-      this.online_users = this.online_users.filter(function (e) { return e != user });
-      this.online_users_info = this.online_users_info.filter(function (e) { return e.mem_name != user });
+      this.online_users = this.online_users.filter(function (e) { return e != user; });
+      this.online_users_info = this.online_users_info.filter(function (e) { return e.mem_name != user; });
     },
     public_chat: function () {
       this.chat_to_who = '';
@@ -93,6 +92,7 @@ var chat_app = new Vue({
       } else {
         chat_to_someone(this.user_id, this.chat_to_who, this.chat_send_text);
       }
+      this.chat_send_text = "";
     },
     online_friends: function () {
       // this.friends.filter( function(e){ return this.online_users.includes(e); } );
@@ -205,12 +205,12 @@ var chat_app = new Vue({
       $(".loginBox").css({ display: "none" });
       $(".createBox").css({ display: "flex" });
     },
-    calcPosition() {
+    calcPosition: function() {
       const { innerWidth, innerHeight } = window;
       return {
         top : 100 + Math.random() * (innerHeight - 300) + 'px',
         left: Math.random() * (innerWidth - 200) + 'px'
-      }
+      };
     }
   }
 });
@@ -229,6 +229,8 @@ var onMessageListener = function (e) {
     case 'ONLINE_USERS':
       console.log('更新目前有哪些人在線上', resp_obj.users);
       chat_app.online_users = resp_obj.users;
+      // 先清空online_users_info
+      chat_app.online_users_info = [];
       for(online_user in chat_app.online_users){
         var xhr = new XMLHttpRequest();
         xhr.onload=function (e){
@@ -238,7 +240,7 @@ var onMessageListener = function (e) {
           }else{
               console.error( '更新目前有哪些人在線上 error.', e );
           }
-        }
+        };
         
         var url = "getRole.php?mem_name="+chat_app.online_users[online_user];
         xhr.open("Get", url, true);
