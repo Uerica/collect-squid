@@ -319,6 +319,7 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js'></script>
     <script src="js/chat.js"></script>
+    <script src="js/addFriend.js"></script>
     <script>
         <?php 
             if(isset($_SESSION["mem_name"])){
@@ -391,6 +392,14 @@
                 profile_index = 0;
             }
             change_profile();
+        });
+
+        $("#addFriend").click(function (e){
+            var profile = profiles[profile_index];
+            if(confirm('是否確認加'+profile.mem_name+'好友?')){
+                //call addFriend.js
+                addFriend(mem_name, profile.mem_name);
+            }
         });
 
         function spin(degree) {
