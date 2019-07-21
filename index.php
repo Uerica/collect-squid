@@ -593,7 +593,7 @@
             <img src="imgs/homePage/homepage01.png" alt="" draggable="false" oncontextmenu="return false">
         </div>
 
-        <div class="gameWorld">
+        <div class="gameWorld_mapItem">
             <div class="gameWorld_house gameWorld_object">
                 <a href="javascript:;"><img src="imgs/homePage/house_tag.png" alt=""></a>
             </div>
@@ -606,7 +606,8 @@
                 <a href="javascript:;"><img src="imgs/homePage/bus.png" alt="" id="bus"></a>
             </div>
             <div class="gameWorld_cup gameWorld_object">
-                <a href="javascript:;">
+              <a href="javascript:;">
+                <div class="gameWorld_cupImg">
                     <div class="cup">
                         <img src="imgs/homePage/cup01.png" alt="">
                         <img id="cup_squid" src="imgs/homePage/squid.png" alt="">
@@ -619,8 +620,12 @@
                     <div class="g_apple">
                         <img src="imgs/homePage/cup.png" alt="">
                     </div>
-                </a>
-            </div>
+                </div>
+                <div class="gameWorld_cupText">
+                    <img src="imgs/homePage/cup-text.png" alt="">
+                </div>
+              </a>
+          </div>
         </div>
 
         <div class="gameWorld_arrow">
@@ -671,15 +676,16 @@
         </div>
 
         <div class="gameWorld_leaderBoard disabledScrollOnHover">
-          <div class="checkBox checkBox-leaderBoard">
+          <div class="checkBox checkBox-leaderBoard collapse">
             <div class="leaderBoard_content">
+              <i class="fas fa-times leaderBoard_close" aria-hidden="true"></i>
               <div class="leaderBoard_title">
                   <h2>排行榜</h2>
               </div>
               <div class="owl-carousel owl-theme leaderBoard_showPlayer">
                   <div class="leaderBoard_showcase shoecase-gold">
                       <div class="leaderBoard_medal">
-                        <img src="imgs/homePage/leaderBoard/leaderBoard_rank1.png" alt="排行榜排名獎牌">
+                        <img src="imgs/homePage/leaderBoard/medal_gold.png" alt="排行榜排名獎牌">
                       </div>
                           <div class="player player-gold">
                             <img src="imgs/homePage/leaderBoard/room_pic.png" alt="">
@@ -694,7 +700,7 @@
                   </div>
                   <div class="leaderBoard_showcase showcase-gold">
                       <div class="leaderBoard_medal">
-                        <img src="imgs/homePage/leaderBoard/leaderBoard_rank1.png" alt="排行榜排名獎牌">
+                        <img src="imgs/homePage/leaderBoard/medal_silver.png" alt="排行榜排名獎牌">
                       </div>
                           <div class="player player-gold">
                             <img src="imgs/homePage/leaderBoard/room_pic.png" alt="">
@@ -709,7 +715,97 @@
                   </div>
                   <div class="leaderBoard_showcase showcase-gold">
                       <div class="leaderBoard_medal">
-                        <img src="imgs/homePage/leaderBoard/leaderBoard_rank1.png" alt="排行榜排名獎牌">
+                        <img src="imgs/homePage/leaderBoard/medal_bronze.png" alt="排行榜排名獎牌">
+                      </div>
+                          <div class="player player-gold">
+                            <img src="imgs/homePage/leaderBoard/room_pic.png" alt="">
+                            <div class="memInfo">
+                              <span class="playerName">小花</span>
+                              <i class="fas fa-heart playerHeartSum"><b>200</b></i>
+                            </div>
+                          </div>
+                      <div class="leaderBoard_playerImage">
+                        <img src="imgs/homePage/squid2.png" alt="玩家角色圖">
+                      </div>
+                  </div>
+                  <div class="leaderBoard_showcase showcase-4th">
+                      <div class="leaderBoard_medal">
+                        <img src="imgs/homePage/leaderBoard/medal_4th.png" alt="排行榜排名獎牌">
+                      </div>
+                          <div class="player player-gold">
+                            <img src="imgs/homePage/leaderBoard/room_pic.png" alt="">
+                            <div class="memInfo">
+                              <span class="playerName">小花</span>
+                              <i class="fas fa-heart playerHeartSum"><b>200</b></i>
+                            </div>
+                          </div>
+                      <div class="leaderBoard_playerImage">
+                        <img src="imgs/homePage/squid2.png" alt="玩家角色圖">
+                      </div>
+                  </div>
+                  <div class="leaderBoard_showcase showcase-5th">
+                      <div class="leaderBoard_medal">
+                        <img src="imgs/homePage/leaderBoard/medal_5th.png" alt="排行榜排名獎牌">
+                      </div>
+                          <div class="player player-gold">
+                            <img src="imgs/homePage/leaderBoard/room_pic.png" alt="">
+                            <div class="memInfo">
+                              <span class="playerName">小花</span>
+                              <i class="fas fa-heart playerHeartSum"><b>200</b></i>
+                            </div>
+                          </div>
+                      <div class="leaderBoard_playerImage">
+                        <img src="imgs/homePage/squid2.png" alt="玩家角色圖">
+                      </div>
+                  </div>
+                  <div class="leaderBoard_showcase showcase-6th">
+                      <div class="leaderBoard_medal">
+                        <img src="imgs/homePage/leaderBoard/medal_6th.png" alt="排行榜排名獎牌">
+                      </div>
+                          <div class="player player-gold">
+                            <img src="imgs/homePage/leaderBoard/room_pic.png" alt="">
+                            <div class="memInfo">
+                              <span class="playerName">小花</span>
+                              <i class="fas fa-heart playerHeartSum"><b>200</b></i>
+                            </div>
+                          </div>
+                      <div class="leaderBoard_playerImage">
+                        <img src="imgs/homePage/squid2.png" alt="玩家角色圖">
+                      </div>
+                  </div>
+                  <div class="leaderBoard_showcase showcase-7th">
+                      <div class="leaderBoard_medal">
+                        <img src="imgs/homePage/leaderBoard/medal_7th.png" alt="排行榜排名獎牌">
+                      </div>
+                          <div class="player player-gold">
+                            <img src="imgs/homePage/leaderBoard/room_pic.png" alt="">
+                            <div class="memInfo">
+                              <span class="playerName">小花</span>
+                              <i class="fas fa-heart playerHeartSum"><b>200</b></i>
+                            </div>
+                          </div>
+                      <div class="leaderBoard_playerImage">
+                        <img src="imgs/homePage/squid2.png" alt="玩家角色圖">
+                      </div>
+                  </div>
+                  <div class="leaderBoard_showcase showcase-8th">
+                      <div class="leaderBoard_medal">
+                        <img src="imgs/homePage/leaderBoard/medal_8th.png" alt="排行榜排名獎牌">
+                      </div>
+                          <div class="player player-gold">
+                            <img src="imgs/homePage/leaderBoard/room_pic.png" alt="">
+                            <div class="memInfo">
+                              <span class="playerName">小花</span>
+                              <i class="fas fa-heart playerHeartSum"><b>200</b></i>
+                            </div>
+                          </div>
+                      <div class="leaderBoard_playerImage">
+                        <img src="imgs/homePage/squid2.png" alt="玩家角色圖">
+                      </div>
+                  </div>
+                  <div class="leaderBoard_showcase showcase-9th">
+                      <div class="leaderBoard_medal">
+                        <img src="imgs/homePage/leaderBoard/medal_9th.png" alt="排行榜排名獎牌">
                       </div>
                           <div class="player player-gold">
                             <img src="imgs/homePage/leaderBoard/room_pic.png" alt="">

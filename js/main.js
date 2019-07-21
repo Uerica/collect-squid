@@ -67,6 +67,20 @@ function collaseNotifications() {
   })
 }
 
+// 移除通知
+function closeNotifications() {
+  $('.notifications_delete').click(function(){
+    $(this.parentElement).remove();
+  })
+}
+
+// 關閉排行榜
+function closeLeaderBoard() {
+  $(".leaderBoard_close").click(function () {
+    $(".checkBox-leaderBoard").toggleClass("collapse");
+  })
+}
+
 // 聊天室視窗移動
 function moveScene(e) {
   // console.log(e.target);
@@ -166,11 +180,16 @@ function loginBoxNoScroll() {
   }
 }
 
-// 我的房間&活動巴士換頁
+// 我的房間、活動巴士、排行榜開關燈箱
 function switchPage() {
   $(".gameWorld_house").click(function (e) {
     e.preventDefault();
     $(".checkBox-room").toggleClass("collapse");
+    filterBlur('.gameWorld_bgImage');
+    filterBlur('.gameWorld_object',);
+    filterBlur('.gameWorld_arrow',);
+    filterBlur('.loginSquid');
+    filterBlur('.otherSquid');
   });
 
   $(".gameWorld_bus").click(function (e) {
@@ -186,6 +205,11 @@ function switchPage() {
   $("#btnCancel-room").click(function (e) {
     e.preventDefault();
     $(".checkBox-room").toggleClass("collapse");
+    filterBlur('.gameWorld_bgImage');
+    filterBlur('.gameWorld_object',);
+    filterBlur('.gameWorld_arrow',);
+    filterBlur('.loginSquid');
+    filterBlur('.otherSquid');
   });
 
   $("#btnCancel-event").click(function (e) {
@@ -220,12 +244,14 @@ function isMobileDevice() {
   }
 }
 
-// 游標
-function cursorAnimated() {
-  // let cursor = document.querySelector(".common_cursor");
-  // document.addEventListener('mousemove', c => {
-  //   cursor.setAttribute('style', 'top:' + c.pageY + 'px;' + 'left:' + c.pageX + 'px;')
-  // })
+// 模糊濾鏡
+function filterBlur(e) {
+  let haveBlurFilter = $(e).css('filter');
+  if (haveBlurFilter) {
+    $(e).css('filter', '');
+  } else {
+    $(e).css('filter', 'blur(8px)');
+  }
 }
 
 function animation() {
@@ -329,12 +355,13 @@ window.addEventListener('load', function () {
   menuMobileTransform();
   chooseFriend();
   collapseChatGroup();
+  closeLeaderBoard();
+  closeNotifications();
   scrollLeftTimer();
   collaseNotifications();
   loginBoxNoScroll();
   switchPage();
   chatBtnMousemove();
-  cursorAnimated();
   animation();
 });
 
