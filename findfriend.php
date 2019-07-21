@@ -1,3 +1,22 @@
+<?php
+  // phpinfo();
+  // exit();
+    ob_start();
+    session_start();
+    if(!isset($_SESSION["mem_name"])||($_SESSION["mem_name"] == "")){
+        //沒登入 導到首頁
+        header("Location: /index.php");
+        die();
+    } else {
+        //有登入存阿
+        $mem_no = $_SESSION["mem_no"];
+        $mem_name = $_SESSION["mem_name"];
+        $style_no = $_SESSION["style_no"];
+        $mem_lv = $_SESSION["mem_lv"];
+        $mem_avatar = $_SESSION["mem_avatar"];
+        $squid_qty = $_SESSION["squid_qty"];
+    };
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,132 +31,143 @@
 </head>
 <body>
     <!-- 導覽列 -->
-    <header class="common_header disabledScrollOnHover">
-        <div class="menuMobile">
-            <span class="menuMobile_circle"></span>
-            <a href="#" class="menuMobile_link">
-                <span class="menuMobile_icon">
-                    <span class="menuMobile_line menuMobile_line-1"></span>
-                    <span class="menuMobile_line menuMobile_line-2"></span>
-                    <span class="menuMobile_line menuMobile_line-3"></span>
-                </span>
-            </a>
-        </div>
+    <div id="app">
+        <!-- 導覽列 -->
+        <header class="common_header disabledScrollOnHover">
+            <div class="menuMobile">
+                <span class="menuMobile_circle"></span>
+                <a href="#" class="menuMobile_link">
+                    <span class="menuMobile_icon">
+                        <span class="menuMobile_line menuMobile_line-1"></span>
+                        <span class="menuMobile_line menuMobile_line-2"></span>
+                        <span class="menuMobile_line menuMobile_line-3"></span>
+                    </span>
+                </a>
+            </div>
 
-        <div class="menuHandheld">
-            <div class="menuMobile_overlay">
-                <div class="menuMobile_menu">
-                    <ul class="memberInfo">
-                        <li class="coin">
-                            <a href="javascript:;">
-                                <img src="imgs/homePage/icon/coin.png" alt="持有金額icon">
-                                <span>1500</span>
-                            </a>
-                        </li>
-                        <li class="logo">
-                            <a href="index.html">
-                                <img src="imgs/homePage/logo.png" alt="尋找友誼網站LOGO">
-                                <span>尋找友誼</span>
-                            </a>
-                        </li>
+            <div class="menuHandheld">
+                <div class="menuMobile_overlay">
+                    <div class="menuMobile_menu">
+                        <ul class="memberInfo">
+                            <li class="coin">
+                                <a href="javascript:;">
+                                    <img src="imgs/homePage/icon/coin.png" alt="持有金額icon">
+                                    <span>{{squid_qty}}</span>
+                                </a>
+                            </li>
+                            <li class="logo">
+                                <a href="index.php">
+                                    <img src="imgs/homePage/logo.png" alt="尋找友誼網站LOGO">
+                                    <span>尋找友誼</span>
+                                </a>
+                            </li>
+                            <li class="login">
+                                <img src="imgs/homePage/icon/avatar.png" alt="角色頭像icon">
+                                <span class="name">
+                                <a href="javascript:;">{{user_id}}</a>
+                                </span>
+                                <span>
+                                <a v-if="is_login()" v-on:click="logout">登出</a>
+                                <a v-else>登入</a>
+                                </span>
+                            </li>
+                        </ul>
+                        <nav class="menuMobile_nav">
+                            <li><a href="myRoom.php"> <img src="imgs/homePage/icon/room.png" alt="我的房間icon">
+                                    <span>我的房間</span></a></li>
+                            <li><a href="dressingRoom.php"><img src="imgs/homePage/icon/fittingRoom.png" alt="換衣間icon">
+                                    <span>換衣間</span></a></li>
+                            <li><a href="findfriend.php"> <img src="imgs/homePage/icon/friend.png" alt="找朋友icon">
+                                    <span>找朋友</span></a></li>
+                            <li><a href="javascript:;"> <img src="imgs/homePage/icon/events.png" alt="揪團活動icon">
+                                    <span>揪團活動</span></a></li>
+                            <li><a href="shop.php"> <img src="imgs/homePage/icon/mall.png" alt="虛擬商城icon">
+                                    <span>虛擬商城</span></a></li>
+                            <li><a href="memberCenter.php"> <img src="imgs/homePage/icon/member.png" alt="會員中心icon">
+                                    <span>會員中心</span></a></li>
+                            <li><a href="javascript:;"> <img src="imgs/homePage/icon/robot.png" alt="客服機器人_icon">
+                                    <span>客服機器人</span></a></li>
+                            <li><a href="javascript:;"> <img src="imgs/homePage/icon/notice02.png" alt="通知_icon">
+                                    <span>通知</span></a></li>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+
+            <nav class="menuDesktop">
+                <ul>
+                    <li class="hvr-pulse-grow">
+                        <a href="myRoom.html">
+                            <img src="imgs/homePage/icon/room.png" alt="我的房間icon">
+                            <span>我的房間</span>
+                        </a>
+                    </li>
+                    <li class="hvr-pulse-grow">
+                        <a href="dressingRoom.php">
+                            <img src="imgs/homePage/icon/fittingRoom.png" alt="換衣間icon">
+                            <span>換衣間</span>
+                        </a>
+                    </li>
+                    <li class="hvr-pulse-grow">
+                        <a href="findfriend.php">
+                            <img src="imgs/homePage/icon/friend.png" alt="找朋友icon">
+                            <span>找朋友</span>
+                        </a>
+                    </li>
+                    <li class="hvr-pulse-grow">
+                        <a href="events.php">
+                            <img src="imgs/homePage/icon/events.png" alt="揪團活動icon">
+                            <span>揪團活動</span>
+                        </a>
+                    </li>
+                    <li class="logo hvr-pulse-grow">
+                        <a href="index.php">
+                            <img src="imgs/homePage/logo.png" alt="尋找友誼網站LOGO">
+                            <span>尋找友誼</span>
+                        </a>
+                    </li>
+                    <li class="hvr-pulse-grow">
+                        <a href="shop.php">
+                            <img src="imgs/homePage/icon/mall.png" alt="虛擬商城icon">
+                            <span>虛擬商城</span>
+                        </a>
+                    </li>
+                    <li class="hvr-pulse-grow">
+                        <a href="memberCenter.php">
+                            <img src="imgs/homePage/icon/member.png" alt="會員中心icon">
+                            <span>會員中心</span>
+                        </a>
+                    </li>
+                    <div class="memberInfo">
                         <li class="login">
                             <img src="imgs/homePage/icon/avatar.png" alt="角色頭像icon">
                             <span class="name">
-                                <a href="javascript:;">魚翔</a>
+                            <a href="javascript:;">{{user_id}}</a>
                             </span>
                             <span>
-                                <a href="javascript:;">登出</a>
+                            <a v-if="is_login()" v-on:click="logout">登出</a>
+                            <a v-else>登入</a>
                             </span>
                         </li>
-                    </ul>
-                    <nav class="menuMobile_nav">
-                        <li><a href="myRoom.html"> <img src="imgs/homePage/icon/room.png" alt="我的房間icon">
-                                <span>我的房間</span></a></li>
-                        <li><a href="dressingRoom.html"><img src="imgs/homePage/icon/fittingRoom.png" alt="換衣間icon">
-                                <span>換衣間</span></a></li>
-                        <li><a href="findfriend.html"> <img src="imgs/homePage/icon/friend.png" alt="找朋友icon">
-                                <span>找朋友</span></a></li>
-                        <li><a href="javascript:;"> <img src="imgs/homePage/icon/events.png" alt="揪團活動icon">
-                                <span>揪團活動</span></a></li>
-                        <li><a href="shop.html"> <img src="imgs/homePage/icon/mall.png" alt="虛擬商城icon">
-                                <span>虛擬商城</span></a></li>
-                        <li><a href="memberCenter.html"> <img src="imgs/homePage/icon/member.png" alt="會員中心icon">
-                                <span>會員中心</span></a></li>
-                        <li><a href="javascript:;"> <img src="imgs/homePage/icon/robot.png" alt="客服機器人_icon">
-                                <span>客服機器人</span></a></li>
-                        <li><a href="javascript:;"> <img src="imgs/homePage/icon/notice02.png" alt="通知_icon">
-                                <span>通知</span></a></li>
-                    </nav>
-                </div>
-            </div>
-        </div>
-
-        <nav class="menuDesktop">
-            <ul>
-                <li class="hvr-pulse-grow">
-                    <a href="myRoom.html">
-                        <img src="imgs/homePage/icon/room.png" alt="我的房間icon">
-                        <span>我的房間</span>
-                    </a>
-                </li>
-                <li class="hvr-pulse-grow">
-                    <a href="dressingRoom.html">
-                        <img src="imgs/homePage/icon/fittingRoom.png" alt="換衣間icon">
-                        <span>換衣間</span>
-                    </a>
-                </li>
-                <li class="hvr-pulse-grow">
-                    <a href="findfriend.html">
-                        <img src="imgs/homePage/icon/friend.png" alt="找朋友icon">
-                        <span>找朋友</span>
-                    </a>
-                </li>
-                <li class="hvr-pulse-grow">
-                    <a href="javascript:;">
-                        <img src="imgs/homePage/icon/events.png" alt="揪團活動icon">
-                        <span>揪團活動</span>
-                    </a>
-                </li>
-                <li class="logo hvr-pulse-grow">
-                    <a href="index.html">
-                        <img src="imgs/homePage/logo.png" alt="尋找友誼網站LOGO">
-                        <span>尋找友誼</span>
-                    </a>
-                </li>
-                <li class="hvr-pulse-grow">
-                    <a href="shop.html">
-                        <img src="imgs/homePage/icon/mall.png" alt="虛擬商城icon">
-                        <span>虛擬商城</span>
-                    </a>
-                </li>
-                <li class="hvr-pulse-grow">
-                    <a href="memberCenter.html">
-                        <img src="imgs/homePage/icon/member.png" alt="會員中心icon">
-                        <span>會員中心</span>
-                    </a>
-                </li>
-                <div class="memberInfo">
-                    <li class="login">
-                        <img src="imgs/homePage/icon/avatar.png" alt="角色頭像icon">
-                        <span class="name"><a href="javascript:;">魚翔</a></span>
-                        <span><a href="javascript:;">登出</a></span>
-                    </li>
-                    <li class="coin">
-                        <a href="javascript:;">
-                            <img src="imgs/homePage/icon/coin.png" alt="持有金額icon">
-                            <span>1500</span>
-                        </a>
-                    </li>
-                    <li class="level">
-                        <a href="javascript:;">
-                            <img src="imgs/homePage/icon/civilian.png" alt="平民等級icon">
-                            <span>平民</span>
-                        </a>
-                    </li>
-                </div>
-            </ul>
-        </nav>
-    </header>
+                        <li class="coin">
+                            <a href="javascript:;">
+                                <img src="imgs/homePage/icon/coin.png" alt="持有金額icon">
+                                <span>{{squid_qty}}</span>
+                            </a>
+                        </li>
+                        <li class="level">
+                            <a href="javascript:;">
+                                <img v-if="mem_lv=='1'" src="imgs/homePage/icon/civilian.png" alt="平民等級icon">
+                                <img v-if="mem_lv=='2'" src="imgs/homePage/icon/friend.png" alt="貴族等級icon">
+                                <img v-if="mem_lv=='3'" src="imgs/homePage/icon/friend.png" alt="皇族等級icon">
+                                <span>平民</span>                                                                                    
+                            </a>
+                        </li>
+                    </div>
+                </ul>
+            </nav>
+        </header>
+    </div>
     <div class="findFriend">
         <embed class="findFriend_embed" src="img/find_bg.svg" type="">
         <!-- 篩選燈箱 -->
@@ -287,41 +317,61 @@
     </div>
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js'></script>
+    <script src="js/chat.js"></script>
     <script>
-    function startSearch() {
-        var gender = $("#gender").val();
-        var sign = $("#sign").val();
-        var interest = $("#interest").val();
-        if(gender == null) {
-            gender = "allgender";
-        }
-        if(sign == null) {
-            sign = "allsign";
-        }
-        if(interest == null) {
-            interest = "allinterest";
-        }
-        const xhr = new XMLHttpRequest();
-        xhr.onload = () => {
-        if (xhr.status == 200) {
-            var resp = JSON.parse(xhr.responseText);
-            console.debug("findFriend", resp);
-            profiles = resp;
-            change_profile();
-            $(".fromBox_wrap").css("display","none");
-            $(".showFriend_wrap").css("display","block");
-        } else {
-          console.error("startSearch failed.", xhr);
-        }
-      };
-      const url = `findFriendApi.php?mem_gender=${gender}&mem_sign=${sign}&interest_no=${interest}`;
-      xhr.open("get", url, true);
-      xhr.send(null);
-    }
+        <?php 
+            if(isset($_SESSION["mem_name"])){
+                echo "var mem_no='" . $_SESSION["mem_no"] . "';";
+                echo "var mem_name='" . $_SESSION["mem_name"] . "';";
+                echo "var style_no='" . $_SESSION["style_no"] . "';";
+                echo "var mem_lv='" . $_SESSION["mem_lv"] . "';";
+                echo "var mem_avatar='" . $_SESSION["mem_avatar"] . "';";
+                echo "var squid_qty='" . $_SESSION["squid_qty"] . "';";
+            }
+        ?>
+        $(document).ready(function(){
+            <?php 
+                if(isset($_SESSION["mem_name"])){
+                    echo "login(mem_name,style_no,mem_lv,mem_avatar,squid_qty);";
+                }
+            ?>
+        });
 
-    var degree = 0;
-    var profile_index = 0;
-    var profiles = [];
+        function startSearch() {
+            var gender = $("#gender").val();
+            var sign = $("#sign").val();
+            var interest = $("#interest").val();
+            if(gender == null) {
+                gender = "allgender";
+            }
+            if(sign == null) {
+                sign = "allsign";
+            }
+            if(interest == null) {
+                interest = "allinterest";
+            }
+            const xhr = new XMLHttpRequest();
+            xhr.onload = () => {
+                if (xhr.status == 200) {
+                    var resp = JSON.parse(xhr.responseText);
+                    console.debug("findFriend", resp);
+                    profiles = resp;
+                    change_profile();
+                    $(".fromBox_wrap").css("display","none");
+                    $(".showFriend_wrap").css("display","block");
+                } else {
+                console.error("startSearch failed.", xhr);
+                }
+            };
+            const url = `findFriendApi.php?mem_no=${mem_no}&mem_gender=${gender}&mem_sign=${sign}&interest_no=${interest}`;
+            xhr.open("get", url, true);
+            xhr.send(null);
+        }
+
+        var degree = 0;
+        var profile_index = 0;
+        var profiles = [];
 
         $(".prizeWheel .pw_prev").click(function (e) {
             degree = degree - 45;
