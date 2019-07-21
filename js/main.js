@@ -5,6 +5,7 @@ const LIGHTBOX_FILTER_CLASSNAMES = {
     '.gameWorld_arrow',
     '.loginSquid',
     '.otherSquid',
+    '.chatGroup',
   ],
 };
 

@@ -722,23 +722,53 @@
                       $memFurnitureRows = $memFurniture->fetchAll(PDO::FETCH_ASSOC);
                       
 
-                      $bedImg = 'images/bed_LV2_01.png';
+                      $bedImg = 'images/bed_LV1_01.png';
                       $chairImg = 'images/chair_LV1_01.png';
                       $deskImg = 'images/desk_LV1_01.png';
 
                       foreach($memFurnitureRows as $i=>$memFurnitureRow) {
-                        // echo $memFurnitureRow['mem_no'];
-                        // echo $memFurnitureRow['furn_no'];
-                        // echo $memFurnitureRow['furn_img_url'];
                         switch($memFurnitureRow['furn_type']) {
                           case 1: //椅子
-                            $chairImg = 'images/'. $memFurnitureRow['furn_img_url'];
+                            $chairImg = $memFurnitureRow['furn_img_url'];
                             break;
                           case 2: //桌子
-                            $deskImg = 'images/'. $memFurnitureRow['furn_img_url'];
+                            $deskImg = $memFurnitureRow['furn_img_url'];
                             break;
                           case 3: //床
-                            $bedImg = 'images/'. $memFurnitureRow['furn_img_url'];
+                            $bedImg = $memFurnitureRow['furn_img_url'];
+                            break;
+                          default:
+                            break;
+                        }
+                      }
+
+                      // 拿衣服
+                      $sqlmemClothing = 
+                      "SELECT mem_clothing.mem_no, product_clothing.clo_no, product_clothing.clo_type, product_clothing.clo_img_url
+                        FROM product_clothing
+                        JOIN mem_clothing
+                        ON product_clothing.clo_no = mem_clothing.clo_no
+                        WHERE mem_clothing.mem_no = " . $allMemberRow['mem_no'] .
+                        " AND mem_clothing.is_using = 1";
+                      $memClothing = $pdo->prepare($sqlmemClothing);
+                      $memClothing->execute();
+                      $memClothingRows = $memClothing->fetchAll(PDO::FETCH_ASSOC);
+                      
+
+                      $hatImg = 'imgs/dressingRoom/bearHat.png';
+                      $shirtImg = 'imgs/dressingRoom/nobleCloBrown.png';
+                      $shoesImg = 'imgs/dressingRoom/whiteShoes.png';
+
+                      foreach($memClothingRows as $i=>$memClothingRow) {
+                        switch($memClothingRow['clo_type']) {
+                          case 1: //帽子
+                            $hatImg = $memClothingRow['clo_img_url'];
+                            break;
+                          case 2: //衣服
+                            $shirtImg = $memClothingRow['clo_img_url'];
+                            break;
+                          case 3: //鞋子
+                            $shoesImg = $memClothingRow['clo_img_url'];
                             break;
                           default:
                             break;
@@ -754,14 +784,14 @@
                               <div class="memRoomItem_bg">
                                 <img src="imgs/homePage/leaderBoard/room_pic.png" alt="">
                               </div>
-                              <div class="memRoomItem_bed">
-                                <img src="<?php echo $bedImg; ?>" alt="床圖片">
-                              </div>
                               <div class="memRoomItem_chair">
-                                <img src="<?php echo $chairImg; ?>" alt="椅子圖片">
+                                <img src="<?php echo $chairImg; ?>" alt="圖片">
                               </div>
                               <div class="memRoomItem_desk">
                                 <img src="<?php echo $deskImg; ?>" alt="桌子圖片">
+                              </div>
+                              <div class="memRoomItem_bed">
+                                <img src="<?php echo $bedImg; ?>" alt="床圖片">
                               </div>
                               <div class="memRoomItem_player">
                                 <img src="imgs/homePage/squid2.png" alt="人物圖片">
@@ -777,13 +807,13 @@
                               <div class="playerImage_default">
                                 <img src="imgs/homePage/squid2.png" alt="玩家角色圖">
                                 <div class="playerImage_hat">
-                                  <img src="imgs/dressingRoom/nobleCowboyHat.png" alt="帽子圖片">
+                                  <img src="<?php echo $hatImg; ?>" alt="帽子圖片">
                                 </div>
                                 <div class="playerImage_shirt">
-                                  <img src="imgs/dressingRoom/nobleCloBrown.png" alt="上衣圖片">
+                                  <img src="<?php echo $shirtImg; ?>" alt="上衣圖片">
                                 </div>
                                 <div class="playerImage_shoes">
-                                  <img src="imgs/dressingRoom/royalShoesRed.png" alt="鞋子圖片">
+                                  <img src="<?php echo $shoesImg; ?>" alt="鞋子圖片">
                                 </div>
                               </div>
                             </div>
