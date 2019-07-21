@@ -63,7 +63,8 @@ function menuMobileTransform() {
 
 function regis() {
   $(".eventsWrapper input").click((e) => {
-    console.log(e.target.previousElementSibling.value);
+    // console.log(e.target.previousElementSibling.value);
+    console.log(e.target);
 
     let xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
@@ -71,20 +72,19 @@ function regis() {
         if (xhr.status == 200) {
           document.getElementById("evtDetail").innerHTML = xhr.responseText;
           cancelRegis();
-          confirmRegis();
+          confirmRegis(e.target);
         } else {
           alert(xhr.status);
         }
       }
     }
-    xhr.open("post", "getEventDetail.php", true);
-    xhr.setRequestHeader("content-type","application/x-www-form-urlencoded");
-    let evtDetail = `evt_no=${e.target.previousElementSibling.value}`;
-    xhr.send(evtDetail);
-
     $(".regisBox").css({
       display: "flex"
     });
+    xhr.open("post", "getEventDetail.php", true);
+    xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+    let evtDetail = `evt_no=${e.target.previousElementSibling.value}`;
+    xhr.send(evtDetail);
   });
 }
 
@@ -98,31 +98,28 @@ function cancelRegis() {
 }
 
 // 確認報名
-function confirmRegis() {
-  $("#regisBtn").click(e => {
-    e.preventDefault();
-    const xhr = new XMLHttpRequest();
+// 我超強
+function confirmRegis(target) {
+  $("#regisBtn").click(function() {
+    // e.preventDefault();  
 
-    xhr.onload = function(){
-      if(xhr.status == 200) {
-        alert(xhr.reponseText);
-        // 讓燈箱消失
-      } else {
-        alert(xhr.status);
+    let xhr = new XMLHttpRequest();
+    xhr.onreadystatechange =  () => {
+      if (xhr.readyState == 4) {
+        if (xhr.status == 200) {
+          alert('報名成功');
+          target.value = "已報名";
+          $('.regisBox').css({ display: 'none' });
+        } else {
+          alert(xhr.status);
+        }
       }
-    };
-    
-    // $(".regisBox").css({
-    //   display: "none"
-    // });
-    const url = 'registerEvent.php';
-    xhr.open('post', url, true);
-    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    }
+    xhr.open("post", "registerEvent.php", true);
+    xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
 
-    // const raiseData = document.getElementById('raiseForm');
-
-    const evt_no = document.getElementById('evt_no').value;
-    const data = `evt_no=${evt_no}`;
+    let evt_no = document.getElementById('evt_no').value;
+    let data = `evt_no=${evt_no}`;
     xhr.send(data);
   });
 }
@@ -135,6 +132,10 @@ function cancelRaise() {
     });
   });
 }
+
+$('#raiseBtn').click(function() {
+  $('raiseBox').css({ display: 'flex' });
+});
 
 // 確認舉辦活動
 // function confirmRaise() {
@@ -262,9 +263,11 @@ $(document).ready(function () {
 
 // 頁籤evt
 $(function () {
+  // 更換頁籤
   var $li = $('ul.evt_title li');
   $($li.eq(0).addClass('active').find('a').attr('href')).siblings('.evt_inner').hide();
-
+  
+  // 更換內容
   $li.click(function () {
     $($(this).find('a').attr('href')).show().siblings('.evt_inner').hide();
     $(this).addClass('active').siblings('.active').removeClass('active');

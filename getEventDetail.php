@@ -14,7 +14,7 @@ try {
     $detailContent = $evtDetail->fetchObject();
 
     $detailHtml = 
-        "<form class='regisContent' id='raiseForm'>
+        "<div class='regisContent' id='raiseForm'>
             <input type='hidden' name='evt_no' value='$detailContent->evt_no' id='evt_no'>
             <div class='cancelBtn'></div>
                 <div class='titleWrapper'>
@@ -56,10 +56,9 @@ try {
             <div class='submitWrapper'>
                 <input type='submit' value='我要參加' id='regisBtn'/>
             </div>
-        </form>";
+        </div>";
     echo $detailHtml;
 } catch (PDOException $e) {
     echo "錯誤 : ", $e->getMessage(), "<br>";
     echo "行號 : ", $e->getLine(), "<br>";
 }
-?>
