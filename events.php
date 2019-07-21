@@ -7,9 +7,27 @@ try {
   $options = array(PDO::ATTR_CASE => PDO::CASE_NATURAL, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
   $pdo = new PDO($dns, $user, $psw, $options);
   
-  $sql = "select * from event";
+  // 取得最新的 5 筆活動
+  $sql = 
+  "SELECT * 
+  FROM event 
+  ORDER BY evt_no 
+  DESC LIMIT 5";
   $events = $pdo->prepare($sql);
+  $events->execute();
+
+  // 取得此活動的好友人數
+  $sql = "select DISTINCT er.evt_no ,COUNT(*) AS 'all'
+  from relationship r , event_record er
+  where er.mem_no = r.friend_no and r.status=1 and r.mem_no = 112 GROUP BY evt_no";
+  $friendsOfEvt = $pdo->prepare($sql);
+  $friendsOfEvt->bindValue(":mem_no","112"); //form session
+  $friendsOfEvt->execute();
+  // $friendCount = $friendsOfEvt->fetchObject();
+  // echo $count->evt_no."<br>";
+  // echo $count->all."<br>";
   
+
 } catch (PDOException $e) {
   echo "錯誤 : ", $e->getMessage(), "<br>";
   echo "行號 : ", $e->getLine(), "<br>";
@@ -171,33 +189,58 @@ try {
             </li>
           </ul>
           <div id="newEvt" class="eventDescs evt_inner">
+            
+          <?php
+            while ($newEvtRow = $events->fetchObject()) {
+          ?>
             <div class="singleEvent">
               <div class="pic">
                 <img src="eventsImg/eventPic.jpg" alt="Event Pic" />
               </div>
               <div class="content">
                 <div class="title">
-                  <h3>太魯閣一日遊</h3>
-                  <span class="period">7/1 ~ 7/15</span>
+                  <h3><?php echo $newEvtRow->evt_name ?></h3>
+                  <span class="period"><?php echo $newEvtRow->evt_date ?></span>
                 </div>
                 <div class="desc">
                   <ul>
-                    <li>地點：太魯閣國家公園</li>
+                    <li>地點：<?php echo $newEvtRow->evt_place ?></li>
                     <li>
                       <figure class="friendIcons">
                         <img src="eventsImg/attendFriend1.png" alt="already attended Friend" />
                         <img src="eventsImg/attendFriend2.png" alt="already attended Friend" />
                         <img src="eventsImg/attendFriend3.png" alt="already attended Friend" />
                       </figure>
-                      <span>魚翔和17個好友參加</span>
+                      <span>
+                        <?php 
+                          $gotFriend = false;
+                          $friendNum = 0;
+                          while($friendCount = $friendsOfEvt->fetchObject()) {
+                            if($friendCount->evt_no == $newEvtRow->evt_no){
+                              $gotFriend = true;
+                              $friendNum = $friendCount->all;
+                            }
+                          }
+                          if($gotFriend) {
+                            echo $friendNum;
+                          } else {
+                            echo 0;
+                          }
+                        ?>
+                      個好友有參加</span>
                     </li>
                   </ul>
                   <div class="submitWrapper">
+                    <input type="hidden" name="evt_no" value="<?php echo $newEvtRow->evt_no ?>">
                     <input type="submit" value="我要報名" />
                   </div>
                 </div>
               </div>
             </div>
+            <?php
+            }
+          ?>
+
           </div>
 
           <div id="popEvt" class="eventDescs evt_inner">
@@ -271,7 +314,7 @@ try {
     </div>
 
     <!-- 報名燈箱 -->
-    <div class="regisBox">
+    <div id="evtDetail" class="regisBox">
       <div class="regisContent">
         <div class="cancelBtn"></div>
         <div class="titleWrapper">
@@ -375,12 +418,6 @@ try {
       </div>
     </form>
   </div>
-  <button onclick="rotate(this)" id="button">
-    Lock
-  </button>
-  <button onclick="screen.orientation.unlock()">
-    Unlock
-  </button>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
   <script src="js/events.js"></script>
 </body>
