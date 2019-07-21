@@ -8,7 +8,7 @@ console.log(innerHeight);
 
 console.log(randPos().x, randPos().y);
 
-$(".otherSquid").css({
-  top: randPos().y,
-  left: randPos().x
-});
+// $(".otherSquid").css({
+//   top: randPos().y,
+//   left: randPos().x
+// });

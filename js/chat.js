@@ -1,23 +1,82 @@
+
+
 // 即時聊天
 //vuejs & websocket
 var conn_chat;
 var chat_app = new Vue({
-  el: '#chat_app',
+  el: '#app',
   data: {
     user_id: '',
-    friends: ['董董', '曲翑', '揉揉', '詩詩', '華姐'],
+    friends: [],
+    pending_friends: [],
+    waiting_friends: [],
     online_users: [],
     chat_to_all: true,
     chat_to_who: '',
     messages: [],//存server回傳的物件
-    chat_send_text: ''
+    chat_send_text: '',
+    style_no:'',
+    mem_lv:'',
+    mem_avatar:'',
+    squid_qty:'',
+    online_users_info: [] //[{"mem_name":"a","style_no":"/a.png"},{"mem_name":"b","style_no":"/b.png"}]
   },
   methods: {
+    //是否為登入狀態
+    is_login: function(){
+      return this.user_id!='';
+    },
+    //addFriend function
+    add_friend: function(friend_name){
+      const xhr = new XMLHttpRequest();
+      xhr.onload = () => {
+          if (xhr.status == 200) {
+              console.log('addFriend OK');
+          } else {
+              console.error(xhr.responseText);
+          }
+      };
+      const url = `addFriend.php?mem_name=${this.user_id}&friend_name=${friend_name}`;
+      xhr.open("get", url, true);
+      xhr.send(null);
+    },
+    //confirmFriend function
+    confirm_friend: function(friend_name){
+      const xhr = new XMLHttpRequest();
+      xhr.onload = () => {
+          if (xhr.status == 200) {
+              console.log('confirmFriend OK');
+              chat_app.refresh_friends();
+          } else {
+              console.error(xhr.responseText);
+          }
+      };
+      const url = `confirmFriend.php?mem_name=${this.user_id}&friend_name=${friend_name}`;
+      xhr.open("get", url, true);
+      xhr.send(null);
+    },
     user_online: function (user) {
       this.online_users.push(user);
+      var xhr = new XMLHttpRequest();
+        xhr.onload=function (e){
+          if(e.currentTarget.status == 200){
+            var resp = JSON.parse(e.currentTarget.responseText);
+            chat_app.online_users_info.push(resp);
+          }else{
+              console.error( '有人上線 error.', e );
+          }
+        }
+        
+        var url = "getRole.php?mem_name="+user;
+        xhr.open("Get", url, true);
+        xhr.send( null );
+    },
+    others_online_users_info:function(){
+      return this.online_users_info.filter(function (e) { return e.mem_name != chat_app.user_id });
     },
     user_offline: function (user) {
       this.online_users = this.online_users.filter(function (e) { return e != user });
+      this.online_users_info = this.online_users_info.filter(function (e) { return e.mem_name != user });
     },
     public_chat: function () {
       this.chat_to_who = '';
@@ -60,6 +119,98 @@ var chat_app = new Vue({
     },
     mark_read_messages_from_someone: function (who) {
       this.unread_messages_from_someone(who).forEach(function (msg) { msg.is_read = true });
+    },
+    refresh_friends: function() {
+      // call myFriend
+      const xhr = new XMLHttpRequest();
+      xhr.onload = () => {
+        if (xhr.status == 200) {
+          var resp = JSON.parse(xhr.responseText);
+          console.log("got friend list.", resp);
+          var pending_friends = [];
+          var waiting_friends = [];
+          var friends = [];
+          resp.forEach(function(e){
+            if(e.status == "0"){
+              if(e.requester == chat_app.user_id){
+                waiting_friends.push(e.mem_name);
+              }else{
+                pending_friends.push(e.mem_name);
+              }
+            } else {
+              friends.push(e.mem_name);
+            }
+          });
+          chat_app.friends = friends;
+          chat_app.pending_friends = pending_friends;
+          chat_app.waiting_friends = waiting_friends;
+        } else {
+          console.error("refresh_friends failed.", xhr.status);
+        }
+      };
+      const url = `myFriend.php?mem_name=${this.user_id}`;
+      xhr.open("get", url, true);
+      xhr.send(null);
+    },
+    // 登入 增加登入成功&錯誤功能
+    login_btn: function() {
+      const xhr = new XMLHttpRequest();
+      xhr.onload = () => {
+        if (xhr.status == 200) {
+          var resp = JSON.parse(xhr.responseText);
+          $(".loginBox").css({ display: "none" });
+          const loginSquid = document.querySelector(".loginSquid #myRole");
+          login(resp.mem_name,resp.style_no,resp.mem_lv,resp.mem_avatar,resp.squid_qty);
+          //console.log(resp);
+          //登入後清空表單
+          $("#login_mem_name").val('');
+          $("#login_mem_pwd").val('');
+        } else {
+          if(xhr.status == 401){
+            $("#login_failMsg").html("帳號密碼錯誤");
+          }else{
+            alert(xhr.status);
+          }
+        }
+      };
+    
+      const mem_name = $("#login_mem_name").val();
+      const mem_pwd = $("#login_mem_pwd").val();
+      const url = `login.php?mem_name=${mem_name}&mem_pwd=${mem_pwd}`;
+      xhr.open("get", url, true);
+      xhr.send(null);
+    },
+    //loginBtn enter後登入
+    login_enter: function(e){
+      if(e.keyCode== 13 ){
+        this.login_btn();
+      }
+    },
+    //登出按鈕
+    logout:function(){
+      this.user_id="";
+      $(".loginBox").css({ display: "flex" });
+      if(conn_chat.readyState === WebSocket.OPEN){
+        conn_chat.close();
+      }
+      initWebsocketServer();
+      $.get("logout.php");
+    },
+    // 上帝模式
+    god_mode: function() {
+      $(".loginBox").css({ display: "none" });
+    },
+    // 創角
+    create_role: function() {
+      $(".loginBox").css({ display: "none" });
+      $(".createBox").css({ display: "flex" });
+    },
+    calcPosition() {
+      const { innerWidth, innerHeight } = window;
+      return {
+        top : 100 + Math.random() * (innerHeight - 300) + 'px',
+        left: Math.random() * (innerWidth - 200) + 'px'
+      }
     }
   }
 });
@@ -78,6 +229,21 @@ var onMessageListener = function (e) {
     case 'ONLINE_USERS':
       console.log('更新目前有哪些人在線上', resp_obj.users);
       chat_app.online_users = resp_obj.users;
+      for(online_user in chat_app.online_users){
+        var xhr = new XMLHttpRequest();
+        xhr.onload=function (e){
+          if(e.currentTarget.status == 200){
+            var resp = JSON.parse(e.currentTarget.responseText);
+            chat_app.online_users_info.push(resp);
+          }else{
+              console.error( '更新目前有哪些人在線上 error.', e );
+          }
+        }
+        
+        var url = "getRole.php?mem_name="+chat_app.online_users[online_user];
+        xhr.open("Get", url, true);
+        xhr.send( null );
+      }
       break;
     case 'USER_OFFLINE':
       console.log('把使用者狀態改成下線', resp_obj.user_id);
@@ -96,31 +262,55 @@ function initWebsocketServer() {
   conn_chat = new WebSocket('ws://35.229.227.58/chat');
   conn_chat.onopen = function (e) {
     console.log('已連到伺服器');
+    if(chat_app.is_login()){
+      conn_chat.send(
+        JSON.stringify(
+          { "msg_type": "LOGIN", "user_id": chat_app.user_id }
+        )
+      );
+    
+      conn_chat.send(
+        JSON.stringify(
+          {
+            "msg_type": "GET_ONLINE_USERS",
+            "user_id": chat_app.user_id
+          }
+        )
+      )
+    }
   };
   conn_chat.onclose = function (e) {
     console.log('已close伺服器');
   };
   conn_chat.onmessage = onMessageListener;
 }
-function login() {
-  var user_id = $('#memId').val();
+function login(user_id,style_no,mem_lv,mem_avatar,squid_qty) {
   // 告訴server我的user_id
+  console.log(user_id);
   chat_app.user_id = user_id;
-  $('.loginBox').css('display', 'none');
-  conn_chat.send(
-    JSON.stringify(
-      { "msg_type": "LOGIN", "user_id": user_id }
-    )
-  );
+  chat_app.style_no = style_no;
+  chat_app.mem_lv = mem_lv;
+  chat_app.mem_avatar = mem_avatar;
+  chat_app.squid_qty = squid_qty;
 
-  conn_chat.send(
-    JSON.stringify(
-      {
-        "msg_type": "GET_ONLINE_USERS",
-        "user_id": user_id
-      }
+  chat_app.refresh_friends();
+
+  if(conn_chat.readyState === WebSocket.OPEN) {
+    conn_chat.send(
+      JSON.stringify(
+        { "msg_type": "LOGIN", "user_id": user_id }
+      )
+    );
+  
+    conn_chat.send(
+      JSON.stringify(
+        {
+          "msg_type": "GET_ONLINE_USERS",
+          "user_id": user_id
+        }
+      )
     )
-  )
+  }
 }
 function chat_to_someone(user_id, to, msg) {
   conn_chat.send(

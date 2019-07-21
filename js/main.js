@@ -217,10 +217,10 @@ function isMobileDevice() {
 
 // 游標
 function cursorAnimated() {
-  let cursor = document.querySelector(".common_cursor");
-  document.addEventListener('mousemove', c => {
-    cursor.setAttribute('style', 'top:' + c.pageY + 'px;' + 'left:' + c.pageX + 'px;')
-  })
+  // let cursor = document.querySelector(".common_cursor");
+  // document.addEventListener('mousemove', c => {
+  //   cursor.setAttribute('style', 'top:' + c.pageY + 'px;' + 'left:' + c.pageX + 'px;')
+  // })
 }
 
 function animation() {
