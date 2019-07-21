@@ -122,6 +122,23 @@ var chat_app = new Vue({
     mark_read_messages_from_someone: function (who) {
       this.unread_messages_from_someone(who).forEach(function (msg) { msg.is_read = true });
     },
+    has_latest_message: function(who) {
+      var foundmsg = this.messages.find(function(msg) {
+        return msg.user_id == who;
+      });
+      return typeof(foundmsg)!=="undefined";
+    },
+    get_latest_message: function(who) {
+      var latestmsg = "";
+      var index = this.messages.length - 1;
+      for( ; index >=0; index--) {
+        if (this.messages[index].user_id == who) {
+          latestmsg = this.messages[index].chat_msg;
+          break;
+        }
+      }
+      return latestmsg;
+    },
     refresh_friends: function() {
       // call myFriend
       const xhr = new XMLHttpRequest();
@@ -157,9 +174,9 @@ var chat_app = new Vue({
     // 登入 增加登入成功&錯誤功能
     login_btn: function() {
       const xhr = new XMLHttpRequest();
-      xhr.onload = () => {
-        if (xhr.status == 200) {
-          var resp = JSON.parse(xhr.responseText);
+      xhr.onload = (e) => {
+        if (e.currentTarget.status == 200 && e.currentTarget.responseText != "") {
+          var resp = JSON.parse(e.currentTarget.responseText);
           $(".loginBox").css({ display: "none" });
           const loginSquid = document.querySelector(".loginSquid #myRole");
           login(resp.mem_name,resp.style_no,resp.mem_lv,resp.mem_avatar,resp.squid_qty);
@@ -168,10 +185,10 @@ var chat_app = new Vue({
           $("#login_mem_name").val('');
           $("#login_mem_pwd").val('');
         } else {
-          if(xhr.status == 401){
+          if(e.currentTarget.status == 401){
             $("#login_failMsg").html("帳號密碼錯誤");
           }else{
-            alert(xhr.status);
+            console.error("login_btn error.", e);
           }
         }
       };
@@ -236,7 +253,7 @@ var onMessageListener = function (e) {
       for(online_user in chat_app.online_users){
         var xhr = new XMLHttpRequest();
         xhr.onload=function (e){
-          if(e.currentTarget.status == 200){
+          if(e.currentTarget.status == 200 && e.currentTarget.responseText != ""){
             var resp = JSON.parse(e.currentTarget.responseText);
             //產生初始位置
             resp.position = chat_app.calcPosition();

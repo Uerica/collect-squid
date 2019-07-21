@@ -58,8 +58,8 @@
   <div id="app">
     <!-- 我自己的魷魚 -->
     <div class="loginSquid" v-if="is_login()">
-      <div class="talkingBubble">
-          <p>嗨我是自己</p>
+      <div class="talkingBubble" v-if="has_latest_message(user_id)">
+        <p>{{get_latest_message(user_id)}}</p>
       </div>
       <span class="roleName">{{user_id}}</span>
       <img id="myRole" :src="style_no" alt="自己的外型">
@@ -74,8 +74,8 @@
           <a class="funIcon addFriend" v-on:click="add_friend(others_online_user_info.mem_name)" href="javascript:;" class="onlineFunction"><img src="imgs/characters/addFriendIcon.png" alt="加好友"></a >
           <a class="funIcon mute" href="javascript:;" class="onlineFunction"><img src="imgs/characters/muteIcon.png" alt="靜音"></a >
         </div>
-        <div class="talkingBubble">
-          <p>媽的好辣喔</p>
+        <div class="talkingBubble" v-if="has_latest_message(others_online_user_info.mem_name)">
+          <p>{{get_latest_message(others_online_user_info.mem_name)}}</p>
         </div>
         <span class="roleName">{{others_online_user_info.mem_name}}</span>
         <img id="myRole" :src="others_online_user_info.style_no" alt="Penny">
