@@ -1,3 +1,13 @@
+const LIGHTBOX_FILTER_CLASSNAMES = {
+  default: [
+    '.gameWorld_bgImage',
+    '.gameWorld_object',
+    '.gameWorld_arrow',
+    '.loginSquid',
+    '.otherSquid',
+  ],
+};
+
 // 聊天室移動畫面
 const SCROLLAREA = {
   width: 120,
@@ -13,6 +23,7 @@ let needToScrollLeft = false;
 let needToScrollRight = false;
 let needToScrollBottom = false;
 let needToScrollTop = false;
+
 
 
 
@@ -71,13 +82,6 @@ function collaseNotifications() {
 function closeNotifications() {
   $('.notifications_delete').click(function(){
     $(this.parentElement).remove();
-  })
-}
-
-// 關閉排行榜
-function closeLeaderBoard() {
-  $(".leaderBoard_close").click(function () {
-    $(".checkBox-leaderBoard").toggleClass("collapse");
   })
 }
 
@@ -185,37 +189,52 @@ function switchPage() {
   $(".gameWorld_house").click(function (e) {
     e.preventDefault();
     $(".checkBox-room").toggleClass("collapse");
-    filterBlur('.gameWorld_bgImage');
-    filterBlur('.gameWorld_object',);
-    filterBlur('.gameWorld_arrow',);
-    filterBlur('.loginSquid');
-    filterBlur('.otherSquid');
+    filterBlur();
   });
 
   $(".gameWorld_bus").click(function (e) {
     e.preventDefault();
     $(".checkBox-event").toggleClass("collapse");
+    filterBlur();
   });
 
   $(".gameWorld_cup").click(function (e) {
     e.preventDefault();
     $(".checkBox-leaderBoard").toggleClass("collapse");
+    filterBlur();
+  })
+  
+  $(".leaderBoard_close").click(function (e) {
+    e.preventDefault();
+    $(".checkBox-leaderBoard").toggleClass("collapse");
+    filterBlur();
   })
 
   $("#btnCancel-room").click(function (e) {
     e.preventDefault();
     $(".checkBox-room").toggleClass("collapse");
-    filterBlur('.gameWorld_bgImage');
-    filterBlur('.gameWorld_object',);
-    filterBlur('.gameWorld_arrow',);
-    filterBlur('.loginSquid');
-    filterBlur('.otherSquid');
+    filterBlur();
   });
 
   $("#btnCancel-event").click(function (e) {
     e.preventDefault();
     $(".checkBox-event").toggleClass("collapse");
+    filterBlur();
   });
+}
+
+// 模糊濾鏡
+function filterBlur(classNames=LIGHTBOX_FILTER_CLASSNAMES.default) {
+  let { length } = classNames;
+  for (i=0; i<length; i++) {
+    let className = classNames[i];
+    let haveBlurFilter = $(className).css('filter');
+    if (haveBlurFilter != 'none') {
+      $(className).css('filter', '');
+    } else {
+      $(className).css('filter', 'blur(8px)');
+    }
+  }
 }
 
 // 聊天室按鈕動畫
@@ -241,16 +260,6 @@ function isMobileDevice() {
     return true;
   } catch {
     return false;
-  }
-}
-
-// 模糊濾鏡
-function filterBlur(e) {
-  let haveBlurFilter = $(e).css('filter');
-  if (haveBlurFilter) {
-    $(e).css('filter', '');
-  } else {
-    $(e).css('filter', 'blur(8px)');
   }
 }
 
@@ -355,7 +364,6 @@ window.addEventListener('load', function () {
   menuMobileTransform();
   chooseFriend();
   collapseChatGroup();
-  closeLeaderBoard();
   closeNotifications();
   scrollLeftTimer();
   collaseNotifications();

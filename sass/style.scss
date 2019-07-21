@@ -65,7 +65,7 @@ img {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 103;
+  z-index: 140;
   // margin-bottom: 100px;
 }
 
@@ -788,7 +788,7 @@ img {
   top: 60%;
   display: flex;
   align-items: flex-start;
-  z-index: 7;
+  z-index: 140;
   @include rwd(tablet) {
     display: none;
   }
@@ -1368,11 +1368,41 @@ img {
           height: auto;
         }
       }
-      &_showPlayer {
+      &_carousel {
         text-align: right;
         background-color: $white;
-        .player {
-          width: 100%;
+        .chosen_player {
+          // width: 100%;
+        }
+        .memRoomItem {
+          position: relative;
+          &_bg {
+            // opacity: 0.6;
+          }
+          &_bed {
+            position: absolute;
+            bottom: 13%;
+            left: 9.4%;
+            width: 35%;
+          }
+          &_chair {
+            position: absolute;
+            width: 31%;
+            bottom: 13%;
+            right: 20%;
+          }
+          &_desk {
+            position: absolute;
+            width: 35%;
+            right: -8%;
+            bottom: 8%;
+          }
+          &_player {
+            position: absolute;
+            width: 11%;
+            left: 45.5%;
+            bottom: 18.5%;
+          }
         }
         .memInfo {
           font-size: 20px;
@@ -1407,13 +1437,36 @@ img {
         }
       }
       &_playerImage {
-        position: relative;
         z-index: 10;
-        img {
-          position: absolute;
-          right: 0;
-          bottom: 0;
-          width: 15%;
+        .playerImage {
+          &_style{
+            position: relative;
+          }
+          &_default {
+            position: absolute;
+            right: 0;
+            bottom: 12px;
+            width: 15%;
+          }
+          &_hat {
+            width: 150%;
+            position: absolute;
+            right: -25%;
+            top: -27%;
+          }
+          &_shirt {
+            width: 70%;
+            position: absolute;
+            right: 15.5%;
+            bottom: 15.5%;
+          }
+          &_shoes{
+            width: 90%;
+            position: absolute;
+            right: 4%;
+            bottom: -5%;
+            z-index: -1;
+          }
         }
       }
       &_btn {

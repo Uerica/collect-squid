@@ -16,16 +16,19 @@
     $errMsg = '';
     try {
         require_once('connectSquid.php');
-        $sql = 
-        "SELECT *
-        FROM member
-        WHERE mem_name NOT IN(:mem_name)
-        ORDER BY RAND()
-        LIMIT 1"; 
+        $sql = "SELECT * FROM member WHERE mem_name NOT IN(:mem_name) ORDER BY RAND() LIMIT 1"; 
         $member = $pdo->prepare($sql);
         $member->bindValue(":mem_name", $mem_name);
-        $member->execute();
+        $member->execute(); 
         $memRow = $member->fetch(PDO::FETCH_ASSOC);
+
+        // 會員資料
+        $sqlMember= "SELECT mem_no, mem_name, heart_qty FROM member ORDER BY heart_qty DESC LIMIT 9";
+        $allMember = $pdo->prepare($sqlMember);
+        $allMember->execute();
+        $allMemberRows = $allMember->fetchAll(PDO::FETCH_ASSOC);
+
+
     } catch(PDOException $e) {
         $errMsg .= $e->getMessage()."<br>";
         $errMsg .= $e->getLine()."<br>";
@@ -599,7 +602,7 @@
             </div>
             <div class="gameWorld_fountain gameWorld_object">
                 <canvas id="spray"></canvas>
-                <a href="javascript:;"><img src="imgs/homePage/fountain.png" alt=""></a>
+                <img src="imgs/homePage/fountain.png" alt="">
             </div>
             <div id="busBox" class="gameWorld_bus gameWorld_object">
                 <div id="smoke"></div>
@@ -682,143 +685,113 @@
               <div class="leaderBoard_title">
                   <h2>排行榜</h2>
               </div>
-              <div class="owl-carousel owl-theme leaderBoard_showPlayer">
-                  <div class="leaderBoard_showcase shoecase-gold">
-                      <div class="leaderBoard_medal">
-                        <img src="imgs/homePage/leaderBoard/medal_gold.png" alt="排行榜排名獎牌">
-                      </div>
-                          <div class="player player-gold">
-                            <img src="imgs/homePage/leaderBoard/room_pic.png" alt="">
+                  <div class="owl-carousel owl-theme leaderBoard_carousel">
+                    <?php foreach ($allMemberRows as $i=>$allMemberRow) { 
+                      // 排行榜顯示
+                      $leaderBoardClassname = 'leaderBoard_showcase showcase-';
+                      $medalImagePath = 'imgs/homePage/leaderBoard/medal_';
+                      switch($i) {
+                        case 0: 
+                          $leaderBoardClassname .= '1st';
+                          $medalImagePath .= '1st.png';
+                          break;
+                        case 1: 
+                          $leaderBoardClassname .= '2nd';
+                          $medalImagePath .= '2nd.png';
+                          break;
+                        case 2: 
+                          $leaderBoardClassname .= '3rd';
+                          $medalImagePath .= '3rd.png';
+                          break;
+                        default: 
+                          $leaderBoardClassname .= $i+1 . 'th';
+                          $medalImagePath .= $i+1 . 'th.png';
+                          break;
+                      }
+
+                      // 拿家具
+                      $sqlmemFurniture = 
+                      "SELECT mem_furniture.mem_no, product_furniture.furn_no, product_furniture.furn_type, product_furniture.furn_img_url
+                       FROM product_furniture
+                       JOIN mem_furniture
+                       ON product_furniture.furn_no = mem_furniture.furn_no
+                       WHERE mem_furniture.mem_no = " . $allMemberRow['mem_no'] .
+                       " AND mem_furniture.is_using = 1";
+                      $memFurniture = $pdo->prepare($sqlmemFurniture);
+                      $memFurniture->execute();
+                      $memFurnitureRows = $memFurniture->fetchAll(PDO::FETCH_ASSOC);
+                      
+
+                      $bedImg = 'images/bed_LV2_01.png';
+                      $chairImg = 'images/chair_LV1_01.png';
+                      $deskImg = 'images/desk_LV1_01.png';
+
+                      foreach($memFurnitureRows as $i=>$memFurnitureRow) {
+                        // echo $memFurnitureRow['mem_no'];
+                        // echo $memFurnitureRow['furn_no'];
+                        // echo $memFurnitureRow['furn_img_url'];
+                        switch($memFurnitureRow['furn_type']) {
+                          case 1: //椅子
+                            $chairImg = 'images/'. $memFurnitureRow['furn_img_url'];
+                            break;
+                          case 2: //桌子
+                            $deskImg = 'images/'. $memFurnitureRow['furn_img_url'];
+                            break;
+                          case 3: //床
+                            $bedImg = 'images/'. $memFurnitureRow['furn_img_url'];
+                            break;
+                          default:
+                            break;
+                        }
+                      } 
+                    ?>
+                      <div class="<?php echo $leaderBoardClassname; ?>">
+                          <div class="leaderBoard_medal">
+                            <img src="<?php echo $medalImagePath; ?>" alt="排行榜排名獎牌">
+                          </div>
+                          <div class="chosen_player">
+                            <div class="memRoomItem">
+                              <div class="memRoomItem_bg">
+                                <img src="imgs/homePage/leaderBoard/room_pic.png" alt="">
+                              </div>
+                              <div class="memRoomItem_bed">
+                                <img src="<?php echo $bedImg; ?>" alt="床圖片">
+                              </div>
+                              <div class="memRoomItem_chair">
+                                <img src="<?php echo $chairImg; ?>" alt="椅子圖片">
+                              </div>
+                              <div class="memRoomItem_desk">
+                                <img src="<?php echo $deskImg; ?>" alt="桌子圖片">
+                              </div>
+                              <div class="memRoomItem_player">
+                                <img src="imgs/homePage/squid2.png" alt="人物圖片">
+                              </div>
+                            </div>
                             <div class="memInfo">
-                              <span class="playerName">小花</span>
-                              <i class="fas fa-heart playerHeartSum"><b>200</b></i>
+                              <span class="playerName"><?php echo $allMemberRow["mem_name"];?></span>
+                              <i class="fas fa-heart playerHeartSum"><b><?php echo $allMemberRow["heart_qty"];?></b></i>
                             </div>
                           </div>
-                      <div class="leaderBoard_playerImage">
-                        <img src="imgs/homePage/squid2.png" alt="玩家角色圖">
-                      </div>
-                  </div>
-                  <div class="leaderBoard_showcase showcase-gold">
-                      <div class="leaderBoard_medal">
-                        <img src="imgs/homePage/leaderBoard/medal_silver.png" alt="排行榜排名獎牌">
-                      </div>
-                          <div class="player player-gold">
-                            <img src="imgs/homePage/leaderBoard/room_pic.png" alt="">
-                            <div class="memInfo">
-                              <span class="playerName">小花</span>
-                              <i class="fas fa-heart playerHeartSum"><b>200</b></i>
+                          <div class="leaderBoard_playerImage">
+                            <div class="playerImage_style">
+                              <div class="playerImage_default">
+                                <img src="imgs/homePage/squid2.png" alt="玩家角色圖">
+                                <div class="playerImage_hat">
+                                  <img src="imgs/dressingRoom/nobleCowboyHat.png" alt="帽子圖片">
+                                </div>
+                                <div class="playerImage_shirt">
+                                  <img src="imgs/dressingRoom/nobleCloBrown.png" alt="上衣圖片">
+                                </div>
+                                <div class="playerImage_shoes">
+                                  <img src="imgs/dressingRoom/royalShoesRed.png" alt="鞋子圖片">
+                                </div>
+                              </div>
                             </div>
                           </div>
-                      <div class="leaderBoard_playerImage">
-                        <img src="imgs/homePage/squid2.png" alt="玩家角色圖">
                       </div>
+
+                    <?php } ?>
                   </div>
-                  <div class="leaderBoard_showcase showcase-gold">
-                      <div class="leaderBoard_medal">
-                        <img src="imgs/homePage/leaderBoard/medal_bronze.png" alt="排行榜排名獎牌">
-                      </div>
-                          <div class="player player-gold">
-                            <img src="imgs/homePage/leaderBoard/room_pic.png" alt="">
-                            <div class="memInfo">
-                              <span class="playerName">小花</span>
-                              <i class="fas fa-heart playerHeartSum"><b>200</b></i>
-                            </div>
-                          </div>
-                      <div class="leaderBoard_playerImage">
-                        <img src="imgs/homePage/squid2.png" alt="玩家角色圖">
-                      </div>
-                  </div>
-                  <div class="leaderBoard_showcase showcase-4th">
-                      <div class="leaderBoard_medal">
-                        <img src="imgs/homePage/leaderBoard/medal_4th.png" alt="排行榜排名獎牌">
-                      </div>
-                          <div class="player player-gold">
-                            <img src="imgs/homePage/leaderBoard/room_pic.png" alt="">
-                            <div class="memInfo">
-                              <span class="playerName">小花</span>
-                              <i class="fas fa-heart playerHeartSum"><b>200</b></i>
-                            </div>
-                          </div>
-                      <div class="leaderBoard_playerImage">
-                        <img src="imgs/homePage/squid2.png" alt="玩家角色圖">
-                      </div>
-                  </div>
-                  <div class="leaderBoard_showcase showcase-5th">
-                      <div class="leaderBoard_medal">
-                        <img src="imgs/homePage/leaderBoard/medal_5th.png" alt="排行榜排名獎牌">
-                      </div>
-                          <div class="player player-gold">
-                            <img src="imgs/homePage/leaderBoard/room_pic.png" alt="">
-                            <div class="memInfo">
-                              <span class="playerName">小花</span>
-                              <i class="fas fa-heart playerHeartSum"><b>200</b></i>
-                            </div>
-                          </div>
-                      <div class="leaderBoard_playerImage">
-                        <img src="imgs/homePage/squid2.png" alt="玩家角色圖">
-                      </div>
-                  </div>
-                  <div class="leaderBoard_showcase showcase-6th">
-                      <div class="leaderBoard_medal">
-                        <img src="imgs/homePage/leaderBoard/medal_6th.png" alt="排行榜排名獎牌">
-                      </div>
-                          <div class="player player-gold">
-                            <img src="imgs/homePage/leaderBoard/room_pic.png" alt="">
-                            <div class="memInfo">
-                              <span class="playerName">小花</span>
-                              <i class="fas fa-heart playerHeartSum"><b>200</b></i>
-                            </div>
-                          </div>
-                      <div class="leaderBoard_playerImage">
-                        <img src="imgs/homePage/squid2.png" alt="玩家角色圖">
-                      </div>
-                  </div>
-                  <div class="leaderBoard_showcase showcase-7th">
-                      <div class="leaderBoard_medal">
-                        <img src="imgs/homePage/leaderBoard/medal_7th.png" alt="排行榜排名獎牌">
-                      </div>
-                          <div class="player player-gold">
-                            <img src="imgs/homePage/leaderBoard/room_pic.png" alt="">
-                            <div class="memInfo">
-                              <span class="playerName">小花</span>
-                              <i class="fas fa-heart playerHeartSum"><b>200</b></i>
-                            </div>
-                          </div>
-                      <div class="leaderBoard_playerImage">
-                        <img src="imgs/homePage/squid2.png" alt="玩家角色圖">
-                      </div>
-                  </div>
-                  <div class="leaderBoard_showcase showcase-8th">
-                      <div class="leaderBoard_medal">
-                        <img src="imgs/homePage/leaderBoard/medal_8th.png" alt="排行榜排名獎牌">
-                      </div>
-                          <div class="player player-gold">
-                            <img src="imgs/homePage/leaderBoard/room_pic.png" alt="">
-                            <div class="memInfo">
-                              <span class="playerName">小花</span>
-                              <i class="fas fa-heart playerHeartSum"><b>200</b></i>
-                            </div>
-                          </div>
-                      <div class="leaderBoard_playerImage">
-                        <img src="imgs/homePage/squid2.png" alt="玩家角色圖">
-                      </div>
-                  </div>
-                  <div class="leaderBoard_showcase showcase-9th">
-                      <div class="leaderBoard_medal">
-                        <img src="imgs/homePage/leaderBoard/medal_9th.png" alt="排行榜排名獎牌">
-                      </div>
-                          <div class="player player-gold">
-                            <img src="imgs/homePage/leaderBoard/room_pic.png" alt="">
-                            <div class="memInfo">
-                              <span class="playerName">小花</span>
-                              <i class="fas fa-heart playerHeartSum"><b>200</b></i>
-                            </div>
-                          </div>
-                      <div class="leaderBoard_playerImage">
-                        <img src="imgs/homePage/squid2.png" alt="玩家角色圖">
-                      </div>
-                  </div>
-              </div>
               <div class="leaderBoard_btn">
                 <button class="button btn-visit">拜訪房間</button>
                 <button class="button btn-addFriend">加朋友</button>
