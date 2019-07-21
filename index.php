@@ -3,10 +3,6 @@
   // exit();
     ob_start();
     session_start();
-<<<<<<< HEAD
-    // $_SESSION["mem_no"] = 24;
-    $mem_no = 24;
-=======
     if(!isset($_SESSION["mem_name"])||($_SESSION["mem_name"] == "")){
       //沒登入
     } else {
@@ -17,36 +13,19 @@
       $mem_avatar = $_SESSION["mem_avatar"];
       $squid_qty = $_SESSION["squid_qty"];
     };
->>>>>>> ab00a5ec91806771400ef042740c0b0e7edc3f22
     $errMsg = '';
     try {
         require_once('connectSquid.php');
-        $meSQL = 
-        "SELECT *
-        FROM member
-        WHERE mem_no = :mem_no";
-        $me = $pdo->prepare($meSQL);
-        $me->bindValue(":mem_no", $mem_no);
-        $me->execute();
-        $meRow = $me->fetch(PDO::FETCH_ASSOC);
-
-        $othersSQL = 
+        $sql = 
         "SELECT *
         FROM member
         WHERE mem_name NOT IN(:mem_name)
         ORDER BY RAND()
-<<<<<<< HEAD
-        LIMIT 3"; 
-        $members = $pdo->prepare($othersSQL);
-        $members->bindValue(":mem_no", $mem_no);
-        $members->execute();
-=======
         LIMIT 1"; 
         $member = $pdo->prepare($sql);
         $member->bindValue(":mem_name", $mem_name);
         $member->execute();
         $memRow = $member->fetch(PDO::FETCH_ASSOC);
->>>>>>> ab00a5ec91806771400ef042740c0b0e7edc3f22
     } catch(PDOException $e) {
         $errMsg .= $e->getMessage()."<br>";
         $errMsg .= $e->getLine()."<br>";
@@ -79,37 +58,11 @@
       <div class="talkingBubble">
           <p>嗨我是自己</p>
       </div>
-<<<<<<< HEAD
-      <span class="roleName"></span>
-      <img id="myRole" src="" alt="">
-    </div>
-
-    <?php
-    while($memRow = $members->fetch(PDO::FETCH_ASSOC)) {
-    ?>
-    <div class="otherSquid">
-      <div class="onlineFuns">
-        <a class="funIcon goRoom" href="javascript:;" class="onlineFunction"><img src="imgs/characters/goRoomIcon.png" alt="看房間"></a >
-        <a class="funIcon addFriend" href="javascript:;" class="onlineFunction"><img src="imgs/characters/addFriendIcon.png" alt="加好友"></a >
-        <a class="funIcon mute" href="javascript:;" class="onlineFunction"><img src="imgs/characters/muteIcon.png" alt="靜音"></a >
-      </div>
-      <div class="talkingBubble">
-        <p>媽的好辣喔</p>
-      </div>
-      <span class="roleName"><?php echo $memRow["mem_name"] ?></span>
-      <img id="myRole" src="<?php echo $memRow["style_no"] ?>" alt="<?php echo $memRow["mem_name"] ?>">
-    </div>
-    <?php
-    }
-    ?>
-      
-=======
       <span class="roleName">{{user_id}}</span>
       <img id="myRole" :src="style_no" alt="自己的外型">
     </div>
     
     <!-- 別的魷魚,線上有幾隻產生幾隻 -->
->>>>>>> ab00a5ec91806771400ef042740c0b0e7edc3f22
 
     <template v-for="others_online_user_info in others_online_users_info()">
       <div class="otherSquid" :style="calcPosition()" >
@@ -348,11 +301,11 @@
 
                 <!-- 訊息輸入區 -->
                 <div class="chatRoom_submitMessage">
-                    <form action="" class="submitContext form">
+                    <div class="submitContext form">
                         <!-- Rou:在此用v-model產生動態變數 以及增加事件-->
-                        <input type="text" class="messageInput" v-model="chat_send_text">
+                        <input type="text" class="messageInput" v-model="chat_send_text" v-on:keyup.enter="chat_send()">
                         <input type="button" value="傳送" class="submit button-submit" v-on:click="chat_send()">
-                    </form>
+                    </div>
                 </div>
 
                 <!-- 選擇頻道 -->
@@ -1310,11 +1263,10 @@
     <script src="js/chat.js"></script>
     <script src="js/roleFunctions.js"></script>
     <script src="js/rolePosition.js"></script>
-<<<<<<< HEAD
     <script src="js/movingAction.js"></script>
-=======
     <script src="js/leaderBoard.js"></script>
     <script scr="js/addFriend.js"></script>
+    <!-- //加moving... -->
     <script>
       $(document).ready(function(){
         <?php 
@@ -1329,7 +1281,6 @@
         ?>
       });
     </script>
->>>>>>> ab00a5ec91806771400ef042740c0b0e7edc3f22
 </body>
 
 </html>
