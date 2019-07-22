@@ -1,4 +1,5 @@
 <?php
+session_start();
 try {
     $dns = "mysql:host=sql.uerica.com;port=3307;dbname=dd101g2;charset=utf8";
     $user = "dd101g2";
@@ -24,7 +25,7 @@ try {
                 // 修改會員海報路徑
                 $sql = "UPDATE member SET poster_img_url = :poster_img_url WHERE mem_no = :mem_no";
                 $evtAdd = $pdo->prepare($sql);
-                $evtAdd->bindValue(":mem_no", $mem_no); //from session
+                $evtAdd->bindValue(":mem_no", $_SESSION["mem_no"]); //from session
                 $evtAdd->bindValue(":poster_img_url", $fileName);
                 $evtAdd->execute();
                 
