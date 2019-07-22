@@ -1,4 +1,5 @@
 <?php
+session_start();
 $errMsg = "";
 try {
   $dns = "mysql:host=sql.uerica.com;port=3307;dbname=dd101g2;charset=utf8";
@@ -38,7 +39,7 @@ try {
   from relationship r , event_record er
   where er.mem_no = r.friend_no and r.status=1 and r.mem_no = :mem_no GROUP BY evt_no";
   $friendsOfEvt = $pdo->prepare($sql);
-  $friendsOfEvt->bindValue(":mem_no", "113"); // from session
+  $friendsOfEvt->bindValue(":mem_no", $_SESSION["mem_no"]); // from session
   $friendsOfEvt->execute();
 
   // 取得熱門活動的好友人數
@@ -46,7 +47,7 @@ try {
   from relationship r , event_record er
   where er.mem_no = r.friend_no and r.status=1 and r.mem_no = :mem_no GROUP BY evt_no";
   $friendsOfPopEvt = $pdo->prepare($sql);
-  $friendsOfPopEvt->bindValue(":mem_no", "113"); // from session
+  $friendsOfPopEvt->bindValue(":mem_no", $_SESSION["mem_no"]); // from session
   $friendsOfPopEvt->execute();
 
   // 判斷是否已報名
@@ -56,7 +57,7 @@ try {
   WHERE mem_no = :mem_no
   ";
   $alreadyRegis = $pdo->prepare($sql);
-  $alreadyRegis->bindValue(':mem_no', '113');  // from SESSION
+  $alreadyRegis->bindValue(':mem_no', $_SESSION["mem_no"]);  // from SESSION
   $alreadyRegis->execute();
 
   $alreadyRegisArr = array();
@@ -67,13 +68,13 @@ try {
   // 我參加的
   $sql = "select event.evt_name,event.evt_date from event_record left join event on event_record.evt_no = event.evt_no where mem_no=113 group by event_record.evt_no";
   $myRegis = $pdo->prepare($sql);
-  $myRegis->bindValue(":mem_no","113"); //from session
+  $myRegis->bindValue(":mem_no",$_SESSION["mem_no"]); //from session
   $myRegis->execute();
 
   // 我舉辦的
   $sql = "select evt_name,evt_date from event where org_mem_no=:mem_no";
   $myRaise = $pdo->prepare($sql);
-  $myRaise->bindValue(":mem_no","113"); //from session
+  $myRaise->bindValue(":mem_no",$_SESSION["mem_no"]); //from session
   $myRaise->execute();
 
 } catch (PDOException $e) {

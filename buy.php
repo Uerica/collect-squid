@@ -1,4 +1,5 @@
 <?php
+session_start();
 $errMsg = "";
 try {
     $dns = "mysql:host=sql.uerica.com;port=3307;dbname=dd101g2;charset=utf8";
@@ -7,7 +8,7 @@ try {
     $options = array(PDO::ATTR_CASE => PDO::CASE_NATURAL, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
     $pdo = new PDO($dns, $user, $psw, $options);
 
-    $mem_no = "1"; //from session
+    $mem_no = $_SESSION["mem_no"]; //from session
 
     $sql = "update member set squid_qty = squid_qty - :furn_price where mem_no=:mem_no";
     $countMoney = $pdo->prepare($sql);
