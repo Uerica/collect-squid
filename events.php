@@ -36,17 +36,17 @@ try {
   // 取得最新活動的好友人數
   $sql = "select DISTINCT er.evt_no ,COUNT(*) AS 'all'
   from relationship r , event_record er
-  where er.mem_no = r.friend_no and r.status=1 and r.mem_no = 112 GROUP BY evt_no";
+  where er.mem_no = r.friend_no and r.status=1 and r.mem_no = :mem_no GROUP BY evt_no";
   $friendsOfEvt = $pdo->prepare($sql);
-  $friendsOfEvt->bindValue(":mem_no", "112"); // from session
+  $friendsOfEvt->bindValue(":mem_no", "113"); // from session
   $friendsOfEvt->execute();
 
   // 取得熱門活動的好友人數
   $sql = "select DISTINCT er.evt_no ,COUNT(*) AS 'all'
   from relationship r , event_record er
-  where er.mem_no = r.friend_no and r.status=1 and r.mem_no = 112 GROUP BY evt_no";
+  where er.mem_no = r.friend_no and r.status=1 and r.mem_no = :mem_no GROUP BY evt_no";
   $friendsOfPopEvt = $pdo->prepare($sql);
-  $friendsOfPopEvt->bindValue(":mem_no", "112"); // from session
+  $friendsOfPopEvt->bindValue(":mem_no", "113"); // from session
   $friendsOfPopEvt->execute();
 
   // 判斷是否已報名
@@ -56,7 +56,7 @@ try {
   WHERE mem_no = :mem_no
   ";
   $alreadyRegis = $pdo->prepare($sql);
-  $alreadyRegis->bindValue(':mem_no', '112');  // from SESSION
+  $alreadyRegis->bindValue(':mem_no', '113');  // from SESSION
   $alreadyRegis->execute();
 
   $alreadyRegisArr = array();
@@ -65,6 +65,9 @@ try {
   }
 
 
+    
+    // while($abc = $friendsOfPopEvt->fetch()){
+    // echo print_r($abc)."<br>";}
 
 } catch (PDOException $e) {
   echo "錯誤 : ", $e->getMessage(), "<br>";
@@ -278,7 +281,7 @@ try {
           </div>
           <div id="popEvt" class="eventDescs evt_inner">
           <?php 
-          while($popRow = $popEvents->fetchObject()) {
+          while($popEvtRow = $popEvents->fetchObject()) {
           ?>
             <div class="singleEvent">
                 <div class="pic">
@@ -286,12 +289,12 @@ try {
                 </div>
                 <div class="content">
                   <div class="title">
-                    <h3><?php echo $popRow->evt_name ?></h3>
-                    <span class="period"><?php echo $popRow->evt_date ?></span>
+                    <h3><?php echo $popEvtRow->evt_name ?></h3>
+                    <span class="period"><?php echo $popEvtRow->evt_date ?></span>
                   </div>
                   <div class="desc">
                     <ul>
-                      <li>地點：<?php echo $popRow->evt_place ?></li>
+                      <li>地點：<?php echo $popEvtRow->evt_place ?></li>
                       <li>
                         <figure class="friendIcons">
                           <img src="eventsImg/attendFriend1.png" alt="already attended Friend" />
@@ -299,12 +302,11 @@ try {
                           <img src="eventsImg/attendFriend3.png" alt="already attended Friend" />
                         </figure>
                         <span>
-                          <?php
+                        <?php
                           $gotFriend = false;
                           $friendNum = 0;
-                          echo $popRow->evt_no;
                           while ($friendCount = $friendsOfPopEvt->fetchObject()) {
-                            if ($friendCount->evt_no == $popRow->evt_no) {
+                            if ($friendCount->evt_no == $popEvtRow->evt_no) {
                               $gotFriend = true;
                               $friendNum = $friendCount->all;
                             }
@@ -319,9 +321,9 @@ try {
                       </li>
                     </ul>
                     <div class="submitWrapper">
-                      <input type="hidden" name="evt_no" value="<?php echo $popRow->evt_no ?>">
+                      <input type="hidden" name="evt_no" value="<?php echo $popEvtRow->evt_no ?>">
                       <?php
-                        if(in_array($popRow->evt_no, $alreadyRegisArr)) {
+                        if(in_array($popEvtRow->evt_no, $alreadyRegisArr)) {
                           echo '<input type="submit" value="已報名" disabled/>';
                         } else {
                           echo '<input type="submit" value="我要報名" />';
@@ -372,7 +374,7 @@ try {
               </div>
             </div>
             <div class="raiseBtnWrapper">
-              <input type="button" id="raiseBtn" value="我要舉辦">
+              <span id="raiseBtn">我要舉辦</span>
             </div>
           </div>
         </section>

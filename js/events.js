@@ -134,7 +134,7 @@ function cancelRaise() {
 }
 
 $('#raiseBtn').click(function() {
-  $('raiseBox').css({ display: 'flex' });
+  $('.raiseBox').css({ display: 'flex' });
 });
 
 // 確認舉辦活動
