@@ -36,7 +36,7 @@ try {
   // 取得最新活動的好友人數
   $sql = "select DISTINCT er.evt_no ,COUNT(*) AS 'all'
   from relationship r , event_record er
-  where er.mem_no = r.friend_no and r.status=1 and r.mem_no = 112 GROUP BY evt_no";
+  where er.mem_no = r.friend_no and r.status=1 and r.mem_no = :mem_no GROUP BY evt_no";
   $friendsOfEvt = $pdo->prepare($sql);
   $friendsOfEvt->bindValue(":mem_no", "112"); // from session
   $friendsOfEvt->execute();
@@ -44,7 +44,7 @@ try {
   // 取得熱門活動的好友人數
   $sql = "select DISTINCT er.evt_no ,COUNT(*) AS 'all'
   from relationship r , event_record er
-  where er.mem_no = r.friend_no and r.status=1 and r.mem_no = 112 GROUP BY evt_no";
+  where er.mem_no = r.friend_no and r.status=1 and r.mem_no = :mem_no GROUP BY evt_no";
   $friendsOfPopEvt = $pdo->prepare($sql);
   $friendsOfPopEvt->bindValue(":mem_no", "112"); // from session
   $friendsOfPopEvt->execute();
@@ -301,9 +301,10 @@ try {
                         <span>
                           <?php
                           $gotFriend = false;
-                          $friendNum = 0;
-                          echo $popRow->evt_no;
+                          // $friendNum = 0;
+                          // echo $popRow->evt_no;
                           while ($friendCount = $friendsOfPopEvt->fetchObject()) {
+                            echo print_r($friendCount->all);
                             if ($friendCount->evt_no == $popRow->evt_no) {
                               $gotFriend = true;
                               $friendNum = $friendCount->all;
@@ -372,7 +373,7 @@ try {
               </div>
             </div>
             <div class="raiseBtnWrapper">
-              <input type="button" id="raiseBtn" value="我要舉辦">
+              <span id="raiseBtn">我要舉辦</span>
             </div>
           </div>
         </section>
