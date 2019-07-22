@@ -64,10 +64,17 @@ try {
     array_push($alreadyRegisArr, $alreadyRow->evt_no);
   }
 
+  // 我參加的
+  $sql = "select event.evt_name,event.evt_date from event_record left join event on event_record.evt_no = event.evt_no where mem_no=113 group by event_record.evt_no";
+  $myRegis = $pdo->prepare($sql);
+  $myRegis->bindValue(":mem_no","113"); //from session
+  $myRegis->execute();
 
-    
-    // while($abc = $friendsOfPopEvt->fetch()){
-    // echo print_r($abc)."<br>";}
+  // 我舉辦的
+  $sql = "select evt_name,evt_date from event where org_mem_no=:mem_no";
+  $myRaise = $pdo->prepare($sql);
+  $myRaise->bindValue(":mem_no","113"); //from session
+  $myRaise->execute();
 
 } catch (PDOException $e) {
   echo "錯誤 : ", $e->getMessage(), "<br>";
@@ -352,24 +359,35 @@ try {
               </ul>
               <div class="eventDescs">
                 <div id="myAttend" class="myAttend myEvt_inner">
+                <?php while($myRegisRow = $myRegis->fetchObject()){
+                  ?>
                   <div class="singleEvent">
                     <div class="content">
                       <div class="title">
-                        <h3>太魯閣一日遊</h3>
-                        <span class="period">7/1 ~ 7/15</span>
+                        <h3><?php echo $myRegisRow->evt_name ?></h3>
+                        <span class="period"><?php echo $myRegisRow->evt_date ?></span>
                       </div>
                     </div>
                   </div>
+                <?php
+              }
+              ?>
                 </div>
                 <div id="myRaise" class="myRaise myEvt_inner">
+                <?php
+                while($myRaiseRow = $myRaise->fetchObject()){
+                ?>
                   <div class="singleEvent">
                     <div class="content">
                       <div class="title">
-                        <h3>太魯閣五日遊</h3>
-                        <span class="period">7/1 ~ 7/15</span>
+                        <h3><?php echo $myRaiseRow->evt_name ?></h3>
+                        <span class="period"><?php echo $myRaiseRow->evt_date ?></span>
                       </div>
                     </div>
                   </div>
+                  <?php
+                }
+                  ?>
                 </div>
               </div>
             </div>
