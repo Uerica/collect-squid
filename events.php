@@ -304,9 +304,11 @@ try {
                         <span>
                         <?php
                           $gotFriend = false;
-                          $friendNum = 0;
+                          // $friendNum = 0;
+                          // echo $popRow->evt_no;
                           while ($friendCount = $friendsOfPopEvt->fetchObject()) {
-                            if ($friendCount->evt_no == $popEvtRow->evt_no) {
+                            echo print_r($friendCount->all);
+                            if ($friendCount->evt_no == $popRow->evt_no) {
                               $gotFriend = true;
                               $friendNum = $friendCount->all;
                             }
