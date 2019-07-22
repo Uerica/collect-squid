@@ -1,4 +1,5 @@
 <?php
+session_start();
 $errMsg = "";
 try {
     $dns = "mysql:host=sql.uerica.com;port=3307;dbname=dd101g2;charset=utf8";
@@ -22,18 +23,15 @@ try {
     $beds->execute();
 
 
-    $sql = "select * from member where mem_email=:mem_email and mem_pwd=:mem_pwd";
+    $sql = "select * from member where mem_no=:mem_no";
     $members = $pdo->prepare($sql);
-    $members->bindValue(":mem_email", "111@abc.co"); //from session
-    $members->bindValue(":mem_pwd", "111"); //from session
+    $members->bindValue(":mem_no", $_SESSION["mem_no"]); //from session
     $members->execute();
-    if ($members->rowCount() != 0) {
-        $member = $members->fetchObject();
-    }
+    $member = $members->fetchObject();
 
     $sql = "select * from mem_furniture where mem_no=:mem_no";
     $mem_furns = $pdo->prepare($sql);
-    $mem_furns->bindValue(":mem_no", "1"); //from session
+    $mem_furns->bindValue(":mem_no", $_SESSION["mem_no"]); //from session
     $mem_furns->execute();
     $mem_furnsArr = array();
     while($mem_furnRow = $mem_furns->fetchObject()){
@@ -68,7 +66,7 @@ try {
 </head>
 
 <body>
-    <!-- <header class="common_header disabledScrollOnHover">
+    <header class="common_header disabledScrollOnHover">
         <div class="menuMobile">
             <span class="menuMobile_circle"></span>
             <a href="#" class="menuMobile_link">
@@ -187,11 +185,11 @@ try {
                 </div>
             </ul>
         </nav>
-    </header> -->
-    <div id="confirmBox" style="display:none">
-        <button id="confirm_btn">確定
-        <button id="cancel_btn">取消
-    </div>
+    </header>
+<div id="confirmBox" style="display:none">
+    <button id="confirm_btn">確定
+    <button id="cancel_btn">取消
+</div>
     <div class="shop">
         <div class="shop_area">
             <div class="item_group">
