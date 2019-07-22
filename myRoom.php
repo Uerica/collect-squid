@@ -1,4 +1,5 @@
 <?php 
+  session_start();
   $msg = "";
 
   $dsn = "mysql:host=sql.uerica.com;port=3307;dbname=dd101g2;charset=utf8";
@@ -38,38 +39,73 @@
         $psw = "dd101g2";
         $options = array(PDO::ATTR_CASE => PDO::CASE_NATURAL, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
         $pdo = new PDO($dsn, $user, $psw, $options);
+        
+        $_SESSION["mem_no"] = 20;
+        $mem_no = $_SESSION["mem_no"];
 
         //會員資料
-        $memberSQL = "SELECT * FROM `member` WHERE `mem_no` = `:mem_no`";
+        $memberSQL = "SELECT * FROM `member` WHERE `mem_no` = :mem_no";
         $memberInfo = $pdo->prepare($memberSQL);
-        $memberInfo->bindValue(':mem_no', 1);
+        $memberInfo->bindValue(':mem_no', $mem_no);
         $memberInfo->execute();
 
         //椅子
-        $chairSQL = "SELECT * FROM `product_furniture` WHERE `furn_type` = `:furn_type`";
-        $roomChair = $pdo->prepare($chairSQL);
-        $roomChair->bindValue(':furn_type', 1);
-        $roomChair->execute();
+        // $chairSQL = "SELECT * FROM `product_furniture` WHERE `furn_type` = :furn_type";
+        // $roomChair = $pdo->prepare($chairSQL);
+        // $roomChair->bindValue(':furn_type', 1);
+        // $roomChair->execute();
+
+        // 我的椅子
+        $chairSQL = 
+        "SELECT *
+        FROM mem_furniture mf JOIN product_furniture pf 
+        ON mf.furn_no = pf.furn_no 
+        WHERE mf.mem_no = :mem_no AND pf.furn_type = :furn_type;";
+        $myRoomChair = $pdo->prepare($chairSQL);
+        $myRoomChair->bindValue(':mem_no', $mem_no);
+        $myRoomChair->bindValue(':furn_type', 1);
+        $myRoomChair->execute();
 
         //桌子
-        $deskSQL = "SELECT * FROM `product_furniture` WHERE `furn_type` = `:furn_type`";
-        $roomDesk = $pdo->prepare($deskSQL);
-        $roomDesk->bindValue(':furn_type', 2);
-        $roomDesk->execute();
+        // $deskSQL = "SELECT * FROM `product_furniture` WHERE `furn_type` = :furn_type";
+        // $roomDesk = $pdo->prepare($deskSQL);
+        // $roomDesk->bindValue(':furn_type', 2);
+        // $roomDesk->execute();
+
+        // 我的桌子
+        $deskSQL = 
+        "SELECT *
+        FROM mem_furniture mf JOIN product_furniture pf 
+        ON mf.furn_no = pf.furn_no 
+        WHERE mf.mem_no = :mem_no AND pf.furn_type = :furn_type;";
+        $myRoomDesk = $pdo->prepare($deskSQL);
+        $myRoomDesk->bindValue(':mem_no', $mem_no);
+        $myRoomDesk->bindValue(':furn_type', 2);
+        $myRoomDesk->execute();
 
         //床
-        $bedSQL = "SELECT * FROM `product_furniture` WHERE `furn_type` = `:furn_type`";
-        $roomBed = $pdo->prepare($bedSQL);
-        $roomBed->bindValue(':furn_type', 3);
-        $roomBed->execute();
+        // $bedSQL = "SELECT * FROM `product_furniture` WHERE `furn_type` = :furn_type";
+        // $roomBed = $pdo->prepare($bedSQL);
+        // $roomBed->bindValue(':furn_type', 3);
+        // $roomBed->execute();
 
-        } catch(PDOException $e) {
-            $errMsg .= $e->getMessage()."<br>";
-            $errMsg .= $e->getLine()."<br>";
-        }
+        // 我的床
+        $bedSQL = 
+        "SELECT *
+        FROM mem_furniture mf JOIN product_furniture pf 
+        ON mf.furn_no = pf.furn_no 
+        WHERE mf.mem_no = :mem_no AND pf.furn_type = :furn_type;";
+        $myRoomBed = $pdo->prepare($bedSQL);
+        $myRoomBed->bindValue(':mem_no', $mem_no);
+        $myRoomBed->bindValue(':furn_type', 3);
+        $myRoomBed->execute();
+
+    } catch(PDOException $e) {
+        $errMsg .= $e->getMessage()."<br>";
+        $errMsg .= $e->getLine()."<br>";
+        echo $errMsg;
+    }
 ?>
-
-    
 
 <!DOCTYPE html>
 <html lang="en">
@@ -83,7 +119,8 @@
 
     <link rel="stylesheet" href="css/reset.css">
     <!-- <link rel="stylesheet" href="sass/_room.css"> -->
-    <link rel="stylesheet" href="css/style.css">
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
+    <link rel="stylesheet" href="sass/style.css">
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
 
@@ -269,23 +306,21 @@
             <div class="rightWall">
                 <div class="roomIntro">
                     <?php 
-
                       while($memberArr = $memberInfo->fetch(PDO::FETCH_ASSOC)){
                     ?>
-                    <h3><span><?php echo $memberArr["mem_name"] ?></span>的房間</h3>
-                    <p>暱稱：<?php echo $memberArr["mem_name"] ?><br>
-                       等級：<?php 
-                       if($memberArr["mem_lv" == 1]){echo "平民";}
-                       if($memberArr["mem_lv" == 2]){echo "貴族";}
-                       if($memberArr["mem_lv" == 3]){echo "皇族";} 
-                       ?>
-                       <br>
-                       性別：<?php echo $memberArr["mem_gender"] ?><br>
-                       星座：<?php echo $memberArr["mem_sign"] ?><br>
-                       自我介紹：<?php echo $memberArr["mem_intro"] ?>
-                       <br>
-                    </p>
-                     
+                        <h3><span><?php echo $memberArr["mem_name"] ;?></span>的房間</h3>
+                        <p>暱稱：<?php echo $memberArr["mem_name"] ;?><br>
+                        等級：<?php 
+                        if($memberArr["mem_lv"] == 1){echo "平民";}
+                        if($memberArr["mem_lv"] == 2){echo "貴族";}
+                        if($memberArr["mem_lv"] == 3){echo "皇族";} 
+                        ?>
+                        <br>
+                        性別：<?php echo $memberArr["mem_gender"] ?><br>
+                        星座：<?php echo $memberArr["mem_sign"] ?><br>
+                        自我介紹：<?php echo $memberArr["mem_intro"] ?>
+                        <br>
+                        </p>
                     <?php 
                         }
                     ?>
@@ -360,71 +395,34 @@
                 
                 <div class="swiper-wrapper">
                     <?php 
-                    // while ($roomChairRow = $roomChair->fetch(PDO::FETCH_ASSOC)) {
-                ?>
-                    <!-- <div class="swiper-slide">
-                        <a href="#" class="deskSmallChange">
-                            <img src="images/chair_LV1_01.png" >
-                            <span>木頭硬硬椅</span>
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#" class="deskSmallChange">
-                            <img src="images/chair_LV1_02.png" >
-                            <span>木頭好辣椅</span>
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#" class="deskSmallChange">
-                            <img src="images/chair_LV1_03.png" >
-                            <span>木頭皺皺椅</span>
-                        </a>
-                    </div> -->
-                    <div class="swiper-slide">
-                        <a href="#" class="chairSmallChange">
-                            <img src="<?php 
-                                // if($roomChairRow->mem_lv >= 1)
-                                // {echo $roomChairRow["furn_img_url"];} 
-                            ?>">
-                            <span><?php 
-                                // if($roomChairRow->mem_lv >= 1)
-                                // {echo $roomChairRow["furn_name"];} 
-                            ?></span>
-                        </a>
-                    </div>
-                    
-                    <!-- <div class="toMall swiper-slide">
-                        <a href="#">
-                            <img src="images/cart.png">
-                        </a>
-                    </div>
-                    <div class="toMall swiper-slide">
-                        <a href="#">
-                            <img src="images/cart.png">
-                        </a>
-                    </div>
-                    <div class="toMall swiper-slide">
-                        <a href="#">
-                            <img src="images/cart.png">
-                        </a>
-                    </div>
-                    <div class="toMall swiper-slide">
-                        <a href="#">
-                            <img src="images/cart.png">
-                        </a>
-                    </div>
-                    <div class="toMall swiper-slide">
-                        <a href="#">
-                            <img src="images/cart.png">
-                        </a>
-                    </div>
-                    <div class="toMall swiper-slide">
-                        <a href="#">
-                            <img src="images/cart.png">
-                        </a>
-                    </div> -->
+                    $chairCount = 0;
+                    while ($myChairRow = $myRoomChair->fetch(PDO::FETCH_ASSOC)) {
+                        $chairCount++;
+                    ?>
+                        <div class="swiper-slide">
+                            <a href="#" class="chairSmallChange">
+                                <img src="<?php 
+                                    echo $myChairRow["furn_img_url"];
+                                ?>">
+                                <span><?php 
+                                    echo $myChairRow["furn_name"];
+                                ?></span>
+                            </a>
+                        </div>
                     <?php
-                        // }
+                    }
+                    ?>
+                    <?php 
+                    while ($chairCount < 9) {
+                        $chairCount++;
+                    ?>
+                        <div class="toMall swiper-slide">
+                            <a href="#">
+                                <img src="images/cart.png">
+                            </a>
+                        </div>
+                    <?php
+                    }
                     ?>
                 </div>
                 <div class="swiper-button-next"></div>
@@ -435,54 +433,36 @@
 
             <div id="deskTab" class="tabContent swiper-container">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <a href="#" class="deskSmallChange">
-                            <img src="images/desk_LV1_01.png" >
-                            <span>粉紅小桌</span>
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#" class="deskSmallChange">
-                            <img src="images/desk_LV1_02.png" >
-                            <span>硬硬的木桌</span>
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#" class="deskSmallChange">
-                            <img src="images/desk_LV1_03.png" >
-                            <span>超硬的木桌</span>
-                        </a>
-                    </div>
-                    <div class="toMall swiper-slide">
-                        <a href="#">
-                            <img src="images/cart.png">
-                        </a>
-                    </div>
-                    <div class="toMall swiper-slide">
-                        <a href="#">
-                            <img src="images/cart.png">
-                        </a>
-                    </div>
-                    <div class="toMall swiper-slide">
-                        <a href="#">
-                            <img src="images/cart.png">
-                        </a>
-                    </div>
-                    <div class="toMall swiper-slide">
-                        <a href="#">
-                            <img src="images/cart.png">
-                        </a>
-                    </div>
-                    <div class="toMall swiper-slide">
-                        <a href="#">
-                            <img src="images/cart.png">
-                        </a>
-                    </div>
-                    <div class="toMall swiper-slide">
-                        <a href="#">
-                            <img src="images/cart.png">
-                        </a>
-                    </div>
+                <?php 
+                    $deskCount = 0;
+                    while ($myDeskRow = $myRoomDesk->fetch(PDO::FETCH_ASSOC)) {
+                        $deskCount++;
+                    ?>
+                        <div class="swiper-slide">
+                            <a href="#" class="chairSmallChange">
+                                <img src="<?php 
+                                    echo $myDeskRow["furn_img_url"];
+                                ?>">
+                                <span><?php 
+                                    echo $myDeskRow["furn_name"];
+                                ?></span>
+                            </a>
+                        </div>
+                    <?php
+                    }
+                    ?>
+                    <?php 
+                    while ($deskCount < 9) {
+                        $deskCount++;
+                    ?>
+                        <div class="toMall swiper-slide">
+                            <a href="#">
+                                <img src="images/cart.png">
+                            </a>
+                        </div>
+                    <?php
+                    }
+                    ?>
                 </div>
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div>
@@ -490,54 +470,36 @@
             
             <div id="bedTab" class="tabContent swiper-container">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <a href="#" class="bedSmallChange">
-                            <img src="images/bed_LV1_01.png">
-                            <span>綠綠的床床</span>
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#" class="bedSmallChange">
-                            <img src="images/bed_LV1_02.png">
-                            <span>紅紅的床床</span>
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#" class="bedSmallChange">
-                            <img src="images/bed_LV1_03.png">
-                            <span>黃黃的床床</span>
-                        </a>
-                    </div>
-                    <div class="toMall swiper-slide">
-                        <a href="#">
-                            <img src="images/cart.png">
-                        </a>
-                    </div>
-                    <div class="toMall swiper-slide">
-                        <a href="#">
-                            <img src="images/cart.png">
-                        </a>
-                    </div>
-                    <div class="toMall swiper-slide">
-                        <a href="#">
-                            <img src="images/cart.png">
-                        </a>
-                    </div>
-                    <div class="toMall swiper-slide">
-                        <a href="#">
-                            <img src="images/cart.png">
-                        </a>
-                    </div>
-                    <div class="toMall swiper-slide">
-                        <a href="#">
-                            <img src="images/cart.png">
-                        </a>
-                    </div>
-                    <div class="toMall swiper-slide">
-                        <a href="#">
-                            <img src="images/cart.png">
-                        </a>
-                    </div>
+                <?php 
+                    $bedCount = 0;
+                    while ($myBedRow = $myRoomBed->fetch(PDO::FETCH_ASSOC)) {
+                        $bedCount++;
+                    ?>
+                        <div class="swiper-slide">
+                            <a href="#" class="chairSmallChange">
+                                <img src="<?php 
+                                    echo $myBedRow["furn_img_url"];
+                                ?>">
+                                <span><?php 
+                                    echo $myBedRow["furn_name"];
+                                ?></span>
+                            </a>
+                        </div>
+                    <?php
+                    }
+                    ?>
+                    <?php 
+                    while ($bedCount < 9) {
+                        $bedCount++;
+                    ?>
+                        <div class="toMall swiper-slide">
+                            <a href="#">
+                                <img src="images/cart.png">
+                            </a>
+                        </div>
+                    <?php
+                    }
+                    ?>
                 </div>
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div>

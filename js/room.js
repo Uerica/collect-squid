@@ -80,6 +80,18 @@ $(document).ready(function() {
     //點選上傳圖片按鈕
     $("#selectPic").click(function(){
         $("#selectPicInput").trigger('click');
+        const xhr = new XMLHttpRequest();
+        xhr.onload = function() {
+          if(xhr.status == 200) {
+            
+          } else {
+            alert(xhr.status);
+          }
+        }
+        const url = 'wallPicUpload.php';
+        xhr.open('post', url, true);
+        const pic = new FormData();
+        xhr.send()
     });
 
 });
