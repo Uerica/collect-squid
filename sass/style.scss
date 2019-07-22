@@ -807,6 +807,15 @@ img {
         opacity: 0.6;
       }
     }
+    &_time {
+      position: absolute;
+      right: 10px;
+      bottom: 0;
+      font-size: 12px;
+      margin: 5px;
+      font-style: normal;
+      color: #3b4252;
+    }
     &_actionBox {
       display: flex;
       flex-flow: column wrap;

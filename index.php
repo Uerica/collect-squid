@@ -7,6 +7,7 @@
       //沒登入
     } else {
       //有登入存阿
+      $mem_no = $_SESSION["mem_no"];
       $mem_name = $_SESSION["mem_name"];
       $style_no = $_SESSION["style_no"];
       $mem_lv = $_SESSION["mem_lv"];
@@ -22,11 +23,17 @@
         $member->execute(); 
         $memRow = $member->fetch(PDO::FETCH_ASSOC);
 
-        // 會員資料
+        // 排行榜會員資料
         $sqlMember= "SELECT mem_no, mem_name, heart_qty FROM member ORDER BY heart_qty DESC LIMIT 9";
         $allMember = $pdo->prepare($sqlMember);
         $allMember->execute();
         $allMemberRows = $allMember->fetchAll(PDO::FETCH_ASSOC);
+
+        // 通知
+        $sqlNoti = "SELECT * FROM `notification` WHERE rcv_mem_no = " . $_SESSION["mem_no"] . " AND is_read = 0";
+        $noti = $pdo->prepare($sqlNoti);
+        $noti->execute();
+        $notiRows = $noti->fetchAll(PDO::FETCH_ASSOC);
 
 
     } catch(PDOException $e) {
@@ -511,14 +518,41 @@
                 <span>客服魷魚</span>
             </button>
         </div>
+
+
         <div class="notifications_container collapse">
             <div class="notifications_content">
-                <div class="notifications notifications_friend">
+            <?php
+              $notiType = '新消息';
+              $notiClassName = 'notifications notifications_';
+              foreach ($notiRows as $i=>$notiRow) {
+                switch($notiRow['noti_type']) {
+                  // 房間留言
+                  case '1':
+                    $notiType = '留言通知';
+                    $notiClassName .= 'room';
+                    break;
+                  // 好友邀請
+                  case '2':
+                    $notiType = '好友邀請';
+                    $notiClassName .= 'friend';
+                    break;
+                  // 活動分享
+                  case '3':
+                    $notiType = '活動分享';
+                    $notiClassName .= 'event';
+                    break;
+                  default:
+                    break;
+                }
+              ?>
+                <div class="<?php echo $notiClassName; ?>">
+                    <i class="notifications_time"><?php echo $notiRow['noti_date'] ?></i>
                     <i class="fas fa-times notifications_delete"></i>
-                    <span>【好友通知】</span>
-                    <p>你現在已經和詩詩成為好友了</p>
+                    <span>【<?php echo $notiType ?>】</span>
+                    <p><?php echo $notiRow['noti_cnt']; ?></p>
                 </div>
-                <div class="notifications notifications_event">
+                <!-- <div class="notifications notifications_event">
                     <i class="fas fa-times notifications_delete"></i>
                     <span>【活動邀請】</span>
                     <p>好友"詩詩"邀請你參加「與VUE一起浮淺」活動</p>
@@ -547,10 +581,12 @@
                     <i class="fas fa-times notifications_delete"></i>
                     <span>【房間留言】</span>
                     <p>會員"詩詩"在您房間留下了一筆新訊息</p>
-                </div>
+                </div> -->
+                <?php } ?>
             </div>
         </div>
     </div>
+
 
     <!-- 客服機器人 -->
     <!-- <div class="commom_robot disabledScrollOnHover">
