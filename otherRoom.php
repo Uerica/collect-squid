@@ -237,7 +237,7 @@
         </nav>
     </header>
 
-    <content>
+    <div class="myRoomPage">
         <div class="myRoomBg">
             <div class="leftWall">
                 <img src="images/window.png">
@@ -341,7 +341,7 @@
             </div>
         </div>
 
-    </content>
+</div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/629062769a.js"></script>
     <script src="js/otherRoom.js"></script>

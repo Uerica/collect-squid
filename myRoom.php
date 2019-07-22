@@ -133,7 +133,7 @@
     <div class="roomPage">
     </div>
     <!-- 導覽列 -->
-    <!-- <header class="common_header disabledScrollOnHover">
+    <header class="common_header disabledScrollOnHover">
         <div class="menuMobile">
             <span class="menuMobile_circle"></span>
             <a href="#" class="menuMobile_link">
@@ -258,7 +258,7 @@
                 </div>
             </ul>
         </nav>
-    </header> -->
+    </header>
 
     <div class="myRoomPage">
         <div class="myRoomBg">
