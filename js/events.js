@@ -134,7 +134,7 @@ function cancelRaise() {
 }
 
 $('#raiseBtn').click(function() {
-  $('raiseBox').css({ display: 'flex' });
+  $('.raiseBox').css({ display: 'flex' });
 });
 
 // 確認舉辦活動
@@ -242,12 +242,11 @@ $(document).ready(function () {
         if (xhr.readyState == 4) {
           if (xhr.status == 200) {
             alert(xhr.responseText);
-            // (function confirmRaise() {
-            //   $(".raiseBox").css({
-            //     display: "none"
-            //   });
-            // }).call(this);
-            cancelRaise().click();
+            (function confirmRaise() {
+              $(".raiseBox").css({
+                display: "none"
+              });
+            }).call(this);
           } else {
             alert(xhr.status);
           }

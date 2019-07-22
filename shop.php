@@ -238,7 +238,7 @@ try {
                                 </div>
                                 <div class="img_bg">
                                     <div class="img_wrap">
-                                        <img src="images/<?php echo $chairRow->furn_img_url ?>" alt="">
+                                        <img src="<?php echo $chairRow->furn_img_url ?>" alt="">
                                     </div>
                                     <div class="price_tag">
                                         <img src="imgs/shop/pricetag1.png" alt="">
@@ -306,7 +306,7 @@ try {
                                 </div>
                                 <div class="img_bg">
                                     <div class="img_wrap">
-                                        <img src="images/<?php echo $tableRow->furn_img_url ?>" alt="">
+                                        <img src="<?php echo $tableRow->furn_img_url ?>" alt="">
                                     </div>
                                     <div class="price_tag">
                                         <img src="imgs/shop/pricetag2.png" alt="">
@@ -374,7 +374,7 @@ try {
                                 </div>
                                 <div class="img_bg">
                                     <div class="img_wrap">
-                                        <img src="images/<?php echo $bedRow->furn_img_url ?>" alt="">
+                                        <img src="<?php echo $bedRow->furn_img_url ?>" alt="">
                                     </div>
                                     <div class="price_tag">
                                         <img src="imgs/shop/pricetag1.png" alt="">
