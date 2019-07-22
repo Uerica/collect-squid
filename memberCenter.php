@@ -70,18 +70,18 @@ try {
             <ul class="memberInfo">
                 <li class="coin">
                     <a href="javascript:;">
-                        <img src="imgs/icon/coin.png" alt="持有金額icon">
+                        <img src="imgs/homePage/icon/coin.png" alt="持有金額icon">
                         <span>1500</span>
                     </a>
                 </li>
                 <li class="logo">
                     <a href="index.html">
-                        <img src="imgs/logo.png" alt="尋找友誼網站LOGO">
+                        <img src="imgs/homePage/logo.png" alt="尋找友誼網站LOGO">
                         <span>尋找友誼</span>
                     </a>
                 </li>
                 <li class="login">
-                    <img src="imgs/icon/avatar.png" alt="角色頭像icon">
+                    <img src="imgs/homePage/icon/avatar.png" alt="角色頭像icon">
                     <span class="name">
                         <a href="javascript:;">魚翔</a>
                     </span>
@@ -91,21 +91,21 @@ try {
                 </li>
             </ul>
             <nav class="menuMobile_nav">
-                <li><a href="myRoom.html"> <img src="imgs/icon/room.png" alt="我的房間icon">
+                <li><a href="myRoom.html"> <img src="imgs/homePage/icon/home.png" alt="我的房間icon">
                         <span>我的房間</span></a></li>
-                <li><a href="dressingRoom.html"><img src="imgs/icon/fittingRoom.png" alt="換衣間icon">
+                <li><a href="dressingRoom.html"><img src="imgs/homePage/icon/fittingRoom.png" alt="換衣間icon">
                         <span>換衣間</span></a></li>
-                <li><a href="findfriend.html"> <img src="imgs/icon/friend.png" alt="找朋友icon">
+                <li><a href="findfriend.html"> <img src="imgs/homePage/icon/friend.png" alt="找朋友icon">
                         <span>找朋友</span></a></li>
-                <li><a href="javascript:;"> <img src="imgs/icon/events.png" alt="揪團活動icon">
+                <li><a href="javascript:;"> <img src="imgs/homePage/icon/events.png" alt="揪團活動icon">
                         <span>揪團活動</span></a></li>
-                <li><a href="shop.html"> <img src="imgs/icon/mall.png" alt="虛擬商城icon">
+                <li><a href="shop.html"> <img src="imgs/homePage/icon/mall.png" alt="虛擬商城icon">
                         <span>虛擬商城</span></a></li>
-                <li><a href="memberCenter.html"> <img src="imgs/icon/member.png" alt="會員中心icon">
+                <li><a href="memberCenter.html"> <img src="imgs/homePage/icon/member.png" alt="會員中心icon">
                         <span>會員中心</span></a></li>
-                <li><a href="javascript:;"> <img src="imgs/icon/robot.png" alt="客服機器人_icon">
+                <li><a href="javascript:;"> <img src="imgs/homePage/icon/robot.png" alt="客服機器人_icon">
                         <span>客服機器人</span></a></li>
-                <li><a href="javascript:;"> <img src="imgs/icon/notice02.png" alt="通知_icon">
+                <li><a href="javascript:;"> <img src="imgs/homePage/icon/notice02.png" alt="通知_icon">
                         <span>通知</span></a></li>
             </nav>
         </div>
@@ -114,41 +114,41 @@ try {
             <ul>
                 <li>
                     <a href="myRoom.html">
-                        <img src="imgs/icon/room.png" alt="我的房間icon">
+                        <img src="imgs/homePage/icon/room.png" alt="我的房間icon">
                         <span>我的房間</span>
                     </a>
                 </li>
                 <li><a href="dressingRoom.html">
-                        <img src="imgs/icon/fittingRoom.png" alt="換衣間icon">
+                        <img src="imgs/homePage/icon/fittingRoom.png" alt="換衣間icon">
                         <span>換衣間</span></a>
                 </li>
                 <li>
                     <a href="findfriend.html">
-                        <img src="imgs/icon/friend.png" alt="找朋友icon">
+                        <img src="imgs/homePage/icon/friend.png" alt="找朋友icon">
                         <span>找朋友</span>
                     </a>
                 </li>
                 <li>
                     <a href="javascript:;">
-                        <img src="imgs/icon/events.png" alt="揪團活動icon">
+                        <img src="imgs/homePage/icon/events.png" alt="揪團活動icon">
                         <span>揪團活動</span>
                     </a>
                 </li>
                 <li class="logo">
                     <a href="index.html">
-                        <img src="imgs/logo.png" alt="尋找友誼網站LOGO">
+                        <img src="imgs/homePage/logo.png" alt="尋找友誼網站LOGO">
                         <span>尋找友誼</span>
                     </a>
                 </li>
                 <li>
                     <a href="shop.html">
-                        <img src="imgs/icon/mall.png" alt="虛擬商城icon">
+                        <img src="imgs/homePage/icon/mall.png" alt="虛擬商城icon">
                         <span>虛擬商城</span>
                     </a>
                 </li>
                 <li>
                     <a href="memberCenter.html">
-                        <img src="imgs/icon/member.png" alt="會員中心icon">
+                        <img src="imgs/homePage/icon/member.png" alt="會員中心icon">
                         <span>會員中心</span>
                     </a>
                 </li>
@@ -1220,6 +1220,7 @@ try {
         </div>
     </div 多的> -->
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js'></script>
+    <script src="js/main.js"></script>
     <script src="js/memberCenter.js"></script>
 </body>
 
