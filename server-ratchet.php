@@ -1,19 +1,22 @@
 <?php
+//MyApp
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
 
 // Make sure composer dependencies have been installed
+//__DIR__檔案所在路徑
 require __DIR__ . '/vendor/autoload.php';
 
 /**
  * chat.php
  * Send any incoming messages to all connected clients (except sender)
  */
+//Ratchet onOpen onMessage onClose onError
 class MyChat implements MessageComponentInterface {
     protected $clients;//存所有的$conn
 
     public function __construct() {
-        echo "WebSocket Server is running...\r\n";
+        echo "WebSocket Server is running...yoyo\r\n";
         // 使用SplObjectStorage，當作儲存所有連線($conn)的容器
         $this->clients = new \SplObjectStorage;
     }
@@ -23,23 +26,28 @@ class MyChat implements MessageComponentInterface {
      */
     public function onOpen(ConnectionInterface $conn) {
         $this->clients->attach($conn);//連線存起來
+        //echo "New connection" ;
     }
 
     /**
-     * 當有用戶傳訊息進來時...
+     * 當有用戶傳訊息進來時...Connection收到訊息時調用~
      */
+    //我要在這裡定義訊息~~yoyo
+    //這邊的msg是server收到的訊息
     public function onMessage(ConnectionInterface $from, $msg) {
-        $json_msg = json_decode($msg, true); //一律使用Json來傳訊息
-        $msg_type = $json_msg['msg_type'];
+        $json_msg = json_decode($msg, true); //一律使用Json來傳訊息 true代表轉array
+        $msg_type = $json_msg['msg_type'];//msg_type 有 LOGIN , GET_ONLINE_USERS CHAT
         $user_id = $json_msg['user_id'];
         echo "收到 msg_type:[$msg_type] user_id:[$user_id]\r\n";
         
         switch ($msg_type)
         {
             case "LOGIN":
+                //[msg_type]: "LOGIN", [user_id]: chat_app.user_id 
                 //一但拿到user_id時，記錄進去，方便之後使用"conn"就能從"clients"查找到UserId
                 $this->clients[$from] = $user_id;
                 // 通知其他人我上線了
+                //拿到資料,轉譯,呼叫msgToOthers()
                 $msg = array();
                 $msg['msg_type'] = "USER_ONLINE";
                 $msg['user_id'] = $user_id;
