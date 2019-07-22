@@ -246,7 +246,7 @@ try {
                                 </tr>
                                 <tr>
                                     <th>性別:</th>
-                                    <td><?php echo $member["mem_gender"]; ?></td>
+                                    <td><?php echo ($member["mem_gender"] == "M") ? "男" : "女"; ?></td>
                                 </tr>
                                 <tr>
                                     <th>生日:</th>
@@ -271,7 +271,7 @@ try {
                             </table>
                             <?php 
                              }else{
-                                echo "no";
+                                //echo "no";
                              }
                             ?>
 
@@ -284,9 +284,10 @@ try {
                     
                     
                     <!-- form表單,input輸入 -->
-                    <div id="memForm_phone" class="memFileWrapFrom">
+                    <div id="memForm_phone" class="memFileWrapForm">
                         <!-- <form action=""> -->
                         <div class="memFileWrapTable">
+                        <form id="myForm_phone" action="memUpdate.php">
                             <table>
                                 <tr>
                                     <th>編號:</th>
@@ -299,10 +300,12 @@ try {
                                 <tr>
                                     <th>性別:</th>
                                     <td>
-                                        <input type="radio" value="男" name="mem_gender" <?php if ($member["mem_gender"]=="男") {
-                                            echo "checked";}?>>男 
-                                        <input type="radio" value="女" name="mem_gender" <?php if ($member["mem_gender"]=="女") {
-                                            echo "checked";}?>>女
+                                        <select name="mem_gender">
+                                            <option value="M" <?php if ($member["mem_gender"]=="M") {
+                                            echo "selected";}?>>男</option>
+                                            <option value="F" <?php if ($member["mem_gender"]=="F") {
+                                            echo "selected";}?>>女</option>
+                                        </select>
                                     </td>
                                 </tr>
                                 <tr>
@@ -311,7 +314,7 @@ try {
                                 </tr>
                                 <tr>
                                     <th>星座:</th>
-                                    <td><input type="text" name="mem_sign" value="<?php echo $member["mem_sign"]; ?>"></td>
+                                    <td><span><?php echo $member["mem_sign"]; ?></span><input type="hidden" name="mem_sign" value="<?php echo $member["mem_sign"]; ?>"></td>
                                 </tr>
                                 <tr>
                                     <th>&nbsp;<!--帳號:--></th>
@@ -335,7 +338,9 @@ try {
                                 <button id="cancel_phone" class="btnCanncel">取消</button>
                             </div>
                         </div>
+                        </form>
                         <!-- </form> -->
+                        
                     </div>
                 </div>
 
@@ -373,7 +378,7 @@ try {
                                 </tr>
                                 <tr>
                                     <th>性別:</th>
-                                    <td><?php echo $member["mem_gender"]; ?></td>
+                                    <td><?php echo ($member["mem_gender"] == "M") ? "男" : "女"; ?></td>
                                     <th>密碼:</th>
                                     <td><!--<button>修改密碼</button>--></td>
                                 </tr>
@@ -386,7 +391,7 @@ try {
                             </table>
                             <?php 
                              }else{
-                                echo "no";
+                                // echo "no";
                              }
                             ?>
 
@@ -399,7 +404,7 @@ try {
                     </div>
 
                     <!-- form表單,input輸入 -->
-                    <div id="memForm_web" class="memFileWrapFrom">
+                    <div id="memForm_web" class="memFileWrapForm">
                         <div class="memFileForm_web">
                             <form id="myForm_web" action="memUpdate.php">
                             <table>
@@ -407,7 +412,7 @@ try {
                                     <th>編號:</th>
                                     <td></td>
                                     <th>星座:</th>
-                                    <td><input type="text" name="mem_sign" value="<?php echo $member["mem_sign"]; ?>"></td>
+                                    <td><span><?php echo $member["mem_sign"]; ?></span><input type="hidden" name="mem_sign" value="<?php echo $member["mem_sign"]; ?>"></td>
                                 </tr>
                                 <tr>
                                     <th>暱稱:</th>
@@ -418,11 +423,13 @@ try {
                                 <tr>
                                     <th>性別:</th>
                                     <td>
-                
-                                        <input type="radio" value="男" name="mem_gender" <?php if ($member["mem_gender"]=="男") {
-                                            echo "checked";}?>>男 
-                                        <input type="radio" value="女" name="mem_gender" <?php if ($member["mem_gender"]=="女") {
-                                            echo "checked";}?>>女
+                                        <select name="mem_gender">
+                                            <option value="M" <?php if ($member["mem_gender"]=="M") {
+                                            echo "selected";}?>>男</option>
+                                            <option value="F" <?php if ($member["mem_gender"]=="F") {
+                                            echo "selected";}?>>女</option>
+                                        </select>
+                                        
                                     </td>
                                     <th>密碼:</th>
                                     <td><input type="password" name="mem_pwd" value="<?php echo $member["mem_pwd"]; ?>"></td>
@@ -439,7 +446,7 @@ try {
 
                             <!-- </div> *****-->
                             <div class="memFileBtn">
-                                <input type="submit" id="confirm_web" class="btnConfirm" value="確認修改" onclick="console.log(this.form);alert(1);">
+                                <input type="submit" id="confirm_web" class="btnConfirm" value="確認修改" >
                                 <!-- <button></button> -->
                                 <button id="cancel_web" class="btnCanncel">取消</button>
                             </div>
@@ -523,7 +530,7 @@ try {
         </div>
         <?php 
              }else{
-                echo "no";
+                // echo "no";
              }
         ?>
 
@@ -592,7 +599,7 @@ try {
             </div>
         <?php 
              }else{
-                echo "no";
+                // echo "no";
              }
         ?>
 
@@ -750,7 +757,7 @@ try {
 
         <?php 
              }else{
-                echo "no";
+                // echo "no";
              }
         ?>
 
@@ -837,7 +844,7 @@ try {
                 </div>
         <?php 
              }else{
-                echo "no";
+                // echo "no";
              }
         ?>
                 

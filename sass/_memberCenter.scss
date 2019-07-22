@@ -24,6 +24,12 @@
             border-radius: 8px;
             height: 25px;
         }
+    select{
+            border: 1px solid rgb(185, 185, 185);
+            border-radius: 8px;
+            height: 25px;
+            width: 179px;
+    }
 
     .cloud{
         display: none;
@@ -82,7 +88,7 @@
 
 
                 // form表單,input輸入 欄
-                .memFileWrapFrom{
+                .memFileWrapForm{
                     width: 92%;
                     height: 35%;
                     background-color: #fff;
@@ -205,6 +211,10 @@
         
                 
 
+        // form表單,input輸入
+        .msgRecordWrapforinput{ //先隱藏
+            display: none;
+        }
 
         /*留言記錄*/
         .msgRecord{
@@ -410,6 +420,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            display: none;
         }
             .recordBtn{
                 width: 195px;
@@ -483,6 +494,12 @@
             border: 1px solid rgb(185, 185, 185);
             border-radius: 8px;
             height: 25px;
+        }
+        select{
+            border: 1px solid rgb(185, 185, 185);
+            border-radius: 8px;
+            height: 25px;
+            width: 179px;
         }
 
         // 雲
@@ -626,7 +643,7 @@
                         }
 
                     // form表單,input輸入 欄
-                    .memFileWrapFrom{
+                    .memFileWrapForm{
                         width: 95%;
                         height: 35%;
                         background-color: #fff;
@@ -745,6 +762,7 @@
             // background-color: rgb(65, 185, 41);
             margin: 4% auto 0%;
             position: relative;
+            display: none;
         }
             
             .recordAreaUl_web{
@@ -978,7 +996,7 @@
 
             
             // form表單,input輸入
-            .msgRecordWrapforinput{
+            .msgRecordWrapforinput{ //先隱藏
             display: none;
             }
                 .msgRecordWrap{
