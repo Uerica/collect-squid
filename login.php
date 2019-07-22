@@ -18,14 +18,14 @@
             //抓出來存session
             $_SESSION["mem_no"] =  $memRow["mem_no"];
             $_SESSION["mem_name"] =  $memRow["mem_name"];
-            $_SESSION["style_no"] =  $memRow["style_no"];
+            $_SESSION["style_no"] =  ($memRow["dressed_no"] == "" ? $memRow["style_no"] : $memRow["dressed_no"]);
             $_SESSION["mem_lv"] =  $memRow["mem_lv"];
             $_SESSION["mem_avatar"] =  $memRow["mem_avatar"];
             $_SESSION["squid_qty"] =  $memRow["squid_qty"];
             
             $resp = array();
             $resp["mem_name"] =  $memRow["mem_name"];
-            $resp["style_no"] =  $memRow["style_no"];
+            $resp["style_no"] =  ($memRow["dressed_no"] == "" ? $memRow["style_no"] : $memRow["dressed_no"]);
             $resp["mem_lv"] =  $memRow["mem_lv"];
             $resp["mem_avatar"] =  $memRow["mem_avatar"];
             $resp["squid_qty"] =  $memRow["squid_qty"];
