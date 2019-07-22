@@ -236,13 +236,12 @@ var chat_app = new Vue({
 });
 var onMessageListener = function (e) {
   // 收到server傳過來的訊息
-  // console.log(e)裡面好多東西喔~;
+  //console.log("onMessageListener e:",e)裡面好多東西喔~;
   var resp_obj = JSON.parse(e.data); //字串轉json
-  // console.log("回傳的JSON物件",resp_obj);
+  //console.log("回傳的JSON物件",resp_obj);
   console.log("收到訊息，訊息類型", resp_obj.msg_type);
   switch (resp_obj.msg_type) {
     case 'CHAT': //聊天的訊息
-      console.log('把資料塞到泡泡裡', resp_obj);
       console.log('把資料更新到聊天視窗', resp_obj);
       chat_app.messages.push(resp_obj);
       break;
@@ -282,11 +281,13 @@ var onMessageListener = function (e) {
       console.error('收到不認得的msg_type', resp_obj);
   }
 };
+//send() -- chat_app.is_login()
 function initWebsocketServer() {
   conn_chat = new WebSocket('ws://35.229.227.58/chat');
   conn_chat.onopen = function (e) {
     console.log('已連到伺服器');
     if(chat_app.is_login()){
+      //傳過去給大家
       conn_chat.send(
         JSON.stringify(
           { "msg_type": "LOGIN", "user_id": chat_app.user_id }
@@ -338,6 +339,7 @@ function login(user_id,style_no,mem_lv,mem_avatar,squid_qty) {
 }
 function chat_to_someone(user_id, to, msg) {
   conn_chat.send(
+    //將JSON轉為字串
     JSON.stringify(
       {
         "msg_type": "CHAT",
