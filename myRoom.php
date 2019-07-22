@@ -1,46 +1,11 @@
 <?php 
-  session_start();
-  $msg = "";
-
-  $dsn = "mysql:host=sql.uerica.com;port=3307;dbname=dd101g2;charset=utf8";
-  $user = "dd101g2";
-  $psw = "dd101g2";
-  $options = array(PDO::ATTR_CASE => PDO::CASE_NATURAL, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
-  $pdo = new PDO($dsn, $user, $psw, $options);
-
-  //上傳圖片
-  if (isset($_POST['submitPic'])) {
-    
-    $image = $_FILES['selectPicInput']['name'];
-
-    $target = "images/".basename($image);
-
-    $sql = "UPDATE `member` SET `poster_img_url` = :poster_img_url WHERE mem_no = :mem_no";
-  
-    $uploadPic = $pdo->prepare($sql);
-    $uploadPic->bindValue(":poster_img_url", $target);
-    $uploadPic->bindValue(":mem_no", '24');
-    $uploadPic->execute();
-    
-    //用move_uploaded_file() 出現問題
-    if (@move_uploaded_file($_FILES['selectPicInput']['tmp_name'], $target)) {
-        $msg = "success";
-    }else{
-        $msg = "failed";
-    }
-  }
-?>
-
-<?php  
+    session_start();
+    $msg = "";
     $errMsg = "";
     try{
-        $dsn = "mysql:host=sql.uerica.com;port=3307;dbname=dd101g2;charset=utf8";
-        $user = "dd101g2";
-        $psw = "dd101g2";
-        $options = array(PDO::ATTR_CASE => PDO::CASE_NATURAL, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
-        $pdo = new PDO($dsn, $user, $psw, $options);
-        
-        $_SESSION["mem_no"] = 20;
+        require_once('connectSquid.php');
+
+        $_SESSION["mem_no"] = 1;
         $mem_no = $_SESSION["mem_no"];
 
         //會員資料
@@ -48,12 +13,18 @@
         $memberInfo = $pdo->prepare($memberSQL);
         $memberInfo->bindValue(':mem_no', $mem_no);
         $memberInfo->execute();
+        $memRow = $memberInfo->fetch(PDO::FETCH_ASSOC);
 
-        //椅子
-        // $chairSQL = "SELECT * FROM `product_furniture` WHERE `furn_type` = :furn_type";
-        // $roomChair = $pdo->prepare($chairSQL);
-        // $roomChair->bindValue(':furn_type', 1);
-        // $roomChair->execute();
+        // 留言
+        $cmtSQL =
+        "SELECT *
+        FROM board_comment bc JOIN member m
+        ON bc.send_mem_no = m.mem_no
+        WHERE bc.rcv_mem_no = :rcv_mem_no;
+        ";
+        $comments = $pdo->prepare($cmtSQL);
+        $comments->bindValue(':rcv_mem_no', $mem_no);
+        $comments->execute();
 
         // 我的椅子
         $chairSQL = 
@@ -66,12 +37,6 @@
         $myRoomChair->bindValue(':furn_type', 1);
         $myRoomChair->execute();
 
-        //桌子
-        // $deskSQL = "SELECT * FROM `product_furniture` WHERE `furn_type` = :furn_type";
-        // $roomDesk = $pdo->prepare($deskSQL);
-        // $roomDesk->bindValue(':furn_type', 2);
-        // $roomDesk->execute();
-
         // 我的桌子
         $deskSQL = 
         "SELECT *
@@ -83,11 +48,6 @@
         $myRoomDesk->bindValue(':furn_type', 2);
         $myRoomDesk->execute();
 
-        //床
-        // $bedSQL = "SELECT * FROM `product_furniture` WHERE `furn_type` = :furn_type";
-        // $roomBed = $pdo->prepare($bedSQL);
-        // $roomBed->bindValue(':furn_type', 3);
-        // $roomBed->execute();
 
         // 我的床
         $bedSQL = 
@@ -99,6 +59,45 @@
         $myRoomBed->bindValue(':mem_no', $mem_no);
         $myRoomBed->bindValue(':furn_type', 3);
         $myRoomBed->execute();
+
+        // 我使用的椅子
+        $chairSQL = 
+        "SELECT *
+        FROM mem_furniture mf JOIN product_furniture pf 
+        ON mf.furn_no = pf.furn_no 
+        WHERE mf.mem_no = :mem_no AND pf.furn_type = :furn_type AND mf.is_using = :is_using";
+        $myUsingChair = $pdo->prepare($chairSQL);
+        $myUsingChair->bindValue(':mem_no', $mem_no);
+        $myUsingChair->bindValue(':furn_type', 1);
+        $myUsingChair->bindValue(':is_using', 1);
+        $myUsingChair->execute();
+        $usingChair = $myUsingChair->fetch(PDO::FETCH_ASSOC);
+        
+        // 我使用的桌子
+        $deskSQL = 
+        "SELECT *
+        FROM mem_furniture mf JOIN product_furniture pf 
+        ON mf.furn_no = pf.furn_no 
+        WHERE mf.mem_no = :mem_no AND pf.furn_type = :furn_type AND mf.is_using = :is_using";
+        $myUsingDesk = $pdo->prepare($deskSQL);
+        $myUsingDesk->bindValue(':mem_no', $mem_no);
+        $myUsingDesk->bindValue(':furn_type', 2);
+        $myUsingDesk->bindValue(':is_using', 1);
+        $myUsingDesk->execute();
+        $usingDesk = $myUsingDesk->fetch(PDO::FETCH_ASSOC);
+        
+        // 我使用的床
+        $bedSQL = 
+        "SELECT *
+        FROM mem_furniture mf JOIN product_furniture pf 
+        ON mf.furn_no = pf.furn_no 
+        WHERE mf.mem_no = :mem_no AND pf.furn_type = :furn_type AND mf.is_using = :is_using";
+        $myUsingBed = $pdo->prepare($bedSQL);
+        $myUsingBed->bindValue(':mem_no', $mem_no);
+        $myUsingBed->bindValue(':furn_type', 3);
+        $myUsingBed->bindValue(':is_using', 1);
+        $myUsingBed->execute();
+        $usingBed = $myUsingBed->fetch(PDO::FETCH_ASSOC);
 
     } catch(PDOException $e) {
         $errMsg .= $e->getMessage()."<br>";
@@ -134,7 +133,7 @@
     <div class="roomPage">
     </div>
     <!-- 導覽列 -->
-    <header class="common_header disabledScrollOnHover">
+    <!-- <header class="common_header disabledScrollOnHover">
         <div class="menuMobile">
             <span class="menuMobile_circle"></span>
             <a href="#" class="menuMobile_link">
@@ -259,9 +258,9 @@
                 </div>
             </ul>
         </nav>
-    </header>
+    </header> -->
 
-    <content>
+    <div class="myRoomPage">
         <div class="myRoomBg">
             <div class="leftWall">
                 <img src="images/window.png">
@@ -271,7 +270,6 @@
                 <div class="picUpload"> 
 
                 <?php
-
                     // $dsn = "mysql:host=sql.uerica.com;port=3307;dbname=dd101g2;charset=utf8";
                     // $user = "dd101g2";
                     // $psw = "dd101g2";
@@ -283,47 +281,39 @@
                     // $result = $pdo->prepare($sql);
                     // while($uploadPicRow = $result->fetchObject()){
                 ?>       
-
-                    <img id="picUploadImg">
-
+                    <img id="picUploadImg" src="wall_pic/<?php echo $memRow["poster_img_url"] ?>">
                  <?php
                     // }
                 ?>
-                    <a href="#" id="msgBoard" class="messageBoard">
+                    <a href="javascript:;" id="msgBoard" class="messageBoard">
                         <span>留言板</span><br>
                         <img src="images/messageBoard.png">
                     </a>
                     <div class="addPhotoBtn">
                         <form id="uploadForm" method="post" action="myRoom.php" enctype="multipart/form-data">
-                            <input type="hidden" name="imagestring">
+                            <!-- <input type="hidden" name="imagestring"> -->
                             <input type="file" id="selectPicInput" name="selectPicInput" capture style="display:none">
                             <img src="images/camera.png" id="selectPic" style="cursor:pointer">
-                            <input type="submit" name="submitPic" id="submitPic" value="確定上傳">
+                            <input type="button" name="submitPic" id="submitPic" value="確定上傳">
                         </form>
                     </div>
                 </div>
             </div>
             <div class="rightWall">
                 <div class="roomIntro">
-                    <?php 
-                      while($memberArr = $memberInfo->fetch(PDO::FETCH_ASSOC)){
-                    ?>
-                        <h3><span><?php echo $memberArr["mem_name"] ;?></span>的房間</h3>
-                        <p>暱稱：<?php echo $memberArr["mem_name"] ;?><br>
+                        <h3><span><?php echo $memRow["mem_name"] ;?></span>的房間</h3>
+                        <p>暱稱：<?php echo $memRow["mem_name"] ;?><br>
                         等級：<?php 
-                        if($memberArr["mem_lv"] == 1){echo "平民";}
-                        if($memberArr["mem_lv"] == 2){echo "貴族";}
-                        if($memberArr["mem_lv"] == 3){echo "皇族";} 
+                        if($memRow["mem_lv"] == 1){echo "平民";}
+                        if($memRow["mem_lv"] == 2){echo "貴族";}
+                        if($memRow["mem_lv"] == 3){echo "皇族";} 
                         ?>
                         <br>
-                        性別：<?php echo $memberArr["mem_gender"] ?><br>
-                        星座：<?php echo $memberArr["mem_sign"] ?><br>
-                        自我介紹：<?php echo $memberArr["mem_intro"] ?>
+                        性別：<?php echo $memRow["mem_gender"] ?><br>
+                        星座：<?php echo $memRow["mem_sign"] ?><br>
+                        自我介紹：<?php echo $memRow["mem_intro"] ?>
                         <br>
                         </p>
-                    <?php 
-                        }
-                    ?>
                     <div class="getHeart">
                         <img src="images/getHeart.png">
                         <span>100</span>
@@ -339,30 +329,37 @@
 
         <div class="lightboxBg">
             <div class="lightbox">
-                <a href="#">
+                <a href="javascript:;">
                     <img id="cancel" src="images/cancelBtn.png">
                 </a>
                 <h2>留言板</h2>
-                <div class="message">
+                <div class="messageBoard" id="messageBoard">
                     <ul>
-                        <li>
-                            <img src="images/squid_avatar.png">
-                            <span>#魚翔你的家敲口愛的</span>
-                        </li>
-                        <li>
-                            <img src="images/squid_avatar.png">
-                            <span>＃魚翔你家超...超漂亮的，害我忍不住都濕了</span>
-                        </li>
-                        <li>
-                            <img src="images/squid_avatar.png">
-                            <span>#魚翔你下次滷味要吃大辣嗎？</span>
-                        </li>
+                        <?php 
+                        while($cmtRow = $comments->fetch(PDO::FETCH_ASSOC)) {
+                        ?>
+                            <li>
+                                <input type="hidden" name="cmt_no" id="cmt_no" value="<?php echo $cmtRow["cmt_no"] ?>"> 
+                                <div class="messageMem">
+                                    <img src="images/squid_avatar.png">
+                                    <span><?php echo $cmtRow["mem_name"]; ?></span>
+                                </div>
+                                <div class="message"><?php echo $cmtRow["cmt_cnt"] ?></div>
+                                <div class="trashPic">
+                                    <img src="images/trashcan.png" alt="反送中">
+                                </div>
+                            </li>
+                        <?php
+                        }
+                        ?>
                     </ul>
                 </div>
                 <div class="msgInputArea">
+                    <input type="hidden" id="talking_mem_no" name="talking_mem_no" value="<?php echo $memRow['mem_no']; ?>">
                     <input type="text" class="msgInput">
                     <span class="textCount">20/50</span>
                     <div class="msgBtn">
+                        <input type="hidden" name="me_mem_no" id="me_mem_no" value="<?php echo $memRow["mem_name"] ?>">
                         <input type="submit" class="msgSend" value="傳送留言">
                     </div>
                 </div>
@@ -370,17 +367,18 @@
         </div>
 
         <div class="myRoomFurniture">
+            <input type="hidden" name="mem_no" id="mem_no" value="<?php echo $memRow["mem_no"]; ?>">
             <div class="bed">
-                <img src="images/bed_LV1_01.png">
+                <img src="<?php echo $usingBed["furn_img_url"]; ?>">
             </div>
             <div class="chair">
-                <img src="images/chair_LV1_01.png">
+                <img src="<?php echo $usingChair["furn_img_url"]; ?>">
             </div>
             <div class="desk">
-                <img src="images/desk_LV1_01.png"> 
+                <img src="<?php echo $usingDesk["furn_img_url"]; ?>"> 
             </div>
             <div class="character">
-                <img src="images/squid.png">
+                <img src="<?php echo $memRow["style_no"]; ?>">
             </div>
         </div>
 
@@ -400,7 +398,9 @@
                         $chairCount++;
                     ?>
                         <div class="swiper-slide">
-                            <a href="#" class="chairSmallChange">
+                            <a href="javascript:;" class="chairSmallChange">
+                                <input type="hidden" name="furn_type" id="furn_type" value="1">
+                                <input type="hidden" name="furn_no" id="furn_no" value="<?php echo $myChairRow["furn_no"] ?>">
                                 <img src="<?php 
                                     echo $myChairRow["furn_img_url"];
                                 ?>">
@@ -417,7 +417,7 @@
                         $chairCount++;
                     ?>
                         <div class="toMall swiper-slide">
-                            <a href="#">
+                            <a href="javascript:;s">
                                 <img src="images/cart.png">
                             </a>
                         </div>
@@ -439,7 +439,9 @@
                         $deskCount++;
                     ?>
                         <div class="swiper-slide">
-                            <a href="#" class="chairSmallChange">
+                            <a href="#" class="deskSmallChange">
+                                <input type="hidden" name="furn_type" id="furn_type" value="2">
+                                <input type="hidden" name="furn_no" id="furn_no" value="<?php echo $myDeskRow["furn_no"] ?>">
                                 <img src="<?php 
                                     echo $myDeskRow["furn_img_url"];
                                 ?>">
@@ -476,7 +478,9 @@
                         $bedCount++;
                     ?>
                         <div class="swiper-slide">
-                            <a href="#" class="chairSmallChange">
+                            <a href="#" class="bedSmallChange">
+                                <input type="hidden" name="furn_type" id="furn_type" value="3">
+                                <input type="hidden" name="furn_no" id="furn_no" value="<?php echo $myBedRow["furn_no"] ?>">
                                 <img src="<?php 
                                     echo $myBedRow["furn_img_url"];
                                 ?>">
@@ -505,7 +509,7 @@
                 <div class="swiper-button-prev"></div>
             </div>
         </section>  
-    </content>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
 
