@@ -1,6 +1,8 @@
+// import { callbackify } from "util";
+
 function init() {
-  show();
-  updateDetails(document.getElementById("button"));
+  // show();
+  // updateDetails(document.getElementById("button"));
 
   // RWD
   window.addEventListener("resize", gameSizing);
@@ -60,13 +62,33 @@ function menuMobileTransform() {
 }
 
 function regis() {
-  $(".eventsWrapper input").click(() =>
+  $(".eventsWrapper input").click((e) => {
+    // console.log(e.target.previousElementSibling.value);
+    console.log(e.target);
+
+    let xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4) {
+        if (xhr.status == 200) {
+          document.getElementById("evtDetail").innerHTML = xhr.responseText;
+          cancelRegis();
+          confirmRegis(e.target);
+        } else {
+          alert(xhr.status);
+        }
+      }
+    }
     $(".regisBox").css({
       display: "flex"
-    })
-  );
+    });
+    xhr.open("post", "getEventDetail.php", true);
+    xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+    let evtDetail = `evt_no=${e.target.previousElementSibling.value}`;
+    xhr.send(evtDetail);
+  });
 }
 
+// 關閉報名燈箱
 function cancelRegis() {
   $(".regisBox .cancelBtn").click(() =>
     $(".regisBox").css({
@@ -75,14 +97,34 @@ function cancelRegis() {
   );
 }
 
-function confirmRegis() {
-  $(".regisBox input").click(() => {
-    $(".regisBox").css({
-      display: "none"
-    });
+// 確認報名
+// 我超強
+function confirmRegis(target) {
+  $("#regisBtn").click(function() {
+    // e.preventDefault();  
+
+    let xhr = new XMLHttpRequest();
+    xhr.onreadystatechange =  () => {
+      if (xhr.readyState == 4) {
+        if (xhr.status == 200) {
+          alert('報名成功');
+          target.value = "已報名";
+          $('.regisBox').css({ display: 'none' });
+        } else {
+          alert(xhr.status);
+        }
+      }
+    }
+    xhr.open("post", "registerEvent.php", true);
+    xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+
+    let evt_no = document.getElementById('evt_no').value;
+    let data = `evt_no=${evt_no}`;
+    xhr.send(data);
   });
 }
 
+// 取消舉辦活動
 function cancelRaise() {
   $(".raiseBox .cancelBtn").click(() => {
     $(".raiseBox").css({
@@ -91,6 +133,11 @@ function cancelRaise() {
   });
 }
 
+$('#raiseBtn').click(function() {
+  $('raiseBox').css({ display: 'flex' });
+});
+
+// 確認舉辦活動
 // function confirmRaise() {
 //   $(".raiseBox .submitWrapper input").click(() => {
 //     console.log($(this));
@@ -103,46 +150,47 @@ function cancelRaise() {
 
 
 // 螢幕橫向
-function fullScreenCheck() {
-  if (document.fullscreenElement) return;
-  return document.documentElement.requestFullscreen();
-}
+// function fullScreenCheck() {
+//   if (document.fullscreenElement) return;
+//   return document.documentElement.requestFullscreen();
+// }
 
-function updateDetails(lockButton) {
-  const buttonOrientation = getOppositeOrientation();
-  lockButton.textContent = `Lock to ${buttonOrientation}`;
-}
+// function updateDetails(lockButton) {
+//   const buttonOrientation = getOppositeOrientation();
+//   lockButton.textContent = `Lock to ${buttonOrientation}`;
+// }
 
-function getOppositeOrientation() {
-  const {
-    type
-  } = screen.orientation;
-  return type.startsWith("portrait") ? "landscape" : "portrait";
-}
+// function getOppositeOrientation() {
+//   const {
+//     type
+//   } = screen.orientation;
+//   return type.startsWith("portrait") ? "landscape" : "portrait";
+// }
 
-async function rotate(lockButton) {
-  try {
-    await fullScreenCheck();
-  } catch (err) {
-    console.error(err);
-  }
-  const newOrientation = getOppositeOrientation();
-  await screen.orientation.lock(newOrientation);
-  updateDetails(lockButton);
-}
 
-function show() {
-  const {
-    type,
-    angle
-  } = screen.orientation;
-  console.log(`Orientation type is ${type} & angle is ${angle}.`);
-}
+// async function rotate(lockButton) {
+//   try {
+//     await fullScreenCheck();
+//   } catch (err) {
+//     console.error(err);
+//   }
+//   const newOrientation = getOppositeOrientation();
+//   await screen.orientation.lock(newOrientation);
+//   updateDetails(lockButton);
+// }
 
-screen.orientation.addEventListener("change", () => {
-  show();
-  updateDetails(document.getElementById("button"));
-});
+// function show() {
+//   const {
+//     type,
+//     angle
+//   } = screen.orientation;
+//   console.log(`Orientation type is ${type} & angle is ${angle}.`);
+// }
+
+// screen.orientation.addEventListener("change", () => {
+//   show();
+//   updateDetails(document.getElementById("button"));
+// });
 // 螢幕橫向
 
 window.onload = init;
@@ -193,12 +241,13 @@ $(document).ready(function () {
       xhr.onreadystatechange = function () {
         if (xhr.readyState == 4) {
           if (xhr.status == 200) {
-            (function confirmRaise() {
-              $(".raiseBox").css({
-                display: "none"
-              });
-            }).call(this);
             alert(xhr.responseText);
+            // (function confirmRaise() {
+            //   $(".raiseBox").css({
+            //     display: "none"
+            //   });
+            // }).call(this);
+            cancelRaise().click();
           } else {
             alert(xhr.status);
           }
@@ -214,9 +263,11 @@ $(document).ready(function () {
 
 // 頁籤evt
 $(function () {
+  // 更換頁籤
   var $li = $('ul.evt_title li');
   $($li.eq(0).addClass('active').find('a').attr('href')).siblings('.evt_inner').hide();
-
+  
+  // 更換內容
   $li.click(function () {
     $($(this).find('a').attr('href')).show().siblings('.evt_inner').hide();
     $(this).addClass('active').siblings('.active').removeClass('active');

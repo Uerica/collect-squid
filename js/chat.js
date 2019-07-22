@@ -61,22 +61,23 @@ var chat_app = new Vue({
         xhr.onload=function (e){
           if(e.currentTarget.status == 200){
             var resp = JSON.parse(e.currentTarget.responseText);
+            //產生初始位置
+            resp.position = chat_app.calcPosition();
             chat_app.online_users_info.push(resp);
           }else{
               console.error( '有人上線 error.', e );
           }
-        }
-        
+        };
         var url = "getRole.php?mem_name="+user;
         xhr.open("Get", url, true);
         xhr.send( null );
     },
     others_online_users_info:function(){
-      return this.online_users_info.filter(function (e) { return e.mem_name != chat_app.user_id });
+      return this.online_users_info.filter(function (e) { return e.mem_name != chat_app.user_id; });
     },
     user_offline: function (user) {
-      this.online_users = this.online_users.filter(function (e) { return e != user });
-      this.online_users_info = this.online_users_info.filter(function (e) { return e.mem_name != user });
+      this.online_users = this.online_users.filter(function (e) { return e != user; });
+      this.online_users_info = this.online_users_info.filter(function (e) { return e.mem_name != user; });
     },
     public_chat: function () {
       this.chat_to_who = '';
@@ -93,6 +94,7 @@ var chat_app = new Vue({
       } else {
         chat_to_someone(this.user_id, this.chat_to_who, this.chat_send_text);
       }
+      this.chat_send_text = "";
     },
     online_friends: function () {
       // this.friends.filter( function(e){ return this.online_users.includes(e); } );
@@ -119,6 +121,24 @@ var chat_app = new Vue({
     },
     mark_read_messages_from_someone: function (who) {
       this.unread_messages_from_someone(who).forEach(function (msg) { msg.is_read = true });
+    },
+    has_latest_message: function(who) {
+      var foundmsg = this.messages.find(function(msg) {
+        return msg.user_id == who && ((new Date().getTime() - new Date(msg.chat_time).getTime()) < 5000 );
+      });
+      return typeof(foundmsg)!=="undefined";
+    },
+    get_latest_message: function(who) {
+      var latestmsg = "";
+      var index = this.messages.length - 1;
+      for( ; index >=0; index--) {
+        var msg = this.messages[index];
+        if (msg.user_id == who && ((new Date().getTime() - new Date(msg.chat_time).getTime()) < 5000 )) {
+          latestmsg = msg.chat_msg;
+          break;
+        }
+      }
+      return latestmsg;
     },
     refresh_friends: function() {
       // call myFriend
@@ -155,9 +175,9 @@ var chat_app = new Vue({
     // 登入 增加登入成功&錯誤功能
     login_btn: function() {
       const xhr = new XMLHttpRequest();
-      xhr.onload = () => {
-        if (xhr.status == 200) {
-          var resp = JSON.parse(xhr.responseText);
+      xhr.onload = (e) => {
+        if (e.currentTarget.status == 200 && e.currentTarget.responseText != "") {
+          var resp = JSON.parse(e.currentTarget.responseText);
           $(".loginBox").css({ display: "none" });
           const loginSquid = document.querySelector(".loginSquid #myRole");
           login(resp.mem_name,resp.style_no,resp.mem_lv,resp.mem_avatar,resp.squid_qty);
@@ -166,10 +186,10 @@ var chat_app = new Vue({
           $("#login_mem_name").val('');
           $("#login_mem_pwd").val('');
         } else {
-          if(xhr.status == 401){
+          if(e.currentTarget.status == 401){
             $("#login_failMsg").html("帳號密碼錯誤");
           }else{
-            alert(xhr.status);
+            console.error("login_btn error.", e);
           }
         }
       };
@@ -205,12 +225,12 @@ var chat_app = new Vue({
       $(".loginBox").css({ display: "none" });
       $(".createBox").css({ display: "flex" });
     },
-    calcPosition() {
+    calcPosition: function() {
       const { innerWidth, innerHeight } = window;
       return {
         top : 100 + Math.random() * (innerHeight - 300) + 'px',
         left: Math.random() * (innerWidth - 200) + 'px'
-      }
+      };
     }
   }
 });
@@ -229,16 +249,20 @@ var onMessageListener = function (e) {
     case 'ONLINE_USERS':
       console.log('更新目前有哪些人在線上', resp_obj.users);
       chat_app.online_users = resp_obj.users;
+      // 先清空online_users_info
+      chat_app.online_users_info = [];
       for(online_user in chat_app.online_users){
         var xhr = new XMLHttpRequest();
         xhr.onload=function (e){
-          if(e.currentTarget.status == 200){
+          if(e.currentTarget.status == 200 && e.currentTarget.responseText != ""){
             var resp = JSON.parse(e.currentTarget.responseText);
+            //產生初始位置
+            resp.position = chat_app.calcPosition();
             chat_app.online_users_info.push(resp);
           }else{
               console.error( '更新目前有哪些人在線上 error.', e );
           }
-        }
+        };
         
         var url = "getRole.php?mem_name="+chat_app.online_users[online_user];
         xhr.open("Get", url, true);
@@ -276,7 +300,7 @@ function initWebsocketServer() {
             "user_id": chat_app.user_id
           }
         )
-      )
+      );
     }
   };
   conn_chat.onclose = function (e) {
@@ -309,7 +333,7 @@ function login(user_id,style_no,mem_lv,mem_avatar,squid_qty) {
           "user_id": user_id
         }
       )
-    )
+    );
   }
 }
 function chat_to_someone(user_id, to, msg) {
@@ -321,6 +345,7 @@ function chat_to_someone(user_id, to, msg) {
         "chat_type": "USER",
         "chat_to": to,
         "chat_msg": msg,
+        "chat_time": new Date(),
         "is_read": false
       }
     )
@@ -333,6 +358,7 @@ function chat_to_all(user_id, msg) {
         "msg_type": "CHAT",
         "user_id": user_id,
         "chat_type": "ALL",
+        "chat_time": new Date(),
         "chat_msg": msg
       }
     )
