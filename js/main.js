@@ -87,9 +87,9 @@ function collapseRobot() {
 
 // 移除通知
 function closeNotifications() {
-  $(".notifications_delete").click(function() {
-    $(this.parentElement).remove();
-  });
+  // $(".notifications_delete").click(function() {
+  //   $(this.parentElement).remove();
+  // });
   // $("body").on('click', '.notifications_delete', function(){
     
   // })
