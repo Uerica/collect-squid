@@ -14,15 +14,23 @@
                 color: #331c1c;
             }
         }
+        &-fixed {
+            position: fixed;
+            width: 100%;
+        }
     }
     
     .sidebar {
+        // position: fixed;
         font-size: 20px;
         height: 100vh;
         background-color: #f6f6f6;
         &-list {
             color: #331c1c;
             background-color: #f6f6f6;
+        }
+        &-fixed {
+            // position: fixed;
         }
     }
     

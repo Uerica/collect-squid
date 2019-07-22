@@ -1,7 +1,7 @@
 <?php
 $errMsg = "";
 try {
-	require_once("connection-backend.php");
+	require_once("connectSquid.php");
 	$getManager = "SELECT * FROM manager";
 	$manager = $pdo->query($getManager); 
     $managerRows = $manager->fetchAll(PDO::FETCH_ASSOC);
@@ -18,7 +18,7 @@ try {
     $clothing = $pdo->query($getClothing);
     $clothingRows = $clothing->fetchAll(PDO::FETCH_ASSOC);
 
-    $getEvent = "SELECT * FROM events";
+    $getEvent = "SELECT * FROM `event`";
     $events = $pdo->query($getEvent);
     $eventsRows = $events->fetchAll(PDO::FETCH_ASSOC);
 
@@ -43,8 +43,15 @@ try {
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+    </style>
     <link rel="stylesheet" href="sass/style.css">
     <title>收集友誼 後台</title>
+    <style>
+        * {
+            overflow: visible!important;
+        }
+    </style>
 </head>
 
 <body>
@@ -65,7 +72,7 @@ try {
 
         <div class="row">
             <div class="col-2">
-                <div class="nav flex-column nav-pills navColor sidebar" id="v-pills-tab" role="tablist"
+                <div class="nav flex-column nav-pills navColor sidebar sidebar-fixed" id="v-pills-tab" role="tablist"
                     aria-orientation="vertical">
                     <a class="nav-link active sidebar-list" id="v-pills-manager-tab" data-toggle="pill" href="#v-pills-manager"
                         role="tab" aria-controls="v-pills-manager" aria-selected="true">管理員帳號管理</a>

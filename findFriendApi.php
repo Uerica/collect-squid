@@ -10,7 +10,9 @@
     try {
         require_once('connectSquid.php');
         $sql = "SELECT m.mem_no, m.mem_name, m.mem_gender, m.mem_sign, mem_avatar, GROUP_CONCAT(i.interest_name SEPARATOR ',') interest_names
-                FROM member m LEFT JOIN mem_interest mi ON m.mem_no = mi.mem_no LEFT JOIN interest i ON mi.interest_no = i.interest_no
+                FROM member m 
+                LEFT JOIN mem_interest mi ON m.mem_no = mi.mem_no 
+                LEFT JOIN interest i ON mi.interest_no = i.interest_no
                 WHERE (
                        m.mem_no in (SELECT mem_no 
                                     FROM mem_interest smi 

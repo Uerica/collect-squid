@@ -2,7 +2,7 @@
     $jsonStr = $_REQUEST["jsonStr"];
     $tableRow = json_decode( $jsonStr );
 
-    require_once("connection-backend.php");
+    require_once("connectSquid.php");
     $error = array();
     $latestData = array();
     switch($tableRow->table_name) {

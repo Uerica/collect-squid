@@ -2,7 +2,7 @@
     $jsonStr = $_REQUEST["jsonStr"];
     $tableRow = json_decode( $jsonStr );
 
-    require_once("connection-backend.php");
+    require_once("connectSquid.php");
     $error = array();
     // $latestData = array();
     switch($tableRow->table_name) {
@@ -94,7 +94,7 @@
             break;
         }
         case 'events': {
-            $query = "UPDATE `events` SET `is_banner` = :bannerStatus WHERE `evt_no` = :evt_no";
+            $query = "UPDATE `event` SET `is_banner` = :bannerStatus WHERE `evt_no` = :evt_no";
             $editEvent = $pdo->prepare($query);
             $editEvent->bindValue(":bannerStatus", $tableRow->bannerStatus);
             $editEvent->bindValue(":evt_no", $tableRow->evt_no);

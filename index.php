@@ -562,27 +562,31 @@
               <h3>魷魚機器人</h3>
               <div class="wrapper">
                   <div class="chatContainer" style="display:none">
-                      <div id="chat_A" class="chat_A">
-                          <p>Hi! 很高興為您服務，您可以點擊下方關鍵字或是直接輸入詢問內容!</p>
-                      </div>
-                      <div class="clearfix"></div>
 
                       <div id="chat_Q" class="chat_Q">
                           <p>^_^</p>
                       </div>
                       <div class="clearfix"></div>
+
+                      <div id="chat_A" class="chat_A">
+                          <p>Hi! 很高興為您服務，您可以點擊下方關鍵字或是直接輸入詢問內容!</p>
+                      </div>
+                      <div class="clearfix"></div>
+
                   </div>
                   <!-- ............................................................. -->
                   <div id="chatContainer" class="chatContainer">
-                      <div id="chat_A" class="chat_A">
-                          <p>Hi! 很高興為您服務，您可以點擊下方關鍵字或是直接輸入詢問內容!</p>
-                      </div>
-                      <div class="clearfix"></div>
 
                       <div id="chat_Q" class="chat_Q">
                           <p>^_^</p>
                       </div>
                       <div class="clearfix"></div>
+
+                      <div id="chat_A" class="chat_A">
+                          <p>Hi! 很高興為您服務，您可以點擊下方關鍵字或是直接輸入詢問內容!</p>
+                      </div>
+                      <div class="clearfix"></div>
+                      
                   </div>
               </div>
 
@@ -709,6 +713,7 @@
                   <div class="owl-carousel owl-theme leaderBoard_carousel">
                     <?php foreach ($allMemberRows as $i=>$allMemberRow) { 
                       // 排行榜顯示
+                      $friendNo = $allMemberRow['mem_no'];
                       $leaderBoardClassname = 'leaderBoard_showcase showcase-';
                       $medalImagePath = 'imgs/homePage/leaderBoard/medal_';
                       switch($i) {
@@ -796,7 +801,7 @@
                         }
                       } 
                     ?>
-                      <div class="<?php echo $leaderBoardClassname; ?>">
+                      <div class="<?php echo $leaderBoardClassname; ?>" data-memno="<?php echo $friendNo; ?>">
                           <div class="leaderBoard_medal">
                             <img src="<?php echo $medalImagePath; ?>" alt="排行榜排名獎牌">
                           </div>
@@ -1290,6 +1295,7 @@
     <script src="js/movingAction.js"></script>
     <script src="js/leaderBoard.js"></script>
     <script scr="js/addFriend.js"></script>
+    <!-- <script src="js/leaderBoardAddFriend.js"></script> -->
     <!-- //加moving... -->
     <script>
       $(document).ready(function(){

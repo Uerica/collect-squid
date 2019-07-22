@@ -34,7 +34,7 @@
 
 // 1.管理員帳號管理
 function addNewManager() {
-    $('body').on('click', 'btn-newManager', function(){
+    $('body').on('click', '#btn-newManager', function(){
         let editNewManager = $("<tr class='newManager'></tr>").html(
             `<td></td>
             <td><input class="form-control" id="edit-mngName" type="text" value="" name="mng"></td>
