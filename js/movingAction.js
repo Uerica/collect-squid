@@ -25,6 +25,7 @@ function moveSquid(e) {
     }
   }
 
+
   const house = $(".gameWorld_house");
   let hpo = house.position();
   let r3 = {
@@ -95,7 +96,7 @@ function moveSquid(e) {
         r1.x - r5.x > 0)
     ) {
       //   console.log("edge_left");
-      squid.css({ left: "+=10px" });
+      squid.css({ left: "+=30px" });
     } else {
       squid.css({ left: "-=10px" });
     }
@@ -119,7 +120,7 @@ function moveSquid(e) {
         r1.x - r5.x < r5.w &&
         r1.x - r5.x > 0)
     ) {
-      squid.css({ top: "+=10px" });
+      squid.css({ top: "+=30px" });
       //   console.log("edge_top");
     } else {
       squid.css({ top: "-=10px" });
@@ -145,7 +146,7 @@ function moveSquid(e) {
         r1.x - r5.x > 0)
     ) {
       //   console.log("edge_right");
-      squid.css({ left: "-=10px" });
+      squid.css({ left: "-=30px" });
     } else {
       squid.css({ left: "+=10px" });
     }
@@ -170,7 +171,7 @@ function moveSquid(e) {
         r1.x - r5.x > 0)
     ) {
       //   console.log("edge_bottom");
-      squid.css({ top: "-=10px" });
+      squid.css({ top: "-=30px" });
     } else {
       squid.css({ top: "+=10px" });
     }

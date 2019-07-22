@@ -13,33 +13,33 @@
       $mem_lv = $_SESSION["mem_lv"];
       $mem_avatar = $_SESSION["mem_avatar"];
       $squid_qty = $_SESSION["squid_qty"];
+      $errMsg = '';
+      try {
+          require_once('connectSquid.php');
+          $sql = "SELECT * FROM member WHERE mem_name NOT IN(:mem_name) ORDER BY RAND() LIMIT 1"; 
+          $member = $pdo->prepare($sql);
+          $member->bindValue(":mem_name", $mem_name);
+          $member->execute(); 
+          $memRow = $member->fetch(PDO::FETCH_ASSOC);
+  
+          // 排行榜會員資料
+          $sqlMember= "SELECT mem_no, mem_name, heart_qty FROM member ORDER BY heart_qty DESC LIMIT 9";
+          $allMember = $pdo->prepare($sqlMember);
+          $allMember->execute();
+          $allMemberRows = $allMember->fetchAll(PDO::FETCH_ASSOC);
+  
+          // 通知
+          $sqlNoti = "SELECT * FROM `notification` WHERE rcv_mem_no = " . $_SESSION["mem_no"] . " AND is_read = 0";
+          $noti = $pdo->prepare($sqlNoti);
+          $noti->execute();
+          $notiRows = $noti->fetchAll(PDO::FETCH_ASSOC);
+  
+  
+      } catch(PDOException $e) {
+          $errMsg .= $e->getMessage()."<br>";
+          $errMsg .= $e->getLine()."<br>";
+      }
     };
-    $errMsg = '';
-    try {
-        require_once('connectSquid.php');
-        $sql = "SELECT * FROM member WHERE mem_name NOT IN(:mem_name) ORDER BY RAND() LIMIT 1"; 
-        $member = $pdo->prepare($sql);
-        $member->bindValue(":mem_name", $mem_name);
-        $member->execute(); 
-        $memRow = $member->fetch(PDO::FETCH_ASSOC);
-
-        // 排行榜會員資料
-        $sqlMember= "SELECT mem_no, mem_name, heart_qty FROM member ORDER BY heart_qty DESC LIMIT 9";
-        $allMember = $pdo->prepare($sqlMember);
-        $allMember->execute();
-        $allMemberRows = $allMember->fetchAll(PDO::FETCH_ASSOC);
-
-        // 通知
-        $sqlNoti = "SELECT * FROM `notification` WHERE rcv_mem_no = " . $_SESSION["mem_no"] . " AND is_read = 0";
-        $noti = $pdo->prepare($sqlNoti);
-        $noti->execute();
-        $notiRows = $noti->fetchAll(PDO::FETCH_ASSOC);
-
-
-    } catch(PDOException $e) {
-        $errMsg .= $e->getMessage()."<br>";
-        $errMsg .= $e->getLine()."<br>";
-    }
 ?>
 
 <!DOCTYPE html>

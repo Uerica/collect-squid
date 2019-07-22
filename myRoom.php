@@ -5,7 +5,6 @@
     try{
         require_once('connectSquid.php');
 
-        $_SESSION["mem_no"] = 1;
         $mem_no = $_SESSION["mem_no"];
 
         //會員資料

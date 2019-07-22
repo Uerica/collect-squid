@@ -17,6 +17,7 @@ $(".createRoleBtn").click(function() {
   const date = dobObj.getDate();
   const mem_sign = getZodiacSign(date, month);
   const mem_avatar = "img/avatar.png";
+  const mem_status = 0;
 
   // 驗證名字
   if (mem_name.length > 10) {
@@ -62,7 +63,8 @@ $(".createRoleBtn").click(function() {
           mem_gender,
           mem_dob,
           mem_sign,
-          mem_avatar
+          mem_avatar,
+          mem_status
         );
       }
     } else {
@@ -136,7 +138,8 @@ function sendData(
   mem_gender,
   mem_dob,
   mem_sign,
-  mem_avatar
+  mem_avatar,
+  mem_status
 ) {
   const textXHR = new XMLHttpRequest();
 
@@ -165,7 +168,8 @@ function sendData(
   &mem_gender=${mem_gender}
   &mem_dob=${mem_dob}
   &mem_sign=${mem_sign}
-  &mem_avatar=${mem_avatar}`;
+  &mem_avatar=${mem_avatar}
+  &mem_status=${mem_status}`;
   textXHR.send(data);
 }
 
@@ -188,7 +192,6 @@ function sendGraph() {
         const xhr = new XMLHttpRequest();
         xhr.onload = function() {
           if (xhr.status == 200) {
-            document.getElementById("myRole").src = xhr.responseText;
             console.log(xhr.responseText);
             setTimeout(sendGraphMoving, 10);
           } else {
