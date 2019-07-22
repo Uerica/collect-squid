@@ -214,7 +214,9 @@ var chat_app = new Vue({
         conn_chat.close();
       }
       initWebsocketServer();
-      $.get("logout.php");
+      $.get("logout.php").done(function(){
+        window.location = "index.php";
+      });
     },
     // 上帝模式
     god_mode: function() {
