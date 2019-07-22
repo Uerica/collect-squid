@@ -63,14 +63,14 @@
 <body>
   <!-- vue -->
   <div id="app">
-    <!-- 我自己的魷魚 -->
-    <div class="loginSquid" v-if="is_login()">
+      <!-- 我自己的魷魚 -->
+      <div class="loginSquid" v-if="is_login()">
       <div class="talkingBubble" v-if="has_latest_message(user_id)">
-        <p>{{get_latest_message(user_id)}}</p>
+          <p>{{get_latest_message(user_id)}}</p>
       </div>
-      <span class="roleName">{{user_id}}</span>
-      <img id="myRole" :src="style_no" alt="自己的外型">
-    </div>
+          <span class="roleName">{{user_id}}</span>
+          <img id="myRole" :src="style_no" alt="自己的外型">
+      </div>
     
     <!-- 別的魷魚,線上有幾隻產生幾隻 -->
 
@@ -142,9 +142,9 @@
                                 <span>虛擬商城</span></a></li>
                         <li><a href="memberCenter.php"> <img src="imgs/homePage/icon/member.png" alt="會員中心icon">
                                 <span>會員中心</span></a></li>
-                        <li><a href="javascript:;"> <img src="imgs/homePage/icon/robot.png" alt="客服機器人_icon">
+                        <li class="robot-m"><a href="javascript:;"> <img src="imgs/homePage/icon/robot.png" alt="客服機器人_icon">
                                 <span>客服機器人</span></a></li>
-                        <li><a href="javascript:;"> <img src="imgs/homePage/icon/notice02.png" alt="通知_icon">
+                        <li class="notifications-m"><a href="javascript:;"> <img src="imgs/homePage/icon/notice02.png" alt="通知_icon">
                                 <span>通知</span></a></li>
                     </nav>
                 </div>
@@ -227,7 +227,7 @@
 
     <!-- 聊天群組(1.聊天室 2.好友列表) -->
     <!-- Rou:vue.js #chat_app -->
-    <div class="chatGroup disabledScrollOnHover" id="chat_app">
+    <div class="chatGroup disabledScrollOnHover collapse" id="chat_app">
         <i class="fas fa-window-minimize closeBtn"></i>
         <!-- 聊天室 -->
         <!-- 聊天室分成三種訊息 1.官方(messageOfficial) 2.發訊息的人(messageSent) 3.收訊息的人(messageReceived) -->
@@ -506,7 +506,7 @@
         <button class="button friendList_openBtn">開啟聊天室</button>
     </div>
 
-    <!-- 通知 -->
+    <!-- 通知&客服機器人 -->
     <div class="common_notifications disabledScrollOnHover">
         <div class="notifications_actionBox">
             <button class="button button-notifications">
@@ -519,26 +519,26 @@
             </button>
         </div>
 
-
+        <!-- 通知 -->
         <div class="notifications_container collapse">
             <div class="notifications_content">
             <?php
-              $notiType = '新消息';
-              $notiClassName = 'notifications notifications_';
               foreach ($notiRows as $i=>$notiRow) {
+                $notiType = '新消息';
+                $notiClassName = 'notifications notifications_';
                 switch($notiRow['noti_type']) {
                   // 房間留言
-                  case '1':
+                  case 1:
                     $notiType = '留言通知';
                     $notiClassName .= 'room';
                     break;
                   // 好友邀請
-                  case '2':
+                  case 2:
                     $notiType = '好友邀請';
                     $notiClassName .= 'friend';
                     break;
                   // 活動分享
-                  case '3':
+                  case 3:
                     $notiType = '活動分享';
                     $notiClassName .= 'event';
                     break;
@@ -552,79 +552,64 @@
                     <span>【<?php echo $notiType ?>】</span>
                     <p><?php echo $notiRow['noti_cnt']; ?></p>
                 </div>
-                <!-- <div class="notifications notifications_event">
-                    <i class="fas fa-times notifications_delete"></i>
-                    <span>【活動邀請】</span>
-                    <p>好友"詩詩"邀請你參加「與VUE一起浮淺」活動</p>
-                </div>
-                <div class="notifications notifications_room">
-                    <i class="fas fa-times notifications_delete"></i>
-                    <span>【房間留言】</span>
-                    <p>會員"詩詩"在您房間留下了一筆新訊息</p>
-                </div>
-                <div class="notifications notifications_event">
-                    <i class="fas fa-times notifications_delete"></i>
-                    <span>【活動邀請】</span>
-                    <p>好友"詩詩"邀請你參加「與VUE一起浮淺」活動</p>
-                </div>
-                <div class="notifications notifications_room">
-                    <i class="fas fa-times notifications_delete"></i>
-                    <span>【房間留言】</span>
-                    <p>會員"詩詩"在您房間留下了一筆新訊息</p>
-                </div>
-                <div class="notifications notifications_event">
-                    <i class="fas fa-times notifications_delete"></i>
-                    <span>【活動邀請】</span>
-                    <p>好友"詩詩"邀請你參加「與VUE一起浮潛」活動</p>
-                </div>
-                <div class="notifications notifications_room">
-                    <i class="fas fa-times notifications_delete"></i>
-                    <span>【房間留言】</span>
-                    <p>會員"詩詩"在您房間留下了一筆新訊息</p>
-                </div> -->
-                <?php } ?>
+            <?php } ?>
             </div>
+        </div>
+
+        <!-- 客服機器人 -->
+        <div class="robot_container disabledScrollOnHover collapse">
+          <div id="chatBotBox" class="chatBotBox">
+              <h3>魷魚機器人</h3>
+              <div class="wrapper">
+                  <div class="chatContainer" style="display:none">
+                      <div id="chat_A" class="chat_A">
+                          <p>Hi! 很高興為您服務，您可以點擊下方關鍵字或是直接輸入詢問內容!</p>
+                      </div>
+                      <div class="clearfix"></div>
+
+                      <div id="chat_Q" class="chat_Q">
+                          <p>^_^</p>
+                      </div>
+                      <div class="clearfix"></div>
+                  </div>
+                  <!-- ............................................................. -->
+                  <div id="chatContainer" class="chatContainer">
+                      <div id="chat_A" class="chat_A">
+                          <p>Hi! 很高興為您服務，您可以點擊下方關鍵字或是直接輸入詢問內容!</p>
+                      </div>
+                      <div class="clearfix"></div>
+
+                      <div id="chat_Q" class="chat_Q">
+                          <p>^_^</p>
+                      </div>
+                      <div class="clearfix"></div>
+                  </div>
+              </div>
+
+
+              <ul class="chatBtn">
+                  <li id="index" class="questionTag">首頁</li>
+                  <li id="myroom" class="questionTag">我的房間</li>
+                  <li id="dressingRoom" class="questionTag">換衣間</li>
+                  <li id="findFrnd" class="questionTag">找朋友</li>
+                  <li id="group" class="questionTag">揪團活動</li>
+                  <li id="shop" class="questionTag">虛擬商城</li>
+                  <li id="memCenter" class="questionTag">會員中心</li>
+              </ul>
+
+
+              <div class="chatWords">
+                  <input type="text" id="chatInput" class="chatInput">
+                  <button type="button" id="chatSubmit" class="chatSubmit">送出</button>
+                  <div class="clearfix"></div>
+              </div>
+          </div>
         </div>
     </div>
 
 
     <!-- 客服機器人 -->
-    <!-- <div class="commom_robot disabledScrollOnHover">
-        <div class="chatBotBox">
-            <h3>魷魚機器人</h3>
 
-            <div id="chatContainer" class="chatContainer">
-                <div id="chat_A" class="chat_A">
-                    <p>Hi! 很高興為您服務，您可以點擊下方關鍵或是直接輸入詢問內容!</p>
-                </div>
-                <div class="clearfix"></div>
-
-                <div id="chat_Q" class="chat_Q">
-                    <p>^^</p>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-
-
-            <ul class="chatBtn">
-                <li id="index">首頁</li>
-                <li id="myroom">我的房間</li>
-                <li id="dressingRoom">換衣間</li>
-                <li id="findFrnd">找朋友</li>
-                <li id="group">揪團活動</li>
-                <li id="shop">虛擬商城</li>
-                <li id="memCenter">會員中心</li>
-            </ul>
-
-
-            <div class="chatWords">
-                <input type="text" id="chatInput" class="chatInput">
-                <button type="submit" id="chatSubmit" class="chatSubmit">送出</button>
-                <div class="clearfix"></div>
-            </div>
-
-        </div>
-    </div> -->
 
     <!-- 聊天世界 -->
     <div class="gameWorld">
@@ -1298,8 +1283,8 @@
     <script src="js/createBox.js"></script>
     <script src="js/createRoleData.js"></script>
     <script src="js/newCharacter.js"></script>
-    <!-- <script src="js/chatbot.js"></script> -->
     <script src="js/chat.js"></script>
+    <script src="js/chatBot.js"></script>
     <script src="js/roleFunctions.js"></script>
     <script src="js/rolePosition.js"></script>
     <script src="js/movingAction.js"></script>

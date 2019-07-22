@@ -25,9 +25,6 @@ let needToScrollRight = false;
 let needToScrollBottom = false;
 let needToScrollTop = false;
 
-
-
-
 // 手機選單動畫
 function menuMobileTransform() {
   $(".menuMobile_link").click(function(e) {
@@ -67,7 +64,7 @@ function collapseChatGroup() {
 }
 
 // 開關通知
-function collaseNotifications() {
+function collapseNotifications() {
   let actionBox = $(".notifications_actionBox");
   $(".button-notifications").click(function(e) {
     $(".notifications_container").toggleClass("collapse");
@@ -79,11 +76,23 @@ function collaseNotifications() {
   });
 }
 
+// 開關機器人
+function collapseRobot() {
+  // let actionBox = $(".notifications_actionBox");
+  $(".button-robot").click(function() {
+    $(".robot_container").toggleClass("collapse");
+    // $('.robot-m').toggleClass("collapse");
+  });
+}
+
 // 移除通知
 function closeNotifications() {
   $(".notifications_delete").click(function() {
     $(this.parentElement).remove();
   });
+  // $("body").on('click', '.notifications_delete', function(){
+    
+  // })
 }
 
 // 聊天室視窗移動
@@ -382,13 +391,15 @@ function animation() {
   // spray------------------------------------------------
 }
 
+
 window.addEventListener("load", function() {
   menuMobileTransform();
   chooseFriend();
   collapseChatGroup();
+  collapseNotifications();
   closeNotifications();
+  collapseRobot();
   scrollLeftTimer();
-  collaseNotifications();
   loginBoxNoScroll();
   switchPage();
   chatBtnMousemove();

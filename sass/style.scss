@@ -455,6 +455,7 @@ img {
     margin-top: -0.35em;
     font-size: 40px;
     color: #fff;
+    cursor: pointer;
   }
   .chatRoom {
     width: 60%;
@@ -880,124 +881,255 @@ img {
       }
     }
   }
-}
+  .robot_container {
+      .chatBotBox {
+      position: absolute;
+      z-index: 130;
+      transform: translate(30px, -140px);
+      @media screen and (max-width: 670px) {
+        width: 100%;
+        height: 100%;
+        background-color: #ff8d8d;
+        border-radius: 10px;
+        h3 {
+          padding: 10px 0;
+          text-align: center;
+        }
+      }
+      @media screen and (min-width: 671px) {
+        width: 400px;
+        height: auto;
+        background-color: #ff8d8d;
+        border-radius: 10px;
+        h3 {
+          padding: 10px 0;
+          text-align: center;
+          color: #fffdfd;
+        }
+        p {
+          line-height: 20px;
+        }
+      }
+    }
+    .wrapper {
+      @media screen and (min-width: 671px) {
+        box-sizing: border-box;
+        margin: 0px 10px;
+        height: 250px;
+        background-color: #fff;
+        border-radius: 10px;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        &::-webkit-scrollbar {
+          width: 8px;
+        }
+        &::-webkit-scrollbar-track {
+          border-radius: 10px;
+          border: 1px solid #ff8d8d;
+        }
+        &::-webkit-scrollbar-thumb {
+          background-color: #ff8d8d;
+          border-radius: 10px;
+        }
+        &::-webkit-scrollbar:horizontal {
+          height: 8px;
+        }
+      }
+    }
 
-.common_robot {
-  .chatBotBox {
-    width: 400px;
-    height: 500px;
-    background-color: #ff8d8d;
-    border-radius: 10px;
-  }
-  .chatBotBox h3 {
-    padding: 10px 0;
-    text-align: center;
-  }
-  .chatContainer {
-    width: 380px;
-    height: 250px;
-    background-color: #fff;
-    margin: auto;
-    border-radius: 10px;
-    overflow-y: auto;
-  }
-
-  /* scroll樣式 */
-  /*縱軸*/
-  /* width */
-  ::-webkit-scrollbar {
-    width: 8px;
-  }
-  /* Track */
-  ::-webkit-scrollbar-track {
-    // box-shadow: inset 0 0 1px #575fac;
-    border-radius: 10px;
-    border: 1px solid #ffd200;
-  }
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: #ffd200;
-    border-radius: 10px;
-  }
-
-  /* 橫軸 */
-  ::-webkit-scrollbar:horizontal {
-    height: 8px;
-  }
-  /* Track */
-  ::-webkit-scrollbar-track {
-    // box-shadow: inset 0 0 1px #575fac;
-    border-radius: 10px;
-    border: 1px solid #ffd200;
-  }
-  /* Handle */
-  ::-webkit-scrollbar-thumb:horizontal {
-    background: #ffd200;
-    border-radius: 10px;
-  }
-
-  .chat_A {
-    background-color: #ffc8c8;
-    padding: 8px;
-    margin: 8px;
-    border-radius: 10px;
-    float: left;
-  }
-  .chat_Q {
-    background-color: #c5c5c5;
-    padding: 8px;
-    margin: 8px;
-    border-radius: 10px;
-    word-wrap: break-word; /* 英文字太長,中間加空白鍵 就會折行(但沒加空白鍵還是會超出) */
-    max-width: 90%; /* 承上, 英文字太長, 但沒加空白鍵還是會超出, 所以設max-width即可) */
-    float: right;
-    // display: none;
-  }
-  /*  ~~ clearfix  ~~  */
-  .clearfix {
-    clear: both;
-  }
-
-  // .chatBotBox > ul{
-  //     display: inline-block;
-  // }
-  .chatBotBox ul {
-    white-space: nowrap;
-    overflow-x: auto;
-    padding: 10px 0;
-    margin: 10px;
-  }
-  .chatBotBox ul li {
-    display: inline;
-    margin: 10px;
-    background-color: #ffd200;
-    color: #575fac;
-    padding: 5px;
-    border-radius: 10px;
-  }
-
-  .chatInput {
-    width: 380px;
-    height: 60px;
-    // display: inline-block;
-    // text-align: center;
-    margin-left: 7px;
-    border-radius: 10px;
-    border: none;
-  }
-  .chatSubmit {
-    width: 100px;
-    height: 40px;
-    background-color: #ffd200;
-    border: 0;
-    margin-right: 10px;
-    margin-top: 5px;
-    border-radius: 10px;
-    float: right;
-    cursor: pointer;
-  }
-  .clearfix {
-    clear: both;
+  
+    .chatContainer {
+      @media screen and (max-width: 670px) {
+        width: 96%;
+        height: 150px;
+        background-color: #fff;
+        margin: auto;
+        border-radius: 10px;
+        .chat_A {
+          background-color: #ffc8c8;
+          padding: 8px;
+          margin: 8px;
+          border-radius: 10px;
+          float: left;
+          p {
+            color: #331c1c;
+          }
+        }
+        .chat_Q {
+          background-color: #ccc;
+          padding: 8px;
+          margin: 8px;
+          border-radius: 10px;
+          word-wrap: break-word;
+          max-width: 90%;
+          float: right;
+          p {
+            color: #331c1c;
+          }
+        }
+        .clearfix {
+          clear: both;
+        }
+      }
+      @media screen and (min-width: 671px) {
+        width: 380px;
+        background-color: #fff;
+        margin: auto;
+        border-radius: 10px;
+        .chat_A {
+          width: 90%;
+          background-color: #ffc8c8;
+          padding: 8px;
+          margin: 8px;
+          border-radius: 10px;
+          float: left;
+          p {
+            color: #331c1c;
+          }
+        }
+        .chat_Q {
+          background-color: #ccc;
+          padding: 8px;
+          margin: 8px 15px 8px 8px;
+          border-radius: 10px;
+          word-wrap: break-word;
+          max-width: 90%;
+          float: right;
+          p {
+            color: #331c1c;
+          }
+        }
+        .clearfix {
+          clear: both;
+        }
+      }
+    }
+    .chatBtn {
+      @media screen and (max-width: 670px) {
+        white-space: nowrap;
+        overflow-x: scroll;
+        padding: 10px 0;
+        margin: 10px;
+        li {
+          display: inline;
+          margin: 10px;
+          background-color: #fff;
+          border: 1px solid #eee0e5;
+          color: #575fac;
+          padding: 5px;
+          border-radius: 10px;
+          transition: 0.1s;
+          &:hover {
+            background-color: #f2f2f2;
+          }
+        }
+        &::-webkit-scrollbar {
+          width: 8px;
+        }
+        &::-webkit-scrollbar-track {
+          border-radius: 10px;
+          border: 1px solid #fff;
+        }
+        &::-webkit-scrollbar-thumb {
+          background-color: #fff;
+          border-radius: 10px;
+        }
+        &::-webkit-scrollbar:horizontal {
+          height: 8px;
+        }
+      }
+      @media screen and (min-width: 671px) {
+        white-space: nowrap;
+        overflow-x: scroll;
+        padding: 10px 0;
+        margin: 10px;
+        &::-webkit-scrollbar {
+          width: 8px;
+        }
+        &::-webkit-scrollbar-track {
+          border-radius: 10px;
+          border: 1px solid #fff;
+        }
+        &::-webkit-scrollbar-thumb {
+          background-color: #fff;
+          border-radius: 10px;
+        }
+        &::-webkit-scrollbar:horizontal {
+          height: 8px;
+        }
+        li {
+          display: inline;
+          margin: 10px;
+          background-color: #fff;
+          border: 1px solid #eee0e5;
+          color: #575fac;
+          padding: 5px;
+          border-radius: 10px;
+          transition: 0.1s;
+          &:hover {
+            background-color: #f2f2f2;
+          }
+          cursor: pointer;
+        }
+      }
+    }
+    .chatWords {
+      @media screen and (max-width: 670px) {
+        .chatInput {
+          width: 380px;
+          height: 50px;
+          margin-left: 7px;
+          border-radius: 10px;
+          border: none;
+        }
+        .chatSubmit {
+          width: 100px;
+          height: 40px;
+          background-color: #fff;
+          border: 0;
+          margin: 5px 10px 10px 0px;
+          border: 1px solid #eee0e5;
+          border-radius: 10px;
+          float: right;
+          cursor: pointer;
+          transition: 0.1s;
+          &:hover {
+            background-color: #f2f2f2;
+          }
+        }
+        .clearfix {
+          clear: both;
+        }
+      }
+      @media screen and (min-width: 671px) {
+        .chatInput {
+          width: 360px;
+          height: 30px;
+          padding: 4px 10px;
+          margin-left: 10px;
+          border-radius: 10px;
+          border: none;
+        }
+        .chatSubmit {
+          width: 100px;
+          height: 40px;
+          background-color: #fff;
+          border: 0;
+          margin: 5px 10px 10px 0px;
+          border: 1px solid #eee0e5;
+          border-radius: 10px;
+          float: right;
+          cursor: pointer;
+          transition: 0.1s;
+          &:hover {
+            background-color: #f2f2f2;
+          }
+        }
+        .clearfix {
+          clear: both;
+        }
+      }
+    }
   }
 }
 
