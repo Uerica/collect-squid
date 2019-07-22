@@ -44,7 +44,63 @@ $(window).ready(function(){
         $("#grpRecord").hide();
         $("#shopRecord").toggle();
     });
-
+//.........................
+function getZodiacSign(day, month) {
+    var zodiacSigns = {
+      'capricorn':'摩羯座',
+      'aquarius':'水瓶座',
+      'pisces':'雙魚座',
+      'aries':'牡羊座',
+      'taurus':'金牛座',
+      'gemini':'雙子座',
+      'cancer':'巨蠍座',
+      'leo':'獅子座',
+      'virgo':'處女座',
+      'libra':'天秤座',
+      'scorpio':'天蠍座',
+      'sagittarius':'射手座'
+    }
+  
+    if((month == 1 && day <= 20) || (month == 12 && day >=22)) {
+      return zodiacSigns.capricorn;
+    } else if ((month == 1 && day >= 21) || (month == 2 && day <= 18)) {
+      return zodiacSigns.aquarius;
+    } else if((month == 2 && day >= 19) || (month == 3 && day <= 20)) {
+      return zodiacSigns.pisces;
+    } else if((month == 3 && day >= 21) || (month == 4 && day <= 20)) {
+      return zodiacSigns.aries;
+    } else if((month == 4 && day >= 21) || (month == 5 && day <= 20)) {
+      return zodiacSigns.taurus;
+    } else if((month == 5 && day >= 21) || (month == 6 && day <= 20)) {
+      return zodiacSigns.gemini;
+    } else if((month == 6 && day >= 22) || (month == 7 && day <= 22)) {
+      return zodiacSigns.cancer;
+    } else if((month == 7 && day >= 23) || (month == 8 && day <= 23)) {
+      return zodiacSigns.leo;
+    } else if((month == 8 && day >= 24) || (month == 9 && day <= 23)) {
+      return zodiacSigns.virgo;
+    } else if((month == 9 && day >= 24) || (month == 10 && day <= 23)) {
+      return zodiacSigns.libra;
+    } else if((month == 10 && day >= 24) || (month == 11 && day <= 22)) {
+      return zodiacSigns.scorpio;
+    } else if((month == 11 && day >= 23) || (month == 12 && day <= 21)) {
+      return zodiacSigns.sagittarius;
+    }
+  }
+//.........................
+    let mem_dobs = document.getElementsByName("mem_dob");
+    let mem_signs = document.getElementsByName("mem_sign");
+    for(let i=0; i<2; i++){
+        mem_dobs[i].onchange = function(e){
+            //change sign
+            day = e.target.value.substr(8,2);
+            mm = e.target.value.substr(5,2);
+            mem_signs[i].previousElementSibling.innerText = mem_signs[i].value = getZodiacSign(day, mm);
+        }
+    }
+    
+    
+//.........................
 
 
 

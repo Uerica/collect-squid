@@ -122,17 +122,11 @@ var chat_app = new Vue({
     mark_read_messages_from_someone: function (who) {
       this.unread_messages_from_someone(who).forEach(function (msg) { msg.is_read = true });
     },
-    has_latest_message: function(who) {
-      var foundmsg = this.messages.find(function(msg) {
-        return msg.user_id == who && ((new Date().getTime() - new Date(msg.chat_time).getTime()) < 5000 );
-      });
-      return typeof(foundmsg)!=="undefined";
-    },
     get_latest_message: function(who) {
       var latestmsg = "";
-      var index = this.messages.length - 1;
-      for( ; index >=0; index--) {
-        var msg = this.messages[index];
+     
+      for( var i = this.messages.length - 1 ; i >=0; i--) {
+        var msg = this.messages[i];
         if (msg.user_id == who && ((new Date().getTime() - new Date(msg.chat_time).getTime()) < 5000 )) {
           latestmsg = msg.chat_msg;
           break;
@@ -214,7 +208,9 @@ var chat_app = new Vue({
         conn_chat.close();
       }
       initWebsocketServer();
-      $.get("logout.php");
+      $.get("logout.php").done(function(){
+        window.location = "index.php";
+      });
     },
     // 上帝模式
     god_mode: function() {

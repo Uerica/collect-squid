@@ -10,453 +10,460 @@
 
 
 // 會員中心
+.member_center{
 @media screen and (max-width:670px){
-.memberCenter_section {
-    .memBg{ /*?????*/
-        width: 100%;
-        height: auto;
-        background:url("../imgs/memberCenter/memBG_phone.jpg") no-repeat center;
-        background-size: cover;
-        position: relative;
-        
-    }
+.memBg{ /*?????*/
+    width: 100%;
+    height: auto;
+    background:url("../imgs/memberCenter/memBG_phone.jpg") no-repeat center;
+    background-size: cover;
+    position: relative;
+    
+}
     input{
-        border: 1px solid rgb(185, 185, 185);
-        border-radius: 8px;
-        height: 25px;
-    }
-
-.cloud{
-    display: none;
-}
-
-.memArea{
-    width: 100%;/**/
-    // height: 370px;
-    height: 100vh;
-    // background-color: rgb(158, 108, 108);
-    
-    
-}
-    .memAreaMiddlebox{
-        width: 100%;
-        // margin: auto;
-        display: flex;
-        justify-content: center;
-        /*align-items: center; 沒效果*/
-        padding-top: 8%;
-        align-items: flex-start;
-    }
-        .memPhoto_phone{
-            width: 185px;
-            height: 150px;
-            padding-bottom: 10%;
-            // background-color: rgb(32, 179, 68);
-        }
-        .memFile{
-            width: 60%;
-            
-            padding-bottom: 6%;
-            background-color: #ffc982;
-            margin-left: 10px;
-            
-            position: relative;
+            border: 1px solid rgb(185, 185, 185);
             border-radius: 8px;
-            border:1px solid #575fac;
-            
+            height: 25px;
         }
-            
+    select{
+            border: 1px solid rgb(185, 185, 185);
+            border-radius: 8px;
+            height: 25px;
+            width: 179px;
+    }
 
-            // 會員資訊欄
-            .memFileWrapInfo{
-                width: 92%;
-                height: 35%;
-                background-color: #fff;
-                border-radius: 8px;
-                margin: auto;
-                padding: 4px;
-            // display: none;
-            }
-                .memInfoWrapTable {
-                overflow-y: auto;
-                height: 140px;
-                }
+    .cloud{
+        display: none;
+    }
 
-
-            // form表單,input輸入 欄
-            .memFileWrapFrom{
-                width: 92%;
-                height: 35%;
-                background-color: #fff;
-                border-radius: 8px;
-                margin: auto;
-                padding: 4px;
-            display: none;
-            }
-                .memFileWrapTable{
-                overflow-y: auto;
-                height: 140px;
-                }
-
-
-
-        .memFile_web{
-            display: none;
-        }
-        .memFileMidbox{
+    .memArea{
+        width: 100%;/**/
+        height: 370px;
+        // background-color: rgb(158, 108, 108);
+        
+        
+    }
+        .memAreaMiddlebox{
             width: 100%;
-            height: auto;
-            overflow: hidden;
-        }
-
-            // 會員資訊欄 的按鈕
-            .memFileInfoBtn{
-                text-align: center;
-                position: absolute;
-                left: 38%;
-                bottom: 10%;
-            }
-            .memFileInfoBtn button{
-                // width: 72px;
-                height: 25px;
-                border-radius: 20px;
-            }
-            .btnEdit{
-                border: 3px solid #f1f1f1;
-                border-radius: 20px;
-                color: #fff;
-                background-color: #fa7979;
-                position: relative;
-                top: 14px;
-                left: -3px;
-                box-shadow: 3px 3px #e7867e;
-                transition: 0.3s;
-                &:hover{
-                    top:0;
-                    left: 0;
-                    box-shadow: 0 0 transparent;
-                }
-                
-                cursor: pointer;
-            }
-
-
-
-            // form表單,input輸入 的按鈕
-            .memFileBtn{
-                text-align: center;
-                position: absolute;
-                left: 30%;
-                bottom: 10%;
-                
-            }
-            .memFileBtn input{
-                width: 72px;
-                height: 25px;
-                border-radius: 20px;
-            
-            }
-            .memFileBtn button{
-                width: 72px;
-                height: 25px;
-                border-radius: 20px;
-            }
-            .btnConfirm{
-                // background-color: #575fac;
-                // color: #fff;
-                // border: 0;
-                border: 3px solid #f1f1f1;
-                border-radius: 20px;
-                color: #fff;
-                background-color: #fa7979;
-                position: relative;
-                top: -3px;
-                left: -3px;
-                box-shadow: 3px 3px #e7867e;
-                transition: 0.3s;
-                &:hover{
-                    top:0;
-                    left: 0;
-                    box-shadow: 0 0 transparent;
-                }
-                
-                cursor: pointer;
-            }
-            .btnCanncel{
-                // background-color: #fff;
-                // color: #000;
-                // border: 0;
-                // border: 1px solid #575fac;
-                border-radius: 20px;
-                color: #e7867e;
-                background-color: #fff;
-                position: relative;
-                top: -3px;
-                left: -3px;
-                box-shadow: 3px 3px #e7867e;
-                border: 0;
-                transition: 0.3s;
-                &:hover{
-                    top:0;
-                    left: 0;
-                    box-shadow: 0 0 transparent;
-                }
-
-                cursor: pointer;
-            }
-    
-            
-
-
-    /*留言記錄*/
-    .msgRecord{
-        width: 100%; /*原667px*/
-        height: 86%; /*原315px*/
-        background-color: #ffc982;
-        position: absolute;
-        bottom: 60px;
-        display: none;
-    }
-        .msgRecordInnerBG{
-            width: 90%; /*原608px*/
-            height: 90%; /*原284px*/
-            background-color: #fff;
-            margin: auto;
-            margin-top: 3%;
-            overflow-y: scroll;
-        }
-
-        /* scroll樣式 */
-            /* width */
-            ::-webkit-scrollbar {
-                width: 8px;
-              }
-
-              /* Track */
-              ::-webkit-scrollbar-track {
-                // box-shadow: inset 0 0 1px #575fac; 
-                border-radius: 10px;
-                border: 1px solid #e7867e;
-              }
-
-              /* Handle */
-              ::-webkit-scrollbar-thumb {
-                background: #e7867e; 
-                border-radius: 10px;
-                
-              }
-
-        
-        .msgRecordText{
-            width: 90%; /*原535px*/
-            height: 112px;
-            background-color: #fff;
-            border: 2px solid #575fac;
-            
-            margin: 3% auto;
-            // margin-top: 3%;
-            border-radius: 10px;
+            // margin: auto;
             display: flex;
+            justify-content: center;
+            /*align-items: center; 沒效果*/
+            padding-top: 8%;
+            align-items: flex-start;
         }
-        .msgRecordText_img{
-            padding: 5px;
-        }
-        .msgRecordText_words{
-            padding: 15px;
-        }
-        .msgRecordText img{
-            width: 115px;
-            height: 100px;
-        }
-    
-
-
-
-    /*揪團記錄*/
-    .groupRecord{
-        width: 100%; /*原667px*/
-        height: 86%; /*原315px*/
-        background-color: #ffc982;
-        position: absolute;
-        bottom: 60px;
-    display: none;
-    }
-        .groupRecordInnerBG{
-            width: 90%; /*原608px*/
-            height: 90%; /*原284px*/
-            background-color: #fff;
-            margin: auto;
-            margin-top: 3%;
-            overflow-y: scroll;
-        }
-
-        /* scroll樣式 */
-            /* width */
-            ::-webkit-scrollbar {
-                width: 8px;
-              }
-
-              /* Track */
-              ::-webkit-scrollbar-track {
-                // box-shadow: inset 0 0 1px #575fac; 
-                border-radius: 10px;
-                border: 1px solid #e7867e;
-              }
-
-              /* Handle */
-              ::-webkit-scrollbar-thumb {
-                background: #e7867e; 
-                border-radius: 10px;
+            .memPhoto_phone{
+                width: 185px;
+                height: 150px;
+                padding-bottom: 10%;
+                // background-color: rgb(32, 179, 68);
+            }
+            .memFile{
+                width: 60%;
                 
-              }
-
-        
-        .groupRecordText{
-            width: 90%; /*原535px*/
-            height: 112px;
-            background-color: #fff;
-            border: 2px solid #575fac;
-            
-            margin: 3% auto;
-            // margin-top: 3%;
-            border-radius: 10px;
-            display: flex;
-        }
-        .groupRecordText_img{
-            padding: 5px;
-        }
-        .groupRecordText_words{
-            padding: 15px;
-        }
-        .groupRecordText img{
-            width: 115px;
-            height: 100px;
-        }
-
-
-
-
-
-    /*購物記錄*/
-    .shopRecord{
-        width: 100%; /*原667px*/
-        height: 86%; /*原315px*/
-        background-color: #ffc982;
-        position: absolute;
-        bottom: 60px;
-    display: none;
-    }
-        .shopRecordInnerBG{
-            width: 90%; /*原608px*/
-            height: 90%; /*原284px*/
-            background-color: #fff;
-            margin: auto;
-            margin-top: 3%;
-            overflow-y: scroll;
-        }
-
-        /* scroll樣式 */
-            /* width */
-            ::-webkit-scrollbar {
-                width: 8px;
-              }
-
-              /* Track */
-              ::-webkit-scrollbar-track {
-                // box-shadow: inset 0 0 1px #575fac; 
-                border-radius: 10px;
-                border: 1px solid #e7867e;
-              }
-
-              /* Handle */
-              ::-webkit-scrollbar-thumb {
-                background: #e7867e; 
-                border-radius: 10px;
+                padding-bottom: 10%;
+                background-color: #ffc982;
+                margin-left: 10px;
                 
-              }
+                position: relative;
+                border-radius: 8px;
+                border:1px solid #575fac;
+                
+            }
+                
 
+                // 會員資訊欄
+                .memFileWrapInfo{
+                    width: 92%;
+                    height: 35%;
+                    background-color: #fff;
+                    border-radius: 8px;
+                    margin: auto;
+                    padding: 4px;
+                // display: none;
+                }
+                    .memInfoWrapTable {
+                    overflow-y: auto;
+                    height: 140px;
+                    }
+
+
+                // form表單,input輸入 欄
+                .memFileWrapForm{
+                    width: 92%;
+                    height: 35%;
+                    background-color: #fff;
+                    border-radius: 8px;
+                    margin: auto;
+                    padding: 4px;
+                display: none;
+                }
+                    .memFileWrapTable{
+                    overflow-y: auto;
+                    height: 140px;
+                    }
+
+
+
+            .memFile_web{
+                display: none;
+            }
+            .memFileMidbox{
+                width: 100%;
+                height: auto;
+                overflow: hidden;
+            }
+
+                // 會員資訊欄 的按鈕
+                .memFileInfoBtn{
+                    text-align: center;
+                    position: absolute;
+                    left: 38%;
+                    bottom: 10%;
+                }
+                .memFileInfoBtn button{
+                    // width: 72px;
+                    height: 25px;
+                    border-radius: 20px;
+                }
+                .btnEdit{
+                    border: 3px solid #f1f1f1;
+                    border-radius: 20px;
+                    color: #fff;
+                    background-color: #fa7979;
+                    position: relative;
+                    top: -3px;
+                    left: -3px;
+                    box-shadow: 3px 3px #e7867e;
+                    transition: 0.3s;
+                    &:hover{
+                        top:0;
+                        left: 0;
+                        box-shadow: 0 0 transparent;
+                    }
+                    
+                    cursor: pointer;
+                }
+
+
+
+                // form表單,input輸入 的按鈕
+                .memFileBtn{
+                    text-align: center;
+                    position: absolute;
+                    left: 30%;
+                    bottom: 10%;
+                    
+                }
+                .memFileBtn input{
+                    width: 72px;
+                    height: 25px;
+                    border-radius: 20px;
+                
+                }
+                .memFileBtn button{
+                    width: 72px;
+                    height: 25px;
+                    border-radius: 20px;
+                }
+                .btnConfirm{
+                    // background-color: #575fac;
+                    // color: #fff;
+                    // border: 0;
+                    border: 3px solid #f1f1f1;
+                    border-radius: 20px;
+                    color: #fff;
+                    background-color: #fa7979;
+                    position: relative;
+                    top: -3px;
+                    left: -3px;
+                    box-shadow: 3px 3px #e7867e;
+                    transition: 0.3s;
+                    &:hover{
+                        top:0;
+                        left: 0;
+                        box-shadow: 0 0 transparent;
+                    }
+                    
+                    cursor: pointer;
+                }
+                .btnCanncel{
+                    // background-color: #fff;
+                    // color: #000;
+                    // border: 0;
+                    // border: 1px solid #575fac;
+                    border-radius: 20px;
+                    color: #e7867e;
+                    background-color: #fff;
+                    position: relative;
+                    top: -3px;
+                    left: -3px;
+                    box-shadow: 3px 3px #e7867e;
+                    border: 0;
+                    transition: 0.3s;
+                    &:hover{
+                        top:0;
+                        left: 0;
+                        box-shadow: 0 0 transparent;
+                    }
+
+                    cursor: pointer;
+                }
         
-        .shopRecordText{
-            width: 90%; /*原535px*/
-            height: 112px;
-            background-color: #fff;
-            border: 2px solid #575fac;
-            
-            margin: 3% auto;
-            // margin-top: 3%;
-            border-radius: 10px;
-            display: flex;
-        }
-        .shopRecordText_img{
-            padding: 5px;
-        }
-        .shopRecordText_words{
-            padding: 15px;
-        }
-        .shopRecordText img{
-            width: 115px;
-            height: 100px;
-        }
+                
 
-
-
-
-
-
-    .recordArea{
-        width: 100%;
-        height: 60px;
-        background-color: #ffc982;
-        position: absolute;
-        bottom: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-        .recordBtn{
-            width: 195px;
-            height: 45px;
-            background-color: #fff;
-            margin-left: 8px;
-            text-align: center;
-            line-height: 45px;
-            border-radius: 10px;
-        }
-
-    .recordAreaUl_web{
-        display: none;
-    }
-        .msgRecordImg_web{
+        // form表單,input輸入
+        .msgRecordWrapforinput{ //先隱藏
             display: none;
         }
-    .msgRecordText_web{
-        display: none;
-    }
-    .msgRecordEditBtn_web{
-        display: none;
-    }
 
-    .msgRecord_web{
+        /*留言記錄*/
+        .msgRecord{
+            width: 100%; /*原667px*/
+            height: 86%; /*原315px*/
+            background-color: #ffc982;
+            position: absolute;
+            bottom: 60px;
         display: none;
-    }
-    .grpRecord_web{
+        }
+            .msgRecordInnerBG{
+                width: 90%; /*原608px*/
+                height: 90%; /*原284px*/
+                background-color: #fff;
+                margin: auto;
+                margin-top: 3%;
+                overflow-y: scroll;
+            }
+
+            /* scroll樣式 */
+                /* width */
+                ::-webkit-scrollbar {
+                    width: 8px;
+                  }
+
+                  /* Track */
+                  ::-webkit-scrollbar-track {
+                    // box-shadow: inset 0 0 1px #575fac; 
+                    border-radius: 10px;
+                    border: 1px solid #e7867e;
+                  }
+
+                  /* Handle */
+                  ::-webkit-scrollbar-thumb {
+                    background: #e7867e; 
+                    border-radius: 10px;
+                    
+                  }
+
+            
+            .msgRecordText{
+                width: 90%; /*原535px*/
+                height: 112px;
+                background-color: #fff;
+                border: 2px solid #575fac;
+                
+                margin: 3% auto;
+                // margin-top: 3%;
+                border-radius: 10px;
+                display: flex;
+            }
+            .msgRecordText_img{
+                padding: 5px;
+            }
+            .msgRecordText_words{
+                padding: 15px;
+            }
+            .msgRecordText img{
+                width: 115px;
+                height: 100px;
+            }
+        
+
+
+
+        /*揪團記錄*/
+        .groupRecord{
+            width: 100%; /*原667px*/
+            height: 86%; /*原315px*/
+            background-color: #ffc982;
+            position: absolute;
+            bottom: 60px;
         display: none;
-    }
-    .shopRecord_web{
+        }
+            .groupRecordInnerBG{
+                width: 90%; /*原608px*/
+                height: 90%; /*原284px*/
+                background-color: #fff;
+                margin: auto;
+                margin-top: 3%;
+                overflow-y: scroll;
+            }
+
+            /* scroll樣式 */
+                /* width */
+                ::-webkit-scrollbar {
+                    width: 8px;
+                  }
+
+                  /* Track */
+                  ::-webkit-scrollbar-track {
+                    // box-shadow: inset 0 0 1px #575fac; 
+                    border-radius: 10px;
+                    border: 1px solid #e7867e;
+                  }
+
+                  /* Handle */
+                  ::-webkit-scrollbar-thumb {
+                    background: #e7867e; 
+                    border-radius: 10px;
+                    
+                  }
+
+            
+            .groupRecordText{
+                width: 90%; /*原535px*/
+                height: 112px;
+                background-color: #fff;
+                border: 2px solid #575fac;
+                
+                margin: 3% auto;
+                // margin-top: 3%;
+                border-radius: 10px;
+                display: flex;
+            }
+            .groupRecordText_img{
+                padding: 5px;
+            }
+            .groupRecordText_words{
+                padding: 15px;
+            }
+            .groupRecordText img{
+                width: 115px;
+                height: 100px;
+            }
+
+
+
+
+
+        /*購物記錄*/
+        .shopRecord{
+            width: 100%; /*原667px*/
+            height: 86%; /*原315px*/
+            background-color: #ffc982;
+            position: absolute;
+            bottom: 60px;
         display: none;
-    }
+        }
+            .shopRecordInnerBG{
+                width: 90%; /*原608px*/
+                height: 90%; /*原284px*/
+                background-color: #fff;
+                margin: auto;
+                margin-top: 3%;
+                overflow-y: scroll;
+            }
+
+            /* scroll樣式 */
+                /* width */
+                ::-webkit-scrollbar {
+                    width: 8px;
+                  }
+
+                  /* Track */
+                  ::-webkit-scrollbar-track {
+                    // box-shadow: inset 0 0 1px #575fac; 
+                    border-radius: 10px;
+                    border: 1px solid #e7867e;
+                  }
+
+                  /* Handle */
+                  ::-webkit-scrollbar-thumb {
+                    background: #e7867e; 
+                    border-radius: 10px;
+                    
+                  }
+
+            
+            .shopRecordText{
+                width: 90%; /*原535px*/
+                height: 112px;
+                background-color: #fff;
+                border: 2px solid #575fac;
+                
+                margin: 3% auto;
+                // margin-top: 3%;
+                border-radius: 10px;
+                display: flex;
+            }
+            .shopRecordText_img{
+                padding: 5px;
+            }
+            .shopRecordText_words{
+                padding: 15px;
+            }
+            .shopRecordText img{
+                width: 115px;
+                height: 100px;
+            }
+
+
+
+
+
+
+        .recordArea{
+            width: 100%;
+            height: 60px;
+            background-color: #ffc982;
+            position: absolute;
+            bottom: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            display: none;
+        }
+            .recordBtn{
+                width: 195px;
+                height: 45px;
+                background-color: #fff;
+                margin-left: 8px;
+                text-align: center;
+                line-height: 45px;
+                border-radius: 10px;
+            }
+
+        .recordAreaUl_web{
+            display: none;
+        }
+            .msgRecordImg_web{
+                display: none;
+            }
+        .msgRecordText_web{
+            display: none;
+        }
+        .msgRecordEditBtn_web{
+            display: none;
+        }
+
+        .msgRecord_web{
+            display: none;
+        }
+        .grpRecord_web{
+            display: none;
+        }
+        .shopRecord_web{
+            display: none;
+        }
 
 }
-}
-
 
 
 
 
 
 @media screen and (min-width:671px){
-    .memberCenter_section {
-        // .memArea{
+    // .memArea{
     //     width: 100%;/*960px*/
     //     height: 350px;
     //     background-color: gray;
@@ -488,6 +495,12 @@
             border: 1px solid rgb(185, 185, 185);
             border-radius: 8px;
             height: 25px;
+        }
+        select{
+            border: 1px solid rgb(185, 185, 185);
+            border-radius: 8px;
+            height: 25px;
+            width: 179px;
         }
 
         // 雲
@@ -605,9 +618,9 @@
                     display: none;
                 }
                 .memFile_web{
-                    width: 49%;
+                    width: 45%;
                     height: auto; /*150px*/
-                    padding-bottom: 3.5%;
+                    padding-bottom: 5.5%;
                     background-color: #ffc982;
                     position: relative;
                     border-radius: 8px;
@@ -631,7 +644,7 @@
                         }
 
                     // form表單,input輸入 欄
-                    .memFileWrapFrom{
+                    .memFileWrapForm{
                         width: 95%;
                         height: 35%;
                         background-color: #fff;
@@ -650,7 +663,7 @@
                             text-align: center;
                             position: absolute;
                             left: 42%;
-                            bottom: 5%;
+                            bottom: 10%;
                         }
                         .memFileInfoBtn button{
                             // width: 72px;
@@ -750,6 +763,7 @@
             // background-color: rgb(65, 185, 41);
             margin: 4% auto 0%;
             position: relative;
+            display: none;
         }
             
             .recordAreaUl_web{
@@ -845,9 +859,6 @@
                                 height: 88px;
                                 // background-color: green;
                                 margin-right: 3px;
-                                img {
-                                    height: 100%;
-                                }
                             }
                             .msgRecordRightWrap{
                                 width: 80%;
@@ -860,9 +871,6 @@
                                     width: 100%;
                                     height: 60%;
                                     background-color: #fff;
-                                    p {
-                                        line-height: 22px;
-                                    }
                                 }
                                     .msgRecordText input{
                                         width: 100%;
@@ -989,7 +997,7 @@
 
             
             // form表單,input輸入
-            .msgRecordWrapforinput{
+            .msgRecordWrapforinput{ //先隱藏
             display: none;
             }
                 .msgRecordWrap{
@@ -1141,17 +1149,5 @@
                 display: none;
             }
 
-        }
-    }
-    
-@media screen and (min-width: 1480px){
-    .memberCenter_section {
-        .memFileWrapInfo {
-            table {
-                td {
-                    width: 44%;
-                }
-            }
-        }
-    }
+}
 }

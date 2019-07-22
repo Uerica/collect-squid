@@ -26,6 +26,7 @@
                 AND (mem_sign = :mem_sign OR :mem_sign = 'allsign' )
                 AND (mem_gender = :mem_gender OR :mem_gender = 'allgender')
                 GROUP BY m.mem_no
+                ORDER BY Rand()
                 LIMIT 10";
         $member = $pdo->prepare($sql);
         $member->bindValue(":mem_no", $mem_no);
