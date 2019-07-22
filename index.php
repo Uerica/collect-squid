@@ -78,8 +78,14 @@
       <div class="otherSquid" :style="others_online_user_info.position" >
         <div class="onlineFuns">
           <a class="funIcon goRoom" href="javascript:;" class="onlineFunction"><img src="imgs/characters/goRoomIcon.png" alt="看房間"></a >
-          <a class="funIcon addFriend" v-on:click="add_friend(others_online_user_info.mem_name)" href="javascript:;" class="onlineFunction"><img src="imgs/characters/addFriendIcon.png" alt="加好友"></a >
-          <a class="funIcon mute" href="javascript:;" class="onlineFunction"><img src="imgs/characters/muteIcon.png" alt="靜音"></a >
+          <a class="funIcon addFriend" v-on:click="add_friend(others_online_user_info.mem_name)" href="javascript:;" class="onlineFunction">
+            <img v-if="is_friend(others_online_user_info.mem_name)" src="imgs/characters/alreadyAddFriendIcon.png" alt="加好友">
+            <img v-else src="imgs/characters/addFriendIcon.png" alt="加好友">
+          </a >
+          <a class="funIcon mute" v-on:click="toggle_mute_user(others_online_user_info.mem_name)" href="javascript:;" class="onlineFunction">
+            <img v-if="is_muted_user(others_online_user_info.mem_name)" src="imgs/characters/unmuteIcon.png" alt="取消靜音">
+            <img v-else src="imgs/characters/muteIcon.png" alt="靜音">
+          </a >
         </div>
         <div class="talkingBubble" v-if="get_latest_message(others_online_user_info.mem_name) != ''">
           <p>{{get_latest_message(others_online_user_info.mem_name)}}</p>

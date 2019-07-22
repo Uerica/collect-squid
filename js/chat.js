@@ -19,12 +19,16 @@ var chat_app = new Vue({
     mem_lv:'',
     mem_avatar:'',
     squid_qty:'',
-    online_users_info: [] //[{"mem_name":"a","style_no":"/a.png"},{"mem_name":"b","style_no":"/b.png"}]
+    online_users_info: [], //[{"mem_name":"a","style_no":"/a.png"},{"mem_name":"b","style_no":"/b.png"}]
+    muted_users: []
   },
   methods: {
     //是否為登入狀態
     is_login: function(){
       return this.user_id!='';
+    },
+    is_friend: function(user){
+      return this.friends.indexOf(user) != -1;
     },
     //addFriend function
     add_friend: function(friend_name){
@@ -72,6 +76,16 @@ var chat_app = new Vue({
         xhr.open("Get", url, true);
         xhr.send( null );
     },
+    is_muted_user: function(user) {
+      return this.muted_users.indexOf(user) != -1;
+    },
+    toggle_mute_user: function (user) {
+      if(this.muted_users.indexOf(user) == -1){
+        this.muted_users.push(user);
+      } else {
+        this.muted_users = this.muted_users.filter(function (e) { return e != user; });
+      }
+    },
     others_online_users_info:function(){
       return this.online_users_info.filter(function (e) { return e.mem_name != chat_app.user_id; });
     },
@@ -106,7 +120,7 @@ var chat_app = new Vue({
     },
     messages_to_all: function () {
       return this.messages.filter(function (msg) { //msg代表messages陣列裡的每一個物件 filter讓接到的物件跑一遍
-        return msg.chat_type == "ALL";
+        return msg.chat_type == "ALL" && !chat_app.is_muted_user(msg.user_id);
       });
     },
     messages_to_someone: function (who) {
@@ -124,10 +138,9 @@ var chat_app = new Vue({
     },
     get_latest_message: function(who) {
       var latestmsg = "";
-     
       for( var i = this.messages.length - 1 ; i >=0; i--) {
         var msg = this.messages[i];
-        if (msg.user_id == who && ((new Date().getTime() - new Date(msg.chat_time).getTime()) < 5000 )) {
+        if (msg.user_id == who && !this.is_muted_user(who) && ((new Date().getTime() - new Date(msg.chat_time).getTime()) < 5000 )) {
           latestmsg = msg.chat_msg;
           break;
         }
