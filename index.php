@@ -78,8 +78,14 @@
       <div class="otherSquid" :style="others_online_user_info.position" >
         <div class="onlineFuns">
           <a class="funIcon goRoom" href="javascript:;" class="onlineFunction"><img src="imgs/characters/goRoomIcon.png" alt="看房間"></a >
-          <a class="funIcon addFriend" v-on:click="add_friend(others_online_user_info.mem_name)" href="javascript:;" class="onlineFunction"><img src="imgs/characters/addFriendIcon.png" alt="加好友"></a >
-          <a class="funIcon mute" href="javascript:;" class="onlineFunction"><img src="imgs/characters/muteIcon.png" alt="靜音"></a >
+          <a class="funIcon addFriend" v-on:click="add_friend(others_online_user_info.mem_name)" href="javascript:;" class="onlineFunction">
+            <img v-if="is_friend(others_online_user_info.mem_name)" src="imgs/characters/alreadyAddFriendIcon.png" alt="加好友">
+            <img v-else src="imgs/characters/addFriendIcon.png" alt="加好友">
+          </a >
+          <a class="funIcon mute" v-on:click="toggle_mute_user(others_online_user_info.mem_name)" href="javascript:;" class="onlineFunction">
+            <img v-if="is_muted_user(others_online_user_info.mem_name)" src="imgs/characters/unmuteIcon.png" alt="取消靜音">
+            <img v-else src="imgs/characters/muteIcon.png" alt="靜音">
+          </a >
         </div>
         <div class="talkingBubble" v-if="get_latest_message(others_online_user_info.mem_name) != ''">
           <p>{{get_latest_message(others_online_user_info.mem_name)}}</p>
@@ -824,7 +830,7 @@
                               </div>
                             </div>
                             <div class="memInfo">
-                              <span class="playerName"><?php echo $allMemberRow["mem_name"];?></span>
+                              <span id="playerName" class="playerName"><?php echo $allMemberRow["mem_name"];?></span>
                               <i class="fas fa-heart playerHeartSum"><b><?php echo $allMemberRow["heart_qty"];?></b></i>
                             </div>
                           </div>
@@ -850,7 +856,7 @@
                   </div>
               <div class="leaderBoard_btn">
                 <button class="button btn-visit">拜訪房間</button>
-                <button class="button btn-addFriend">加朋友</button>
+                <button class="button btn-addFriend" id="leaderBoard_addfriend" >加朋友</button>
               </div>
             </div>
           </div>
@@ -1294,21 +1300,33 @@
     <script src="js/rolePosition.js"></script>
     <script src="js/movingAction.js"></script>
     <script src="js/leaderBoard.js"></script>
-    <script scr="js/addFriend.js"></script>
+    <script src="js/addFriend.js"></script>
     <!-- <script src="js/leaderBoardAddFriend.js"></script> -->
     <!-- //加moving... -->
     <script>
+      <?php 
+      if(isset($_SESSION["mem_name"])){
+        echo "var mem_name='" . $_SESSION["mem_name"] . "';";
+        echo "var style_no='" . $_SESSION["style_no"] . "';";
+        echo "var mem_lv='" . $_SESSION["mem_lv"] . "';";
+        echo "var mem_avatar='" . $_SESSION["mem_avatar"] . "';";
+        echo "var squid_qty='" . $_SESSION["squid_qty"] . "';";
+      }
+      ?>
       $(document).ready(function(){
         <?php 
         if(isset($_SESSION["mem_name"])){
-          echo "var mem_name='" . $_SESSION["mem_name"] . "';";
-          echo "var style_no='" . $_SESSION["style_no"] . "';";
-          echo "var mem_lv='" . $_SESSION["mem_lv"] . "';";
-          echo "var mem_avatar='" . $_SESSION["mem_avatar"] . "';";
-          echo "var squid_qty='" . $_SESSION["squid_qty"] . "';";
           echo "login(mem_name,style_no,mem_lv,mem_avatar,squid_qty);";
         }
         ?>
+      });
+    </script>
+    <script>
+      $("#leaderBoard_addfriend").click(function(){
+        var name = $(".active #playerName").html();
+        if(confirm('是否確認加'+name+'好友?')){
+          addFriend(mem_name, name);
+        }
       });
     </script>
 </body>

@@ -898,54 +898,54 @@ try {
 
 
                 <!-- 購物記錄 電腦版 -->
-                <div id="shopRecord_web" class="shopRecord_web">
-                    <div id="msgBlock_web" class="msgRecordWrapforrecord">
-                        <div class="msgRecordWrap">
-                            <div class="msgRecordWrapforflex">
-                                <div class="msgRecordImg">
-                                    <img src="imgs/memberCenter/memCenter_photo.png" alt="memberPhoto">
-                                </div>
-                                <div class="msgRecordRightWrap">
-                                    <div class="msgRecordText">
-                                        <p>魷魚好辣跟她的家都超辣的，希望我或我
-                                            的家也能有她一半那麼辣就好了，希望她
-                                            能加我好友。購物紀錄</p>
-                                    </div>
-
-                                    <div class="msgRecordEditBtn_web">
-                                        <!-- <input type="submit" id="msgEdit_web" class="btnEdit_web" value="編輯"> -->
-                                        <input type="submit" id="msgDelete_web" class="btnDelete_web" value="刪除">
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                    <!-- form表單,input輸入 -->
-                    <div id="msgInput_web" class="msgRecordWrapforinput">
-                        <div class="msgRecordWrap">
-                            <div class="msgRecordWrapforflex">
-                                <div class="msgRecordImg">
-                                    <img src="imgs/memberCenter/memCenter_photo.png" alt="memberPhoto">
-                                </div>
-                                <div class="msgRecordRightWrap">
-                                    <div class="msgRecordText">
-                                        <input type="text">
-                                    </div>
-
-                                    <div class="msgRecordEditBtn_web">
-                                        <input type="submit" id="msgConfirm_web" class="btnConfirm_web" value="確認">
-                                        <input type="submit" id="msgCanncel_web" class="btnCancel_web" value="取消">
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="member_center"><div id="shopRecord_web" class="shopRecord_web">
+                <div id="msgBlock_web" class="msgRecordWrapforrecord">
+                <div class="msgRecordWrap">
+                <div class="msgRecordWrapforflex">
+                <div class="msgRecordImg">
+                <img src="imgs/memberCenter/memCenter_photo.png" alt="memberPhoto">
                 </div>
+                <div class="msgRecordRightWrap">
+                <div class="msgRecordText">
+                <p>魷魚好辣跟她的家都超辣的，希望我或我
+                的家也能有她一半那麼辣就好了，希望她
+                能加我好友。購物紀錄</p>
+                </div>
+                
+                <div class="msgRecordEditBtn_web">
+                <!-- <input type="submit" id="msgEdit_web" class="btnEdit_web" value="編輯"> -->
+                <input type="submit" id="msgDelete_web" class="btnDelete_web" value="刪除">
+                </div>
+                
+                </div>
+                </div>
+                </div>
+                </div>
+                
+                
+                
+                <!-- form表單,input輸入 -->
+                <div id="msgInput_web" class="msgRecordWrapforinput">
+                <div class="msgRecordWrap">
+                <div class="msgRecordWrapforflex">
+                <div class="msgRecordImg">
+                <img src="imgs/memberCenter/memCenter_photo.png" alt="memberPhoto">
+                </div>
+                <div class="msgRecordRightWrap">
+                <div class="msgRecordText">
+                <input type="text">
+                </div>
+                
+                <div class="msgRecordEditBtn_web">
+                <input type="submit" id="msgConfirm_web" class="btnConfirm_web" value="確認">
+                <input type="submit" id="msgCanncel_web" class="btnCancel_web" value="取消">
+                </div>
+                
+                </div>
+                </div>
+                </div>
+                </div>
+                </div></div>
 
 
                 <!-- 原版_錯的 -->

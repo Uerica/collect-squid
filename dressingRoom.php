@@ -71,10 +71,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="css/reset.css" />
-    <link
+    <!-- <link
       rel="stylesheet"
       href="node_modules/owl.carousel/dist/assets/owl.carousel.min.css"
-    />
+    /> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
     <!-- <link rel="stylesheet" href="css/style.css" /> -->
     <link rel="stylesheet" href="sass/style.css" />
     <title>收集友誼</title>
@@ -392,6 +394,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
     <script src="node_modules/owl.carousel/dist/owl.carousel.min.js"></script>
     <script src="node_modules/gsap/src/minified/TweenMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js'></script>
     <script src="js/dressingRoom.js"></script>
     <script>

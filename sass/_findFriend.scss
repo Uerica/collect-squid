@@ -324,6 +324,15 @@ $find_vh:10vh;
         @include rwd(mobile) {
           transform: translate(-100px, 100px);
         }
+        .role_container {
+          width: $find_fullWidth;
+          height: $find_vh*4;
+          text-align: center;
+          .role_img {
+            height: 100%;
+          }
+        }
+        
       }
 
       .prizeWheel {

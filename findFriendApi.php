@@ -9,7 +9,7 @@
     $interest_no = $_REQUEST["interest_no"];//先拿mem_no 找mem_interst表格中interst_no interst表格中interst_name
     try {
         require_once('connectSquid.php');
-        $sql = "SELECT m.mem_no, m.mem_name, m.mem_gender, m.mem_sign, mem_avatar, GROUP_CONCAT(i.interest_name SEPARATOR ',') interest_names
+        $sql = "SELECT m.mem_no, m.mem_name, m.mem_gender, m.mem_sign, mem_avatar, m.style_no, m.dressed_no, GROUP_CONCAT(i.interest_name SEPARATOR ',') interest_names
                 FROM member m 
                 LEFT JOIN mem_interest mi ON m.mem_no = mi.mem_no 
                 LEFT JOIN interest i ON mi.interest_no = i.interest_no
@@ -45,6 +45,7 @@
                 $row["mem_gender"] = $memRow["mem_gender"];
                 $row["mem_sign"] = $memRow["mem_sign"];
                 $row["mem_avatar"] = $memRow["mem_avatar"];
+                $row["style_no"] = $memRow["dressed_no"] == "" ? $memRow["style_no"] : $memRow["dressed_no"] ;
                 $row["interest_names"] = $memRow["interest_names"];
                 $resp[] = $row;
             }   
