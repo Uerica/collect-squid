@@ -437,7 +437,7 @@
           if(isset($_SESSION["mem_name"])){
               echo "var mem_no='" . $_SESSION["mem_no"] . "';";
               echo "var mem_name='" . $_SESSION["mem_name"] . "';";
-              echo "var style_no='" . $_SESSION["style_no"] . "';";
+              // echo "var style_no='" . $_SESSION["style_no"] . "';";
               echo "var mem_lv='" . $_SESSION["mem_lv"] . "';";
               echo "var mem_avatar='" . $_SESSION["mem_avatar"] . "';";
               echo "var squid_qty='" . $_SESSION["squid_qty"] . "';";

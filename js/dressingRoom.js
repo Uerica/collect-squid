@@ -7,6 +7,7 @@ function init() {
     if (xhr.status == 200) {
       style_no = xhr.responseText;
       style_moving_no = xhr.responseText.replace("myRole", "myRole_moving");
+      console.log(style_no);
     } else {
       alert(xhr.status);
     }
