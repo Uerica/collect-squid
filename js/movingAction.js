@@ -7,7 +7,7 @@ function moveSquid(e) {
   //   console.log(i);
   //   const myImgMoving =
   let myImg = document.querySelector("#myRole").src;
-  if (myImg.indexOf(myRole) != -1) {
+  if (myImg.indexOf("myRole") != -1) {
     if (i % 5 == 0 && i % 10 != 0) {
       myImg = myImg.replace("myRole", "myRole_moving");
       $("#myRole").attr("src", myImg);
