@@ -53,7 +53,7 @@ try {
 
         $sql = "select * from member where mem_no = :mem_no";
         $members = $pdo->prepare($sql);
-        $members->bindValue(":mem_no", $_SESSION["mem_no"]); //寫session時改
+        $members->bindValue(":mem_no", $_SESSION["mem_no"]);
         // $members->bindValue(":mem_pwd","111");
         $members->execute();
         // $found = false;
