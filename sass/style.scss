@@ -2485,8 +2485,8 @@ $num-particles: 20; //煙的數量
 .loginSquid {
   position: absolute;
   width: 120px;
-  top: 250px;
-  left: 960px;
+  top: 20vh;
+  left: calc(50vw - 60px);
   z-index: 101;
   text-align: center;
   img {
