@@ -1,6 +1,4 @@
 <?php
-  // phpinfo();
-  // exit();
     ob_start();
     session_start();
     if(!isset($_SESSION["mem_name"])||($_SESSION["mem_name"] == "")){

@@ -12,10 +12,6 @@
       $mem_avatar = $_SESSION["mem_avatar"];
       $squid_qty = $_SESSION["squid_qty"];
   };
-?>
-<?php
-  // session_start();
-  // $mem_no = $_SESSION["mem_no"];
 
   $errMsg = '';
   try {
@@ -36,36 +32,33 @@
     $shoesLength = 0;
 
     // 從資料庫抓帽子
-    $hatsSQL = '
-    SELECT * 
+    $hatsSQL =
+    "SELECT * 
     FROM product_clothing
     WHERE clo_type = :clo_type
-    AND mem_lv <= :mem_lv;
-    ';
+    AND mem_lv <= :mem_lv";
     $hats = $pdo->prepare($hatsSQL); 
     $hats->bindValue(':clo_type', 1);
     $hats->bindValue(':mem_lv', 3);
     $hats->execute();
 
     // 從資料庫抓衣服
-    $clothesSQL = '
-    SELECT *
+    $clothesSQL =
+    "SELECT *
     FROM product_clothing
     WHERE clo_type = :clo_type
-    AND mem_lv <= :mem_lv;
-    ';
+    AND mem_lv <= :mem_lv";
     $clothes = $pdo->prepare($clothesSQL);
     $clothes->bindValue(':clo_type', 2);
     $clothes->bindValue(':mem_lv', 3);
     $clothes->execute();
 
     // 從資料庫抓鞋子
-    $shoesSQL = '
-    SELECT *
+    $shoesSQL =
+    "SELECT *
     FROM product_clothing
     WHERE clo_type = :clo_type
-    AND mem_lv <= :mem_lv;
-    ';
+    AND mem_lv <= :mem_lv";
     $shoes = $pdo->prepare($shoesSQL);
     $shoes->bindValue(':clo_type', 3);
     $shoes->bindValue(':mem_lv', 3);
@@ -94,7 +87,7 @@
 
   <body>
   <!-- vue -->
-  <div id="app">
+  <div id="">
       <!-- 導覽列 -->
       <header class="common_header disabledScrollOnHover">
           <div class="menuMobile">
@@ -289,7 +282,7 @@
           </form>
       </div>
       <!-- 衣櫃區塊 -->
-      <div class="clothesArea" id="dressingapp">
+      <div class="clothesArea" id="app">
         <div class="wardrobe">
           <h3>我的衣櫃</h3>
           <!-- 衣櫃上蓋 -->
@@ -419,10 +412,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js'></script>
     <script src="js/dressingRoom.js"></script>
-    <script src="js/chat.js"></script>
+    <!-- <script src="js/chat.js"></script> -->
     <script>
       new Vue({
-        el: '#dressingapp',
+        el: '#app',
         data: {
           hatLength: <?php echo $hatLength; ?>,
           cloLength: <?php echo $cloLength; ?>,

@@ -1,3 +1,4 @@
+
 <?php
   ob_start();
   session_start();
@@ -5,16 +6,15 @@
       header("Location: /index.php");
       die();
   } else {
-      $mem_no = $_SESSION["mem_no"];
-      $mem_name = $_SESSION["mem_name"];
-      $style_no = $_SESSION["style_no"];
-      $mem_lv = $_SESSION["mem_lv"];
-      $mem_avatar = $_SESSION["mem_avatar"];
-      $squid_qty = $_SESSION["squid_qty"];
+    $mem_no = $_SESSION["mem_no"];
+    $mem_name = $_SESSION["mem_name"];
+    $style_no = $_SESSION["style_no"];
+    $mem_lv = $_SESSION["mem_lv"];
+    $mem_avatar = $_SESSION["mem_avatar"];
+    $squid_qty = $_SESSION["squid_qty"];
   };
 ?>
-<?php 
-    session_start();
+<?php
     $msg = "";
     $errMsg = "";
     try{
@@ -23,7 +23,7 @@
         $mem_no = $_SESSION["mem_no"];
 
         //會員資料
-        $memberSQL = "SELECT * FROM `member` WHERE `mem_no` = :mem_no";
+        $memberSQL = "SELECT * FROM member WHERE mem_no = :mem_no";
         $memberInfo = $pdo->prepare($memberSQL);
         $memberInfo->bindValue(':mem_no', $mem_no);
         $memberInfo->execute();

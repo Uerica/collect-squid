@@ -14,7 +14,6 @@
   };
 ?>
 <?php
-session_start();
 $errMsg = "";
 try {
   $dns = "mysql:host=sql.uerica.com;port=3307;dbname=dd101g2;charset=utf8";

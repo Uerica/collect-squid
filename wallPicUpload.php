@@ -7,7 +7,6 @@ try {
     $options = array(PDO::ATTR_CASE => PDO::CASE_NATURAL, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
     $pdo = new PDO($dns, $user, $psw, $options);
 
-    $_SESSION["mem_no"] = 20;
     $mem_no = $_SESSION["mem_no"];
 
     switch ($_FILES["selectPicInput"]["error"]) {

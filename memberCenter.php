@@ -18,7 +18,7 @@ $errMsg = "";
 try {
     require_once("connectDB.php");
 
-    $sql = "select * from member";  //...............
+    $sql = "SELECT * from member";  //...............
     $products = $pdo->query($sql);
     $prodRows = $products->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {

@@ -30,7 +30,7 @@
     <title>find</title>
 </head>
 <body>
-    <!-- 導覽列 -->
+   <!-- vue -->
     <div id="app">
         <!-- 導覽列 -->
         <header class="common_header disabledScrollOnHover">
@@ -168,6 +168,7 @@
             </nav>
         </header>
     </div>
+
     <div class="findFriend">
         <embed class="findFriend_embed" src="img/find_bg.svg" type="">
         <!-- 篩選燈箱 -->

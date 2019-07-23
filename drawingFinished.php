@@ -11,6 +11,6 @@
     $file = $upload_dir.$fileName.".png";
     $success = file_put_contents($file, $data);
 
-    $SESSION["choTmpName"] = $file;
+    $_SESSION["choTmpName"] = $file;
     echo $success ? $file : 'error';
 ?>

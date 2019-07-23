@@ -33,7 +33,7 @@
     //         $sql = "INSERT INTO `member` (`mem_no`, `style_no`,  `head_no`, `face_no`, `mem_name`, `mem_pwd`, `mem_email`, `mem_lv`, `highest_lv`, `squid_qty`, `mem_gender`, `mem_dob`, `mem_sign`, `mem_avatar`, `skin`, `poster_img_url`, `mem_intro`) VALUES
     // (2,'img/avatar.png', NULL, NULL, '魷魚軟軟', '12345', 'softsoft@gmail.com', 1, 1, 1000, 'M', '2019-02-08', '水瓶座', 'img/avatar.png', NULL, NULL, NULL)";
     //         $pdo->exec($sql);
-            $sql = "INSERT INTO `member` (`mem_no`, `style_no`, `style_moving_no`,  `head_no`, `face_no`, `mem_name`, `mem_pwd`, `mem_email`, `mem_lv`, `highest_lv`, `squid_qty`, `mem_gender`, `mem_dob`, `mem_sign`, `mem_avatar`, `skin`, `poster_img_url`, `mem_intro`, `mem_status`) VALUES
+            $sql = "INSERT INTO member (mem_no, style_no, style_moving_no, head_no, face_no, mem_name, mem_pwd, mem_email, mem_lv, highest_lv, squid_qty, mem_gender, mem_dob, mem_sign, mem_avatar, skin, poster_img_url, mem_intro, mem_status) VALUES
     (:mem_no , :style_no, :style_moving_no, :head_no, :face_no, :mem_name, :mem_pwd, :mem_email, :mem_lv, :highest_lv, :squid_qty, :mem_gender, :mem_dob, :mem_sign, :mem_avatar, :skin, :poster_img_url, :mem_intro, :mem_status)";
             $member = $pdo->prepare($sql);
             $mem_no = $pdo->lastInsertId();

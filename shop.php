@@ -14,7 +14,6 @@
   };
 ?>
 <?php
-session_start();
 $errMsg = "";
 try {
     $dns = "mysql:host=sql.uerica.com;port=3307;dbname=dd101g2;charset=utf8";
@@ -23,7 +22,7 @@ try {
     $options = array(PDO::ATTR_CASE => PDO::CASE_NATURAL, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
     $pdo = new PDO($dns, $user, $psw, $options);
 
-    $sql = "select * from product_furniture where furn_type=:furn_type";
+    $sql = "SELECT * FROM product_furniture WHERE furn_type=:furn_type";
 
     $chairs = $pdo->prepare($sql);
     $chairs->bindValue(":furn_type", 1);
@@ -38,13 +37,13 @@ try {
     $beds->execute();
 
 
-    $sql = "select * from member where mem_no=:mem_no";
+    $sql = "SELECT * from member where mem_no=:mem_no";
     $members = $pdo->prepare($sql);
     $members->bindValue(":mem_no", $_SESSION["mem_no"]); //from session
     $members->execute();
     $member = $members->fetchObject();
 
-    $sql = "select * from mem_furniture where mem_no=:mem_no";
+    $sql = "SELECT * from mem_furniture where mem_no=:mem_no";
     $mem_furns = $pdo->prepare($sql);
     $mem_furns->bindValue(":mem_no", $_SESSION["mem_no"]); //from session
     $mem_furns->execute();
