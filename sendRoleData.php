@@ -135,7 +135,7 @@
             $success = file_put_contents($file, $data);
             
             $_SESSION["mem_no"] = $lastID;
-            $_SESSION["myRole"] = $file;
+            $_SESSION["style_no"] = $file;
             echo $success ? $file : 'error';
         }
         elseif(isset($_REQUEST["createdSquid_moving"]) == true) {
@@ -159,7 +159,7 @@
             $success = file_put_contents($file, $data);
             
             $_SESSION["mem_no"] = $lastID;
-            $_SESSION["myRole_moving"] = $file;
+            $_SESSION["style_moving_no"] = $file;
             echo $success ? $file : 'error';
         }
         // echo "創角成功~";

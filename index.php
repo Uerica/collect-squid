@@ -10,6 +10,7 @@
       $mem_no = $_SESSION["mem_no"];
       $mem_name = $_SESSION["mem_name"];
       $style_no = $_SESSION["style_no"];
+      $dressed_no = $_SESSION["dressed_no"];
       $mem_lv = $_SESSION["mem_lv"];
       $mem_avatar = $_SESSION["mem_avatar"];
       $squid_qty = $_SESSION["squid_qty"];
@@ -1294,11 +1295,9 @@
     <script src="js/createBox.js"></script>
     <script src="js/createRoleData.js"></script>
     <script src="js/newCharacter.js"></script>
-    <script src="js/chat.js"></script>
     <script src="js/chatBot.js"></script>
     <script src="js/roleFunctions.js"></script>
     <script src="js/rolePosition.js"></script>
-    <script src="js/movingAction.js"></script>
     <script src="js/leaderBoard.js"></script>
     <script src="js/addFriend.js"></script>
     <!-- <script src="js/leaderBoardAddFriend.js"></script> -->
@@ -1320,7 +1319,7 @@
         }
         ?>
       });
-    </script>
+      </script>
     <script>
       $("#leaderBoard_addfriend").click(function(){
         var name = $(".active #playerName").html();
@@ -1328,7 +1327,9 @@
           addFriend(mem_name, name);
         }
       });
-    </script>
+      </script>
+      <script src="js/chat.js"></script>
+      <script src="js/movingAction.js"></script>
 </body>
 
 </html>
