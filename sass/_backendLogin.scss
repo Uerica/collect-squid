@@ -7,7 +7,8 @@
     .lightBox {
         width: 50%;
         height: 60%;
-        background-color: #ff7979;
+        background-color: #2E3440;
+        // border: 3px solid #ECEFF4;
         position: absolute;
         top: 0;
         left: 0;
@@ -27,7 +28,6 @@
         &_content {
             width: 98%;
             height: 96%;
-            background-color: #fff;
             border-radius: 10px;
             margin: auto;
             display: inline-block;
@@ -38,32 +38,135 @@
             display: inline-block;
             width: 32%;
             height: 100%;
-            background-color: #f5d1e1;
+            // background-color: #f5d1e1;
             border-radius: 10px 0px 0px 10px;
             vertical-align: bottom;
         }
-        &_title {
+        &_text {
             width: 100%;
             height: 30%;
             text-align: center;
-            line-height: 40px;
+            line-height: 50px;
+            // color: #331c1c;
+            color: $white;
+            &::before{
+                content: '';
+                display: inline-block;
+                vertical-align: middle;
+                height: 100%;
+                width: 0;
+            }
             h1 {
-                font-size: 40px;
+                font-size: 48px;
             }
             p {
                 font-size: 24px;
             }
         }
+        &_title {
+            display: inline-block;
+            vertical-align: middle;
+        }
         &_img {
             width: 100%;
             height: 70%;
+            text-align: center;
+            &::before{
+                content: '';
+                display: inline-block;
+                vertical-align: middle;
+                height: 100%;
+                width: 0;
+            }
+            img {
+                width: 70%;
+                vertical-align: middle;
+            }
         }
         &_login {
             display: inline-block;
             width: 68%;
             height: 100%;
-            background-color: #aaf;
-            border-radius: 0px 10px 10px 0px;
+            background-color: #fff;
+            border-radius: 10px;
+            text-align: center;
+        }
+        &_thead {
+            height: 15%;
+            background-color: #fff;
+            font-size: 24px;
+            &::before{
+                content: '';
+                display: inline-block;
+                vertical-align: middle;
+                height: 100%;
+                width: 0;
+            }
+            h2 {
+                display: inline-block;
+                vertical-align: middle;
+            }
+        }
+        &_loginForm {
+            height: 55%;
+            background-color: #fff;
+            &::before{
+                content: '';
+                display: inline-block;
+                vertical-align: middle;
+                height: 100%;
+                width: 0;
+            }
+            h2 {
+                display: inline-block;
+                vertical-align: middle;
+            }
+            label {
+                font-size: 24px;
+                padding-right: 10px;
+                vertical-align: middle;
+            }
+        }
+        &_inputArea {
+            display: inline-block;
+            vertical-align: middle;
+            width: 100%;
+        }
+        &_input {
+            margin: 10% 0%;
+            input {
+                width: 50%;
+                padding: 2%;
+                border: 3px solid #faa;
+                border-radius: 20px;
+                vertical-align: middle;
+            }
+        }
+        &_submit {
+            height: 30%;
+            background-color: #fff;
+            input {
+                display: inline-block;
+                width: 65%;
+                margin: 2% -4px;
+                padding: 2% 3%;
+                border: 3px solid #f6f6f6;
+                font-size: 16px;
+                border-radius: 20px;
+                color: #fff;
+                background-color: #fa7979;
+                position: relative;
+                top: -3px;
+                left: -3px;
+                box-shadow: 3px 3px #e7867e;
+                transition: 0.3s;
+                cursor: pointer;
+                &:hover {
+                    top: 0;
+                    left: 0;
+                    box-shadow: 0 0 transparent;
+                }
+            }
         }
     }
 }
