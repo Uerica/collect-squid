@@ -14,8 +14,8 @@
   };
 ?>
 <?php
-  session_start();
-  $mem_no = $_SESSION["mem_no"];
+  // session_start();
+  // $mem_no = $_SESSION["mem_no"];
 
   $errMsg = '';
   try {
@@ -411,10 +411,11 @@
         </div>
       </div>
     </div>
-    <script src="node_modules/gsap/src/minified/TweenMax.min.js"></script>
+    <!-- <script src="node_modules/gsap/src/minified/TweenMax.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
-    <script src="node_modules/owl.carousel/dist/owl.carousel.min.js"></script>
-    <script src="node_modules/gsap/src/minified/TweenMax.min.js"></script>
+    <!-- <script src="node_modules/owl.carousel/dist/owl.carousel.min.js"></script> -->
+    <!-- <script src="node_modules/gsap/src/minified/TweenMax.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js'></script>
     <script src="js/dressingRoom.js"></script>
