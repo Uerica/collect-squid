@@ -1306,11 +1306,11 @@
     <script>
       <?php 
       if(isset($_SESSION["mem_name"])){
-        echo "var mem_name='" . $_SESSION["mem_name"] . "';";
-        echo "var style_no='" . $_SESSION["style_no"] . "';";
-        echo "var mem_lv='" . $_SESSION["mem_lv"] . "';";
-        echo "var mem_avatar='" . $_SESSION["mem_avatar"] . "';";
-        echo "var squid_qty='" . $_SESSION["squid_qty"] . "';";
+        echo "var mem_name='" . $_SESSION["mem_name"] . "';\r\n";
+        echo "var style_no='" . $_SESSION["style_no"] . "';\r\n";
+        echo "var mem_lv='" . $_SESSION["mem_lv"] . "';\r\n";
+        echo "var mem_avatar='" . $_SESSION["mem_avatar"] . "';\r\n";
+        echo "var squid_qty='" . $_SESSION["squid_qty"] . "';\r\n";
       }
       ?>
       $(document).ready(function(){

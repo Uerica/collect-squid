@@ -58,6 +58,14 @@
             $member->bindValue(":mem_status", $mem_status);
             $member->execute();
 
+            //存session
+            $_SESSION["mem_no"] =  $mem_no;
+            $_SESSION["mem_name"] =  $mem_name;
+            $_SESSION["style_no"] =  $style_no;
+            $_SESSION["mem_lv"] =  trim((string)$mem_lv);
+            $_SESSION["mem_avatar"] =  $mem_avatar;
+            $_SESSION["squid_qty"] =  trim((string)$squid_qty);
+
             // 取得id
             $sql = 
             'SELECT * 

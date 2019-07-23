@@ -147,7 +147,7 @@ function sendData(
     if (textXHR.status == 200) {
       $(".createBox").css({ display: "none" });
       const worold = document.getElementsByTagName("body")[0];
-      alert(textXHR.responseText);
+      // alert(textXHR.responseText);
       // console.log("world");
       setTimeout(sendGraph, 10);
     } else {
@@ -233,6 +233,7 @@ function sendGraphMoving() {
           if (xhr.status == 200) {
             // document.getElementById("myRole").src = xhr.responseText;
             console.log(xhr.responseText);
+            location.reload();
           } else {
             alert(xhr.status);
           }
