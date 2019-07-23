@@ -15,6 +15,8 @@
         $file = $upload_dir.$fileName.".png";
         $success = file_put_contents($file, $data);
         $_SESSION["dressed_no"] = $file;
+        // update to style_no as general charactor dress code.
+        $_SESSION["style_no"] = $file;
 
         $sql = 
         "UPDATE member
