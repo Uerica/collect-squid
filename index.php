@@ -90,7 +90,7 @@
           <p>{{get_latest_message(others_online_user_info.mem_name)}}</p>
         </div>
         <span class="roleName">{{others_online_user_info.mem_name}}</span>
-        <img id="myRole" :src="others_online_user_info.style_no" alt="Penny">
+        <img :src="others_online_user_info.style_no">
       </div>
     </template>
 
@@ -1283,7 +1283,7 @@
     </div>
 
     <!-- Javascript -->
-    <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js'></script> -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js'></script>
@@ -1298,8 +1298,9 @@
     <script src="js/rolePosition.js"></script>
     <script src="js/leaderBoard.js"></script>
     <script src="js/addFriend.js"></script>
-    <!-- <script src="js/leaderBoardAddFriend.js"></script> -->
-    <!-- //加moving... -->
+    <script src="js/leaderBoardAddFriend.js"></script>
+    <script src="js/chat.js"></script>
+    <script src="js/movingAction.js"></script>
     <script>
       <?php 
       if(isset($_SESSION["mem_name"])){
@@ -1326,8 +1327,6 @@
         }
       });
       </script>
-      <script src="js/chat.js"></script>
-      <script src="js/movingAction.js"></script>
 </body>
 
 </html>
