@@ -79,7 +79,7 @@
                                     <span>換衣間</span></a></li>
                             <li><a href="findfriend.php"> <img src="imgs/homePage/icon/friend.png" alt="找朋友icon">
                                     <span>找朋友</span></a></li>
-                            <li><a href="javascript:;"> <img src="imgs/homePage/icon/events.png" alt="揪團活動icon">
+                            <li><a href="events.php"> <img src="imgs/homePage/icon/events.png" alt="揪團活動icon">
                                     <span>揪團活動</span></a></li>
                             <li><a href="shop.php"> <img src="imgs/homePage/icon/mall.png" alt="虛擬商城icon">
                                     <span>虛擬商城</span></a></li>
@@ -97,7 +97,7 @@
             <nav class="menuDesktop">
                 <ul>
                     <li class="hvr-pulse-grow">
-                        <a href="myRoom.html">
+                        <a href="myRoom.php">
                             <img src="imgs/homePage/icon/room.png" alt="我的房間icon">
                             <span>我的房間</span>
                         </a>
@@ -301,6 +301,7 @@
                 }
             ?>
         });
+       
 
         function startSearch() {
             var gender = $("#gender").val();

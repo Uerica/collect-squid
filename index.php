@@ -10,6 +10,7 @@
       $mem_no = $_SESSION["mem_no"];
       $mem_name = $_SESSION["mem_name"];
       $style_no = $_SESSION["style_no"];
+      $dressed_no = $_SESSION["dressed_no"];
       $mem_lv = $_SESSION["mem_lv"];
       $mem_avatar = $_SESSION["mem_avatar"];
       $squid_qty = $_SESSION["squid_qty"];
@@ -96,140 +97,140 @@
     </template>
 
     <!-- 導覽列 -->
-    <header class="common_header disabledScrollOnHover">
-        <div class="menuMobile">
-            <span class="menuMobile_circle"></span>
-            <a href="#" class="menuMobile_link">
-                <span class="menuMobile_icon">
-                    <span class="menuMobile_line menuMobile_line-1"></span>
-                    <span class="menuMobile_line menuMobile_line-2"></span>
-                    <span class="menuMobile_line menuMobile_line-3"></span>
-                </span>
-            </a>
-        </div>
+        <header class="common_header disabledScrollOnHover">
+            <div class="menuMobile">
+                <span class="menuMobile_circle"></span>
+                <a href="#" class="menuMobile_link">
+                    <span class="menuMobile_icon">
+                        <span class="menuMobile_line menuMobile_line-1"></span>
+                        <span class="menuMobile_line menuMobile_line-2"></span>
+                        <span class="menuMobile_line menuMobile_line-3"></span>
+                    </span>
+                </a>
+            </div>
 
-        <div class="menuHandheld">
-            <div class="menuMobile_overlay">
-                <div class="menuMobile_menu">
-                    <ul class="memberInfo">
+            <div class="menuHandheld">
+                <div class="menuMobile_overlay">
+                    <div class="menuMobile_menu">
+                        <ul class="memberInfo">
+                            <li class="coin">
+                                <a href="javascript:;">
+                                    <img src="imgs/homePage/icon/coin.png" alt="持有金額icon">
+                                    <span>{{squid_qty}}</span>
+                                </a>
+                            </li>
+                            <li class="logo">
+                                <a href="index.php">
+                                    <img src="imgs/homePage/logo.png" alt="尋找友誼網站LOGO">
+                                    <span>尋找友誼</span>
+                                </a>
+                            </li>
+                            <li class="login">
+                                <img src="imgs/homePage/icon/avatar.png" alt="角色頭像icon">
+                                <span class="name">
+                                <a href="javascript:;">{{user_id}}</a>
+                                </span>
+                                <span>
+                                <a v-if="is_login()" v-on:click="logout">登出</a>
+                                <a v-else>登入</a>
+                                </span>
+                            </li>
+                        </ul>
+                        <nav class="menuMobile_nav">
+                            <li><a href="myRoom.php"> <img src="imgs/homePage/icon/room.png" alt="我的房間icon">
+                                    <span>我的房間</span></a></li>
+                            <li><a href="dressingRoom.php"><img src="imgs/homePage/icon/fittingRoom.png" alt="換衣間icon">
+                                    <span>換衣間</span></a></li>
+                            <li><a href="findfriend.php"> <img src="imgs/homePage/icon/friend.png" alt="找朋友icon">
+                                    <span>找朋友</span></a></li>
+                            <li><a href="events.php"> <img src="imgs/homePage/icon/events.png" alt="揪團活動icon">
+                                    <span>揪團活動</span></a></li>
+                            <li><a href="shop.php"> <img src="imgs/homePage/icon/mall.png" alt="虛擬商城icon">
+                                    <span>虛擬商城</span></a></li>
+                            <li><a href="memberCenter.php"> <img src="imgs/homePage/icon/member.png" alt="會員中心icon">
+                                    <span>會員中心</span></a></li>
+                            <li><a href="javascript:;"> <img src="imgs/homePage/icon/robot.png" alt="客服機器人_icon">
+                                    <span>客服機器人</span></a></li>
+                            <li><a href="javascript:;"> <img src="imgs/homePage/icon/notice02.png" alt="通知_icon">
+                                    <span>通知</span></a></li>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+
+            <nav class="menuDesktop">
+                <ul>
+                    <li class="hvr-pulse-grow">
+                        <a href="myRoom.php">
+                            <img src="imgs/homePage/icon/room.png" alt="我的房間icon">
+                            <span>我的房間</span>
+                        </a>
+                    </li>
+                    <li class="hvr-pulse-grow">
+                        <a href="dressingRoom.php">
+                            <img src="imgs/homePage/icon/fittingRoom.png" alt="換衣間icon">
+                            <span>換衣間</span>
+                        </a>
+                    </li>
+                    <li class="hvr-pulse-grow">
+                        <a href="findfriend.php">
+                            <img src="imgs/homePage/icon/friend.png" alt="找朋友icon">
+                            <span>找朋友</span>
+                        </a>
+                    </li>
+                    <li class="hvr-pulse-grow">
+                        <a href="events.php">
+                            <img src="imgs/homePage/icon/events.png" alt="揪團活動icon">
+                            <span>揪團活動</span>
+                        </a>
+                    </li>
+                    <li class="logo hvr-pulse-grow">
+                        <a href="index.php">
+                            <img src="imgs/homePage/logo.png" alt="尋找友誼網站LOGO">
+                            <span>尋找友誼</span>
+                        </a>
+                    </li>
+                    <li class="hvr-pulse-grow">
+                        <a href="shop.php">
+                            <img src="imgs/homePage/icon/mall.png" alt="虛擬商城icon">
+                            <span>虛擬商城</span>
+                        </a>
+                    </li>
+                    <li class="hvr-pulse-grow">
+                        <a href="memberCenter.php">
+                            <img src="imgs/homePage/icon/member.png" alt="會員中心icon">
+                            <span>會員中心</span>
+                        </a>
+                    </li>
+                    <div class="memberInfo">
+                        <li class="login">
+                            <img src="imgs/homePage/icon/avatar.png" alt="角色頭像icon">
+                            <span class="name">
+                            <a href="javascript:;">{{user_id}}</a>
+                            </span>
+                            <span>
+                            <a v-if="is_login()" v-on:click="logout">登出</a>
+                            <a v-else>登入</a>
+                            </span>
+                        </li>
                         <li class="coin">
                             <a href="javascript:;">
                                 <img src="imgs/homePage/icon/coin.png" alt="持有金額icon">
                                 <span>{{squid_qty}}</span>
                             </a>
                         </li>
-                        <li class="logo">
-                            <a href="index.php">
-                                <img src="imgs/homePage/logo.png" alt="尋找友誼網站LOGO">
-                                <span>尋找友誼</span>
+                        <li class="level">
+                            <a href="javascript:;">
+                                <img v-if="mem_lv=='1'" src="imgs/homePage/icon/civilian.png" alt="平民等級icon">
+                                <img v-if="mem_lv=='2'" src="imgs/homePage/icon/friend.png" alt="貴族等級icon">
+                                <img v-if="mem_lv=='3'" src="imgs/homePage/icon/friend.png" alt="皇族等級icon">
+                                <span>平民</span>                                                                                    
                             </a>
                         </li>
-                        <li class="login">
-                            <img src="imgs/homePage/icon/avatar.png" alt="角色頭像icon">
-                            <span class="name">
-                              <a href="javascript:;">{{user_id}}</a>
-                            </span>
-                            <span>
-                              <a v-if="is_login()" v-on:click="logout">登出</a>
-                              <a v-else>登入</a>
-                            </span>
-                        </li>
-                    </ul>
-                    <nav class="menuMobile_nav">
-                        <li><a href="myRoom.php"> <img src="imgs/homePage/icon/room.png" alt="我的房間icon">
-                                <span>我的房間</span></a></li>
-                        <li><a href="dressingRoom.php"><img src="imgs/homePage/icon/fittingRoom.png" alt="換衣間icon">
-                                <span>換衣間</span></a></li>
-                        <li><a href="findfriend.php"> <img src="imgs/homePage/icon/friend.png" alt="找朋友icon">
-                                <span>找朋友</span></a></li>
-                        <li><a href="javascript:;"> <img src="imgs/homePage/icon/events.png" alt="揪團活動icon">
-                                <span>揪團活動</span></a></li>
-                        <li><a href="shop.php"> <img src="imgs/homePage/icon/mall.png" alt="虛擬商城icon">
-                                <span>虛擬商城</span></a></li>
-                        <li><a href="memberCenter.php"> <img src="imgs/homePage/icon/member.png" alt="會員中心icon">
-                                <span>會員中心</span></a></li>
-                        <li class="robot-m"><a href="javascript:;"> <img src="imgs/homePage/icon/robot.png" alt="客服機器人_icon">
-                                <span>客服機器人</span></a></li>
-                        <li class="notifications-m"><a href="javascript:;"> <img src="imgs/homePage/icon/notice02.png" alt="通知_icon">
-                                <span>通知</span></a></li>
-                    </nav>
-                </div>
-            </div>
-        </div>
-
-        <nav class="menuDesktop">
-            <ul>
-                <li class="hvr-pulse-grow">
-                    <a href="myRoom.html">
-                        <img src="imgs/homePage/icon/room.png" alt="我的房間icon">
-                        <span>我的房間</span>
-                    </a>
-                </li>
-                <li class="hvr-pulse-grow">
-                    <a href="dressingRoom.php">
-                        <img src="imgs/homePage/icon/fittingRoom.png" alt="換衣間icon">
-                        <span>換衣間</span>
-                    </a>
-                </li>
-                <li class="hvr-pulse-grow">
-                    <a href="findfriend.php">
-                        <img src="imgs/homePage/icon/friend.png" alt="找朋友icon">
-                        <span>找朋友</span>
-                    </a>
-                </li>
-                <li class="hvr-pulse-grow">
-                    <a href="events.php">
-                        <img src="imgs/homePage/icon/events.png" alt="揪團活動icon">
-                        <span>揪團活動</span>
-                    </a>
-                </li>
-                <li class="logo hvr-pulse-grow">
-                    <a href="index.php">
-                        <img src="imgs/homePage/logo.png" alt="尋找友誼網站LOGO">
-                        <span>尋找友誼</span>
-                    </a>
-                </li>
-                <li class="hvr-pulse-grow">
-                    <a href="shop.php">
-                        <img src="imgs/homePage/icon/mall.png" alt="虛擬商城icon">
-                        <span>虛擬商城</span>
-                    </a>
-                </li>
-                <li class="hvr-pulse-grow">
-                    <a href="memberCenter.php">
-                        <img src="imgs/homePage/icon/member.png" alt="會員中心icon">
-                        <span>會員中心</span>
-                    </a>
-                </li>
-                <div class="memberInfo">
-                    <li class="login">
-                        <img src="imgs/homePage/icon/avatar.png" alt="角色頭像icon">
-                        <span class="name">
-                          <a href="javascript:;">{{user_id}}</a>
-                        </span>
-                        <span>
-                          <a v-if="is_login()" v-on:click="logout">登出</a>
-                          <a v-else>登入</a>
-                        </span>
-                    </li>
-                    <li class="coin">
-                        <a href="javascript:;">
-                            <img src="imgs/homePage/icon/coin.png" alt="持有金額icon">
-                            <span>{{squid_qty}}</span>
-                        </a>
-                    </li>
-                    <li class="level">
-                        <a href="javascript:;">
-                            <img v-if="mem_lv=='1'" src="imgs/homePage/icon/civilian.png" alt="平民等級icon">
-                            <img v-if="mem_lv=='2'" src="imgs/homePage/icon/friend.png" alt="貴族等級icon">
-                            <img v-if="mem_lv=='3'" src="imgs/homePage/icon/friend.png" alt="皇族等級icon">
-                            <span>平民</span>                                                                                    
-                        </a>
-                    </li>
-                </div>
-            </ul>
-        </nav>
-    </header>
+                    </div>
+                </ul>
+            </nav>
+        </header>
 
     <!-- 聊天群組(1.聊天室 2.好友列表) -->
     <!-- Rou:vue.js #chat_app -->
@@ -1294,11 +1295,9 @@
     <script src="js/createBox.js"></script>
     <script src="js/createRoleData.js"></script>
     <script src="js/newCharacter.js"></script>
-    <script src="js/chat.js"></script>
     <script src="js/chatBot.js"></script>
     <script src="js/roleFunctions.js"></script>
     <script src="js/rolePosition.js"></script>
-    <script src="js/movingAction.js"></script>
     <script src="js/leaderBoard.js"></script>
     <script src="js/addFriend.js"></script>
     <!-- <script src="js/leaderBoardAddFriend.js"></script> -->
@@ -1320,7 +1319,7 @@
         }
         ?>
       });
-    </script>
+      </script>
     <script>
       $("#leaderBoard_addfriend").click(function(){
         var name = $(".active #playerName").html();
@@ -1328,7 +1327,9 @@
           addFriend(mem_name, name);
         }
       });
-    </script>
+      </script>
+      <script src="js/chat.js"></script>
+      <script src="js/movingAction.js"></script>
 </body>
 
 </html>
