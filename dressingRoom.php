@@ -87,7 +87,7 @@
 
   <body>
   <!-- vue -->
-  <div id="">
+  <div id="app">
       <!-- 導覽列 -->
       <header class="common_header disabledScrollOnHover">
           <div class="menuMobile">
@@ -282,7 +282,7 @@
           </form>
       </div>
       <!-- 衣櫃區塊 -->
-      <div class="clothesArea" id="app">
+      <div class="clothesArea" id="clothesArea">
         <div class="wardrobe">
           <h3>我的衣櫃</h3>
           <!-- 衣櫃上蓋 -->
@@ -412,10 +412,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js'></script>
     <script src="js/dressingRoom.js"></script>
-    <!-- <script src="js/chat.js"></script> -->
+    <script src="js/chat.js"></script>
     <script>
       new Vue({
-        el: '#app',
+        el: '#clothesArea',
         data: {
           hatLength: <?php echo $hatLength; ?>,
           cloLength: <?php echo $cloLength; ?>,
@@ -426,20 +426,16 @@
 
     <!-- 串navbar 登入功能 -->
     <script>
-      <?php 
-          if(isset($_SESSION["mem_name"])){
-              echo "var mem_no='" . $_SESSION["mem_no"] . "';";
-              echo "var mem_name='" . $_SESSION["mem_name"] . "';";
-              // echo "var style_no='" . $_SESSION["style_no"] . "';";
-              echo "var mem_lv='" . $_SESSION["mem_lv"] . "';";
-              echo "var mem_avatar='" . $_SESSION["mem_avatar"] . "';";
-              echo "var squid_qty='" . $_SESSION["squid_qty"] . "';";
-          }
-      ?>
       $(document).ready(function(){
           <?php 
               if(isset($_SESSION["mem_name"])){
-                  echo "login(mem_name,style_no,mem_lv,mem_avatar,squid_qty);";
+                echo "var mem_no='" . $_SESSION["mem_no"] . "';";
+                echo "var mem_name='" . $_SESSION["mem_name"] . "';";
+                echo "var style_no='" . $_SESSION["style_no"] . "';";
+                echo "var mem_lv='" . $_SESSION["mem_lv"] . "';";
+                echo "var mem_avatar='" . $_SESSION["mem_avatar"] . "';";
+                echo "var squid_qty='" . $_SESSION["squid_qty"] . "';";
+                echo "login(mem_name,style_no,mem_lv,mem_avatar,squid_qty);";
               }
           ?>
       });
