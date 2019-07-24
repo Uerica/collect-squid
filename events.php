@@ -374,10 +374,10 @@ try {
         <section class="normalEvents">
           <ul class="bookMarks evt_title">
             <li>
-              <img src="eventsImg/bookMarkDark.png" alt="Book Mark" /><span><a href="#newEvt">最新活動</a></span>
+              <img src="eventsImg/bookMarkDark.png" alt="Book Mark" /><span id="newEvtBtn"><a href="#newEvt">最新活動</a></span>
             </li>
             <li>
-              <img src="eventsImg/bookMarkLight.png" alt="Book Mark" /><span><a href="#popEvt">熱門活動</a></span>
+              <img src="eventsImg/bookMarkLight.png" alt="Book Mark" /><span id="popEvtBtn"><a href="#popEvt">熱門活動</a></span>
             </li>
           </ul>
           <div id="newEvt" class="eventDescs evt_inner">
@@ -507,8 +507,8 @@ try {
             <img src="eventsImg/squidRightHand.png" alt="Right Hand" class="rightHand" />
             <div class="bodyContent">
               <ul class="myEvt_title">
-                <li><a href="#myAttend">我參加的</a></li>
-                <li><a href="#myRaise">我舉辦的</a></li>
+                <li id="myAttendBtn"><a href="#myAttend">我參加的</a></li>
+                <li id="myRaiseBtn"><a href="#myRaise">我舉辦的</a></li>
               </ul>
               <div class="eventDescs">
                 <div id="myAttend" class="myAttend myEvt_inner">

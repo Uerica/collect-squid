@@ -39,7 +39,7 @@
     AND mem_lv <= :mem_lv";
     $hats = $pdo->prepare($hatsSQL); 
     $hats->bindValue(':clo_type', 1);
-    $hats->bindValue(':mem_lv', 3);
+    $hats->bindValue(':mem_lv', $mem_lv);
     $hats->execute();
 
     // 從資料庫抓衣服
@@ -50,7 +50,7 @@
     AND mem_lv <= :mem_lv";
     $clothes = $pdo->prepare($clothesSQL);
     $clothes->bindValue(':clo_type', 2);
-    $clothes->bindValue(':mem_lv', 3);
+    $clothes->bindValue(':mem_lv', $mem_lv);
     $clothes->execute();
 
     // 從資料庫抓鞋子
@@ -61,7 +61,7 @@
     AND mem_lv <= :mem_lv";
     $shoes = $pdo->prepare($shoesSQL);
     $shoes->bindValue(':clo_type', 3);
-    $shoes->bindValue(':mem_lv', 3);
+    $shoes->bindValue(':mem_lv', $mem_lv);
     $shoes->execute();
 
   } catch(PDOException $e) {
