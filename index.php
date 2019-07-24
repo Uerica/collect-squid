@@ -233,8 +233,11 @@
 
     <!-- 聊天群組(1.聊天室 2.好友列表) -->
     <!-- Rou:vue.js #chat_app -->
-    <div class="chatGroup disabledScrollOnHover collapse" id="chat_app">
+    <div class="chatGroup disabledScrollOnHover" id="chat_app">
+      <div class="chatGroup_closeBtn">
         <i class="fas fa-window-minimize closeBtn"></i>
+        <div class="closeBtn_text">縮小</div>
+      </div>
         <!-- 聊天室 -->
         <!-- 聊天室分成三種訊息 1.官方(messageOfficial) 2.發訊息的人(messageSent) 3.收訊息的人(messageReceived) -->
         <div class="chatRoom">
@@ -248,7 +251,7 @@
                     <!-- 官方訊息 -->
                     <li class="chatRoom_messageOfficial">
                         <div class="text">
-                            <p>在你離線時共有 2 人 造訪你的房間</p>
+                            <p>歡迎來到收集友誼的世界，在下方輸入對話內容開始聊天</p>
                         </div>
                     </li>
                     <template v-for="message in messages_to_all()">
@@ -261,7 +264,7 @@
                                     <p>{{ message.chat_msg }}</p>
                                 </div>
                                 <div class="avatar">
-                                    <img src="imgs/homePage/icon/member0.png" alt="大頭貼">{{ message.user_id }}
+                                    <img src="imgs/homePage/icon/avatar.png" alt="大頭貼">{{ message.user_id }}
                                 </div>
                             </div>
                         </li>
@@ -271,7 +274,7 @@
                         <li class="chatRoom_messageReceived" v-if="message.user_id != user_id">
                             <div class="message-received">
                                 <div class="avatar">
-                                    <img src="imgs/homePage/icon/member0.png" alt="大頭貼">{{ message.user_id }}
+                                    <img src="imgs/homePage/icon/avatar.png" alt="大頭貼">{{ message.user_id }}
                                 </div>
                                 <div class="text">
                                     <p>{{ message.chat_msg }}</p>
@@ -296,7 +299,7 @@
                                     <p>{{ message.chat_msg }}</p>
                                 </div>
                                 <div class="avatar">
-                                    <img src="imgs/homePage/icon/member0.png" alt="">
+                                    <img src="imgs/homePage/icon/avatar.png" alt="">
                                 </div>
                             </div>
                         </li>
@@ -305,7 +308,7 @@
                         <li class="chatRoom_messageReceived" v-if="message.user_id != user_id">
                             <div class="message-received">
                                 <div class="avatar">
-                                    <img src="imgs/homePage/icon/member0.png" alt="大頭貼">
+                                    <img src="imgs/homePage/icon/avatar.png" alt="大頭貼">
                                 </div>
                                 <div class="text">
                                     <p>{{ message.chat_msg }}</p>
@@ -350,7 +353,7 @@
                             <!-- 好友大頭貼、暱稱 -->
                             <div class="friendInfo">
                                 <div class="avatar">
-                                    <img src="imgs/homePage/tree_04.png" alt="大頭貼">
+                                    <img src="imgs/homePage/icon/avatar_F.png" alt="大頭貼">
                                 </div>
                                 <!-- 點擊user名字可以產生聊天視窗 -->
                                 <div class="friendName" v-on:click="private_chat(friend)">
@@ -370,13 +373,13 @@
                                     <a href="javascript:;"><img src="imgs/homePage/icon/home.png" alt="房間ICON"></a>
                                 </div>
 
-                                <div class="moreAction">
+                                <!-- <div class="moreAction">
                                     <a href="javavscript:;">
                                         <div class="dot"></div>
                                         <div class="dot"></div>
                                         <div class="dot"></div>
                                     </a>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </li>
@@ -390,7 +393,7 @@
                         <div class="friendList_friend" v-for="friend in offline_friends()">
                             <div class="friendInfo">
                                 <div class="avatar">
-                                    <img src="imgs/homePage/tree_04.png" alt="大頭貼">
+                                    <img src="imgs/homePage/icon/avatar_F.png" alt="大頭貼">
                                 </div>
                                 <div class="friendName">
                                     <p>{{ friend }}</p>
@@ -404,15 +407,16 @@
 
                                 <div class="roomVisit">
                                     <a href="javascript:;"><img src="imgs/homePage/icon/home.png" alt="房間ICON"></a>
+                                    <div class="roomVisit_text">去房間</div>
                                 </div>
 
-                                <div class="moreAction">
+                                <!-- <div class="moreAction">
                                     <a href="javavscript:;">
                                         <div class="dot"></div>
                                         <div class="dot"></div>
                                         <div class="dot"></div>
                                     </a>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </li>
@@ -423,7 +427,7 @@
                         <div class="friendList_friend" v-for="friend in pending_friends">
                             <div class="friendInfo">
                                 <div class="avatar">
-                                    <img src="imgs/homePage/tree_04.png" alt="大頭貼">
+                                    <img src="imgs/homePage/icon/avatar_F.png" alt="大頭貼">
                                 </div>
                                 <div class="friendName">
                                     <p>{{friend}}</p>
@@ -434,10 +438,12 @@
                                 <!-- 接受好友申請 -->
                                 <div class="requestAccept">
                                     <a href="javascript:;" v-on:click="confirm_friend(friend)"><img src="imgs/homePage/icon/accept.png" alt="接受ICON"></a>
+                                    <div class="requestAccept_text">同意</div>
                                 </div>
                                 <!-- 拒絕好友申請 -->
                                 <div class="requestRefuse">
                                     <a href="javascript:;"><img src="imgs/homePage/icon/refuse.png" alt="拒絕ICON"></a>
+                                    <div class="requestRefuse_text">拒絕</div>
                                 </div>
                             </div>
                         </div>
@@ -450,7 +456,7 @@
                         <div class="friendList_friend" v-for="friend in waiting_friends">
                             <div class="friendInfo">
                                 <div class="avatar">
-                                    <img src="imgs/homePage/tree_04.png" alt="大頭貼">
+                                    <img src="imgs/homePage/icon/avatar_F.png" alt="大頭貼">
                                 </div>
                                 <div class="friendName">
                                     <p>{{friend}}</p>
@@ -566,7 +572,7 @@
         <div class="robot_container disabledScrollOnHover collapse">
           <div id="chatBotBox" class="chatBotBox">
               <h3>魷魚機器人</h3>
-              <div class="wrapper">
+              <div class="chatBot_wrapper">
                   <div class="chatContainer" style="display:none">
 
                       <div id="chat_Q" class="chat_Q">
@@ -712,7 +718,10 @@
         <div class="gameWorld_leaderBoard disabledScrollOnHover">
           <div class="checkBox checkBox-leaderBoard collapse">
             <div class="leaderBoard_content">
-              <i class="fas fa-times leaderBoard_close" aria-hidden="true"></i>
+              <div class="leaderBoard_closeArea">
+                <i class="fas fa-times closeIcon" aria-hidden="true"></i>
+                <div class="closeText">關閉</div>              
+              </div>
               <div class="leaderBoard_title">
                   <h2>排行榜</h2>
               </div>
@@ -814,7 +823,7 @@
                           <div class="chosen_player">
                             <div class="memRoomItem">
                               <div class="memRoomItem_bg">
-                                <img src="imgs/homePage/leaderBoard/room_pic.png" alt="">
+                                <img src="imgs/homePage/leaderBoard/room.jpg" alt="房間圖片">
                               </div>
                               <div class="memRoomItem_chair">
                                 <img src="<?php echo $chairImg; ?>" alt="圖片">

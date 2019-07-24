@@ -18,6 +18,11 @@
   overflow: hidden;
 }
 
+.slideInActive {
+  transition: 1s;
+  transform: translateY(100%);
+}
+
 // 全域設定
 body {
   font-family: "Noto Sans TC", sans-serif;
@@ -426,17 +431,45 @@ img {
     width: 100vw;
     height: 100vh;
   }
-  .closeBtn {
-    // background-color: #afa;
+  &_closeBtn {
     position: absolute;
-    right: 0;
-    top: 0;
-    margin-right: 0.5em;
-    margin-top: -0.35em;
-    font-size: 40px;
-    color: #fff;
+    right: 30px;
+    top: -10px;
     cursor: pointer;
+    .closeBtn_text {
+      visibility: hidden;
+      width: 100%;
+      background-color: black;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px;
+      position: absolute;
+      bottom: 18px;
+      z-index: 9;
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 8px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: black transparent transparent transparent;
+      }
+    }
+    &:hover .closeBtn_text {
+      visibility: visible;
+    }
+    .closeBtn {
+      font-size: 40px;
+      color: #fff;
+      transition: 0.3s;
+      &:hover {
+        color: #3b4252;
+      }
+    }
   }
+
   .chatRoom {
     width: 60%;
     height: 100%;
@@ -498,6 +531,12 @@ img {
       .message-received {
         display: flex;
         flex-flow: row nowrap;
+      }
+      .message-sent {
+        justify-content: flex-end;
+      }
+      .message-received {
+        justify-content: flex-start;
       }
       .text {
         display: inline-block;
@@ -697,6 +736,8 @@ img {
       }
     }
     .roomVisit {
+      position: relative;
+      padding: 0px 5px;
       img {
         max-width: 44px;
         max-height: 44px;
@@ -705,20 +746,45 @@ img {
           max-height: 30px;
         }
       }
-    }
-    .moreAction {
-      a {
-        display: inline-block;
-        padding: 5px 15px;
+      &_text {
+        visibility: hidden;
+        width: 100%;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px;
+        position: absolute;
+        top: -75%;
+        left: -5px;
+        z-index: 9;
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: -10px;
+          left: 8px;
+          border-width: 5px;
+          border-style: solid;
+          border-color: black transparent transparent transparent;
+        }
       }
-      .dot {
-        width: 7px;
-        height: 7px;
-        margin: 2px 0px;
-        background-color: #ff8d8d;
-        border-radius: 50%;
+      &:hover .roomVisit_text {
+        visibility: visible;
       }
     }
+    // .moreAction {
+    //   a {
+    //     display: inline-block;
+    //     padding: 5px 15px;
+    //   }
+    //   .dot {
+    //     width: 7px;
+    //     height: 7px;
+    //     margin: 2px 0px;
+    //     background-color: #ff8d8d;
+    //     border-radius: 50%;
+    //   }
+    // }
     .requestAccept,
     .requestRefuse {
       font-size: 0;
@@ -731,6 +797,64 @@ img {
           max-width: 30px;
           max-height: 30px;
         }
+      }
+    }
+    .requestAccept {
+      position: relative;
+      &_text {
+        font-size: 16px;
+        line-height: 16px;
+        visibility: hidden;
+        width: 80%;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px;
+        position: absolute;
+        top: -75%;
+        z-index: 9;
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: -10px;
+          left: 8px;
+          border-width: 5px;
+          border-style: solid;
+          border-color: black transparent transparent transparent;
+        }
+      }
+      &:hover .requestAccept_text {
+        visibility: visible;
+      }
+    }
+    .requestRefuse {
+      position: relative;
+      &_text {
+        font-size: 16px;
+        line-height: 16px;
+        visibility: hidden;
+        width: 80%;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px;
+        position: absolute;
+        top: -75%;
+        z-index: 9;
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: -10px;
+          left: 8px;
+          border-width: 5px;
+          border-style: solid;
+          border-color: black transparent transparent transparent;
+        }
+      }
+      &:hover .requestRefuse_text {
+        visibility: visible;
       }
     }
   }
@@ -748,6 +872,9 @@ img {
       font-size: 20px;
       width: 100%;
       padding: 1em 0;
+      background-color: #f96666;
+      color: #fffdfd;
+      box-shadow: 0 1px 1.5px 0 rgba(0,0,0,.12), 0 1px 1px 0 rgba(0,0,0,.24);
       @include rwd(desktop) {
         transform: translateY(100%);
         transition: 1s;
@@ -891,7 +1018,7 @@ img {
         }
       }
     }
-    .wrapper {
+    .chatBot_wrapper {
       @media screen and (min-width: 671px) {
         box-sizing: border-box;
         margin: 0px 10px;
@@ -1450,17 +1577,46 @@ img {
         left: 50%;
         transform: translate(-50%, -45%);
       }
-      &_close {
+      &_closeArea {
         position: absolute;
         right: 0;
         top: 0;
-        padding: 12px 12px;
-        font-size: 30px;
-        color: $white;
-        cursor: pointer;
-        transition: 0.2s;
-        &:hover {
-          color: #3b4252;
+        .closeIcon {
+          padding: 12px 12px;
+          font-size: 30px;
+          color: $white;
+          cursor: pointer;
+          transition: 0.2s;
+          &:hover {
+            color: #3b4252;
+          }
+        }
+        .closeText {
+          font-size: 16px;
+          line-height: 16px;
+          visibility: hidden;
+          width: 80%;
+          background-color: black;
+          color: #fff;
+          text-align: center;
+          border-radius: 6px;
+          padding: 5px;
+          position: absolute;
+          top: -18px;
+          left: 10px;
+          z-index: 9;
+          &::after {
+            content: "";
+            position: absolute;
+            bottom: -12px;
+            left: 8px;
+            border-width: 7px;
+            border-style: solid;
+            border-color: black transparent transparent transparent;
+          }
+        }
+        &:hover .closeText {
+          visibility: visible;
         }
       }
       &_title {
@@ -2485,7 +2641,7 @@ $num-particles: 20; //煙的數量
   width: 120px;
   top: 20vh;
   left: calc(50vw - 60px);
-  z-index: 101;
+  z-index: 7;
   text-align: center;
   img {
     width: 80%;

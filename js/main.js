@@ -52,14 +52,20 @@ function chooseFriend() {
 function collapseChatGroup() {
   $(".friendList_open").click(function(e) {
     e.preventDefault();
-
-    $(".chatGroup").toggleClass("collapse");
+    $(".chatGroup").toggle(function(){
+      $(".chatGroup").addClass('slideInActive');
+    }, function() {
+      $(".chatGroup").removeClass('slideInActive');
+    })
   });
 
-  $(".closeBtn").click(function(el) {
-    el.preventDefault();
-    $(".closeBtn").css("cursor", "pointer");
-    $(".chatGroup").toggleClass("collapse");
+  $(".closeBtn").click(function(e) {
+    e.preventDefault();
+    $(".chatGroup").toggle(function(){
+      $(".chatGroup").addClass('slideInActive');
+    }, function() {
+      $(".chatGroup").removeClass('slideInActive');
+    })
   });
 }
 
@@ -225,7 +231,7 @@ function switchPage() {
     filterBlur();
   })
   
-  $(".leaderBoard_close").click(function (e) {
+  $(".leaderBoard_closeArea").click(function (e) {
     e.preventDefault();
     $(".checkBox-leaderBoard").toggleClass("collapse");
     filterBlur();
@@ -258,6 +264,8 @@ function filterBlur(classNames=LIGHTBOX_FILTER_CLASSNAMES.default) {
   }
 }
 
+
+
 // 聊天室按鈕動畫
 function chatBtnMousemove() {
   $(".friendList_open").mouseenter(function() {
@@ -272,6 +280,30 @@ function chatBtnMousemove() {
       $(".friendList_openBtn").css("transform", "translateY(100%)");
     }, 600);
   });
+}
+
+// 聊天室按鈕換圖
+function chatGroupButtonHover(){
+  $('.requestAccept').mouseover(function(){
+    $(this).find('img').attr('src', 'imgs/homePage/icon/accept_hover.png');
+  })
+  $('.requestAccept').mouseout(function(){
+    $(this).find('img').attr('src', 'imgs/homePage/icon/accept.png');
+  })
+
+  $('.requestRefuse').mouseover(function(){
+    $(this).find('img').attr('src', 'imgs/homePage/icon/Refuse_hover.png');
+  })
+  $('.requestRefuse').mouseout(function(){
+    $(this).find('img').attr('src', 'imgs/homePage/icon/Refuse.png');
+  })
+
+  $('.roomVisit').mouseover(function(){
+    $(this).find('img').attr('src', 'imgs/homePage/icon/home_hover.png');
+  })
+  $('.roomVisit').mouseout(function(){
+    $(this).find('img').attr('src', 'imgs/homePage/icon/home.png');
+  })
 }
 
 // 判斷是否為行動裝置
@@ -404,6 +436,7 @@ window.addEventListener("load", function() {
   switchPage();
   chatBtnMousemove();
   animation();
+  chatGroupButtonHover();
   // const xhr = new XMLHttpRequest();
   // xhr.onload = function() {
   //   if (xhr.status == 200) {
