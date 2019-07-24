@@ -6,12 +6,14 @@
         require_once('connectSquid.php');
         
         //登入者
-        $mem_no = 1;
+        //$mem_no = 1;
+        $mem_no = $_SESSION["mem_no"];
 
         //被拜訪者
-        $other_mem_no = 20;
+        //$other_mem_no = 20;
+        $other_mem_name = $_REQUEST["other_user"];
 
-        //房間主人會員資料
+        //使用者,拜訪人會員資料
         $memberSQL = 
         "SELECT * 
         FROM `member` 
@@ -25,11 +27,12 @@
         $memberSQL = 
         "SELECT * 
         FROM `member` 
-        WHERE `mem_no` = :mem_no";
+        WHERE `mem_name` = :mem_name";
         $otherInfo = $pdo->prepare($memberSQL);
-        $otherInfo->bindValue(':mem_no', $other_mem_no);
+        $otherInfo->bindValue(':mem_name',$other_mem_name);
         $otherInfo->execute();
         $otherRow = $otherInfo->fetch(PDO::FETCH_ASSOC);
+        $other_mem_no = $memRow["mem_no"];
         
         //確認好友狀態
         $friendSQL = 
