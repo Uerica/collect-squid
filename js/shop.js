@@ -195,7 +195,7 @@ $(document).ready(function () {
 
   $(".buy").click(function () {
     if (this.innerText != "已購買") {
-      if (window.confirm("?")) {
+      if (window.confirm("確定購買?")) {
         buyItem = this;
         let xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function () {

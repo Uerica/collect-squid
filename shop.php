@@ -222,9 +222,9 @@ try {
         <div class="shop_area">
             <div class="item_group">
                 <ul class="tab_title">
+                    <li><a href="#bed_row">床</a></li>
                     <li><a href="#chair_row">椅子</a></li>
                     <li><a href="#table_row">桌子</a></li>
-                    <li><a href="#bed_row">床</a></li>
                 </ul>
                 <div class="bed_type type">
                     <h2>床</h2>
