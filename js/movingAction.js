@@ -25,7 +25,6 @@ function moveSquid(e) {
     }
   }
 
-
   const house = $(".gameWorld_house");
   let hpo = house.position();
   let r3 = {
@@ -75,6 +74,13 @@ function moveSquid(e) {
   //   console.log(r1);
   //   console.log(r2);
 
+  let moveSpeed = 10;
+  let backSpped = 30;
+  if (window.innerWidth <= 767) {
+    moveSpeed = 5;
+    backSpeed = 10;
+  }
+
   if (e.keyCode == 37) {
     // console.log("Left Arrow");
     if (
@@ -96,9 +102,9 @@ function moveSquid(e) {
         r1.x - r5.x > 0)
     ) {
       //   console.log("edge_left");
-      squid.css({ left: "+=30px" });
+      squid.css({ left: `+=${backSpeed}` });
     } else {
-      squid.css({ left: "-=10px" });
+      squid.css({ left: `-=${moveSpeed}` });
     }
   } else if (e.keyCode == 38) {
     // console.log("Up Arrow");
@@ -121,9 +127,9 @@ function moveSquid(e) {
         r1.x - r5.x > 0)
     ) {
       squid.css({ top: "+=30px" });
-      //   console.log("edge_top");
+      //   console.log(`ed${backSpeed}`p");
     } else {
-      squid.css({ top: "-=10px" });
+      squid.css({ top: `-=${moveSpeed}` });
     }
   } else if (e.keyCode == 39) {
     // console.log("Right Arrow");
@@ -146,9 +152,9 @@ function moveSquid(e) {
         r1.x - r5.x > 0)
     ) {
       //   console.log("edge_right");
-      squid.css({ left: "-=30px" });
+      squid.css({ left: `-=${backSpeed}` });
     } else {
-      squid.css({ left: "+=10px" });
+      squid.css({ left: `+=${moveSpeed}` });
     }
   } else if (e.keyCode == 40) {
     // console.log("Down Arrow");
@@ -171,9 +177,9 @@ function moveSquid(e) {
         r1.x - r5.x > 0)
     ) {
       //   console.log("edge_bottom");
-      squid.css({ top: "-=30px" });
+      squid.css({ top: `-=${backSpeed}` });
     } else {
-      squid.css({ top: "+=10px" });
+      squid.css({ top: `+=${moveSpeed}` });
     }
   }
 }
