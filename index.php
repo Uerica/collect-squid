@@ -33,6 +33,10 @@
           $noti = $pdo->prepare($sqlNoti);
           $noti->execute();
           $notiRows = $noti->fetchAll(PDO::FETCH_ASSOC);
+          $nRows = count($notiRows);
+
+
+          
   
   
       } catch(PDOException $e) {
@@ -327,7 +331,8 @@
                     <div class="submitContext form">
                         <!-- Rou:在此用v-model產生動態變數 以及增加事件-->
                         <input type="text" class="messageInput" v-model="chat_send_text" v-on:keyup.enter="chat_send()">
-                        <input type="button" value="傳送" class="submit button-submit" v-on:click="chat_send()">
+                        <!-- <input type="button" value="傳送" class="submit button-submit" v-on:click="chat_send()"> -->
+                        <button type="submit" class="submit button-submit" v-on:click="chat_send()">傳送</button>
                     </div>
                 </div>
 
@@ -525,6 +530,7 @@
   <div class="common_notifications disabledScrollOnHover">
       <div class="notifications_actionBox">
           <button class="button button-notifications">
+              <span class="notifications_unread"><?php echo $nRows; ?></span>
               <img src="imgs/homePage/icon/notice.png" alt="通知按鈕圖片">
               <span>通知</span>
           </button>

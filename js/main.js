@@ -438,6 +438,7 @@ function keyBoardNoScroll() {
   });
 }
 
+// 透明度橫桿
 function opacitySlider(){
     $('#bgopacity').on('input', function (value) {
       $('.chatGroup').css({
