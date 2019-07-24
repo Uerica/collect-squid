@@ -1,4 +1,14 @@
 <?php
+    ob_start();
+    session_start();
+    $mngName = '';
+    if (isset($_SESSION['mng_name'])) {
+        $mngName = $_SESSION['mng_name'];
+    } else {
+        $mngName = '錯誤';
+    }
+    
+
 $errMsg = "";
 try {
 	require_once("connectSquid.php");
@@ -43,8 +53,6 @@ try {
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <style>
-    </style>
     <link rel="stylesheet" href="sass/style.css">
     <title>收集友誼 後台</title>
     <style>
@@ -59,14 +67,14 @@ try {
         <!-- nav bar -->
         <nav class="navbar navbar-bg navbar-font">
             <a class="navbar-brand" href="#">
-                <img src="imgs/backend/megumi.png" width="30" height="30"
+                <img src="imgs/backend/logo.png" width="30" height="30"
                     class="d-inline-block align-top" alt="">
                 收集魷魚 後台
             </a>
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">name </a>
+                aria-haspopup="true" aria-expanded="false"><?php echo $mngName; ?></a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#" id="logoutBtn">登出</a>
+                <a class="dropdown-item" href="javascript:;" id="btn_logout">登出</a>
             </div>
         </nav>
 
@@ -444,6 +452,7 @@ try {
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
         <script src="js/backend.js"></script>
+        <script src="js/backendLogin.js"></script>
 </body>
 
 </html>

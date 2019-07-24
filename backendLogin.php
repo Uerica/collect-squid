@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,22 +34,25 @@
                     <div class="lightBox_loginForm">
                         <div class="lightBox_inputArea">
                             <div class="lightBox_input lightBox_input-id">
-                                <label for="mem_name">暱稱</label>
-                                <input type="text" name="mem_name" id="login_mem_name">
+                                <label for="mng_name">暱稱</label>
+                                <input type="text" name="mng_name" id="login_mng_name">
                             </div>
                             <div class="lightBox_input lightBox_input-psw">
-                                <label for="mem_pwd">密碼</label>
-                                <input type="password" name="mem_psw" id="login_mem_psw">
+                                <label for="mng_pwd">密碼</label>
+                                <input type="password" name="mng_psw" id="login_mng_psw">
                             </div>
                         </div>
                     </div>
                     <div class="lightBox_submit">
-                        <input id="loginBtn" type="button" value="登入" />
+                        <!-- <input id="btn-login" type="button" value="登入" /> -->
+                        <button type="submit" id="btn-login">登入</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js'></script>
+    <script src="js/backendLogin.js"></script>
 </body>
 
 </html>

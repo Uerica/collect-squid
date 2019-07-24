@@ -1,4 +1,7 @@
 <?php
+    ob_start();
+    session_start();
+    
     $jsonStr = $_REQUEST["jsonStr"];
     $tableRow = json_decode( $jsonStr );
 
@@ -38,6 +41,27 @@
                 $error['message'] = $e->getMessage();
                 $error['line']=$e->getLine();
             }
+
+            break;
+        }
+        case 'managerLogin': {
+               $query = "SELECT mng_name, mng_psw FROM manager WHERE mng_name = :mng_name AND mng_psw = :mng_psw";
+               $mngRow = $pdo->prepare($query);
+               $mngRow->bindValue(":mng_name", $tableRow->mng_name);
+               $mngRow->bindValue(":mng_psw", $tableRow->mng_psw);
+               try {
+                   $mngRow->execute();
+                   if($mngRow->rowCount() == 0) {   // 找不到使用者
+                        $error['message'] = '帳號密碼錯誤';
+                   } else {
+                       $manager = $mngRow->fetch(PDO::FETCH_ASSOC);
+                       $_SESSION['mng_name'] = $manager['mng_name'];
+                    // $_SESSION['mng_name'] = '123';
+                   }
+               } catch (PDOException $e) {
+                   $error['message'] = $e->getMessage();
+                   $error['line']=$e->getLine();
+               }
 
             break;
         }
