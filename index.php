@@ -8,7 +8,8 @@
       $mem_no = $_SESSION["mem_no"];
       $mem_name = $_SESSION["mem_name"];
       $style_no = $_SESSION["style_no"];
-      $dressed_no = $_SESSION["dressed_no"];
+      // 偵測穿衣服了沒
+      // code 先拿了
       $mem_lv = $_SESSION["mem_lv"];
       $mem_avatar = $_SESSION["mem_avatar"];
       $squid_qty = $_SESSION["squid_qty"];
