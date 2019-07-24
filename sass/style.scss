@@ -431,6 +431,126 @@ img {
     width: 100vw;
     height: 100vh;
   }
+  &_opacitySlider {
+    position: absolute;
+    left: 5%;
+    top: 0;
+    .sliderText {
+      visibility: hidden;
+      width: 100%;
+      background-color: #2c2e32;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px;
+      position: absolute;
+      top: -75%;
+      left: -5px;
+      z-index: 9;
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 8px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: #2c2e32 transparent transparent transparent;
+      }
+    }
+    &:hover .sliderText {
+      visibility: visible;
+    }
+    input[type=range] {
+      background-color: transparent;
+      height: 20px;
+      -webkit-appearance: none;
+      margin: 10px 0;
+      width: 100%;
+    }
+    input[type=range]:focus {
+      outline: none;
+    }
+    input[type=range]::-webkit-slider-runnable-track {
+      width: 100%;
+      height: 14px;
+      cursor: pointer;
+      animate: 0.2s;
+      box-shadow: 1px 1px 1px #50555C;
+      background: #50555C;
+      border-radius: 14px;
+      border: 0px solid #000000;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      box-shadow: 0px 0px 0px #000000;
+      border: 0px solid #000000;
+      height: 20px;
+      width: 40px;
+      border-radius: 12px;
+      background: $white;
+      cursor: pointer;
+      -webkit-appearance: none;
+      margin-top: -3px;
+    }
+    input[type=range]:focus::-webkit-slider-runnable-track {
+      background: #50555C;
+    }
+    input[type=range]::-moz-range-track {
+      width: 100%;
+      height: 14px;
+      cursor: pointer;
+      animate: 0.2s;
+      box-shadow: 1px 1px 1px #50555C;
+      background: #50555C;
+      border-radius: 14px;
+      border: 0px solid #000000;
+    }
+    input[type=range]::-moz-range-thumb {
+      box-shadow: 0px 0px 0px #000000;
+      border: 0px solid #000000;
+      height: 20px;
+      width: 40px;
+      border-radius: 12px;
+      background: $white;
+      cursor: pointer;
+    }
+    input[type=range]::-ms-track {
+      width: 100%;
+      height: 14px;
+      cursor: pointer;
+      animate: 0.2s;
+      background: transparent;
+      border-color: transparent;
+      color: transparent;
+    }
+    input[type=range]::-ms-fill-lower {
+      background: #50555C;
+      border: 0px solid #000000;
+      border-radius: 28px;
+      box-shadow: 1px 1px 1px #50555C;
+    }
+    input[type=range]::-ms-fill-upper {
+      background: #50555C;
+      border: 0px solid #000000;
+      border-radius: 28px;
+      box-shadow: 1px 1px 1px #50555C;
+    }
+    input[type=range]::-ms-thumb {
+      margin-top: 1px;
+      box-shadow: 0px 0px 0px #000000;
+      border: 0px solid #000000;
+      height: 20px;
+      width: 40px;
+      border-radius: 12px;
+      background: $white;
+      cursor: pointer;
+    }
+    input[type=range]:focus::-ms-fill-lower {
+      background: #50555C;
+    }
+    input[type=range]:focus::-ms-fill-upper {
+      background: #50555C;
+    }
+  }
   &_closeBtn {
     position: absolute;
     right: 30px;
@@ -531,6 +651,7 @@ img {
       .message-received {
         display: flex;
         flex-flow: row nowrap;
+        align-items: center;
       }
       .message-sent {
         justify-content: flex-end;
@@ -540,23 +661,26 @@ img {
       }
       .text {
         display: inline-block;
-        max-width: 75%;
-        margin: 2.5% 2% 2.5% 5%;
+        // min-width: 54px;
+        max-width: 75vw;
         background-color: #fec4c4;
         border-radius: 10px;
-        padding: 3%;
         vertical-align: top;
+        // padding: 14px;
         p {
           display: inline-block;
+          // display: flex;
+          // flex-flow: row nowrap;
           vertical-align: middle;
+          padding: 10px;
         }
-        .avatar {
-          display: inline-block;
-          vertical-align: middle;
-          img {
-            width: 100%;
-            max-width: 42px;
-          }
+      }
+      .avatar {
+        display: inline-block;
+        vertical-align: middle;
+        img {
+          width: 100%;
+          max-width: 42px;
         }
       }
     }
@@ -1582,13 +1706,17 @@ img {
         right: 0;
         top: 0;
         .closeIcon {
-          padding: 12px 12px;
+          padding: 12px;
           font-size: 30px;
           color: $white;
           cursor: pointer;
           transition: 0.2s;
           &:hover {
             color: #3b4252;
+          }
+          @include rwd(mobile) {
+            padding: 4px;
+            font-size: 24px;
           }
         }
         .closeText {
@@ -2648,10 +2776,22 @@ $num-particles: 20; //煙的數量
   }
   .talkingBubble {
     position: absolute;
-    left: 90%;
-    width: 120%;
-    bottom: 60%;
+    // right: 0;
+    left: 30%;
+    width: 200%;
+    // width: 120%;
+    // bottom: 70%;
     box-sizing: border-box;
+    // &::after {
+    //   content: "";
+    //   position: absolute;
+    //   left: -8px;
+    //   bottom: -8px;
+    //   border-width: 8px;
+    //   border-style: solid;
+    //   border-color: #fa7979 transparent transparent transparent;
+    //   transform: rotate(45deg);
+    // }
     p {
       display: inline-block;
       padding: 5%;
