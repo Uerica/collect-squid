@@ -101,7 +101,7 @@ function cancelRegis() {
 // 我超強
 function confirmRegis(target) {
   $("#regisBtn").click(function() {
-    // e.preventDefault();  
+    // e.preventDefault();
 
     let xhr = new XMLHttpRequest();
     xhr.onreadystatechange =  () => {
@@ -110,6 +110,8 @@ function confirmRegis(target) {
           alert('報名成功');
           target.value = "已報名";
           $('.regisBox').css({ display: 'none' });
+          // getMyRaise();
+          location.reload();
         } else {
           alert(xhr.status);
         }
@@ -208,7 +210,6 @@ $(document).ready(function () {
     reader.readAsDataURL(file);
   });
 
-
   $("#evt_init").click(function () {
     if ($("#evt_name").val() == "") {
       alert("活動名稱必填");
@@ -236,6 +237,10 @@ $(document).ready(function () {
     if ($("#evt_desc").val() == "") {
       alert("活動描述必填");
       return;
+    }
+    if($("#evt_cover_url").val() == ""){
+      alert("請選擇檔案");
+      return;
     } else {
       let xhr = new XMLHttpRequest();
       xhr.onreadystatechange = function () {
@@ -247,6 +252,9 @@ $(document).ready(function () {
                 display: "none"
               });
             }).call(this);
+            // getNewEvt();
+            // getMyAttend();
+            location.reload();
           } else {
             alert(xhr.status);
           }
@@ -258,7 +266,18 @@ $(document).ready(function () {
     }
   });
 });
-
+// #fccfcf
+$("#myRaiseBtn").click(function(){
+  $(".bodyContent").css({
+    backgroundColor: "#fccfcf",
+  });
+  $("#myRaise .title").css({
+    backgroundColor: "#fff",
+  });
+  $(".myAttendBtn").css({
+    backgroundColor: "#fff",
+  });
+});
 
 // 頁籤evt
 $(function () {
@@ -284,3 +303,4 @@ $(function () {
     $(this).addClass('active').siblings('.active').removeClass('active');
   });
 });
+

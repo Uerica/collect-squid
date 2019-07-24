@@ -80,13 +80,13 @@ try {
   }
 
   // 我參加的
-  $sql = "select event.evt_name,event.evt_date from event_record left join event on event_record.evt_no = event.evt_no where mem_no=113 group by event_record.evt_no";
+  $sql = "select event.evt_name,event.evt_date from event_record left join event on event_record.evt_no = event.evt_no where mem_no=:mem_no group by event_record.evt_no  order by event.evt_no desc";
   $myRegis = $pdo->prepare($sql);
   $myRegis->bindValue(":mem_no",$_SESSION["mem_no"]); //from session
   $myRegis->execute();
 
   // 我舉辦的
-  $sql = "select evt_name,evt_date from event where org_mem_no=:mem_no";
+  $sql = "select evt_name,evt_date from event where org_mem_no=:mem_no  order by evt_no desc";
   $myRaise = $pdo->prepare($sql);
   $myRaise->bindValue(":mem_no",$_SESSION["mem_no"]); //from session
   $myRaise->execute();
@@ -336,7 +336,7 @@ try {
         <img src="eventsImg/hotBallon.png" alt="Hot Ballon" class="hotBallon" />
         <div class="main">
           <div class="eventPic">
-            <img src="evt_images/<?php echo $BannerRow->evt_cover_url ?>" alt="Banner Pic" />
+            <img src="<?php echo $BannerRow->evt_cover_url ?>" alt="Banner Pic" />
           </div>
           <div class="content">
             <div class="title">
@@ -374,10 +374,10 @@ try {
         <section class="normalEvents">
           <ul class="bookMarks evt_title">
             <li>
-              <img src="eventsImg/bookMarkDark.png" alt="Book Mark" /><span><a href="#newEvt">最新活動</a></span>
+              <img src="eventsImg/bookMarkDark.png" alt="Book Mark" /><span id="newEvtBtn"><a href="#newEvt">最新活動</a></span>
             </li>
             <li>
-              <img src="eventsImg/bookMarkLight.png" alt="Book Mark" /><span><a href="#popEvt">熱門活動</a></span>
+              <img src="eventsImg/bookMarkLight.png" alt="Book Mark" /><span id="popEvtBtn"><a href="#popEvt">熱門活動</a></span>
             </li>
           </ul>
           <div id="newEvt" class="eventDescs evt_inner">
@@ -387,7 +387,7 @@ try {
               ?>
               <div class="singleEvent">
                 <div class="pic">
-                  <img src=<?php echo "evt_images/".$newEvtRow->evt_cover_url; ?> alt="Event Pic" />
+                  <img src="<?php echo $newEvtRow->evt_cover_url; ?>" alt="Event Pic" />
                 </div>
                 <div class="content">
                   <div class="title">
@@ -445,7 +445,7 @@ try {
           ?>
             <div class="singleEvent">
                 <div class="pic">
-                  <img src=<?php echo "evt_images/".$popEvtRow->evt_cover_url ?> alt="Event Pic" />
+                  <img src="<?php echo $popEvtRow->evt_cover_url ?>" alt="Event Pic" />
                 </div>
                 <div class="content">
                   <div class="title">
@@ -507,8 +507,8 @@ try {
             <img src="eventsImg/squidRightHand.png" alt="Right Hand" class="rightHand" />
             <div class="bodyContent">
               <ul class="myEvt_title">
-                <li><a href="#myAttend">我參加的</a></li>
-                <li><a href="#myRaise">我舉辦的</a></li>
+                <li id="myAttendBtn"><a href="#myAttend">我參加的</a></li>
+                <li id="myRaiseBtn"><a href="#myRaise">我舉辦的</a></li>
               </ul>
               <div class="eventDescs">
                 <div id="myAttend" class="myAttend myEvt_inner">
@@ -624,7 +624,7 @@ try {
               <span class="raiseData">2.填寫內容</span>
               <div class="item">
                 <span>活動名稱</span>
-                <input type="text" id="evt_name" name="evt_name" required />
+                <input type="text" id="evt_name" name="evt_name" placeholder="活動名稱必填" required />
               </div>
               <div class="item">
                 <span>活動時間</span>
@@ -632,7 +632,7 @@ try {
               </div>
               <div class="item">
                 <span>活動地點</span>
-                <input id="evt_place" name="evt_place" required>
+                <input id="evt_place" name="evt_place" placeholder="活動地點必填" required>
               </div>
               <div class="item">
                 <span>報名截止時間</span>
@@ -644,7 +644,7 @@ try {
               </div>
               <div class="item">
                 <span>活動描述</span>
-                <textarea cols="30" id="evt_desc" name="evt_desc" required></textarea>
+                <textarea cols="30" id="evt_desc" name="evt_desc" placeholder="活動描述必填" required></textarea>
               </div>
             </div>
           </div>

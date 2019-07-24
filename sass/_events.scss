@@ -1,6 +1,13 @@
 @import "public";
 @import "mixin";
 
+
+.raiseBtnWrapper{
+  padding: 15px;
+}
+#popEvt{
+  border :10px solid #98E0C8;
+}
 .events {
   position: relative;
   background: linear-gradient(
@@ -500,7 +507,7 @@
       width: 90%;
       margin: 0 auto;
       flex-grow: 1;
-      padding-bottom: 6%;
+      // padding-bottom: 6%;
       border-radius: 0 0 10px 10px;
       background-color: #ffb3b3;
       position: relative;
