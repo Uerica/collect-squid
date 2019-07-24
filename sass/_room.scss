@@ -18,7 +18,7 @@
     
         .lightbox{
             width: 50%;
-            height: 70%;
+            height: 80%;
             background: #f8b853;
             left: 0;
             right: 0;
@@ -99,10 +99,20 @@
         }
     
         @include rwd(mobile) {
+            .lightboxBg{
+                display: none;
+            }
+
             .lightbox{
                 width: 100%;
                 height: 100%;
                 border-radius: 0px;
+                position: static;
+
+                .messageBoard{
+                    padding: 10px;
+                    height: 60%;
+                }
     
                 .message{
                     height: 60%;
@@ -348,7 +358,7 @@
                     letter-spacing: 1px;
                 }
     
-                p{
+                .intro{
                     background: #fff;
                     padding: 15px;
                     line-height: 1.8;
@@ -356,7 +366,13 @@
                     width: 300px;
                     margin-bottom: 20px;
                     border: 5px solid #fa7979;
+                    overflow: scroll;
+                    height: 200px;
                 }
+
+                // .introMobile{
+                //     display: none;
+                // }
     
                 .getHeart{
                     display: flex;
@@ -382,6 +398,8 @@
                 
     
                 .btns{
+                    display: flex;
+                    flex-flow: row wrap;
                     a{
                         display: inline-block;
                         margin-top: 20px;
@@ -415,9 +433,13 @@
                   font-weight: normal;
                 }
     
-                p{
+                .intro{
                   display: none;
                 }
+
+                // .introMobile{
+                //     display: block;
+                // }
                 
               }
             }
@@ -593,7 +615,7 @@
         height: 100%;
         .bed{
             position: absolute;
-            padding-top: 25%;       
+            top: 45%;       
             left: 10%;
             width: 70%;
             
@@ -642,7 +664,8 @@
     
         .character{
             position: absolute;
-            padding-top: 20%;       
+            // padding-top: 20%;   
+            top: 30%;    
             left: 47%;
             width: 40%;
             
@@ -659,19 +682,21 @@
             }
     
             .chair{
-              padding-top: 25%;       
+            //   padding-top: 25%;       
               left: 48%;
               width: 40%;
             }
     
             .desk{
-              padding-top: 35%;
+            //   padding-top: 35%;
               left: 70%;
+              top: 65%;
               width: 30%;
             }
     
             .character{
-              padding-top: 25%; 
+            //   padding-top: 25%; 
+              top: 35%;
               left: 48%; 
               width: 38%;
             }
