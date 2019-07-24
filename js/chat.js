@@ -30,6 +30,10 @@ var chat_app = new Vue({
     is_friend: function(user){
       return this.friends.indexOf(user) != -1;
     },
+    go_room:function(other_user){
+      console.log("other_user")
+      window.location = `otherRoom.php?other_user=${other_user}`;
+    },
     //addFriend function
     add_friend: function(friend_name){
       const xhr = new XMLHttpRequest();

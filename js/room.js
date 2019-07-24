@@ -38,6 +38,7 @@ function fileChange() {
     var image = document.getElementById('picUploadImg');
     image.src = this.result;
     $("input[name='imagestring']").val(this.result);
+    
   });
 
   document.getElementById('submitPic').style.display = 'block';
@@ -45,6 +46,16 @@ function fileChange() {
 
 $(document).ready(function () {
 
+  var image = $.trim($('#picUploadImg').attr('src'));
+  console.log(image);
+  if(image == ""){
+    $('.picUploadImg').css({
+      display: "none"
+    });
+  }
+  menuMobileTransform();
+  document.getElementById('selectPicInput').onchange = fileChange;
+  removeMsg();
   //換椅子
   $(".chairSmallChange img").click(function () {
     let chairSrc = $(this).attr("src");
@@ -160,7 +171,8 @@ $(document).ready(function () {
   $('.msgSend').click(function() {
     const mem_no = document.getElementById('talking_mem_no').value;
     const cmt_cnt = document.querySelector('.msgInput').value;
-    const mem_name = $('#me_mem_no').val();
+    const mem_name = $('#rcv_mem_name').val();
+    const cmt_no = $('#cmt_no').val();
     console.log(mem_name);
     
     const xhr = new XMLHttpRequest();
@@ -169,7 +181,7 @@ $(document).ready(function () {
       if(xhr.status == 200) {
         $('#messageBoard ul')
         .append(`<li>
-                  <input type="hidden" name="cmt_no" id="cmt_no" value="${mem_no}"> 
+                  <input type="hidden" name="cmt_no" id="cmt_no" value="${xhr.responseText}"> 
                   <div class="messageMem">
                     <img src="images/squid_avatar.png">
                     <span>${mem_name}</span>
@@ -179,6 +191,8 @@ $(document).ready(function () {
                   <img src="images/trashcan.png" alt="反送中">
                   </div>
         </li>`);
+        removeMsg();
+        console.log(xhr.responseText);
       } else {
         alert(xhr.status);
       }
@@ -193,29 +207,31 @@ $(document).ready(function () {
   });
 
   // 刪除留言
-  $(".trashPic img").click(function() {
-    $(this).parent().parent().remove();
-    const xhr = new XMLHttpRequest();
-    xhr.onload = function() {
-      if(xhr.status == 200) {
-        console.log(xhr.responseText);
-      } else {
-        alert(xhr.status);
+  function removeMsg(){
+    console.log('delete');
+    $(".trashPic img").click(function() {
+      const xhr = new XMLHttpRequest();
+      var trash = $(this);
+      xhr.onload = function() {
+        if(xhr.status == 200) {
+          trash.parent().parent().remove();
+          console.log(xhr.responseText);
+        } else {
+          alert(xhr.status);
+        }
       }
-    }
+  
+      const cmt_no = $(this).parent().parent().find('input').val();
+      const url = `deleteMessage.php?cmt_no=${cmt_no}`;
+      xhr.open('get', url, true);
+      xhr.send(null);
+    });
+  }
 
-    const cmt_no = $(this).parent().parent().find('input').val();
-    const url = `deleteMessage.php?cmt_no=${cmt_no}`;
-    xhr.open('get', url, true);
-    xhr.send(null);
-  });
+
+
+
 });
 
 
 
-
-
-window.addEventListener('load', function () {
-  menuMobileTransform();
-  document.getElementById('selectPicInput').onchange = fileChange;
-});
