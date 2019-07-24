@@ -234,10 +234,14 @@
     <!-- 聊天群組(1.聊天室 2.好友列表) -->
     <!-- Rou:vue.js #chat_app -->
     <div class="chatGroup disabledScrollOnHover" id="chat_app">
-      <div class="chatGroup_closeBtn">
-        <i class="fas fa-window-minimize closeBtn"></i>
-        <div class="closeBtn_text">縮小</div>
-      </div>
+       <div class="chatGroup_closeBtn">
+          <i class="fas fa-window-minimize closeBtn"></i>
+          <div class="closeBtn_text">縮小</div>
+       </div>
+       <div class="chatGroup_opacitySlider">
+          <input type="range" name="bgopacity" id="bgopacity" value="100" min="30" max="100" step="1">
+          <div class="sliderText">拖曳改變透明度</div>
+       </div>
         <!-- 聊天室 -->
         <!-- 聊天室分成三種訊息 1.官方(messageOfficial) 2.發訊息的人(messageSent) 3.收訊息的人(messageReceived) -->
         <div class="chatRoom">
@@ -251,7 +255,7 @@
                     <!-- 官方訊息 -->
                     <li class="chatRoom_messageOfficial">
                         <div class="text">
-                            <p>歡迎來到收集友誼的世界，在下方輸入對話內容開始聊天</p>
+                            <p>歡迎來到收集友誼的世界，馬上發送訊息開始聊天吧！</p>
                         </div>
                     </li>
                     <template v-for="message in messages_to_all()">
@@ -474,7 +478,7 @@
       <div class="loginContent">
         <div class="intro">
           <div class="logo">
-            <img src="imgs/loginBox/logo.png" alt="Logo" />
+            <img src="imgs/homePage/logo.png" alt="Logo" />
             <h2>收集友誼</h2>
           </div>
           <div class="drawing">
