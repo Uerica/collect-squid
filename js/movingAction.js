@@ -1,5 +1,14 @@
 $(window).on("keydown", moveSquid);
 
+let map = $(".gameWorld_bgImage");
+let mpo = map.position();
+let r0 = {
+  x: 0,
+  y: 0,
+  w: map.width(),
+  h: map.height()
+};
+
 let i = 0;
 function moveSquid(e) {
   //   e.preventDefault();
@@ -75,7 +84,7 @@ function moveSquid(e) {
   //   console.log(r2);
 
   let moveSpeed = 10;
-  let backSpped = 30;
+  let backSpeed = 30;
   if (window.innerWidth <= 767) {
     moveSpeed = 5;
     backSpeed = 10;
@@ -84,6 +93,10 @@ function moveSquid(e) {
   if (e.keyCode == 37) {
     // console.log("Left Arrow");
     if (
+      (r1.y > r0.y - r1.h &&
+        r1.y < r0.y + r0.h &&
+        r0.x - r1.x < r1.w &&
+        r0.x - r1.x > 0) ||
       (r2.y > r1.y - r2.h &&
         r2.y < r1.y + r1.h &&
         r1.x - r2.x < r2.w &&
@@ -109,6 +122,10 @@ function moveSquid(e) {
   } else if (e.keyCode == 38) {
     // console.log("Up Arrow");
     if (
+      (r1.x > r0.x - r1.w &&
+        r1.x < r0.x + r0.w &&
+        r0.y - r1.y < r1.h &&
+        r0.y - r1.y > 0) ||
       (r2.x > r1.x - r2.w &&
         r2.x < r1.x + r1.w &&
         r1.y - r2.y < r2.h &&
@@ -134,6 +151,10 @@ function moveSquid(e) {
   } else if (e.keyCode == 39) {
     // console.log("Right Arrow");
     if (
+      (r1.y > r0.y - r1.h &&
+        r1.y < r0.y + r0.h &&
+        r1.x > r0.x + r0.w - r1.w &&
+        r1.x < r0.x + r0.w) ||
       (r2.y > r1.y - r2.h &&
         r2.y < r1.y + r1.h &&
         r2.x > r1.x + r1.w - r2.w &&
@@ -159,6 +180,10 @@ function moveSquid(e) {
   } else if (e.keyCode == 40) {
     // console.log("Down Arrow");
     if (
+      (r1.x > r0.x - r1.w &&
+        r1.x < r0.x + r0.w &&
+        r1.y + 0 > r0.y + r0.h - r1.h &&
+        r1.y < r0.y + r1.h) ||
       (r2.x > r1.x - r2.w &&
         r2.x < r1.x + r1.w &&
         r2.y + 0 > r1.y + r1.h - r2.h &&

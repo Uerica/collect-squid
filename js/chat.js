@@ -63,6 +63,21 @@ var chat_app = new Vue({
       xhr.open("get", url, true);
       xhr.send(null);
     },
+    //delFriend function
+    del_friend: function(friend_name){
+      const xhr = new XMLHttpRequest();
+      xhr.onload = () => {
+          if (xhr.status == 200) {
+              console.log('delFriend OK');
+              chat_app.refresh_friends();
+          } else {
+              console.error(xhr.responseText);
+          }
+      };
+      const url = `delFriend.php?mem_name=${this.user_id}&friend_name=${friend_name}`;
+      xhr.open("get", url, true);
+      xhr.send(null);
+    },
     user_online: function (user) {
       this.online_users.push(user);
       var xhr = new XMLHttpRequest();
