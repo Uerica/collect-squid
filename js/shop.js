@@ -195,33 +195,24 @@ $(document).ready(function () {
 
   $(".buy").click(function () {
     if (this.innerText != "已購買") {
-      $("#confirmBox").attr("style", "display:block");
-      buyItem = this;
-    }
-  });
-
-  $("#confirm_btn").click(function () {
-    // console.log(buyItem);
-    let xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState == 4) {
-        if (xhr.status == 200) {
-          buyItem.innerText = xhr.responseText;
-        } else {
-          alert(xhr.status);
+      if (window.confirm("?")) {
+        buyItem = this;
+        let xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState == 4) {
+            if (xhr.status == 200) {
+              buyItem.innerText = xhr.responseText;
+            } else {
+              alert(xhr.status);
+            }
+          }
         }
+        let url = "buy.php";
+        xhr.open("post", url, true);
+        let buyForm = new FormData(buyItem.parentNode);
+        xhr.send(buyForm);
       }
     }
-    let url = "buy.php";
-    xhr.open("post", url, true);
-    let buyForm = new FormData(buyItem.parentNode);
-    xhr.send(buyForm);
-    $("#confirmBox").attr("style", "display:none");
   });
-
-  $("#cancel_btn").click(function () {
-    $("#confirmBox").attr("style", "display:none");
-  });
-
 });
 // buy-------------------------------------------------
