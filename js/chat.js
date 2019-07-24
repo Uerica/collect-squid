@@ -231,7 +231,29 @@ var chat_app = new Vue({
     },
     // 上帝模式
     god_mode: function() {
-      $(".loginBox").css({ display: "none" });
+      const xhr = new XMLHttpRequest();
+      xhr.onload = (e) => {
+        if (e.currentTarget.status == 200 && e.currentTarget.responseText != "") {
+          var resp = JSON.parse(e.currentTarget.responseText);
+          $(".loginBox").css({ display: "none" });
+          const loginSquid = document.querySelector(".loginSquid #myRole");
+          login(resp.mem_name,resp.style_no,resp.mem_lv,resp.mem_avatar,resp.squid_qty);
+          //console.log(resp);
+          //登入後清空表單
+        } else {
+          if(e.currentTarget.status == 401){
+            $("#login_failMsg").html("帳號密碼錯誤");
+          }else{
+            console.error("login_btn error.", e);
+          }
+        }
+      };
+    
+      const mem_name = "Ann";
+      const mem_pwd = "An1";
+      const url = `login.php?mem_name=${mem_name}&mem_pwd=${mem_pwd}`;
+      xhr.open("get", url, true);
+      xhr.send(null);
     },
     // 創角
     create_role: function() {
