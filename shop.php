@@ -102,7 +102,7 @@ try {
                             <li class="coin">
                                 <a href="javascript:;">
                                     <img src="imgs/homePage/icon/coin.png" alt="持有金額icon">
-                                    <span>{{squid_qty}}</span>
+                                    <span class="squid_qty">{{squid_qty}}</span>
                                 </a>
                             </li>
                             <li class="logo">
@@ -202,7 +202,7 @@ try {
                         <li class="coin">
                             <a href="javascript:;">
                                 <img src="imgs/homePage/icon/coin.png" alt="持有金額icon">
-                                <span>{{squid_qty}}</span>
+                                <span class="squid_qty">{{squid_qty}}</span>
                             </a>
                         </li>
                         <li class="level">
