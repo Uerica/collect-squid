@@ -387,7 +387,7 @@ try {
               ?>
               <div class="singleEvent">
                 <div class="pic">
-                  <img src="eventsImg/eventPic.jpg" alt="Event Pic" />
+                  <img src=<?php echo "evt_images/".$newEvtRow->evt_cover_url; ?> alt="Event Pic" />
                 </div>
                 <div class="content">
                   <div class="title">
@@ -445,7 +445,7 @@ try {
           ?>
             <div class="singleEvent">
                 <div class="pic">
-                  <img src="eventsImg/eventPic.jpg" alt="Event Pic" />
+                  <img src=<?php echo "evt_images/".$popEvtRow->evt_cover_url ?> alt="Event Pic" />
                 </div>
                 <div class="content">
                   <div class="title">
@@ -614,7 +614,7 @@ try {
             <div class="graph">
               <span class="raiseData">1.上傳照片</span>
               <div class="picUpload">
-                <input id="evt_cover_url" name="evt_cover_url" type="file" value="選擇檔案" />
+                <input id="evt_cover_url" name="evt_cover_url" type="file" value="選擇檔案" accept="image/jpg,image/png,image/jpeg,image/gif"/>
               </div>
               <div class="pic">
                 <img id="imgPreview" src="eventsImg/detailPic.jpg" alt="Detail Pic" />

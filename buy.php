@@ -1,6 +1,5 @@
 <?php
 session_start();
-$errMsg = "";
 try {
     $dns = "mysql:host=sql.uerica.com;port=3307;dbname=dd101g2;charset=utf8";
     $user = "dd101g2";
@@ -24,6 +23,13 @@ try {
     $addFur->bindValue(":pur_time", date("Y-m-d"));
     $addFur->execute();
 
+
+    $sql = "select * from member where mem_no=:mem_no";
+    $member = $pdo->prepare($sql);
+    $member->bindValue(":mem_no",$mem_no);
+    $member->execute();
+    $memberInfo = $member->fetchObject();
+    $_SESSION["squid_qty"] = $memberInfo->squid_qty;
 
     $sql = "select * from mem_furniture where mem_no=:mem_no";
     $mem_furns = $pdo->prepare($sql);

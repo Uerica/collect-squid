@@ -26,7 +26,7 @@ try {
                             <img src='evt_images/$detailContent->evt_cover_url' alt='Detail Pic' />
                         </div>
                         <div class='map'>
-                            <iframe src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3616.9493929116593!2d121.18946451500494!3d24967836384003363!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f131!3m3!1m2!1s0x346823c1920a1b7f%3A0x6502863b00922978!2zVGliYU1lIHgg6LOH562W5pyD5pm65oWnQVBQ5pW05ZCI6ZaL55m86aSK5oiQ54-t!5e0!3m2!1szh-TW!2stw!4v1562408130743!5m2!1szh-TW!2stw' width='300' height='450' frameborder='0' style='border:0' allowfullscreen></iframe>
+                            <iframe src='https://maps.google.com?output=embed&q=$detailContent->evt_place' width='300' height='450' frameborder='0' style='border:0' allowfullscreen></iframe>
                         </div>
                     </div>
                     <div class='content'>
