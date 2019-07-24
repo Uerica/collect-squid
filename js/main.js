@@ -25,15 +25,6 @@ let needToScrollRight = false;
 let needToScrollBottom = false;
 let needToScrollTop = false;
 
-// 手機選單動畫
-function menuMobileTransform() {
-  $(".menuMobile_link").click(function(e) {
-    e.preventDefault();
-
-    $(".menuMobile_overlay").toggleClass("open");
-    $(".menuMobile").toggleClass("open");
-  });
-}
 
 // 好友點擊切換
 function chooseFriend() {
@@ -50,20 +41,20 @@ function chooseFriend() {
 
 // 開關聊天室
 function collapseChatGroup() {
-  $(".friendList_open").click(function(e) {
+  $(".friendList_open").click(function (e) {
     e.preventDefault();
-    $(".chatGroup").toggle(function(){
+    $(".chatGroup").toggle(function () {
       $(".chatGroup").addClass('slideInActive');
-    }, function() {
+    }, function () {
       $(".chatGroup").removeClass('slideInActive');
     })
   });
 
-  $(".closeBtn").click(function(e) {
+  $(".closeBtn").click(function (e) {
     e.preventDefault();
-    $(".chatGroup").toggle(function(){
+    $(".chatGroup").toggle(function () {
       $(".chatGroup").addClass('slideInActive');
-    }, function() {
+    }, function () {
       $(".chatGroup").removeClass('slideInActive');
     })
   });
@@ -72,7 +63,7 @@ function collapseChatGroup() {
 // 開關通知
 function collapseNotifications() {
   let actionBox = $(".notifications_actionBox");
-  $(".button-notifications").click(function(e) {
+  $(".button-notifications").click(function (e) {
     $(".notifications_container").toggleClass("collapse");
     if (actionBox.css("border-radius") == "0px 10px 10px 0px") {
       $(".notifications_actionBox").css("border-radius", "0");
@@ -85,7 +76,7 @@ function collapseNotifications() {
 // 開關機器人
 function collapseRobot() {
   // let actionBox = $(".notifications_actionBox");
-  $(".button-robot").click(function() {
+  $(".button-robot").click(function () {
     $(".robot_container").toggleClass("collapse");
     // $('.robot-m').toggleClass("collapse");
   });
@@ -97,7 +88,7 @@ function closeNotifications() {
   //   $(this.parentElement).remove();
   // });
   // $("body").on('click', '.notifications_delete', function(){
-    
+
   // })
 }
 
@@ -213,37 +204,37 @@ function loginBoxNoScroll() {
 
 // 我的房間、活動巴士、排行榜開關燈箱
 function switchPage() {
-  $(".gameWorld_house").click(function(e) {
+  $(".gameWorld_house").click(function (e) {
     e.preventDefault();
     $(".checkBox-room").toggleClass("collapse");
     filterBlur();
   });
 
-  $(".gameWorld_bus").click(function(e) {
+  $(".gameWorld_bus").click(function (e) {
     e.preventDefault();
     $(".checkBox-event").toggleClass("collapse");
     filterBlur();
   });
 
-  $(".gameWorld_cup").click(function(e) {
+  $(".gameWorld_cup").click(function (e) {
     e.preventDefault();
     $(".checkBox-leaderBoard").toggleClass("collapse");
     filterBlur();
   })
-  
+
   $(".leaderBoard_closeArea").click(function (e) {
     e.preventDefault();
     $(".checkBox-leaderBoard").toggleClass("collapse");
     filterBlur();
   })
 
-  $("#btnCancel-room").click(function(e) {
+  $("#btnCancel-room").click(function (e) {
     e.preventDefault();
     $(".checkBox-room").toggleClass("collapse");
     filterBlur();
   });
 
-  $("#btnCancel-event").click(function(e) {
+  $("#btnCancel-event").click(function (e) {
     e.preventDefault();
     $(".checkBox-event").toggleClass("collapse");
     filterBlur();
@@ -251,9 +242,9 @@ function switchPage() {
 }
 
 // 模糊濾鏡
-function filterBlur(classNames=LIGHTBOX_FILTER_CLASSNAMES.default) {
+function filterBlur(classNames = LIGHTBOX_FILTER_CLASSNAMES.default) {
   let { length } = classNames;
-  for (i=0; i<length; i++) {
+  for (i = 0; i < length; i++) {
     let className = classNames[i];
     let haveBlurFilter = $(className).css('filter');
     if (haveBlurFilter != 'none') {
@@ -264,18 +255,16 @@ function filterBlur(classNames=LIGHTBOX_FILTER_CLASSNAMES.default) {
   }
 }
 
-
-
 // 聊天室按鈕動畫
 function chatBtnMousemove() {
-  $(".friendList_open").mouseenter(function() {
+  $(".friendList_open").mouseenter(function () {
     if (isMobileDevice()) {
       return false;
     }
     $(".friendList_openBtn").css("transform", "translateY(0)");
     clearTimeout(chatHover);
   });
-  $(".friendList_open").mouseleave(function() {
+  $(".friendList_open").mouseleave(function () {
     chatHover = setTimeout(() => {
       $(".friendList_openBtn").css("transform", "translateY(100%)");
     }, 600);
@@ -283,25 +272,25 @@ function chatBtnMousemove() {
 }
 
 // 聊天室按鈕換圖
-function chatGroupButtonHover(){
-  $('.requestAccept').mouseover(function(){
+function chatGroupButtonHover() {
+  $('.requestAccept').mouseover(function () {
     $(this).find('img').attr('src', 'imgs/homePage/icon/accept_hover.png');
   })
-  $('.requestAccept').mouseout(function(){
+  $('.requestAccept').mouseout(function () {
     $(this).find('img').attr('src', 'imgs/homePage/icon/accept.png');
   })
 
-  $('.requestRefuse').mouseover(function(){
+  $('.requestRefuse').mouseover(function () {
     $(this).find('img').attr('src', 'imgs/homePage/icon/Refuse_hover.png');
   })
-  $('.requestRefuse').mouseout(function(){
+  $('.requestRefuse').mouseout(function () {
     $(this).find('img').attr('src', 'imgs/homePage/icon/Refuse.png');
   })
 
-  $('.roomVisit').mouseover(function(){
+  $('.roomVisit').mouseover(function () {
     $(this).find('img').attr('src', 'imgs/homePage/icon/home_hover.png');
   })
-  $('.roomVisit').mouseout(function(){
+  $('.roomVisit').mouseout(function () {
     $(this).find('img').attr('src', 'imgs/homePage/icon/home.png');
   })
 }
@@ -347,7 +336,7 @@ function animation() {
     colors = ["#029DAF", "#E5D599", "#FFC219", "#F07C19", "#E32551"];
     gravity = 0.04;
 
-    initParticles = function() {
+    initParticles = function () {
       var i = 0;
       while (i < 200) {
         setTimeout(createParticle, 20 * i, i);
@@ -355,7 +344,7 @@ function animation() {
       }
     };
 
-    createParticle = function(i) {
+    createParticle = function (i) {
       var color, opacity, p, size, vx, vy, x, y;
       x = width * 0.5;
       y = height * 0.5;
@@ -368,7 +357,7 @@ function animation() {
       particles.push(p);
     };
 
-    Particle = function(x, y, vx, vy, size, color, opacity) {
+    Particle = function (x, y, vx, vy, size, color, opacity) {
       function reset() {
         x = width * 0.5;
         y = height * 0.5;
@@ -376,7 +365,7 @@ function animation() {
         vx = -2 + Math.random() * 4;
         vy = Math.random() * -3;
       }
-      this.update = function() {
+      this.update = function () {
         if (opacity - 0.005 > 0) {
           opacity -= 0.005;
         } else {
@@ -386,14 +375,14 @@ function animation() {
         x += vx;
         y += vy;
       };
-      this.draw = function() {
+      this.draw = function () {
         ctx.globalAlpha = opacity;
         ctx.fillStyle = color;
         ctx.fillRect(x, y, size, size);
       };
     };
 
-    render = function() {
+    render = function () {
       ctx.clearRect(0, 0, width, height);
       var i = 0;
       while (i < particles.length) {
@@ -424,31 +413,30 @@ function animation() {
 }
 
 function keyBoardNoScroll() {
-  var ar=new Array(33,34,35,36,37,38,39,40);
+  var ar = new Array(33, 34, 35, 36, 37, 38, 39, 40);
 
-  $(document).keydown(function(e) {
-      var key = e.which;
-        //console.log(key);
-        //if(key==35 || key == 36 || key == 37 || key == 39)
-        if($.inArray(key,ar) > -1) {
-            e.preventDefault();
-            return false;
-        }
-        return true;
+  $(document).keydown(function (e) {
+    var key = e.which;
+    //console.log(key);
+    //if(key==35 || key == 36 || key == 37 || key == 39)
+    if ($.inArray(key, ar) > -1) {
+      e.preventDefault();
+      return false;
+    }
+    return true;
   });
 }
 
 // 透明度橫桿
-function opacitySlider(){
-    $('#bgopacity').on('input', function (value) {
-      $('.chatGroup').css({
-          opacity: $(this).val() * '.01'
-      });
+function opacitySlider() {
+  $('#bgopacity').on('input', function (value) {
+    $('.chatGroup').css({
+      opacity: $(this).val() * '.01'
+    });
   });
 }
 
-window.addEventListener("load", function() {
-  menuMobileTransform();
+window.addEventListener("load", function () {
   chooseFriend();
   collapseChatGroup();
   collapseNotifications();
@@ -477,6 +465,6 @@ window.addEventListener("load", function() {
   // xhr.send(null);
 });
 
-window.addEventListener("mousemove", function(e) {
+window.addEventListener("mousemove", function (e) {
   // moveScene(e);
 });
