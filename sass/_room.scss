@@ -1,162 +1,424 @@
 .roomPage {
-      width: 100%;
-      height: 100%;
-      font-size: 0;
-      position: absolute;
-      background-color: #775c4c;
-      background: #334254;
-      z-index: 0;
-    }
+  width: 100%;
+  height: 100%;
+  font-size: 0;
+  position: absolute;
+  background-color: #775c4c;
+  background: #334254;
+  z-index: 0;
+}
+
+#thecanvas {
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+}
+
 .myRoomPage {
-    .lightboxBg{
+  .lightboxBg {
+    position: absolute;
+    z-index: 99;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+
+    .lightbox {
+      width: 50%;
+      height: 80%;
+      background: #f8b853;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      position: absolute;
+      border-radius: 15px;
+      padding: 1% 3%;
+      box-sizing: border-box;
+
+      #cancel {
         position: absolute;
-        z-index: 99;
+        top: 10px;
+        right: 10px;
+      }
+
+      h2 {
+        text-align: center;
+        margin-top: 25px;
+        font-size: 26px;
+        margin-bottom: 20px;
+      }
+
+      .messageBoard {
+        background: #fff;
+        width: 100%;
+        height: 80%;
+        overflow: auto;
+        border-radius: 10px;
+        padding: 30px;
+        box-sizing: border-box;
+
+        ul {
+          height: 100%;
+          overflow: auto;
+          li {
+            margin-bottom: 30px;
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: center;
+            margin: 10px;
+            padding-bottom: 1.5%;
+            border-bottom: 1px solid #f8b853;
+            &:last-child {
+              border-bottom: none;
+            }
+            .messageMem {
+              margin-right: 10px;
+            }
+            img {
+              margin-bottom: 8px;
+            }
+            span {
+              display: block;
+              text-align: center;
+            }
+            .message {
+              padding: 10px;
+              border: 2px solid #ff8d8d;
+              border-radius: 20px;
+            }
+            .trashPic {
+              margin-left: auto;
+              margin-right: 5%;
+              // flex-grow: 1;
+              // display: flex;
+              // justify-content: center;
+              // align-items: center;
+              img {
+                width: 100%;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    @include rwd(mobile) {
+      .lightboxBg {
+        display: none;
+      }
+
+      .lightbox {
         width: 100%;
         height: 100%;
-        background: rgba(0,0,0,.7);
+        border-radius: 0px;
+        position: static;
+
+        .messageBoard {
+          padding: 10px;
+          height: 60%;
+        }
+
+        .message {
+          height: 60%;
+          overflow: scroll;
+        }
+      }
+    }
+
+    .msgInputArea {
+      display: flex;
+      flex-flow: row wrap;
+      align-items: center;
+    }
+
+    .msgInput {
+      width: 80%;
+      height: 40px;
+      border: none;
+      border-radius: 10px;
+      margin-top: 10px;
+      font-size: 20px;
+      padding: 10px;
+      margin-right: 10px;
+      box-sizing: border-box;
+    }
+
+    .textCount {
+      width: 5%;
+      box-sizing: border-box;
+    }
+
+    .msgBtn {
+      width: 10%;
+      box-sizing: border-box;
+    }
+
+    @include rwd(mobile) {
+      .msgInput {
+        width: 73%;
+      }
+
+      .textCount {
+        display: inline-block;
+        margin-right: 2%;
+      }
+    }
+
+    .msgSend {
+      font-family: "Noto Sans TC";
+      font-size: 18px;
+      display: inline-block;
+      margin-top: 20px;
+      margin-left: 10px;
+      padding: 5px 10px;
+      border: 3px solid #f1f1f1;
+      border-radius: 20px;
+      color: #fff;
+      background: #fa7979;
+      position: relative;
+      z-index: 20;
+      top: -3px;
+      left: -3px;
+      box-shadow: 3px 3px #e7867e;
+      transition: 0.3s;
+      &:hover {
+        top: 0;
+        left: 0;
+        box-shadow: 0 0 transparent;
+      }
+    }
+  }
+
+  .myRoomBg {
+    font-size: 0;
+
+    .leftWall {
+      max-width: 500px;
+      width: 20%;
+      height: 65%;
+      background: #ffd189;
+      position: absolute;
+      display: inline-block;
+      // clip-path: polygon(0 0, 100% 0, 100% 81%, 0% 100%);
+      // -webkit-clip-path: polygon(0 0, 100% 0, 100% 81%, 0% 100%);
+
+      padding: 8% 2% 2% 2%;
+      box-sizing: border-box;
+
+      &:after {
+        content: "";
+        width: 100%;
+        height: 38%;
+        left: 0;
+        top: 100%;
+        position: absolute;
+        // background: #ffd189;
+        // z-index: 50;
+        background: url(../images/left_wall_tri.png) no-repeat;
+        background-size: contain;
+      }
+    }
+
+    .middleWall {
+      width: 55%;
+      height: 65%;
+      background: #92c8d7;
+      position: absolute;
+      display: inline-block;
+      top: 0;
+      left: 20%;
+      padding: 7% 2% 2% 2%;
+      box-sizing: border-box;
+      // opacity: 0;
+    }
+
+    .picUpload {
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.6);
+      margin: 0 auto;
+      border-radius: 20px;
+      box-shadow: 4px 4px 3px 0 #99a2ae;
+      padding: 6% 2% 2% 2%;
+      box-sizing: border-box;
+      position: relative;
+
+      .addPhotoBtn {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        z-index: 20;
+
+        #selectPic {
+          &:hover {
+            transform: scale(1.1);
+            transition: transform 0.5s;
+          }
+        }
+      }
+
+      #submitPic {
+        position: absolute;
+        right: 5px;
+        top: 90px;
+        z-index: 20;
+        color: #000;
+        display: inline-block;
+        // margin: 0 0 0 5%;
+        font-size: 16px;
+        padding: 6px 10px;
+        background: #fff;
+        border-radius: 8px;
+        border: 4px solid #ff8d8d;
+        font-family: "Noto Sans TC";
+        cursor: pointer;
         display: none;
-    
-        .lightbox{
-            width: 50%;
-            height: 70%;
-            background: #f8b853;
-            left: 0;
-            right: 0;
-            top: 0;
-            bottom: 0;
-            margin: auto;
-            position: absolute;
-            border-radius: 15px;
-            padding: 1% 3%;
-            box-sizing: border-box;
-    
-            #cancel{
-                position: absolute;
-                top: 10px;
-                right: 10px;
-            }
-    
-            h2{
-                text-align: center;
-                margin-top: 25px;
-                font-size: 26px;
-                margin-bottom: 20px;
-            }
-    
-            .messageBoard {
-                background: #fff;
-                width: 100%;
-                height: 80%;
-                overflow: auto;
-                border-radius: 10px;
-                padding: 30px;
-                box-sizing: border-box;
-                
-                
-                ul{
-                    height: 100%;
-                    overflow: auto;
-                    li{
-                        margin-bottom: 30px;
-                        display: flex;
-                        flex-flow: row nowrap;
-                        align-items: center;
-                        margin: 10px;
-                        padding-bottom: 1.5%;
-                        border-bottom: 1px solid #f8b853;
-                        &:last-child {
-                            border-bottom: none;
-                        }
-                        .messageMem {
-                            margin-right: 10px;
-                        }
-                        img{
-                            margin-bottom: 8px;
-                        }
-                        span{
-                            display: block;
-                            text-align: center;
-                        }
-                        .message {
-                            padding: 10px;
-                            border: 2px solid #ff8d8d;
-                            border-radius: 20px;
-                        }
-                        .trashPic {
-                            margin-left: auto;
-                            margin-right: 5%;
-                            // flex-grow: 1;
-                            // display: flex;
-                            // justify-content: center;
-                            // align-items: center;
-                            img {
-                                width: 100%;
-                            }
-                        }
-                    }
-                }
-            }
+      }
+
+      #picUploadImg {
+        max-width: 100%;
+        max-height: 100%;
+        margin: auto;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+      }
+    }
+
+    .messageBoard {
+      position: relative;
+      z-index: 20;
+      span {
+        color: #000;
+        display: inline-block;
+        margin: 0 0 0 5%;
+        font-size: 16px;
+        padding: 6px 10px;
+        background: #fff;
+        border-radius: 8px;
+        border: 4px solid #ff8d8d;
+      }
+
+      img {
+        width: 20%;
+        height: auto;
+        max-width: 100%;
+        max-height: 100%;
+        padding-top: 15px;
+      }
+
+      &:hover img {
+        transform: rotate(2deg);
+        transition: transform 0.3s;
+      }
+    }
+
+    @include rwd(mobile) {
+      .picUpload {
+        padding: 3% 2% 2% 5%;
+
+        .addPhotoBtn {
+          right: 8px;
+          top: 8px;
+          display: block;
+
+          img {
+            width: 49px;
+            height: 39px;
+          }
         }
-    
-        @include rwd(mobile) {
-            .lightbox{
-                width: 100%;
-                height: 100%;
-                border-radius: 0px;
-    
-                .message{
-                    height: 60%;
-                    overflow: scroll;
-                }
-            }
+      }
+
+      .messageBoard {
+        span {
+          font-size: 14px;
+          border: 2px solid #ff8d8d;
+          margin: 0 0 0 1%;
         }
-    
-        .msgInputArea{
-            display: flex;
-            flex-flow: row wrap;
-            align-items: center;
+
+        img {
+          padding-top: 8px;
         }
-    
-        .msgInput{
-            width: 80%;
-            height: 40px;
-            border: none;
-            border-radius: 10px;
-            margin-top: 10px;
-            font-size: 20px;
-            padding: 10px;
+      }
+    }
+
+    .rightWall {
+      width: 25%;
+      height: 65%;
+      background: #ffcfcf;
+      position: absolute;
+      display: inline-block;
+      top: 0;
+      right: 0;
+      // opacity: 0;
+      .roomIntro {
+        font-size: 18px;
+        position: absolute;
+        top: 20%;
+        display: flex;
+        flex-flow: column wrap;
+        align-items: center;
+        left: 15%;
+        right: 15%;
+
+        h3 {
+          // color: #fff;
+          margin-bottom: 20px;
+          font-size: 20px;
+          letter-spacing: 1px;
+        }
+
+        .intro {
+          background: #fff;
+          padding: 15px;
+          line-height: 1.8;
+          border-radius: 10px;
+          width: 300px;
+          margin-bottom: 20px;
+          border: 5px solid #fa7979;
+          overflow: scroll;
+          height: 200px;
+        }
+
+        // .introMobile{
+        //     display: none;
+        // }
+
+        .getHeart {
+          display: flex;
+          flex-flow: row wrap;
+          align-items: center;
+
+          img {
             margin-right: 10px;
-            box-sizing: border-box;
-        }
-    
-        .textCount{
-            width: 5%;
-            box-sizing: border-box;
-        }
-    
-        .msgBtn{
-          width: 10%;
-          box-sizing: border-box;
-        }
-    
-        @include rwd(mobile){
-          .msgInput{
-            width: 73%;
           }
-    
-          .textCount{
-            display: inline-block;
-            margin-right: 2%;
+
+          span {
+            // color: #fff;
           }
         }
-    
-        .msgSend{
-            font-family: 'Noto Sans TC';
-            font-size: 18px;
+
+        @include rwd(mobile) {
+          .getHeart {
+            img {
+              width: 30%;
+            }
+          }
+        }
+
+        .btns {
+          display: flex;
+          flex-flow: row wrap;
+          a {
             display: inline-block;
             margin-top: 20px;
-            margin-left: 10px;
-            padding: 5px 10px;
+            margin-right: 10px;
+            padding: 10px 15px;
             border: 3px solid #f1f1f1;
             border-radius: 20px;
             color: #fff;
@@ -166,516 +428,454 @@
             top: -3px;
             left: -3px;
             box-shadow: 3px 3px #e7867e;
-            transition: .3s;
-            &:hover{
-                top: 0;
-                left: 0;
-                box-shadow: 0 0 transparent;
-            }  
-        }
-    }
-    
-    .myRoomBg{
-        font-size: 0;
-    
-        .leftWall{
-            max-width: 500px;
-            width: 20%;
-            height: 80%;
-            background: #ffd189;
-            position: absolute;
-            display: inline-block;
-            clip-path: polygon(0 0, 100% 0, 100% 81%, 0% 100%);
-            -webkit-clip-path: polygon(0 0, 100% 0, 100% 81%, 0% 100%);
-            padding: 8% 2% 2% 2%;
-            box-sizing: border-box;
-        }
-    
-        .middleWall{
-            width: 55%;
-            height: 65%;
-            background: #92c8d7;
-            position: absolute;
-            display: inline-block;
-            top: 0;
-            left: 20%;
-            padding: 7% 2% 2% 2%;
-            box-sizing: border-box;
-            // opacity: 0;
-        }
-    
-        .picUpload{
-            width: 100%;
-            height: 100%;
-            background: rgba(255,255,255,.6);
-            margin: 0 auto;
-            border-radius: 20px;
-            box-shadow: 4px 4px 3px 0 #99a2ae;
-            padding: 6% 2% 2% 2%;
-            box-sizing: border-box;
-            position: relative;   
-    
-            .addPhotoBtn{
-              position: absolute;
-              right: 15px;
-              top: 15px;
-              z-index: 20;
-    
-              #selectPic{
-                &:hover{
-                transform: scale(1.1);
-                transition: transform .5s;
-                }
-              }
-            }
-    
-            #submitPic{
-              position: absolute;
-              right: 5px;
-              top: 90px;
-              z-index: 20;
-              color: #000;
-              display: inline-block;
-              // margin: 0 0 0 5%;
-              font-size: 16px;
-              padding: 6px 10px;
-              background: #fff;
-              border-radius: 8px;
-              border: 4px solid #ff8d8d;
-              font-family: 'Noto Sans TC';
-              cursor: pointer;
-              display: none;
-    
-    
-            }
-    
-            #picUploadImg{
-              max-width: 100%;
-              max-height: 100%;
-              margin: auto;
-              position: absolute;
-              left: 0;
-              right: 0;
+            transition: 0.3s;
+            &:hover {
               top: 0;
-              bottom: 0;
+              left: 0;
+              box-shadow: 0 0 transparent;
             }
-        }
-    
-        .messageBoard{
-            position: relative;
-            z-index: 20;
-            span{
-                color: #000;
-                display: inline-block;
-                margin: 0 0 0 5%;
-                font-size: 16px;
-                padding: 6px 10px;
-                background: #fff;
-                border-radius: 8px;
-                border: 4px solid #ff8d8d;
-            }
-    
-            img{
-                width: 20%;
-                height: auto;
-                max-width: 100%;
-                max-height: 100%;
-                padding-top: 15px;
-            }
-    
-            &:hover img{
-                transform: rotate(2deg);
-                transition: transform .3s;
-            }
-        }
-    
-         @include rwd(mobile){
-    
-            .picUpload{
-              padding: 3% 2% 2% 5%;
-    
-              .addPhotoBtn{
-                right: 8px;
-                top: 8px;
-                display: block;
-    
-                img{
-                  width: 49px;
-                  height: 39px;
-                }
-              }
-            }
-    
-            .messageBoard{
-                span{
-                   font-size: 14px;
-                   border: 2px solid #ff8d8d;
-                   margin: 0 0 0 1%;
-                }
-    
-                img{
-                    padding-top: 8px;
-                }
-            }
-    
-    
-         }
-    
-    
-        .rightWall{
-            width: 25%;
-            height: 65%;
-            background: #ffcfcf;
-            position: absolute;
-            display: inline-block;
-            top: 0;
-            right: 0;
-            // opacity: 0;
-            .roomIntro{
-                font-size: 18px;
-                position: absolute;
-                top: 20%;
-                display: flex;
-                flex-flow: column wrap;
-                align-items: center;
-                left: 15%;
-                right: 15%;
-    
-                h3{
-                    // color: #fff;
-                    margin-bottom: 20px;
-                    font-size: 20px;
-                    letter-spacing: 1px;
-                }
-    
-                p{
-                    background: #fff;
-                    padding: 15px;
-                    line-height: 1.8;
-                    border-radius: 10px;
-                    width: 300px;
-                    margin-bottom: 20px;
-                    border: 5px solid #fa7979;
-                }
-    
-                .getHeart{
-                    display: flex;
-                    flex-flow: row wrap;
-                    align-items: center;
-    
-                    img{
-                      margin-right: 10px;
-                    }
-    
-                    span{
-                      // color: #fff;
-                    }
-                }
-    
-                @include rwd(mobile){
-                  .getHeart{
-                    img{
-                      width: 30%;
-                    }
-                  }
-                }
-                
-    
-                .btns{
-                    a{
-                        display: inline-block;
-                        margin-top: 20px;
-                        margin-right: 10px;
-                        padding: 10px 15px;
-                        border: 3px solid #f1f1f1;
-                        border-radius: 20px;
-                        color: #fff;
-                        background: #fa7979;
-                        position: relative;
-                        z-index: 20;
-                        top: -3px;
-                        left: -3px;
-                        box-shadow: 3px 3px #e7867e;
-                        transition: .3s;
-                        &:hover{
-                            top: 0;
-                            left: 0;
-                            box-shadow: 0 0 transparent;
-                        }  
-                    }   
-                
-                }
-            }
-    
-            
-            @include rwd(mobile){
-              .roomIntro{
-                h3{
-                  font-size: 18px;
-                  font-weight: normal;
-                }
-    
-                p{
-                  display: none;
-                }
-                
-              }
-            }
-    
-    
-        }
-    }
-    
-    #furnitureTab{ 
-        width: 100%; 
-        height: 278px; 
-        position: fixed;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        transform: translateY(210px);
-        z-index: 30;
-        .swiper-wrapper{
-    
-            background: transparent;
-        }
-    }
-    
-    #furnitureTab.open{
-        transform: translateY(55px);
-        transition: transform .5s cubic-bezier(.36,.57,.53,1.22);
-    }
-    
-    @include rwd(mobile){
-        #furnitureTab{
-            transform: translateY(210px);
-        }
-    
-        #furnitureTab.open{
-            transform: translateY(100px);
-        }
-    }
-    
-    .tabTitle{
-        font-size: 0;
-        display: flex;
-        flex-flow: row wrap;
-        align-items: flex-end;
-        justify-content: flex-end;
-    
-        #chairTabTitle, #deskTabTitle, #bedTabTitle{
-          transform: translateX(300px);
-        }
-    
-        #chairTabTitle.show2, #deskTabTitle.show2, #bedTabTitle.show2{
-          transform: translateX(0);
-          transition: transform .5s cubic-bezier(0,1.36,.91,.94);
-        }
-    }
-    
-    #furnitureTab > ul > li{ 
-        border-bottom: 1px solid #fff;
-        height: 30px; 
-        line-height: 30px; 
-        background: #ffd189;
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
-        padding: 5px;
-        // position: relative;
-        z-index: 10;
-    }
-    
-    #furnitureTab > ul > li:nth-child(4){ 
-        border-bottom: 1px solid #fff;
-        height: 50px; 
-        line-height: 50px; 
-        background: #ff8d8d;    
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
-        padding: 5px;
-        position: relative;
-        z-index: 11;
-        a{
-          color: #fff;
-          font-size: 18px;
-        }
-    }
-    
-    #furnitureTab > ul > li a{ 
-        color: #000; 
-        font-size: 16px;
-        display: block;
-        padding: 0 15px;
-    }
-    
-    #furnitureTab > ul > li.active{ 
-        background: #fab385;
-        border-bottom: 5px solid #fab385;
-        transition: all 5s cubic-bezier(0,1.36,.91,.94);
-    }
-    
-    #furnitureTab > .tabContent{ 
-        // clear: both; 
-        color: #000; 
-    }
-    
-    #chairTab, #deskTab, #bedTab{ 
-        padding: 10px; 
-        // height: 278px;
-        background: #fab385;
-        display: flex;
-        
-        .toMall{
-          height: 140px;
-        }
-    
-        @include rwd(mobile){
-          .toMall{
-            height: 100px;
           }
         }
-    
-        .swiper-slide{
-            background: #fff;
-            // width: 10%;
-            // height: 150px;
-            // margin: 5px;
-            padding: 10px;
-            border-radius: 10px;
-            box-sizing: border-box;
-            
-            a{
-                display: flex;
-                flex-flow: column wrap;
-                align-items: center;
-                justify-content: center;
-            }
-    
-            img{
-                width: 100%;
-                margin-bottom: 10px;
-            }
+      }
+
+      @include rwd(mobile) {
+        .roomIntro {
+          h3 {
+            font-size: 18px;
+            font-weight: normal;
+          }
+
+          .intro {
+            display: none;
+          }
+
+          // .introMobile{
+          //     display: block;
+          // }
         }
-    
-        @include rwd(mobile){
-            .swiper-slide{
-              // width: 20%;
-              height: 100px;
-            }
-        }
-    
-        .toMall{
-            background: #f6c067;
-            border: 3px solid #fff;
-            position: relative;
-    
-            a{
-                display: block;
-                width: 100%;
-                height: 100%;
-    
-                img{
-                    position: absolute;
-                    width: 50%;
-                    left: 0;
-                    right: 0;
-                    top: 0;
-                    bottom: 0;
-                    margin: auto;
-                }
-            }
-        }
+      }
     }
-    
-    .myRoomFurniture{
-        // position: relative;
+  }
+
+  // #furnitureTab{
+  //     width: 100%;
+  //     height: 278px;
+  //     position: fixed;
+  //     left: 0;
+  //     right: 0;
+  //     bottom: 0;
+  //     transform: translateY(210px);
+  //     z-index: 30;
+  //     .swiper-wrapper{
+
+  //         background: transparent;
+  //     }
+  // }
+
+  // #furnitureTab.open{
+  //     transform: translateY(55px);
+  //     transition: transform .5s cubic-bezier(.36,.57,.53,1.22);
+  // }
+
+  // @include rwd(mobile){
+  //     #furnitureTab{
+  //         transform: translateY(210px);
+  //     }
+
+  //     #furnitureTab.open{
+  //         transform: translateY(100px);
+  //     }
+  // }
+
+  // .tabTitle{
+  //     font-size: 0;
+  //     display: flex;
+  //     flex-flow: row wrap;
+  //     align-items: flex-end;
+  //     justify-content: flex-end;
+
+  //     #chairTabTitle, #deskTabTitle, #bedTabTitle{
+  //       transform: translateX(300px);
+  //     }
+
+  //     #chairTabTitle.show2, #deskTabTitle.show2, #bedTabTitle.show2{
+  //       transform: translateX(0);
+  //       transition: transform .5s cubic-bezier(0,1.36,.91,.94);
+  //     }
+  // }
+
+  // #furnitureTab > ul > li{
+  //     border-bottom: 1px solid #fff;
+  //     height: 30px;
+  //     line-height: 30px;
+  //     background: #ffd189;
+  //     border-top-left-radius: 5px;
+  //     border-top-right-radius: 5px;
+  //     padding: 5px;
+  //     // position: relative;
+  //     z-index: 10;
+  // }
+
+  // #furnitureTab > ul > li:nth-child(4){
+  //     border-bottom: 1px solid #fff;
+  //     height: 50px;
+  //     line-height: 50px;
+  //     background: #ff8d8d;
+  //     border-top-left-radius: 5px;
+  //     border-top-right-radius: 5px;
+  //     padding: 5px;
+  //     position: relative;
+  //     z-index: 11;
+  //     a{
+  //       color: #fff;
+  //       font-size: 18px;
+  //     }
+  // }
+
+  // #furnitureTab > ul > li a{
+  //     color: #000;
+  //     font-size: 16px;
+  //     display: block;
+  //     padding: 0 15px;
+  // }
+
+  // #furnitureTab > ul > li.active{
+  //     background: #fab385;
+  //     border-bottom: 5px solid #fab385;
+  //     transition: all 5s cubic-bezier(0,1.36,.91,.94);
+  // }
+
+  // #furnitureTab > .tabContent{
+  //     // clear: both;
+  //     color: #000;
+  // }
+
+  // #chairTab, #deskTab, #bedTab{
+  //     padding: 10px;
+  //     // height: 278px;
+  //     background: #fab385;
+  //     display: flex;
+
+  //     .toMall{
+  //       height: 140px;
+  //     }
+
+  //     @include rwd(mobile){
+  //       .toMall{
+  //         height: 100px;
+  //       }
+  //     }
+
+  //     .swiper-slide{
+  //         background: #fff;
+  //         // width: 10%;
+  //         // height: 150px;
+  //         // margin: 5px;
+  //         padding: 10px;
+  //         border-radius: 10px;
+  //         box-sizing: border-box;
+
+  //         a{
+  //             display: flex;
+  //             flex-flow: column wrap;
+  //             align-items: center;
+  //             justify-content: center;
+  //         }
+
+  //         img{
+  //             width: 100%;
+  //             margin-bottom: 10px;
+  //         }
+  //     }
+
+  //     @include rwd(mobile){
+  //         .swiper-slide{
+  //           // width: 20%;
+  //           height: 100px;
+  //         }
+  //     }
+
+  //     .toMall{
+  //         background: #f6c067;
+  //         border: 3px solid #fff;
+  //         position: relative;
+
+  //         a{
+  //             display: block;
+  //             width: 100%;
+  //             height: 100%;
+
+  //             img{
+  //                 position: absolute;
+  //                 width: 50%;
+  //                 left: 0;
+  //                 right: 0;
+  //                 top: 0;
+  //                 bottom: 0;
+  //                 margin: auto;
+  //             }
+  //         }
+  //     }
+  // }
+
+  .myRoomFurniture {
+    // position: relative;
+    width: 100%;
+    height: 100%;
+    .bed {
+      position: absolute;
+      top: 45%;
+      left: 10%;
+      width: 70%;
+      z-index: 52;
+
+      img {
+        height: auto;
+        max-width: 100%;
+      }
+    }
+
+    .chair {
+      position: absolute;
+      top: 45%;
+      left: 50%;
+      width: 100%;
+
+      img {
+        height: auto;
+        max-width: 100%;
+      }
+    }
+
+    // .chair.move{
+    //     animation: furnitureMove 1s alternate;
+    // }
+
+    // @keyframes furnitureMove{
+    //   from{
+    //     margin-top: 0;
+    //   }
+    //   to{
+    //     margin-top: 100px;
+    //   }
+    // }
+
+    .desk {
+      position: absolute;
+      top: 55%;
+      left: 65%;
+      width: 35%;
+
+      img {
+        height: auto;
         width: 100%;
-        height: 100%;
-        .bed{
-            position: absolute;
-            padding-top: 25%;       
-            left: 10%;
-            width: 70%;
-            
-            img{
-                height: auto;
-                max-width: 100%;
-            }
-        }
-    
-        .chair{
-            position: absolute;
-            top: 45%;       
-            left: 50%;
-            width: 100%;
-            
-            img{
-                height: auto;
-                max-width: 100%;
-            }
-        }
-    
-        // .chair.move{
-        //     animation: furnitureMove 1s alternate;
-        // }
-    
-        // @keyframes furnitureMove{
-        //   from{
-        //     margin-top: 0;
-        //   }
-        //   to{
-        //     margin-top: 100px;
-        //   }
-        // }
-    
-        .desk{
-            position: absolute;
-            top: 55%;       
-            left: 65%;
-            width: 35%;
-            
-            img{
-                height: auto;
-                width: 100%;
-            }
-        }
-    
-        .character{
-            position: absolute;
-            padding-top: 20%;       
-            left: 47%;
-            width: 40%;
-            
-            img{
-                height: auto;
-                max-width: 30%;
-            }
-        }
-    
-        @include rwd(mobile){
-            .bed{
-              width: 40%;
-              left: 8%;
-            }
-    
-            .chair{
-              padding-top: 25%;       
-              left: 48%;
-              width: 40%;
-            }
-    
-            .desk{
-              padding-top: 35%;
-              left: 70%;
-              width: 30%;
-            }
-    
-            .character{
-              padding-top: 25%; 
-              left: 48%; 
-              width: 38%;
-            }
-        }
-    
+      }
     }
+
+    .character {
+      position: absolute;
+      // padding-top: 20%;
+      top: 30%;
+      left: 47%;
+      width: 40%;
+
+      img {
+        height: auto;
+        max-width: 30%;
+      }
+    }
+
+    @include rwd(mobile) {
+      .bed {
+        width: 40%;
+        left: 8%;
+      }
+
+      .chair {
+        //   padding-top: 25%;
+        left: 48%;
+        width: 40%;
+      }
+
+      .desk {
+        //   padding-top: 35%;
+        left: 70%;
+        top: 65%;
+        width: 30%;
+      }
+
+      .character {
+        //   padding-top: 25%;
+        top: 35%;
+        left: 48%;
+        width: 38%;
+      }
+    }
+  }
+}
+
+#furnitureTab {
+  width: 100%;
+  height: 278px;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transform: translateY(210px);
+  z-index: 30;
+  .swiper-wrapper {
+    background: transparent;
+  }
+}
+
+#furnitureTab.open {
+  transform: translateY(55px);
+  transition: transform 0.5s cubic-bezier(0.36, 0.57, 0.53, 1.22);
+}
+
+@include rwd(mobile) {
+  #furnitureTab {
+    transform: translateY(210px);
+  }
+
+  #furnitureTab.open {
+    transform: translateY(100px);
+  }
+}
+
+.tabTitle {
+  font-size: 0;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-end;
+  justify-content: flex-end;
+
+  #chairTabTitle,
+  #deskTabTitle,
+  #bedTabTitle {
+    transform: translateX(300px);
+  }
+
+  #chairTabTitle.show2,
+  #deskTabTitle.show2,
+  #bedTabTitle.show2 {
+    transform: translateX(0);
+    transition: transform 0.5s cubic-bezier(0, 1.36, 0.91, 0.94);
+  }
+}
+
+#furnitureTab > ul > li {
+  border-bottom: 1px solid #fff;
+  height: 30px;
+  line-height: 30px;
+  background: #ffd189;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  padding: 5px;
+  // position: relative;
+  z-index: 10;
+}
+
+#furnitureTab > ul > li:nth-child(4) {
+  border-bottom: 1px solid #fff;
+  height: 50px;
+  line-height: 50px;
+  background: #ff8d8d;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  padding: 5px;
+  position: relative;
+  z-index: 11;
+  a {
+    color: #fff;
+    font-size: 18px;
+  }
+}
+
+#furnitureTab > ul > li a {
+  color: #000;
+  font-size: 16px;
+  display: block;
+  padding: 0 15px;
+}
+
+#furnitureTab > ul > li.active {
+  background: #fab385;
+  border-bottom: 5px solid #fab385;
+  transition: all 5s cubic-bezier(0, 1.36, 0.91, 0.94);
+}
+
+#furnitureTab > .tabContent {
+  // clear: both;
+  color: #000;
+}
+
+#chairTab,
+#deskTab,
+#bedTab {
+  padding: 10px;
+  // height: 278px;
+  background: #fab385;
+  display: flex;
+
+  .toMall {
+    height: 140px;
+  }
+
+  @include rwd(mobile) {
+    .toMall {
+      height: 100px;
+    }
+  }
+
+  .swiper-slide {
+    background: #fff;
+    // width: 10%;
+    // height: 150px;
+    // margin: 5px;
+    padding: 10px;
+    border-radius: 10px;
+    box-sizing: border-box;
+
+    a {
+      display: flex;
+      flex-flow: column wrap;
+      align-items: center;
+      justify-content: center;
+    }
+
+    img {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+
+  @include rwd(mobile) {
+    .swiper-slide {
+      // width: 20%;
+      height: 100px;
+    }
+  }
+
+  .toMall {
+    background: #f6c067;
+    border: 3px solid #fff;
+    position: relative;
+
+    a {
+      display: block;
+      width: 100%;
+      height: 100%;
+
+      img {
+        position: absolute;
+        width: 50%;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+      }
+    }
+  }
 }

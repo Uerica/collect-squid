@@ -16,9 +16,9 @@ try {
                 echo "dir";
             }
             
-            $fileName = "$mem_no"."{$_FILES['selectPicInput']['name']}";
+            $fileName = "wall_pic/"."$mem_no"."{$_FILES['selectPicInput']['name']}";
             $from = $_FILES["selectPicInput"]["tmp_name"];
-            $to = "wall_pic/".$fileName;
+            $to = $fileName;
             if (copy($from, $to)) {
 
                 // 修改會員海報路徑

@@ -283,131 +283,119 @@
         </header>
     </div>
 
-    <div class="roomPage">
-    </div>
-
-    <div class="myRoomPage">
-        <div class="myRoomBg">
-            <div class="leftWall">
-                <img src="images/window.png">
+    <div class="rankBoard">
+        <div class="roomPage">
+        </div>
+    
+        <div class="myRoomPage">
+            <div class="myRoomBg">
+                <div class="leftWall">
+                    <img src="images/window.png">
+                </div>
+                <div class="middleWall">
+                    
+                    <div class="picUpload"> 
+          
+                        <img id="picUploadImg" src="<?php echo $memRow["poster_img_url"] ?>">
+                        <!-- <img id="picUploadImg" src="http://i.imgur.com/bHkxx.jpg"> -->
+                    
+                        <a href="javascript:;" id="msgBoard" class="messageBoard">
+                            <span>留言板</span><br>
+                            <img src="images/messageBoard.png">
+                        </a>
+                        <div class="addPhotoBtn">
+                            <form id="uploadForm" method="post" action="myRoom.php" enctype="multipart/form-data">
+                                <!-- <input type="hidden" name="imagestring"> -->
+                                <input type="file" id="selectPicInput" name="selectPicInput" capture style="display:none">
+                                <img src="images/camera.png" id="selectPic" style="cursor:pointer">
+                                <input type="button" name="submitPic" id="submitPic" value="確定上傳">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="rightWall">
+                    <div class="roomIntro">
+                            <h3><span><?php echo $memRow["mem_name"] ;?></span>的房間</h3>
+                            <p class="intro">暱稱：<?php echo $memRow["mem_name"] ;?><br>
+                                等級：<?php 
+                                if($memRow["mem_lv"] == 1){echo "平民";}
+                                if($memRow["mem_lv"] == 2){echo "貴族";}
+                                if($memRow["mem_lv"] == 3){echo "皇族";} 
+                                ?>
+                                <br>
+                                性別：<?php echo $memRow["mem_gender"] ?><br>
+                                星座：<?php echo $memRow["mem_sign"] ?><br>
+                                自我介紹：<?php echo $memRow["mem_intro"] ?>
+                                <br>
+                            </p>
+                        <div class="getHeart">
+                            <img src="images/getHeart.png">
+                            <span>100</span>
+                        </div>
+                    </div>
+                    
+                </div>
             </div>
-            <div class="middleWall">
-                
-                <div class="picUpload"> 
-
-                <?php
-                    // $dsn = "mysql:host=sql.uerica.com;port=3307;dbname=dd101g2;charset=utf8";
-                    // $user = "dd101g2";
-                    // $psw = "dd101g2";
-                    // $options = array(PDO::ATTR_CASE => PDO::CASE_NATURAL, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
-                    // $pdo = new PDO($dsn, $user, $psw, $options);
-
-                    // $sql = "SELECT * FROM `member` WHERE `mem_no` = ':mem_no'";
-
-                    // $result = $pdo->prepare($sql);
-                    // while($uploadPicRow = $result->fetchObject()){
-                ?>       
-                    <img id="picUploadImg" src="wall_pic/<?php echo $memRow["poster_img_url"] ?>">
-                 <?php
-                    // }
-                ?>
-                    <a href="javascript:;" id="msgBoard" class="messageBoard">
-                        <span>留言板</span><br>
-                        <img src="images/messageBoard.png">
+    
+            <div class="lightboxBg">
+                <div class="lightbox">
+                    <a href="javascript:;">
+                        <img id="cancel" src="images/cancelBtn.png">
                     </a>
-                    <div class="addPhotoBtn">
-                        <form id="uploadForm" method="post" action="myRoom.php" enctype="multipart/form-data">
-                            <!-- <input type="hidden" name="imagestring"> -->
-                            <input type="file" id="selectPicInput" name="selectPicInput" capture style="display:none">
-                            <img src="images/camera.png" id="selectPic" style="cursor:pointer">
-                            <input type="button" name="submitPic" id="submitPic" value="確定上傳">
-                        </form>
+                    <h2>留言板</h2>
+                    <div class="messageBoard" id="messageBoard">
+                        <ul>
+                            <?php 
+                            while($cmtRow = $comments->fetch(PDO::FETCH_ASSOC)) {
+                            ?>
+                                <li>
+                                    <input type="hidden" name="cmt_no" id="cmt_no" value="<?php echo $cmtRow["cmt_no"] ?>"> 
+                                    <div class="messageMem">
+                                        <img src="images/squid_avatar.png">
+                                        <span><?php echo $cmtRow["mem_name"]; ?></span>
+                                    </div>
+                                    <div class="message"><?php echo $cmtRow["cmt_cnt"] ?></div>
+                                    <div class="trashPic">
+                                        <img src="images/trashcan.png" alt="反送中">
+                                    </div>
+                                </li>
+                            <?php
+                            }
+                            ?>
+                        </ul>
+                    </div>
+                    <div class="msgInputArea">
+                        <input type="hidden" id="talking_mem_no" name="talking_mem_no" value="<?php echo $memRow['mem_no']; ?>">
+                        <input type="text" class="msgInput">
+                        <span class="textCount">20/50</span>
+                        <div class="msgBtn">
+                            <input type="hidden" name="rcv_mem_name" id="rcv_mem_name" value="<?php echo $memRow["mem_name"] ?>">
+                            <input type="submit" class="msgSend" value="傳送留言">
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="rightWall">
-                <div class="roomIntro">
-                        <h3><span><?php echo $memRow["mem_name"] ;?></span>的房間</h3>
-                        <p>暱稱：<?php echo $memRow["mem_name"] ;?><br>
-                        等級：<?php 
-                        if($memRow["mem_lv"] == 1){echo "平民";}
-                        if($memRow["mem_lv"] == 2){echo "貴族";}
-                        if($memRow["mem_lv"] == 3){echo "皇族";} 
-                        ?>
-                        <br>
-                        性別：<?php echo $memRow["mem_gender"] ?><br>
-                        星座：<?php echo $memRow["mem_sign"] ?><br>
-                        自我介紹：<?php echo $memRow["mem_intro"] ?>
-                        <br>
-                        </p>
-                    <div class="getHeart">
-                        <img src="images/getHeart.png">
-                        <span>100</span>
-                    </div>
-                    <!-- <div class="btns">
-                        <a href="#">給我你的愛</a>
-                        <a href="#">加我好友嘛</a>
-                    </div> -->
+    
+            <div class="myRoomFurniture">
+                <input type="hidden" name="mem_no" id="mem_no" value="<?php echo $memRow["mem_no"]; ?>">
+                <div class="bed">
+                    <img src="<?php echo $usingBed["furn_img_url"]; ?>">
                 </div>
-                
-            </div>
-        </div>
-
-        <div class="lightboxBg">
-            <div class="lightbox">
-                <a href="javascript:;">
-                    <img id="cancel" src="images/cancelBtn.png">
-                </a>
-                <h2>留言板</h2>
-                <div class="messageBoard" id="messageBoard">
-                    <ul>
-                        <?php 
-                        while($cmtRow = $comments->fetch(PDO::FETCH_ASSOC)) {
-                        ?>
-                            <li>
-                                <input type="hidden" name="cmt_no" id="cmt_no" value="<?php echo $cmtRow["cmt_no"] ?>"> 
-                                <div class="messageMem">
-                                    <img src="images/squid_avatar.png">
-                                    <span><?php echo $cmtRow["mem_name"]; ?></span>
-                                </div>
-                                <div class="message"><?php echo $cmtRow["cmt_cnt"] ?></div>
-                                <div class="trashPic">
-                                    <img src="images/trashcan.png" alt="反送中">
-                                </div>
-                            </li>
-                        <?php
-                        }
-                        ?>
-                    </ul>
+                <div class="chair">
+                    <img src="<?php echo $usingChair["furn_img_url"]; ?>">
                 </div>
-                <div class="msgInputArea">
-                    <input type="hidden" id="talking_mem_no" name="talking_mem_no" value="<?php echo $memRow['mem_no']; ?>">
-                    <input type="text" class="msgInput">
-                    <span class="textCount">20/50</span>
-                    <div class="msgBtn">
-                        <input type="hidden" name="me_mem_no" id="me_mem_no" value="<?php echo $memRow["mem_name"] ?>">
-                        <input type="submit" class="msgSend" value="傳送留言">
-                    </div>
+                <div class="desk">
+                    <img src="<?php echo $usingDesk["furn_img_url"]; ?>"> 
+                </div>
+                <div class="character">
+                    <img src="<?php 
+                     echo $memRow["dressed_no"] == ""? $memRow["style_no"] : $memRow["dressed_no"]; 
+                    ?>">
                 </div>
             </div>
+    
         </div>
-
-        <div class="myRoomFurniture">
-            <input type="hidden" name="mem_no" id="mem_no" value="<?php echo $memRow["mem_no"]; ?>">
-            <div class="bed">
-                <img src="<?php echo $usingBed["furn_img_url"]; ?>">
-            </div>
-            <div class="chair">
-                <img src="<?php echo $usingChair["furn_img_url"]; ?>">
-            </div>
-            <div class="desk">
-                <img src="<?php echo $usingDesk["furn_img_url"]; ?>"> 
-            </div>
-            <div class="character">
-                <img src="<?php echo $memRow["style_no"]; ?>">
-            </div>
-        </div>
-
+    </div>
         <section id="furnitureTab">
             <ul class="tabTitle">
                 <li id="chairTabTitle"><a href="#chairTab">椅子</a></li>
@@ -535,11 +523,12 @@
                 <div class="swiper-button-prev"></div>
             </div>
         </section>  
-    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js'></script>
     <script src="js/chat.js"></script>
+    <script src="js/html2canvas.min.js"></script>
+    <script src="js/dom-to-image.min.js"></script>
     <script>
         var swiper = new Swiper('.swiper-container', {
           slidesPerView: 9,
