@@ -583,7 +583,7 @@ try {
               <p>2019.6.30</p>
             </div>
             <div class="item">
-              <span>人數限制</span>
+              <span>報名人數</span>
               <p>22 / <span class="limitNum">30</span></p>
             </div>
             <div class="item">
