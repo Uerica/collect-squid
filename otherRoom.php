@@ -1,25 +1,25 @@
-<?php 
-  session_start();
-  $msg = "";
-
-  $dsn = "mysql:host=sql.uerica.com;port=3307;dbname=dd101g2;charset=utf8";
-  $user = "dd101g2";
-  $psw = "dd101g2";
-  $options = array(PDO::ATTR_CASE => PDO::CASE_NATURAL, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
-  $pdo = new PDO($dsn, $user, $psw, $options);
-?>
 
 <?php  
+    session_start();
     $errMsg = "";
     try{
-        $dsn = "mysql:host=sql.uerica.com;port=3307;dbname=dd101g2;charset=utf8";
-        $user = "dd101g2";
-        $psw = "dd101g2";
-        $options = array(PDO::ATTR_CASE => PDO::CASE_NATURAL, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
-        $pdo = new PDO($dsn, $user, $psw, $options);
+        require_once('connectSquid.php');
         
+        //登入者
         $mem_no = 1;
+
+        //被拜訪者
         $other_mem_no = 20;
+
+        //房間主人會員資料
+        $memberSQL = 
+        "SELECT * 
+        FROM `member` 
+        WHERE `mem_no` = :mem_no";
+        $memInfo = $pdo->prepare($memberSQL);
+        $memInfo->bindValue(':mem_no', $mem_no);
+        $memInfo->execute();
+        $memRow = $memInfo->fetch(PDO::FETCH_ASSOC);
 
         //房間主人會員資料
         $memberSQL = 
@@ -30,6 +30,38 @@
         $otherInfo->bindValue(':mem_no', $other_mem_no);
         $otherInfo->execute();
         $otherRow = $otherInfo->fetch(PDO::FETCH_ASSOC);
+        
+        //確認好友狀態
+        $friendSQL = 
+        "SELECT * 
+        FROM `relationship` 
+        WHERE `mem_no` = :mem_no AND friend_no = :friend_no";
+        $friendConfirm = $pdo->prepare($friendSQL);
+        $friendConfirm->bindValue(':mem_no', $mem_no);
+        $friendConfirm->bindValue(':friend_no', $other_mem_no);
+        $friendConfirm->execute();
+        $friendConfirmRow = $friendConfirm->fetch(PDO::FETCH_ASSOC);
+
+        // 房間主人的愛心數量
+        $heartSQL = 
+        "SELECT *
+        FROM heart_record
+        WHERE `rcv_mem_no` = :mem_no";
+        $heart = $pdo->prepare($heartSQL);
+        $heart->bindValue(':mem_no', $other_mem_no);
+        $heart->execute();
+        $heartCount = $heart->rowCount();
+
+        // 留言
+        $cmtSQL =
+        "SELECT *
+        FROM board_comment bc JOIN member m
+        ON bc.send_mem_no = m.mem_no
+        WHERE bc.rcv_mem_no = :rcv_mem_no;
+        ";
+        $comments = $pdo->prepare($cmtSQL);
+        $comments->bindValue(':rcv_mem_no', $other_mem_no);
+        $comments->execute();
 
         // 我使用的椅子
         $chairSQL = 
@@ -262,7 +294,7 @@
             <div class="rightWall">
                 <div class="roomIntro">
                     <h3><span><?php echo $otherRow["mem_name"] ;?></span>的房間</h3>
-                    <p>
+                    <p class="intro">
                         暱稱：<?php echo $otherRow["mem_name"] ;?><br>
                         等級：
                         <?php 
@@ -276,7 +308,7 @@
                     </p>
                     <div class="getHeart">
                         <img src="images/getHeart.png">
-                        <span>100</span>
+                        <span><?php echo $heartCount;?></span>
                     </div>
                     <div class="btns">
                         <form action="" id="heartForm">
@@ -288,7 +320,24 @@
                                 <?php echo $heart->rowCount() == 0 ? "給我你的愛" : "我不愛你了" ?>
                             </a>
                         </form>
-                        <a href="javascript:;" id="addFriend">加我好友嘛</a>
+                        <form action="">
+                            <input type="hidden" name="other_mem_name" value="<?php echo $otherRow["mem_name"]; ?>">
+                            <input type="hidden" name="mem_name" value="<?php echo $memRow["mem_name"]; ?>">  
+                            <a href="javascript:;" id="addFriend">
+                                <?php 
+                                if(isset($friendConfirmRow["status"]) == true){
+                                    if($friendConfirmRow["status"] == 1){
+                                        echo "已成為好友";
+                                    } else {
+                                        echo "好友確認中";
+                                    }
+                                } else {
+                                    echo "加我好友嘛";
+                                }
+                             
+                                ?>
+                            </a>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -296,30 +345,35 @@
 
         <div class="lightboxBg">
             <div class="lightbox">
-                <a href="#">
+                <a href="javascript:;">
                     <img id="cancel" src="images/cancelBtn.png">
                 </a>
                 <h2>留言板</h2>
-                <div class="message">
+                <div class="messageBoard" id="messageBoard">
                     <ul>
-                        <li>
-                            <img src="images/squid_avatar.png">
-                            <span>#魚翔你的家敲口愛的</span>
-                        </li>
-                        <li>
-                            <img src="images/squid_avatar.png">
-                            <span>＃魚翔你家超...超漂亮的，害我忍不住都濕了</span>
-                        </li>
-                        <li>
-                            <img src="images/squid_avatar.png">
-                            <span>#魚翔你下次滷味要吃大辣嗎？</span>
-                        </li>
+                        <?php 
+                        while($cmtRow = $comments->fetch(PDO::FETCH_ASSOC)) {
+                        ?>
+                            <li>
+                                <input type="hidden" name="cmt_no" id="cmt_no" value="<?php echo $cmtRow["cmt_no"] ?>"> 
+                                <div class="messageMem">
+                                    <img src="images/squid_avatar.png">
+                                    <span><?php echo $cmtRow["mem_name"]; ?></span>
+                                </div>
+                                <div class="message"><?php echo $cmtRow["cmt_cnt"] ?></div>
+                            </li>
+                        <?php
+                        }
+                        ?>
                     </ul>
                 </div>
                 <div class="msgInputArea">
+                    <input type="hidden" id="send_mem_no" name="send_mem_no" value="<?php echo $memRow['mem_no']; ?>">
                     <input type="text" class="msgInput">
                     <span class="textCount">20/50</span>
                     <div class="msgBtn">
+                        <input type="hidden" name="send_mem_name" id="send_mem_name" value="<?php echo $memRow["mem_name"] ?>">
+                        <input type="hidden" name="rcv_mem_no" id="rcv_mem_no" value="<?php echo $otherRow["mem_no"] ?>">
                         <input type="submit" class="msgSend" value="傳送留言">
                     </div>
                 </div>
@@ -343,6 +397,7 @@
 
 </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="js/addFriend.js"></script>
     <script src="https://kit.fontawesome.com/629062769a.js"></script>
     <script src="js/otherRoom.js"></script>
 </body>

@@ -15,7 +15,18 @@
             $giveHeart->bindValue(':other_mem_no', $other_mem_no);
             $giveHeart->bindValue(':now_date', date('Y-m-d'));
             $giveHeart->execute();
-            echo "我收到愛了";
+            // echo "我收到愛了";
+
+            $sql = 
+            "SELECT *
+            FROM heart_record
+            WHERE `rcv_mem_no` = :mem_no";
+            $heart = $pdo->prepare($sql);
+            $heart->bindValue(':mem_no', $other_mem_no);
+            $heart->execute();
+            $heartCount = $heart->rowCount();
+            echo $heartCount;
+
         } else {
             $sql = 
             "DELETE FROM 
@@ -25,7 +36,17 @@
             $retriveHeart->bindValue(':mem_no', $mem_no);
             $retriveHeart->bindValue(':other_mem_no', $other_mem_no);
             $retriveHeart->execute();
-            echo "沒血沒淚";
+            // echo "沒血沒淚";
+
+            $sql = 
+            "SELECT *
+            FROM heart_record
+            WHERE `rcv_mem_no` = :mem_no";
+            $heart = $pdo->prepare($sql);
+            $heart->bindValue(':mem_no', $other_mem_no);
+            $heart->execute();
+            $heartCount = $heart->rowCount();
+            echo $heartCount;
         }
     } catch(PDOException $e) {
         $errMsg .= $e->getMessage()."<br>";

@@ -1,4 +1,5 @@
 function addFriend(mem_name , friend_name){
+    console.log('123');
     const xhr = new XMLHttpRequest();
     xhr.onload = () => {
         if (xhr.status == 200) {
@@ -6,6 +7,7 @@ function addFriend(mem_name , friend_name){
         } else {
             console.error(xhr.responseText);
         }
+
     };
     const url = `addFriend.php?mem_name=${mem_name}&friend_name=${friend_name}`;
     xhr.open("get", url, true);
