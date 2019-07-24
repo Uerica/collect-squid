@@ -23,6 +23,7 @@
         //被拜訪者
         //$other_mem_no = 20;
         $other_mem_name = $_REQUEST["other_user"];
+        
 
         //使用者,拜訪人會員資料
         $memberSQL = 
@@ -43,8 +44,8 @@
         $otherInfo->bindValue(':mem_name',$other_mem_name);
         $otherInfo->execute();
         $otherRow = $otherInfo->fetch(PDO::FETCH_ASSOC);
-        $other_mem_no = $memRow["mem_no"];
-        
+        $other_mem_no = $otherRow["mem_no"];
+        // echo $other_mem_no;
         //確認好友狀態
         $friendSQL = 
         "SELECT * 
@@ -416,7 +417,9 @@
                 <img src="<?php echo $usingDesk["furn_img_url"]; ?>"> 
             </div>
             <div class="character">
-                <img src="<?php echo $otherRow["style_no"]; ?>">
+                <img src="<?php 
+                     echo $otherRow["dressed_no"] == ""? $otherRow["style_no"] : $otherRow["dressed_no"]; 
+                    ?>">
             </div>
         </div>
 
