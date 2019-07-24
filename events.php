@@ -160,7 +160,7 @@ try {
                                 <span>換衣間</span></a></li>
                         <li><a href="findfriend.php"> <img src="imgs/homePage/icon/friend.png" alt="找朋友icon">
                                 <span>找朋友</span></a></li>
-                        <li><a href="events.php"> <img src="imgs/homePage/icon/events.png" alt="揪團活動icon">
+                        <li><a href="events.php"> <img src="imgs/homePage/icon/events_selected.png" alt="揪團活動icon">
                                 <span>揪團活動</span></a></li>
                         <li><a href="shop.php"> <img src="imgs/homePage/icon/mall.png" alt="虛擬商城icon">
                                 <span>虛擬商城</span></a></li>
@@ -177,43 +177,43 @@ try {
 
         <nav class="menuDesktop">
             <ul>
-                <li class="hvr-pulse-grow">
+                <li class="hvr-pulse-grow nav_myRoom">
                     <a href="myRoom.php">
                         <img src="imgs/homePage/icon/room.png" alt="我的房間icon">
                         <span>我的房間</span>
                     </a>
                 </li>
-                <li class="hvr-pulse-grow">
+                <li class="hvr-pulse-grow nav_dressingRoom">
                     <a href="dressingRoom.php">
                         <img src="imgs/homePage/icon/fittingRoom.png" alt="換衣間icon">
                         <span>換衣間</span>
                     </a>
                 </li>
-                <li class="hvr-pulse-grow">
+                <li class="hvr-pulse-grow nav_findFriend">
                     <a href="findfriend.php">
                         <img src="imgs/homePage/icon/friend.png" alt="找朋友icon">
                         <span>找朋友</span>
                     </a>
                 </li>
                 <li class="hvr-pulse-grow">
-                    <a href="events.php">
-                        <img src="imgs/homePage/icon/events.png" alt="揪團活動icon">
-                        <span>揪團活動</span>
+                    <a href="events.php nav_events">
+                        <img src="imgs/homePage/icon/events_selected.png" alt="揪團活動icon">
+                        <span style="color: #fffdfd">揪團活動</span>
                     </a>
                 </li>
-                <li class="logo hvr-pulse-grow">
+                <li class="logo hvr-pulse-grow nav_logo">
                     <a href="index.php">
                         <img src="imgs/homePage/logo.png" alt="尋找友誼網站LOGO">
                         <span>尋找友誼</span>
                     </a>
                 </li>
-                <li class="hvr-pulse-grow">
+                <li class="hvr-pulse-grow nav_shop">
                     <a href="shop.php">
                         <img src="imgs/homePage/icon/mall.png" alt="虛擬商城icon">
                         <span>虛擬商城</span>
                     </a>
                 </li>
-                <li class="hvr-pulse-grow">
+                <li class="hvr-pulse-grow nav_member">
                     <a href="memberCenter.php">
                         <img src="imgs/homePage/icon/member.png" alt="會員中心icon">
                         <span>會員中心</span>
@@ -659,6 +659,7 @@ try {
   <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js'></script>
   <script src="js/events.js"></script>
   <script src="js/chat.js"></script>
+  <script src="js/nav.js"></script>
   <!-- 串navbar 登入功能 -->
   <script>
     <?php 

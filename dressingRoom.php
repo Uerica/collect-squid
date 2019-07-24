@@ -39,7 +39,7 @@
     AND mem_lv <= :mem_lv";
     $hats = $pdo->prepare($hatsSQL); 
     $hats->bindValue(':clo_type', 1);
-    $hats->bindValue(':mem_lv', 3);
+    $hats->bindValue(':mem_lv', $mem_lv);
     $hats->execute();
 
     // 從資料庫抓衣服
@@ -50,7 +50,7 @@
     AND mem_lv <= :mem_lv";
     $clothes = $pdo->prepare($clothesSQL);
     $clothes->bindValue(':clo_type', 2);
-    $clothes->bindValue(':mem_lv', 3);
+    $clothes->bindValue(':mem_lv', $mem_lv);
     $clothes->execute();
 
     // 從資料庫抓鞋子
@@ -61,7 +61,7 @@
     AND mem_lv <= :mem_lv";
     $shoes = $pdo->prepare($shoesSQL);
     $shoes->bindValue(':clo_type', 3);
-    $shoes->bindValue(':mem_lv', 3);
+    $shoes->bindValue(':mem_lv', $mem_lv);
     $shoes->execute();
 
   } catch(PDOException $e) {
@@ -131,7 +131,7 @@
                       <nav class="menuMobile_nav">
                           <li><a href="myRoom.php"> <img src="imgs/homePage/icon/room.png" alt="我的房間icon">
                                   <span>我的房間</span></a></li>
-                          <li><a href="dressingRoom.php"><img src="imgs/homePage/icon/fittingRoom.png" alt="換衣間icon">
+                          <li><a href="dressingRoom.php"><img src="imgs/homePage/icon/fittingRoom_selected.png" alt="換衣間icon">
                                   <span>換衣間</span></a></li>
                           <li><a href="findfriend.php"> <img src="imgs/homePage/icon/friend.png" alt="找朋友icon">
                                   <span>找朋友</span></a></li>
@@ -152,43 +152,43 @@
 
           <nav class="menuDesktop">
               <ul>
-                  <li class="hvr-pulse-grow">
+                  <li class="hvr-pulse-grow nav_myRoom">
                       <a href="myRoom.php">
                           <img src="imgs/homePage/icon/room.png" alt="我的房間icon">
                           <span>我的房間</span>
                       </a>
                   </li>
                   <li class="hvr-pulse-grow">
-                      <a href="dressingRoom.php">
-                          <img src="imgs/homePage/icon/fittingRoom.png" alt="換衣間icon">
-                          <span>換衣間</span>
+                      <a href="dressingRoom.php nav_dressingRoom">
+                          <img src="imgs/homePage/icon/fittingRoom_selected.png" alt="換衣間icon">
+                          <span style="color: #fffdfd">換衣間</span>
                       </a>
                   </li>
-                  <li class="hvr-pulse-grow">
+                  <li class="hvr-pulse-grow nav_findFriend">
                       <a href="findfriend.php">
                           <img src="imgs/homePage/icon/friend.png" alt="找朋友icon">
                           <span>找朋友</span>
                       </a>
                   </li>
-                  <li class="hvr-pulse-grow">
+                  <li class="hvr-pulse-grow nav_events">
                       <a href="events.php">
                           <img src="imgs/homePage/icon/events.png" alt="揪團活動icon">
                           <span>揪團活動</span>
                       </a>
                   </li>
-                  <li class="logo hvr-pulse-grow">
+                  <li class="logo hvr-pulse-grow nav_logo">
                       <a href="index.php">
                           <img src="imgs/homePage/logo.png" alt="尋找友誼網站LOGO">
                           <span>尋找友誼</span>
                       </a>
                   </li>
-                  <li class="hvr-pulse-grow">
+                  <li class="hvr-pulse-grow nav_shop">
                       <a href="shop.php">
                           <img src="imgs/homePage/icon/mall.png" alt="虛擬商城icon">
                           <span>虛擬商城</span>
                       </a>
                   </li>
-                  <li class="hvr-pulse-grow">
+                  <li class="hvr-pulse-grow nav_member">
                       <a href="memberCenter.php">
                           <img src="imgs/homePage/icon/member.png" alt="會員中心icon">
                           <span>會員中心</span>
@@ -413,6 +413,7 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js'></script>
     <script src="js/dressingRoom.js"></script>
     <script src="js/chat.js"></script>
+    <script src="js/nav.js"></script>
     <script>
       new Vue({
         el: '#clothesArea',
