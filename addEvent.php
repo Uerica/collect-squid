@@ -14,9 +14,9 @@ try {
                 mkdir("evt_images"); //make directory
             }
 
-            $fileName = rand()."{$_FILES['evt_cover_url']['name']}";
+            $fileName = "evt_images/".rand()."{$_FILES['evt_cover_url']['name']}";
             $from = $_FILES["evt_cover_url"]["tmp_name"];
-            $to = "evt_images/".$fileName;
+            $to = $fileName;
             if (copy($from, $to)) {
                 // 新增活動至 event 表格
                 $sql = "INSERT INTO `event` (`evt_no`, `org_mem_no`, `evt_name`, `evt_date`, `enroll_end_date`, `max_att`, `evt_place`, `evt_desc`, `evt_cover_url`) VALUES (NULL, :mem_no, :evt_name, :evt_date, :enroll_end_date, :max_att, :evt_place, :evt_desc, :evt_cover_url)";
@@ -48,24 +48,24 @@ try {
                 $updateNowAtt->execute();
                 echo "舉辦活動成功";
             } else {
-                echo "上傳失敗~<br>";
+                echo "上傳失敗~";
             }
             break;
         }
         case UPLOAD_ERR_INI_SIZE:{
-            echo "上傳檔案太大, 不可超過", ini_get("upload_max_filesize"), "<br>";
+            echo "上傳檔案太大, 不可超過", ini_get("upload_max_filesize");
             break;
         }
         case UPLOAD_ERR_FORM_SIZE:{
-            echo "上傳檔案太大, 不可超過", $_POST["MAX_FILE_SIZE"], "<br>";
+            echo "上傳檔案太大, 不可超過", $_POST["MAX_FILE_SIZE"];
             break;
         }
         case UPLOAD_ERR_PARTIAL:{
-            echo "上傳檔案不完整<br>";
+            echo "上傳檔案不完整";
             break;
         }
         case UPLOAD_ERR_NO_FILE:{
-            echo "没有上傳檔案<br>";
+            echo "没有上傳檔案";
             break;
         }
     }

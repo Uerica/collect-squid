@@ -394,140 +394,141 @@
                 </div>
             </div>
     
-            <section id="furnitureTab">
-                <ul class="tabTitle">
-                    <li id="chairTabTitle"><a href="#chairTab">椅子</a></li>
-                    <li id="deskTabTitle"><a href="#deskTab">桌子</a></li>
-                    <li id="bedTabTitle"><a href="#bedTab">床</a></li>
-                    <li><a href="#" id="openFurniture">家具更換</a></li>
-                </ul>
-                <div id="chairTab" class="tabContent swiper-container">
-                    
-                    <div class="swiper-wrapper">
-                        <?php 
-                        $chairCount = 0;
-                        while ($myChairRow = $myRoomChair->fetch(PDO::FETCH_ASSOC)) {
-                            $chairCount++;
-                        ?>
-                            <div class="swiper-slide">
-                                <a href="javascript:;" class="chairSmallChange">
-                                    <input type="hidden" name="furn_type" id="furn_type" value="1">
-                                    <input type="hidden" name="furn_no" id="furn_no" value="<?php echo $myChairRow["furn_no"] ?>">
-                                    <img src="<?php 
-                                        echo $myChairRow["furn_img_url"];
-                                    ?>">
-                                    <span><?php 
-                                        echo $myChairRow["furn_name"];
-                                    ?></span>
-                                </a>
-                            </div>
-                        <?php
-                        }
-                        ?>
-                        <?php 
-                        while ($chairCount < 9) {
-                            $chairCount++;
-                        ?>
-                            <div class="toMall swiper-slide">
-                                <a href="javascript:;s">
-                                    <img src="images/cart.png">
-                                </a>
-                            </div>
-                        <?php
-                        }
-                        ?>
-                    </div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
-    
-                    
-                </div>
-    
-                <div id="deskTab" class="tabContent swiper-container">
-                    <div class="swiper-wrapper">
-                    <?php 
-                        $deskCount = 0;
-                        while ($myDeskRow = $myRoomDesk->fetch(PDO::FETCH_ASSOC)) {
-                            $deskCount++;
-                        ?>
-                            <div class="swiper-slide">
-                                <a href="#" class="deskSmallChange">
-                                    <input type="hidden" name="furn_type" id="furn_type" value="2">
-                                    <input type="hidden" name="furn_no" id="furn_no" value="<?php echo $myDeskRow["furn_no"] ?>">
-                                    <img src="<?php 
-                                        echo $myDeskRow["furn_img_url"];
-                                    ?>">
-                                    <span><?php 
-                                        echo $myDeskRow["furn_name"];
-                                    ?></span>
-                                </a>
-                            </div>
-                        <?php
-                        }
-                        ?>
-                        <?php 
-                        while ($deskCount < 9) {
-                            $deskCount++;
-                        ?>
-                            <div class="toMall swiper-slide">
-                                <a href="#">
-                                    <img src="images/cart.png">
-                                </a>
-                            </div>
-                        <?php
-                        }
-                        ?>
-                    </div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
-                </div>
-                
-                <div id="bedTab" class="tabContent swiper-container">
-                    <div class="swiper-wrapper">
-                    <?php 
-                        $bedCount = 0;
-                        while ($myBedRow = $myRoomBed->fetch(PDO::FETCH_ASSOC)) {
-                            $bedCount++;
-                        ?>
-                            <div class="swiper-slide">
-                                <a href="#" class="bedSmallChange">
-                                    <input type="hidden" name="furn_type" id="furn_type" value="3">
-                                    <input type="hidden" name="furn_no" id="furn_no" value="<?php echo $myBedRow["furn_no"] ?>">
-                                    <img src="<?php 
-                                        echo $myBedRow["furn_img_url"];
-                                    ?>">
-                                    <span><?php 
-                                        echo $myBedRow["furn_name"];
-                                    ?></span>
-                                </a>
-                            </div>
-                        <?php
-                        }
-                        ?>
-                        <?php 
-                        while ($bedCount < 9) {
-                            $bedCount++;
-                        ?>
-                            <div class="toMall swiper-slide">
-                                <a href="#">
-                                    <img src="images/cart.png">
-                                </a>
-                            </div>
-                        <?php
-                        }
-                        ?>
-                    </div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
-                </div>
-            </section>  
         </div>
     </div>
+        <section id="furnitureTab">
+            <ul class="tabTitle">
+                <li id="chairTabTitle"><a href="#chairTab">椅子</a></li>
+                <li id="deskTabTitle"><a href="#deskTab">桌子</a></li>
+                <li id="bedTabTitle"><a href="#bedTab">床</a></li>
+                <li><a href="#" id="openFurniture">家具更換</a></li>
+            </ul>
+            <div id="chairTab" class="tabContent swiper-container">
+                
+                <div class="swiper-wrapper">
+                    <?php 
+                    $chairCount = 0;
+                    while ($myChairRow = $myRoomChair->fetch(PDO::FETCH_ASSOC)) {
+                        $chairCount++;
+                    ?>
+                        <div class="swiper-slide">
+                            <a href="javascript:;" class="chairSmallChange">
+                                <input type="hidden" name="furn_type" id="furn_type" value="1">
+                                <input type="hidden" name="furn_no" id="furn_no" value="<?php echo $myChairRow["furn_no"] ?>">
+                                <img src="<?php 
+                                    echo $myChairRow["furn_img_url"];
+                                ?>">
+                                <span><?php 
+                                    echo $myChairRow["furn_name"];
+                                ?></span>
+                            </a>
+                        </div>
+                    <?php
+                    }
+                    ?>
+                    <?php 
+                    while ($chairCount < 9) {
+                        $chairCount++;
+                    ?>
+                        <div class="toMall swiper-slide">
+                            <a href="javascript:;s">
+                                <img src="images/cart.png">
+                            </a>
+                        </div>
+                    <?php
+                    }
+                    ?>
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+
+                
+            </div>
+
+            <div id="deskTab" class="tabContent swiper-container">
+                <div class="swiper-wrapper">
+                <?php 
+                    $deskCount = 0;
+                    while ($myDeskRow = $myRoomDesk->fetch(PDO::FETCH_ASSOC)) {
+                        $deskCount++;
+                    ?>
+                        <div class="swiper-slide">
+                            <a href="#" class="deskSmallChange">
+                                <input type="hidden" name="furn_type" id="furn_type" value="2">
+                                <input type="hidden" name="furn_no" id="furn_no" value="<?php echo $myDeskRow["furn_no"] ?>">
+                                <img src="<?php 
+                                    echo $myDeskRow["furn_img_url"];
+                                ?>">
+                                <span><?php 
+                                    echo $myDeskRow["furn_name"];
+                                ?></span>
+                            </a>
+                        </div>
+                    <?php
+                    }
+                    ?>
+                    <?php 
+                    while ($deskCount < 9) {
+                        $deskCount++;
+                    ?>
+                        <div class="toMall swiper-slide">
+                            <a href="#">
+                                <img src="images/cart.png">
+                            </a>
+                        </div>
+                    <?php
+                    }
+                    ?>
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+            
+            <div id="bedTab" class="tabContent swiper-container">
+                <div class="swiper-wrapper">
+                <?php 
+                    $bedCount = 0;
+                    while ($myBedRow = $myRoomBed->fetch(PDO::FETCH_ASSOC)) {
+                        $bedCount++;
+                    ?>
+                        <div class="swiper-slide">
+                            <a href="#" class="bedSmallChange">
+                                <input type="hidden" name="furn_type" id="furn_type" value="3">
+                                <input type="hidden" name="furn_no" id="furn_no" value="<?php echo $myBedRow["furn_no"] ?>">
+                                <img src="<?php 
+                                    echo $myBedRow["furn_img_url"];
+                                ?>">
+                                <span><?php 
+                                    echo $myBedRow["furn_name"];
+                                ?></span>
+                            </a>
+                        </div>
+                    <?php
+                    }
+                    ?>
+                    <?php 
+                    while ($bedCount < 9) {
+                        $bedCount++;
+                    ?>
+                        <div class="toMall swiper-slide">
+                            <a href="#">
+                                <img src="images/cart.png">
+                            </a>
+                        </div>
+                    <?php
+                    }
+                    ?>
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </section>  
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js'></script>
     <script src="js/chat.js"></script>
     <script src="js/html2canvas.min.js"></script>
+    <script src="js/dom-to-image.min.js"></script>
     <script>
         var swiper = new Swiper('.swiper-container', {
           slidesPerView: 9,

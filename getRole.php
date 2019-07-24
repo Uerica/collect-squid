@@ -14,7 +14,7 @@
             //抓出來存session
             $resp = array();
             $resp["mem_name"] =  $memRow["mem_name"];
-            $resp["style_no"] =  $memRow["style_no"];      
+            $resp["style_no"] = ($memRow["dressed_no"] == "" ? $memRow["style_no"] : $memRow["dressed_no"]);      
             echo json_encode($resp);
         }else{
             // account or password incorrect

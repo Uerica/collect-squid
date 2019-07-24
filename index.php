@@ -451,7 +451,7 @@
                                 </div>
                                 <!-- 拒絕好友申請 -->
                                 <div class="requestRefuse">
-                                    <a href="javascript:;"><img src="imgs/homePage/icon/refuse.png" alt="拒絕ICON"></a>
+                                    <a href="javascript:;" v-on:click="del_friend(friend)"><img src="imgs/homePage/icon/refuse.png" alt="拒絕ICON"></a>
                                     <div class="requestRefuse_text">拒絕</div>
                                 </div>
                             </div>
