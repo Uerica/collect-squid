@@ -1,4 +1,5 @@
 <?php
+session_start();
 $errMsg = "";
 try {
     $evt_no = $_REQUEST["evt_no"];
@@ -7,7 +8,7 @@ try {
     "INSERT INTO event_record (mem_no, evt_no, enroll_date) 
     VALUE(:mem_no, :evt_no, :enroll_date)";
     $evtRegister = $pdo->prepare($sql);
-    $evtRegister->bindValue(":mem_no", "112"); //from session
+    $evtRegister->bindValue(":mem_no", $_SESSION["mem_no"]); //from session
     $evtRegister->bindValue(":evt_no", $evt_no);
     $evtRegister->bindValue(":enroll_date", date('Y-m-d'));
     $evtRegister->execute();
