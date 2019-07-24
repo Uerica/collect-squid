@@ -193,35 +193,49 @@ $("#bed_row .try").click(function () {
 // buy-------------------------------------------------
 $(document).ready(function () {
 
-  $(".buy").click(function () {
+  $(".buy").click(function (e) {
     if (this.innerText != "已購買") {
-      $("#confirmBox").attr("style", "display:block");
-      buyItem = this;
+      let title = e.target.parentElement.parentElement.parentElement.parentElement.previousElementSibling.children[0].innerText;
+      if (window.confirm("確定購買 "+title+" ?")) {
+        buyItem = this;
+        let xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState == 4) {
+            if (xhr.status == 200) {
+              buyItem.innerText = xhr.responseText;
+            } else {
+              alert(xhr.status);
+            }
+          }
+        }
+        let url = "buy.php";
+        xhr.open("post", url, true);
+        let buyForm = new FormData(buyItem.parentNode);
+        xhr.send(buyForm);
+      }
     }
   });
+});
+// buy-------------------------------------------------
 
-  $("#confirm_btn").click(function () {
-    // console.log(buyItem);
+// update squid qty
+$(document).ready(function () {
+
+  $(".buy").click(function () {
     let xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
       if (xhr.readyState == 4) {
         if (xhr.status == 200) {
-          buyItem.innerText = xhr.responseText;
+          $(".squid_qty").text(xhr.responseText);
         } else {
           alert(xhr.status);
         }
       }
     }
-    let url = "buy.php";
-    xhr.open("post", url, true);
+    let url = "updateSquid_qty.php";
+    xhr.open("post", url, false);
     let buyForm = new FormData(buyItem.parentNode);
     xhr.send(buyForm);
-    $("#confirmBox").attr("style", "display:none");
   });
-
-  $("#cancel_btn").click(function () {
-    $("#confirmBox").attr("style", "display:none");
-  });
-
 });
-// buy-------------------------------------------------
+// update squid qty

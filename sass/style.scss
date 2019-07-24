@@ -9,7 +9,6 @@
 @import "backend";
 @import "backendLogin";
 
-
 // js用
 .collapse {
   display: none !important;
@@ -990,7 +989,7 @@ img {
     }
   }
   .robot_container {
-      .chatBotBox {
+    .chatBotBox {
       position: absolute;
       z-index: 130;
       transform: translate(30px, -140px);
@@ -1045,7 +1044,6 @@ img {
       }
     }
 
-  
     .chatContainer {
       @media screen and (max-width: 670px) {
         width: 96%;
@@ -1717,7 +1715,7 @@ img {
       &_playerImage {
         z-index: 10;
         .playerImage {
-          &_style{
+          &_style {
             position: relative;
           }
           &_default {
@@ -1738,7 +1736,7 @@ img {
             right: 15.5%;
             bottom: 15.5%;
           }
-          &_shoes{
+          &_shoes {
             width: 90%;
             position: absolute;
             right: 4%;
@@ -2667,13 +2665,25 @@ $num-particles: 20; //煙的數量
     animation: fadeinout 5s linear forwards;
   }
   @-webkit-keyframes fadeinout {
-    0%,100% { opacity: 0; }
-    20%,80% { opacity: 1; }
+    0%,
+    100% {
+      opacity: 0;
+    }
+    20%,
+    80% {
+      opacity: 1;
+    }
   }
-  
+
   @keyframes fadeinout {
-    0%,100% { opacity: 0; }
-    20%,80% { opacity: 1; }
+    0%,
+    100% {
+      opacity: 0;
+    }
+    20%,
+    80% {
+      opacity: 1;
+    }
   }
   .roleName {
     display: inline-block;
@@ -2808,6 +2818,21 @@ $num-particles: 20; //煙的數量
       .createFrame {
         width: 50%;
       }
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .loginSquid {
+    width: 7%;
+    .roleName {
+      padding: 0;
+    }
+  }
+  .otherSquid {
+    width: 7%;
+    .roleName {
+      padding: 0;
     }
   }
 }

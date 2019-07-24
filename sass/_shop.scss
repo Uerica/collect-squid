@@ -384,13 +384,9 @@
     transform: translate(-50%);
     // transform: rotate(55.7deg);
   }
-  #chair_squid {
-  }
-  #table_squid {
-  }
-  #bed_squid {
-    // display: none;
-  }
+  #chair_squid {}
+  #table_squid {}
+  #bed_squid {}
   #head_box {
     position: absolute;
     left: 51.5%;
@@ -442,6 +438,9 @@
     transform-origin: bottom;
     display: none;
   }
+  #table{
+    bottom: 20%;
+  }
   .stage {
     width: 80%;
   }
@@ -468,13 +467,13 @@
         margin: 0px;
       }
       li:first-child.active {
-        background-color: #92d7e7;
+        background-color: #97d7d9;
       }
       li:nth-child(2).active {
-        background-color: #f9e3b2;
+        background-color: #92d7e7;
       }
       li:last-child.active {
-        background-color: #97d7d9;
+        background-color: #f9e3b2;
       }
     }
   }

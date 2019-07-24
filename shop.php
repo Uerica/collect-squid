@@ -102,7 +102,7 @@ try {
                             <li class="coin">
                                 <a href="javascript:;">
                                     <img src="imgs/homePage/icon/coin.png" alt="持有金額icon">
-                                    <span>{{squid_qty}}</span>
+                                    <span class="squid_qty">{{squid_qty}}</span>
                                 </a>
                             </li>
                             <li class="logo">
@@ -202,7 +202,7 @@ try {
                         <li class="coin">
                             <a href="javascript:;">
                                 <img src="imgs/homePage/icon/coin.png" alt="持有金額icon">
-                                <span>{{squid_qty}}</span>
+                                <span class="squid_qty">{{squid_qty}}</span>
                             </a>
                         </li>
                         <li class="level">
@@ -218,18 +218,83 @@ try {
             </nav>
         </header>
     </div>
-    <div id="confirmBox" style="display:none">
-        <button id="confirm_btn">確定
-        <button id="cancel_btn">取消
-    </div>
     <div class="shop">
         <div class="shop_area">
             <div class="item_group">
                 <ul class="tab_title">
+                    <li><a href="#bed_row">床</a></li>
                     <li><a href="#chair_row">椅子</a></li>
                     <li><a href="#table_row">桌子</a></li>
-                    <li><a href="#bed_row">床</a></li>
                 </ul>
+                <div class="bed_type type">
+                    <h2>床</h2>
+                </div>
+                <div id="bed_row" class="bed_row tab_inner owl-carousel owl-theme">
+                    <?php
+                    while ($bedRow = $beds->fetchObject()) {
+                        ?>
+
+                        <div class="item">
+                            <div class="wrap">
+                                <div class="level_block" <?php
+                                                            if ($member->mem_lv >= $bedRow->mem_lv) {
+                                                                echo "style='display:none'";
+                                                            }
+                                                            ?>><span id="level_block_text">需要
+                                        <span <?php
+                                                if ($bedRow->mem_lv == 2) {
+                                                    echo "style='color:#1e668d'";
+                                                }
+                                                if ($bedRow->mem_lv == 3) {
+                                                    echo "style='color:#9999dd'";
+                                                }
+                                                ?>>
+                                            <?php
+                                            if ($bedRow->mem_lv == 2) {
+                                                echo "貴族階級";
+                                            }
+                                            if ($bedRow->mem_lv == 3) {
+                                                echo "皇族階級";
+                                            }
+                                            ?>
+                                        </span>才能購買<br>前往加入<a href="">認識更多好友</a></span>
+                                </div>
+                                <div class="item_title">
+                                    <h3><?php echo $bedRow->furn_name ?></h3>
+                                </div>
+                                <div class="img_bg">
+                                    <div class="img_wrap">
+                                        <img src="<?php echo $bedRow->furn_img_url ?>" alt="">
+                                    </div>
+                                    <div class="price_tag">
+                                        <img src="imgs/shop/pricetag1.png" alt="">
+                                        <span class="price"><?php echo $bedRow->furn_price ?></span>
+                                    </div>
+                                    <span class="btn_bg">
+                                        <div class="btn_wrap">
+                                            <span class="try">預覽</span>
+                                            <form action="buy.php" method="get">
+                                                <input type="hidden" value="<?php echo $bedRow->furn_price ?>" name="furn_price">
+                                                <input type="hidden" value="<?php echo $bedRow->furn_no ?>" name="furn_no">
+                                                <span class="buy"><?php 
+                                                if(in_array($bedRow->furn_no,$mem_furnsArr)){
+                                                    echo "已購買";
+                                                }else {
+                                                    echo "購買";
+                                                }
+                                                ?></span>
+                                            </form>
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                    <?php
+                    }
+                    ?>
+                </div>
+
                 <div class="chair_type type">
                     <h2>椅子</h2>
                 </div>
@@ -276,7 +341,7 @@ try {
                                     </div>
                                     <span class="btn_bg">
                                         <div class="btn_wrap">
-                                            <span class="try">試用</span>
+                                            <span class="try">預覽</span>
                                             <form action="buy.php" method="get">
                                                 <input type="hidden" value="<?php echo $chairRow->furn_price ?>" name="furn_price">
                                                 <input type="hidden" value="<?php echo $chairRow->furn_no ?>" name="furn_no">
@@ -344,7 +409,7 @@ try {
                                     </div>
                                     <span class="btn_bg">
                                         <div class="btn_wrap">
-                                            <span class="try">試用</span>
+                                            <span class="try">預覽</span>
                                             <form action="buy.php" method="get">
                                                 <input type="hidden" value="<?php echo $tableRow->furn_price ?>" name="furn_price">
                                                 <input type="hidden" value="<?php echo $tableRow->furn_no ?>" name="furn_no">
@@ -366,74 +431,7 @@ try {
                     }
                     ?>
                 </div>
-                <div class="bed_type type">
-                    <h2>床</h2>
-                </div>
-                <div id="bed_row" class="bed_row tab_inner owl-carousel owl-theme">
-                    <?php
-                    while ($bedRow = $beds->fetchObject()) {
-                        ?>
-
-                        <div class="item">
-                            <div class="wrap">
-                                <div class="level_block" <?php
-                                                            if ($member->mem_lv >= $bedRow->mem_lv) {
-                                                                echo "style='display:none'";
-                                                            }
-                                                            ?>><span id="level_block_text">需要
-                                        <span <?php
-                                                if ($bedRow->mem_lv == 2) {
-                                                    echo "style='color:#1e668d'";
-                                                }
-                                                if ($bedRow->mem_lv == 3) {
-                                                    echo "style='color:#9999dd'";
-                                                }
-                                                ?>>
-                                            <?php
-                                            if ($bedRow->mem_lv == 2) {
-                                                echo "貴族階級";
-                                            }
-                                            if ($bedRow->mem_lv == 3) {
-                                                echo "皇族階級";
-                                            }
-                                            ?>
-                                        </span>才能購買<br>前往加入<a href="">認識更多好友</a></span>
-                                </div>
-                                <div class="item_title">
-                                    <h3><?php echo $bedRow->furn_name ?></h3>
-                                </div>
-                                <div class="img_bg">
-                                    <div class="img_wrap">
-                                        <img src="<?php echo $bedRow->furn_img_url ?>" alt="">
-                                    </div>
-                                    <div class="price_tag">
-                                        <img src="imgs/shop/pricetag1.png" alt="">
-                                        <span class="price"><?php echo $bedRow->furn_price ?></span>
-                                    </div>
-                                    <span class="btn_bg">
-                                        <div class="btn_wrap">
-                                            <span class="try">試用</span>
-                                            <form action="buy.php" method="get">
-                                                <input type="hidden" value="<?php echo $bedRow->furn_price ?>" name="furn_price">
-                                                <input type="hidden" value="<?php echo $bedRow->furn_no ?>" name="furn_no">
-                                                <span class="buy"><?php 
-                                                if(in_array($bedRow->furn_no,$mem_furnsArr)){
-                                                    echo "已購買";
-                                                }else {
-                                                    echo "購買";
-                                                }
-                                                ?></span>
-                                            </form>
-                                        </div>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-
-                    <?php
-                    }
-                    ?>
-                </div>
+                
             </div>
             <img src="imgs/shop/shed.png" class="shed" alt="">
         </div>
