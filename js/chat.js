@@ -40,6 +40,7 @@ var chat_app = new Vue({
       xhr.onload = () => {
           if (xhr.status == 200) {
               console.log('addFriend OK');
+              refresh_to_someone(this.user_id, friend_name, 'friend');
           } else {
               console.error(xhr.responseText);
           }
@@ -54,6 +55,7 @@ var chat_app = new Vue({
       xhr.onload = () => {
           if (xhr.status == 200) {
               console.log('confirmFriend OK');
+              refresh_to_someone(this.user_id, friend_name, 'friend');
               chat_app.refresh_friends();
           } else {
               console.error(xhr.responseText);
@@ -69,6 +71,7 @@ var chat_app = new Vue({
       xhr.onload = () => {
           if (xhr.status == 200) {
               console.log('delFriend OK');
+              refresh_to_someone(this.user_id, friend_name, 'friend');
               chat_app.refresh_friends();
           } else {
               console.error(xhr.responseText);
@@ -341,9 +344,6 @@ var onMessageListener = function (e) {
       switch (resp_obj.refresh_type) {
         case 'friend':
           chat_app.refresh_friends();
-          break;
-        case 'notification':
-          chat_app.refresh_notifications();
           break;
         default:
           console.error('不認得的refresh_type', resp_obj.refresh_type);
