@@ -266,7 +266,18 @@ $(document).ready(function () {
     }
   });
 });
-
+// #fccfcf
+$("#myRaiseBtn").click(function(){
+  $(".bodyContent").css({
+    backgroundColor: "#fccfcf",
+  });
+  $("#myRaise .title").css({
+    backgroundColor: "#fff",
+  });
+  $(".myAttendBtn").css({
+    backgroundColor: "#fff",
+  });
+});
 
 // 頁籤evt
 $(function () {
@@ -292,3 +303,4 @@ $(function () {
     $(this).addClass('active').siblings('.active').removeClass('active');
   });
 });
+
