@@ -336,7 +336,19 @@ var onMessageListener = function (e) {
       console.log('有人上線了', resp_obj.user_id);
       chat_app.user_online(resp_obj.user_id);
       break;
-
+    case 'REFRESH':
+      console.log('畫面需更新', resp_obj.refresh_type);
+      switch (resp_obj.refresh_type) {
+        case 'friend':
+          chat_app.refresh_friends();
+          break;
+        case 'notification':
+          chat_app.refresh_notifications();
+          break;
+        default:
+          console.error('不認得的refresh_type', resp_obj.refresh_type);
+      }
+      break;
     default:
       console.error('收到不認得的msg_type', resp_obj);
   }
@@ -422,6 +434,19 @@ function chat_to_all(user_id, msg) {
         "chat_type": "ALL",
         "chat_time": new Date(),
         "chat_msg": msg
+      }
+    )
+  );
+}
+function refresh_to_someone(user_id, refresh_to, refresh_type) {
+  conn_chat.send(
+    JSON.stringify(
+      {
+        "msg_type": "REFRESH",
+        "user_id": user_id,
+        "refresh_to": refresh_to,
+        "refresh_type": refresh_type,
+        "refresh_time": new Date()
       }
     )
   );
