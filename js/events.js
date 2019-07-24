@@ -266,18 +266,25 @@ $(document).ready(function () {
     }
   });
 });
-// #fccfcf
+
+
 $("#myRaiseBtn").click(function(){
-  $(".bodyContent").css({
-    backgroundColor: "#fccfcf",
-  });
-  $("#myRaise .title").css({
+  $("#myRaiseBtn").css({
     backgroundColor: "#fff",
   });
-  $(".myAttendBtn").css({
+  $("#myAttendBtn").css({
+    backgroundColor: "#fccfcf",
+  });
+});
+$("#myAttendBtn").click(function(){
+  $("#myRaiseBtn").css({
+    backgroundColor: "#fccfcf",
+  });
+  $("#myAttendBtn").css({
     backgroundColor: "#fff",
   });
 });
+
 
 // 頁籤evt
 $(function () {

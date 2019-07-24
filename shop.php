@@ -257,7 +257,7 @@ try {
                                                 echo "皇族階級";
                                             }
                                             ?>
-                                        </span>才能購買<br>前往加入<a href="">認識更多好友</a></span>
+                                        </span>才能購買<br>前往加入<a href="index.php">認識更多好友</a></span>
                                 </div>
                                 <div class="item_title">
                                     <h3><?php echo $bedRow->furn_name ?></h3>
@@ -326,7 +326,7 @@ try {
                                                 echo "皇族階級";
                                             }
                                             ?>
-                                        </span>才能購買<br>前往加入<a href="">認識更多好友</a></span>
+                                        </span>才能購買<br>前往加入<a href="index.php">認識更多好友</a></span>
                                 </div>
                                 <div class="item_title">
                                     <h3><?php echo $chairRow->furn_name ?></h3>
@@ -394,7 +394,7 @@ try {
                                                 echo "皇族階級";
                                             }
                                             ?>
-                                        </span>才能購買<br>前往加入<a href="">認識更多好友</a></span>
+                                        </span>才能購買<br>前往加入<a href="index.php">認識更多好友</a></span>
                                 </div>
                                 <div class="item_title">
                                     <h3><?php echo $tableRow->furn_name ?></h3>

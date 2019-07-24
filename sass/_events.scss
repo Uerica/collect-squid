@@ -8,6 +8,7 @@
 #popEvt{
   border :10px solid #98E0C8;
 }
+
 .events {
   position: relative;
   background: linear-gradient(
@@ -529,6 +530,9 @@
         border-radius: 10px;
         ul {
           padding-bottom: 5%;
+          #myAttendBtn{
+            border-radius: 10px 0px 10px 0px;
+          }
           li {
             display: inline-block;
             width: 50%;
