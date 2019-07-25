@@ -90,6 +90,7 @@
             $update_mem_lv->bindValue(":mem_lv", $mem_new_lv);
             $update_mem_lv->execute();
         }
+        $_SESSION["mem_lv"] = $mem_new_lv;
 
         // check if friend level up
         $sql_friendlevel = "SELECT COUNT(*) count FROM relationship
