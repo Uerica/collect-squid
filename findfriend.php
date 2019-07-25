@@ -5,7 +5,7 @@
     session_start();
     if(!isset($_SESSION["mem_name"])||($_SESSION["mem_name"] == "")){
         //沒登入 導到首頁
-        header("Location: /index.php");
+        header("Location: /homePage.php");
         die();
     } else {
         //有登入存阿
@@ -56,7 +56,7 @@
                                 </a>
                             </li>
                             <li class="logo">
-                                <a href="index.php">
+                                <a href="homePage.php">
                                     <img src="imgs/homePage/logo.png" alt="尋找友誼網站LOGO">
                                     <span>尋找友誼</span>
                                 </a>
@@ -121,7 +121,7 @@
                         </a>
                     </li>
                     <li class="logo hvr-pulse-grow nav_logo">
-                        <a href="index.php">
+                        <a href="homePage.php">
                             <img src="imgs/homePage/logo.png" alt="尋找友誼網站LOGO">
                             <span>尋找友誼</span>
                         </a>

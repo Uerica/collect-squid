@@ -114,7 +114,7 @@
                                 </a>
                             </li>
                             <li class="logo">
-                                <a href="index.php">
+                                <a href="homePage.php">
                                     <img src="imgs/homePage/logo.png" alt="尋找友誼網站LOGO">
                                     <span>尋找友誼</span>
                                 </a>
@@ -179,7 +179,7 @@
                         </a>
                     </li>
                     <li class="logo hvr-pulse-grow nav_logo">
-                        <a href="index.php">
+                        <a href="homePage.php">
                             <img src="imgs/homePage/logo.png" alt="尋找友誼網站LOGO">
                             <span>尋找友誼</span>
                         </a>
@@ -229,14 +229,14 @@
     <!-- 聊天群組(1.聊天室 2.好友列表) -->
     <!-- Rou:vue.js #chat_app -->
     <div class="chatGroup disabledScrollOnHover" id="chat_app">
-       <div class="chatGroup_closeBtn">
+       <!-- <div class="chatGroup_closeBtn">
           <i class="fas fa-window-minimize closeBtn"></i>
           <div class="closeBtn_text">縮小</div>
-       </div>
-       <div class="chatGroup_opacitySlider">
+       </div> -->
+       <!-- <div class="chatGroup_opacitySlider">
           <input type="range" name="bgopacity" id="bgopacity" value="100" min="30" max="100" step="1">
           <div class="sliderText">拖曳改變透明度</div>
-       </div>
+       </div> -->
         <!-- 聊天室 -->
         <!-- 聊天室分成三種訊息 1.官方(messageOfficial) 2.發訊息的人(messageSent) 3.收訊息的人(messageReceived) -->
         <div class="chatRoom">
@@ -639,7 +639,7 @@
           </div>
           <div id="busBox" class="gameWorld_bus gameWorld_object">
               <div id="smoke"></div>
-              <a href="javascript:;"><img src="imgs/homePage/bus.png" alt="" id="bus"></a>
+              <a href="events.php"><img src="imgs/homePage/bus.png" alt="" id="bus"></a>
           </div>
           <div class="gameWorld_cup gameWorld_object">
             <a href="javascript:;">
@@ -690,7 +690,7 @@
                   </div>
                   <div class="checkBox_btn">
                       <button class="button button-cancel" id="btnCancel-room">取消</button>
-                      <a href="myRoom.html" class="button button-check">確認</a>
+                      <a href="myRoom.php" class="button button-check">確認</a>
                   </div>
               </div>
           </div>

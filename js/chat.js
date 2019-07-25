@@ -241,7 +241,7 @@ var chat_app = new Vue({
       }
       initWebsocketServer();
       $.get("logout.php").done(function(){
-        window.location = "index.php";
+        window.location = "homePage.php";
       });
     },
     // 上帝模式

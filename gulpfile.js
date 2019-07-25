@@ -16,7 +16,7 @@ function browserSync(done) {
   browsersync.init({
     server: {
       baseDir: "./",
-      index: "index.html"
+      index: "homePage.php"
     },
     port: 3000
   });
