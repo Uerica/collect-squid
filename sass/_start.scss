@@ -1,0 +1,291 @@
+.startWrap{
+    .topBarPattern{
+        position: fixed;
+        top: -30px;
+        left: 0;
+        z-index: 10;
+        background: url(../images/top_pattern.png) no-repeat;
+        width: 1920px;
+        max-width: 100%;
+        height: 58px;
+        animation: topMove 3s infinite alternate linear;
+    }
+
+    @keyframes topMove{
+        from{
+            top: -30px;
+        }
+
+        to{
+            top: -15px;
+        }
+    }
+
+    .startBg{
+        width: 1920px;
+        max-width: 100%;
+        height: 100vh;
+        overflow: hidden;
+        position: relative;
+        background: url(../images/start_bg.jpg) no-repeat center center fixed;
+        background-size: cover;
+    }
+
+    .redBg{ 
+        max-width: 100%; 
+        width: 500px;
+        height: 500px;
+        // height: auto;
+        background: #ff6060;
+        border-radius: 50%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 20;
+        margin: auto;
+        transform: scale(1) rotate(0deg);
+        animation: titleScale .8s 1 alternate cubic-bezier(.17,.67,.79,1.21);
+
+        @keyframes titleScale{
+          from{
+            transform: scale(0) rotate(0deg);
+          }
+
+          to{
+            transform: scale(1) rotate(-1deg);
+          }
+        }
+
+        &:after{
+          content: "";
+          width: 400px;
+          height: 400px;
+          background: #ffb751;
+          position: absolute;
+          z-index: 25;
+          border-radius: 50%;
+          left: 0;
+          top: -30px;
+          right: 0;
+          bottom: 0;
+          margin: auto;
+        }
+
+        .title{
+          width: 65%;
+          position: absolute;
+          z-index: 30;
+          left: 0;
+          top: 10px;
+          right: 0;
+          bottom: 0;
+          margin: auto;
+        }
+
+        span{
+          color: #fff;
+          font-family: Microsoft JhengHei;
+          font-size: 30px;
+          font-weight: bold;
+          background: #ff6060;
+          border-radius: 50px;
+          border: 3px solid #fff;
+          position: absolute;
+          top: 12%;
+          right: 23%;
+          padding: 15px;
+          z-index: 50;
+          transform: rotate(-5deg);
+          opacity: 0;
+          animation: spanOpacity .5s .5s 1 forwards;
+        }
+
+        @keyframes spanOpacity{
+          from{
+            opacity: 0;
+          }
+
+          to{
+            opacity: 1;
+          }
+        }
+    }
+
+    .frontend{
+        .circleFront{
+          position: absolute;
+          bottom: 0;
+          left: -15%;
+          z-index: 40;
+          width: 180px;
+          height: 180px;
+          background: #ffcfda;
+          border: 15px solid #ff6060;
+          border-radius: 50%;
+          font-size: 65px;
+          font-family: Microsoft JhengHei;
+          color: #ff6060;
+          line-height: 180px;
+          font-weight: bold;
+          text-align: center;
+          opacity: 0;
+          transform: rotate(-5deg);
+          transform-origin: right center;
+          animation: 
+            leftCircleOpacity .3s .5s 1 linear forwards, 
+            leftCircleRotate 1s  infinite alternate linear
+            ;
+
+          &:hover{
+            background: #fff;
+            transition: background .5s;
+          }
+        }
+
+        @keyframes leftCircleOpacity{
+          from{
+            opacity: 0;
+          }
+          to{
+            opacity: 1;
+          }
+        }
+
+        @keyframes leftCircleRotate{
+          from{
+            transform: rotate(-5deg) translateY(0px);
+          }
+          to{
+            transform: rotate(0deg) translateY(-30px);
+          }
+        }
+
+        img{
+          width: 80%;
+          position: absolute;
+          bottom: -10px;
+          left: 0;
+          transform: rotate(3deg);
+          transform-origin: center bottom;
+          margin: auto;
+          animation: 
+            squidLeftMove .6s .3s 1 forwards cubic-bezier(.17,.67,.77,1.04),
+            squidleftRotate 1s 1.5s infinite alternate linear;
+        }
+
+        @keyframes squidLeftMove{
+          from{
+            bottom: -10px;
+            left: 0;
+          }
+
+          to{
+            bottom: 130px;
+            left: -30px;
+          }
+        }
+
+        @keyframes squidleftRotate{
+          from{
+            transform: rotate(3deg);
+          }
+
+          to{
+            transform: rotate(-3deg);
+          }
+        }
+    }
+
+    .backend{
+        .circleBack{
+          position: absolute;
+          bottom: -10%;
+          right: -20%;
+          z-index: 40;
+          width: 180px;
+          height: 180px;
+          background: #ffcfda;
+          border: 15px solid #ff6060;
+          border-radius: 50%;
+          font-size: 65px;
+          font-family: Microsoft JhengHei;
+          color: #ff6060;
+          line-height: 180px;
+          font-weight: bold;
+          text-align: center;
+          opacity: 0;
+          transform: rotate(5deg);
+          transform-origin: left center;
+          animation: 
+            rightCircleOpacity .3s 1s 1 linear forwards, 
+            rightCircleRotate 1s 1s infinite alternate linear
+            ;
+
+          &:hover{
+            background: #fff;
+            transition: background .5s;
+          }
+        }
+
+        @keyframes rightCircleOpacity{
+          from{
+            opacity: 0;
+          }
+          to{
+            opacity: 1;
+          }
+        }
+
+        @keyframes rightCircleRotate{
+          from{
+            transform: rotate(5deg) translateY(0px);
+          }
+          to{
+            transform: rotate(0deg) translateY(-30px);
+          }
+        }
+
+        img{
+          width: 80%;
+          position: absolute;
+          bottom: -10px;
+          right: -10px;
+          transform: rotate(-8deg);
+          transform-origin: center bottom;
+          margin: auto;
+          animation: 
+            squidRightMove .6s .3s 1 forwards cubic-bezier(.17,.67,.77,1.04),
+            squidRightRotate 1s 1s infinite alternate linear;
+        }
+
+        @keyframes squidRightMove{
+          from{
+            bottom: -10px;
+            right: 0;
+          }
+
+          to{
+            bottom: 130px;
+            right: -30px;
+          }
+        }
+
+        @keyframes squidRightRotate{
+          from{
+            transform: rotate(-8deg);
+          }
+
+          to{
+            transform: rotate(8deg);
+          }
+        }
+    }
+
+
+
+}
+
+
+
