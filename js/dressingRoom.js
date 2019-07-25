@@ -359,7 +359,7 @@ function saveDressing() {
         alert("Error");
       } else {
         alert("上傳成功");
-        // $_SESSION["dressed_no"] = xhr.responseText;
+        $_SESSION["dressed_no"] = xhr.responseText;
       }
     } else {
       alert(xhr.status);
