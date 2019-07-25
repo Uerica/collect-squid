@@ -1,6 +1,15 @@
 <?php
     ob_start();
     session_start();
+    require_once('connectSquid.php');
+    require_once('state.php');
+
+    // 排行榜會員資料
+    $sqlMember= "SELECT mem_no, mem_name, heart_qty FROM member ORDER BY heart_qty DESC LIMIT 9";
+    $allMember = $pdo->prepare($sqlMember);
+    $allMember->execute();
+    $allMemberRows = $allMember->fetchAll(PDO::FETCH_ASSOC);
+
     if(!isset($_SESSION["mem_name"])||($_SESSION["mem_name"] == "")){
       //沒登入
     } else {
@@ -8,36 +17,19 @@
       $mem_no = $_SESSION["mem_no"];
       $mem_name = $_SESSION["mem_name"];
       $style_no = $_SESSION["style_no"];
-      // 偵測穿衣服了沒
-      // code 先拿了
       $mem_lv = $_SESSION["mem_lv"];
       $mem_avatar = $_SESSION["mem_avatar"];
       $squid_qty = $_SESSION["squid_qty"];
       $errMsg = '';
       try {
-          require_once('connectSquid.php');
           $sql = "SELECT * FROM member WHERE mem_name NOT IN(:mem_name) ORDER BY RAND() LIMIT 1"; 
           $member = $pdo->prepare($sql);
           $member->bindValue(":mem_name", $mem_name);
           $member->execute(); 
           $memRow = $member->fetch(PDO::FETCH_ASSOC);
   
-          // 排行榜會員資料
-          $sqlMember= "SELECT mem_no, mem_name, heart_qty FROM member ORDER BY heart_qty DESC LIMIT 9";
-          $allMember = $pdo->prepare($sqlMember);
-          $allMember->execute();
-          $allMemberRows = $allMember->fetchAll(PDO::FETCH_ASSOC);
-  
           // 通知
-          $sqlNoti = "SELECT * FROM `notification` WHERE rcv_mem_no = " . $_SESSION["mem_no"] . " AND is_read = 0";
-          $noti = $pdo->prepare($sqlNoti);
-          $noti->execute();
-          $notiRows = $noti->fetchAll(PDO::FETCH_ASSOC);
-          // $nRows = count($notiRows);
-
-
-          
-  
+          include('getNotification.php');
   
       } catch(PDOException $e) {
           $errMsg .= $e->getMessage()."<br>";
@@ -529,7 +521,7 @@
   <div class="common_notifications disabledScrollOnHover">
       <div class="notifications_actionBox">
           <button class="button button-notifications">
-              <span class="notifications_unread"><?php echo 0; ?></span>
+              <span class="notifications_unread"><?php echo $state_notification['nRows'];?></span>
               <img src="imgs/homePage/icon/notice.png" alt="通知按鈕圖片">
               <span>通知</span>
           </button>
@@ -543,7 +535,7 @@
       <div class="notifications_container collapse">
           <div class="notifications_content">
           <?php
-            foreach ($notiRows as $i=>$notiRow) {
+            foreach ($state_notification['notiRows'] as $i=>$notiRow) {
               $notiType = '新消息';
               $notiClassName = 'notifications notifications_';
               switch($notiRow['noti_type']) {
@@ -568,7 +560,7 @@
             ?>
               <div class="<?php echo $notiClassName; ?>">
                   <i class="notifications_time"><?php echo $notiRow['noti_date'] ?></i>
-                  <i class="fas fa-times notifications_delete"></i>
+                  <!-- <i class="fas fa-times notifications_delete"></i> -->
                   <span>【<?php echo $notiType ?>】</span>
                   <p><?php echo $notiRow['noti_cnt']; ?></p>
               </div>
