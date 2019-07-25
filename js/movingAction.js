@@ -6,8 +6,12 @@ let r0 = {
   x: 0,
   y: 0,
   w: map.width(),
-  h: map.height() + 80
+  h: map.height()
 };
+
+if (innerWidth > 768) {
+  r0.h += 80;
+}
 
 console.log(r0.w, r0.h);
 
