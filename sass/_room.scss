@@ -293,6 +293,9 @@
     .messageBoard {
       position: relative;
       z-index: 20;
+      @include rwd(mobile) {
+        z-index: 9;
+      }
       span {
         color: #000;
         display: inline-block;

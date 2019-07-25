@@ -348,13 +348,20 @@ img {
           @include rwd(mobile) {
             display: inline-block;
             font-size: 16px;
-            margin-top: 4px;
+            position: relative;
+            left: 5px;
+            top: 5px;
           }
         }
       }
       .login {
         display: inline-block;
         vertical-align: middle;
+        @include rwd(mobile) {
+          .name {
+            padding-right: 5px;
+          }
+        }
         img {
           vertical-align: middle;
         }
@@ -372,6 +379,8 @@ img {
           }
           @include rwd(mobile) {
             font-size: 16px;
+            padding: 0;
+            position: relative;
           }
         }
         .name {
@@ -887,11 +896,17 @@ img {
     .friendName {
       font-size: 18px;
       margin-left: 5px;
+      @include rwd(mobile) {
+        margin: 0px;
+      }
     }
     .connectStatus {
       padding: 10px 15px;
       @include rwd(tablet) {
         padding: 5px 10px;
+      }
+      @include rwd(mobile) {
+        padding: 1px 3px;
       }
       .dot {
         width: 10px;
