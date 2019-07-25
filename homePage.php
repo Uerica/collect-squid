@@ -705,7 +705,7 @@
                   </div>
                   <div class="checkBox_btn">
                       <button class="button button-cancel" id="btnCancel-event">取消</button>
-                      <a href="event.html" class="button button-check">確認</a>
+                      <a href="events.php" class="button button-check">確認</a>
                   </div>
               </div>
           </div>
