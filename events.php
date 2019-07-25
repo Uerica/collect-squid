@@ -197,7 +197,7 @@ try {
                     </a>
                 </li>
                 <li class="hvr-pulse-grow">
-                    <a href="events.php nav_events">
+                    <a href="events.php">
                         <img src="imgs/homePage/icon/events_selected.png" alt="揪團活動icon">
                         <span style="color: #fffdfd">揪團活動</span>
                     </a>

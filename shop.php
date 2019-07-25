@@ -177,7 +177,7 @@ try {
                         </a>
                     </li>
                     <li class="hvr-pulse-grow ">
-                        <a href="shop.php nav_shop">
+                        <a href="shop.php">
                             <img src="imgs/homePage/icon/mall_selected.png" alt="虛擬商城icon">
                             <span style="color: #fffdfd">虛擬商城</span>
                         </a>

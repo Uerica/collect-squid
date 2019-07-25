@@ -109,7 +109,7 @@
                         </a>
                     </li>
                     <li class="hvr-pulse-grow">
-                        <a href="findfriend.php nav_findFriend">
+                        <a href="findfriend.php">
                             <img src="imgs/homePage/icon/friend_selected.png" alt="找朋友icon">
                             <span style="color: #fffdfd">找朋友</span>
                         </a>

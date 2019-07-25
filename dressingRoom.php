@@ -159,7 +159,7 @@
                       </a>
                   </li>
                   <li class="hvr-pulse-grow">
-                      <a href="dressingRoom.php nav_dressingRoom">
+                      <a href="dressingRoom.php">
                           <img src="imgs/homePage/icon/fittingRoom_selected.png" alt="換衣間icon">
                           <span style="color: #fffdfd">換衣間</span>
                       </a>

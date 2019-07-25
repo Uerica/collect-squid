@@ -171,7 +171,7 @@ try {
                       </a>
                   </li>
                   <li class="hvr-pulse-grow">
-                      <a href="memberCenter.php nav_member">
+                      <a href="memberCenter.php">
                           <img src="imgs/homePage/icon/member_selected.png" alt="會員中心icon">
                           <span style="color: #fffdfd">會員中心</span>
                       </a>
