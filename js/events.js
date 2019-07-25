@@ -6,7 +6,6 @@ function init() {
 
   // RWD
   window.addEventListener("resize", gameSizing);
-  menuMobileTransform();
   regis();
   cancelRegis();
   confirmRegis();
@@ -49,16 +48,6 @@ function gameSizing() {
 function querySize(tag, w, h) {
   document.querySelector(tag).style.width = w + "px";
   document.querySelector(tag).style.height = h + "px";
-}
-
-// 手機選單動畫
-function menuMobileTransform() {
-  $(".menuMobile_link").click(function(e) {
-    e.preventDefault();
-
-    $(".menuMobile_overlay").toggleClass("open");
-    $(".menuMobile").toggleClass("open");
-  });
 }
 
 function regis() {

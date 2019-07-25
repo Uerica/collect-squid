@@ -653,9 +653,9 @@ try {
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js'></script>
+  <script src="js/nav.js"></script>
   <script src="js/events.js"></script>
   <script src="js/chat.js"></script>
-  <script src="js/nav.js"></script>
   <!-- 串navbar 登入功能 -->
   <script>
     <?php 

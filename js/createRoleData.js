@@ -30,7 +30,7 @@ $(".createRoleBtn").click(function() {
     return;
   }
 
-  if (mem_pwd.length <= 3) {
+  if (mem_pwd.length < 3) {
     alert("密碼格式不符");
     return;
   }

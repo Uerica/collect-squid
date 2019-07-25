@@ -1,13 +1,3 @@
-// 手機選單動畫
-function menuMobileTransform() {
-  $(".menuMobile_link").click(function(e) {
-    e.preventDefault();
-
-    $(".menuMobile_overlay").toggleClass("open");
-    $(".menuMobile").toggleClass("open");
-  });
-}
-
 // 家具tab切換
 $(function() {
   var $li = $(".tabTitle li");
@@ -67,7 +57,6 @@ $(document).ready(function() {
       display: "none"
     });
   }
-  menuMobileTransform();
   document.getElementById("selectPicInput").onchange = fileChange;
   removeMsg();
   //換椅子

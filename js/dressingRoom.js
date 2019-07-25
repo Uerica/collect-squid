@@ -33,7 +33,6 @@ function init() {
   activeOwl();
   // displayBar();
   targetCaro();
-  menuMobileTransform();
   drawingClothes();
 
   let hatSrc = "imgs/dressingRoom/furHat.png";
@@ -229,16 +228,6 @@ function dechex(dec) {
   var hex = dec.toString(16);
   if (hex.length == 1) hex = "0" + hex;
   return hex;
-}
-
-// 手機選單動畫
-function menuMobileTransform() {
-  $(".menuMobile_link").click(function(e) {
-    e.preventDefault();
-
-    $(".menuMobile_overlay").toggleClass("open");
-    $(".menuMobile").toggleClass("open");
-  });
 }
 
 function setColor() {
