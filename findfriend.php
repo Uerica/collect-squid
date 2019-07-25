@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="sass/style.css" />
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
-    <title>find</title>
+    <title>收集友誼 - 找朋友</title>
 </head>
 <body>
    <!-- vue -->

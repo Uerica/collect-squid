@@ -148,7 +148,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/629062769a.js"></script>
     <script src="js/room.js"></script>
-    <title>Document</title>
+    <title>收集友誼 - 我的房間</title>
 </head>
 
 <body>

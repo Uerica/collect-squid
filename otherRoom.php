@@ -149,6 +149,7 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="sass/style.css">
     <link rel="stylesheet" href="css/global.css">
+    <title>收集友誼 - 他人房間</title>
 </head>
 
 <body>
@@ -221,7 +222,7 @@
             <nav class="menuDesktop">
                 <ul>
                     <li class="hvr-pulse-grow">
-                        <a href="myRoom.php nav_myRoom">
+                        <a href="myRoom.php">
                             <img src="imgs/homePage/icon/room_selected.png" alt="我的房間icon">
                             <span style="color: #fffdfd">我的房間</span>
                         </a>

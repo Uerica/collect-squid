@@ -42,7 +42,7 @@ try {
     <!-- <script src="js/jquery-3.4.1.min.js"></script> -->
     <!-- <script src="js/vue.js"></script> -->
 
-    <title>會員中心</title>
+    <title>收集友誼 - 會員中心</title>
 </head>
 
 <body>

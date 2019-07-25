@@ -2418,7 +2418,7 @@ $num-particles: 20; //煙的數量
       display: flex;
       flex-flow: column nowrap;
       justify-content: space-between;
-      width: 50%;
+      width: 40%;
       padding: 2%;
       border: 3px solid #f6f6f6;
       border-radius: 10px;
@@ -2504,7 +2504,6 @@ $num-particles: 20; //煙的數量
           position: relative;
           border: 2px solid #f8b853;
           border-radius: 0 10px 10px 10px;
-          .heads,
           .facialFeatures {
             ul {
               display: flex;
@@ -2522,6 +2521,53 @@ $num-particles: 20; //煙的數量
               img {
                 width: 40%;
                 cursor: pointer;
+              }
+              svg {
+                width: 40%;
+                height: 30%;
+                cursor: pointer;
+              }
+              &::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                margin: auto;
+                width: 80%;
+                height: 1px;
+                background-color: #f8b853;
+              }
+              &:last-child::after {
+                background-color: transparent;
+              }
+            }
+          }
+          .heads {
+            ul {
+              // display: flex;
+              // flex-flow: column nowrap;
+              // justify-content: space-between;
+              // height: 100%;
+            }
+            li {
+              // display: flex;
+              // justify-content: space-around;
+              // margin-left: 0;
+              // padding: 5% 10%;
+              // border: none;
+              // position: relative;
+              padding: 4%;
+              border-radius: 0px;
+              margin-left: 0px;
+              text-align: center;
+              &:last-child {
+                // border-bottom: none;
+              }
+              img {
+                width: 40%;
+                cursor: pointer;
+                padding: 3%;
               }
               svg {
                 width: 40%;
@@ -2733,7 +2779,11 @@ $num-particles: 20; //煙的數量
           box-sizing: border-box;
           .inputField {
             width: 100%;
+            #create_mem_dob {
+              height: 100%;
+            }
           }
+
         }
         .styling {
           width: 60%;
@@ -3020,11 +3070,30 @@ $num-particles: 20; //煙的數量
   }
 }
 
-@media screen and (min-width: 1500px) {
+@include rwd(desktop) {
   .createBox {
     .createContent {
       .createFrame {
-        width: 50%;
+        width: 30%;
+      }
+    }
+  }
+}
+@media screen and (max-width: 977px) {
+  .createBox {
+    .createContent {
+      .createFrame {
+        width: 35%;
+      }
+    }
+  }
+}
+
+@include rwd(mobile) {
+  .createBox {
+    .createContent {
+      .createFrame {
+        width: 100%;
       }
     }
   }

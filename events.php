@@ -104,7 +104,7 @@ try {
   <link rel="stylesheet" href="css/reset.css" />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="sass/style.css" />
-  <title>收集友誼</title>
+  <title>收集友誼 - 揪團活動</title>
 </head>
 
 <body>
