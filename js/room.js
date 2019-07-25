@@ -278,8 +278,8 @@ $(document).ready(function() {
       onrendered: function(canvas) {
         canvas.setAttribute("id", "thecanvas"); //添加?性
         document.body.appendChild(canvas);
-        // canvas.style.display="none";
-        alert("Hi");
+        canvas.style.display = "none";
+        // alert("Hi");
 
         // uploadImage();
       },
