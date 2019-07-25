@@ -436,7 +436,7 @@ function opacitySlider() {
   });
 }
 
-window.addEventListener("load", function () {
+$(document).ready(function(){
   chooseFriend();
   collapseChatGroup();
   collapseNotifications();
@@ -449,21 +449,7 @@ window.addEventListener("load", function () {
   animation();
   chatGroupButtonHover();
   opacitySlider();
-  // keyBoardNoScroll();
-  // const xhr = new XMLHttpRequest();
-  // xhr.onload = function() {
-  //   if (xhr.status == 200) {
-  //     document.getElementById("myRole").src = xhr.responseText;
-  //     console.log(xhr.responseText);
-  //   } else {
-  //     alert(xhr.status);
-  //   }
-  // };
-
-  // const url = "getRoleBack.php";
-  // xhr.open("get", url, true);
-  // xhr.send(null);
-});
+})
 
 window.addEventListener("mousemove", function (e) {
   // moveScene(e);
