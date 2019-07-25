@@ -878,7 +878,7 @@
             <label for="create_mem_gender">性別</label>
             <select name="mem_gender" id="create_mem_gender">
               <option value="M">男</option>
-              <option value="L">女</option>
+              <option value="F">女</option>
             </select>
             <!-- <input type="text" name="mem_gender" id="create_mem_gender" /> -->
           </div>

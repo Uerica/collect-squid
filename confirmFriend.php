@@ -1,4 +1,5 @@
 <?php
+    sesstion_start();
     header('Content-Type: application/json');
     $errMsg = '';
     $mem_name = $_REQUEST["mem_name"];
