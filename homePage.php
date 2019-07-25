@@ -616,7 +616,7 @@
 
             <div class="chatWords">
                 <input type="text" id="chatInput" class="chatInput">
-                <button type="button" id="chatSubmit" class="chatSubmit">送出</button>
+                <button type="submit" id="chatSubmit" class="chatSubmit">送出</button>
                 <div class="clearfix"></div>
             </div>
         </div>

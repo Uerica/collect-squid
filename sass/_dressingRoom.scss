@@ -494,11 +494,12 @@ header {
     }
     .squidArea {
       // padding: 7% 3% 0 3%;
-      width: 20%;
+      width: 19%;
       text-align: center;
       #confirmDressing {
         width: auto;
-        margin-bottom: 40%;
+        margin-bottom: 0%;
+        left: 0;
       }
     }
     .clothesArea {
@@ -506,6 +507,22 @@ header {
     }
     h3 {
       margin: 1% 0 3%;
+    }
+  }
+}
+
+@include rwd(mobile) {
+  .dressingRoom {
+    .squidArea {
+      #confirmDressing {
+        left: 70%;
+        top: 20px;
+      }
+      .dressingZone {
+        position: relative;
+        right: 0%;
+        top: 20%;
+      }
     }
   }
 }
