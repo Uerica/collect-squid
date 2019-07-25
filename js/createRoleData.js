@@ -72,39 +72,6 @@ $(".createRoleBtn").click(function() {
   const nameURL = `checkName.php?mem_name=${mem_name}`;
   nameXHR.open("get", nameURL, true);
   nameXHR.send(null);
-
-  // checkEmailRepeat();
-  // 驗證信箱有沒有重複
-  // const checkXHR = new XMLHttpRequest();
-  // checkXHR.onload = function() {
-  //   if (checkXHR.status == 200) {
-  //     if (checkXHR.responseText == "exist") {
-  //       alert("此信箱已用過");
-  //       return;
-  //     } else {
-  //       console.log(checkXHR.responseText);
-  //       sendData(
-  //         mem_name,
-  //         mem_pwd,
-  //         mem_email,
-  //         mem_lv,
-  //         highest_lv,
-  //         squid_qty,
-  //         mem_gender,
-  //         mem_dob,
-  //         mem_sign,
-  //         mem_avatar,
-  //         mem_status
-  //       );
-  //     }
-  //   } else {
-  //     alert(checkXHR.status);
-  //     return;
-  //   }
-  // };
-  // const checkURL = `checkEmail.php?email=${mem_email}`;
-  // checkXHR.open("get", checkURL, true);
-  // checkXHR.send(null);
 });
 
 // 取得星座
@@ -223,6 +190,7 @@ function sendGraph() {
         xhr.onload = function() {
           if (xhr.status == 200) {
             console.log(xhr.responseText);
+            alert("創角成功");
             setTimeout(sendGraphMoving, 10);
           } else {
             alert(xhr.status);
