@@ -830,6 +830,12 @@ img {
   &_friendStatus {
     width: 100%;
     text-align: left;
+    display: inline-block;
+    padding: 1em 1em;
+    background-color: #e6e6e6;
+    border-bottom: 1px double black;
+    color: rgba(0,0,0,0.8);
+    cursor: default;
   }
   // &_onlineFriend {
   //   // background-color: #ffa;
@@ -848,7 +854,11 @@ img {
     justify-content: space-between;
     align-items: center;
     padding: 2% 1.2% 2% 4.2%;
-    border-bottom: 2px solid $boxColor;
+    // border-bottom: 1px solid $boxColor;
+
+    &:hover {
+      background-color: #ffdab1;
+    }
     .friendName,
     .connectStatus,
     .roomVisit,

@@ -33,7 +33,7 @@
           $noti = $pdo->prepare($sqlNoti);
           $noti->execute();
           $notiRows = $noti->fetchAll(PDO::FETCH_ASSOC);
-          $nRows = count($notiRows);
+          // $nRows = count($notiRows);
 
 
           
@@ -352,8 +352,8 @@
                     <!-- 上線的好友 -->
                     <li class="friendList_onlineFriend">
                         <!-- 好友類型(online, offline, requested) -->
-                        <button
-                            class="friendList_friendStatus button">在線好友({{online_friends().length}}/{{friends.length}})</button>
+                        <span
+                            class="friendList_friendStatus">在線好友({{online_friends().length}}/{{friends.length}})</span>
 
                         <!-- 好友01 每個 friendList_friend 是一位好友-->
                         <!-- Rou:將有上線的好友跑一遍,如果有抓到產生此區塊 -->
@@ -394,8 +394,8 @@
 
                     <!-- 離線的好友 -->
                     <li class="friendList_offlineFriend">
-                        <button
-                            class="friendList_friendStatus button">離線好友({{offline_friends().length}}/{{friends.length}})</button>
+                        <span
+                            class="friendList_friendStatus">離線好友({{offline_friends().length}}/{{friends.length}})</span>
 
                         <!-- Rou:將離線好友跑一遍,如果有抓到產生此區塊 -->
                         <div class="friendList_friend" v-for="friend in offline_friends()">
@@ -431,7 +431,7 @@
 
                     <!-- 好友邀請中 -->
                     <li class="friendList_requestedFriend">
-                        <button class="friendList_friendStatus button">好友邀請中</button>
+                        <span class="friendList_friendStatus">好友邀請中</span>
                         <div class="friendList_friend" v-for="friend in pending_friends">
                             <div class="friendInfo">
                                 <div class="avatar">
@@ -460,7 +460,7 @@
                     
                     <!-- waiting好友agree中 -->
                     <li class="friendList_waitingFriend">
-                        <button class="friendList_friendStatus button">等待好友同意中</button>
+                        <span class="friendList_friendStatus">等待好友同意中</span>
                         <div class="friendList_friend" v-for="friend in waiting_friends">
                             <div class="friendInfo">
                                 <div class="avatar">
@@ -529,7 +529,7 @@
   <div class="common_notifications disabledScrollOnHover">
       <div class="notifications_actionBox">
           <button class="button button-notifications">
-              <span class="notifications_unread"><?php echo $nRows; ?></span>
+              <span class="notifications_unread"><?php echo 0; ?></span>
               <img src="imgs/homePage/icon/notice.png" alt="通知按鈕圖片">
               <span>通知</span>
           </button>
@@ -733,6 +733,7 @@
                   <?php foreach ($allMemberRows as $i=>$allMemberRow) { 
                     // 排行榜顯示
                     $friendNo = $allMemberRow['mem_no'];
+                    $friendName = $allMemberRow['mem_name'];
                     $leaderBoardClassname = 'leaderBoard_showcase showcase-';
                     $medalImagePath = 'imgs/homePage/leaderBoard/medal_';
                     switch($i) {
@@ -820,7 +821,7 @@
                       }
                     } 
                   ?>
-                    <div class="<?php echo $leaderBoardClassname; ?>" data-memno="<?php echo $friendNo; ?>">
+                    <div class="<?php echo $leaderBoardClassname; ?>" data-memname="<?php echo $friendName; ?>">
                         <div class="leaderBoard_medal">
                           <img src="<?php echo $medalImagePath; ?>" alt="排行榜排名獎牌">
                         </div>
@@ -1314,6 +1315,7 @@
   <script src="js/leaderBoard.js"></script>
   <script src="js/addFriend.js"></script>
   <script src="js/leaderBoardAddFriend.js"></script>
+  <script src="js/leaderBoardVisitRoom.js"></script>
   <script src="js/chat.js"></script>
   <script src="js/movingAction.js"></script>
   <script>
