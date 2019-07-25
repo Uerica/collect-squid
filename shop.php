@@ -2,7 +2,7 @@
   ob_start();
   session_start();
   if(!isset($_SESSION["mem_name"])||($_SESSION["mem_name"] == "")){
-      header("Location: /index.php");
+      header("Location: /homePage.php");
       die();
   } else {
       $mem_no = $_SESSION["mem_no"];
@@ -102,7 +102,7 @@ try {
                                 </a>
                             </li>
                             <li class="logo">
-                                <a href="index.php">
+                                <a href="homePage.php">
                                     <img src="imgs/homePage/logo.png" alt="尋找友誼網站LOGO">
                                     <span>尋找友誼</span>
                                 </a>
@@ -167,7 +167,7 @@ try {
                         </a>
                     </li>
                     <li class="logo hvr-pulse-grow nav_logo">
-                        <a href="index.php">
+                        <a href="homePage.php">
                             <img src="imgs/homePage/logo.png" alt="尋找友誼網站LOGO">
                             <span>尋找友誼</span>
                         </a>
@@ -253,7 +253,7 @@ try {
                                                 echo "皇族階級";
                                             }
                                             ?>
-                                        </span>才能購買<br>前往加入<a href="index.php">認識更多好友</a></span>
+                                        </span>才能購買<br>前往加入<a href="homePage.php">認識更多好友</a></span>
                                 </div>
                                 <div class="item_title">
                                     <h3><?php echo $bedRow->furn_name ?></h3>
@@ -322,7 +322,7 @@ try {
                                                 echo "皇族階級";
                                             }
                                             ?>
-                                        </span>才能購買<br>前往加入<a href="index.php">認識更多好友</a></span>
+                                        </span>才能購買<br>前往加入<a href="homePage.php">認識更多好友</a></span>
                                 </div>
                                 <div class="item_title">
                                     <h3><?php echo $chairRow->furn_name ?></h3>
@@ -390,7 +390,7 @@ try {
                                                 echo "皇族階級";
                                             }
                                             ?>
-                                        </span>才能購買<br>前往加入<a href="index.php">認識更多好友</a></span>
+                                        </span>才能購買<br>前往加入<a href="homePage.php">認識更多好友</a></span>
                                 </div>
                                 <div class="item_title">
                                     <h3><?php echo $tableRow->furn_name ?></h3>

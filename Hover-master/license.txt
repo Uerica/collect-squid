@@ -1,1 +1,0 @@
-INSERT INTO `member`(`mem_no`, `style_no`, `mem_name`, `mem_pwd`, `mem_email`, `mem_lv`, `highest_lv`, `squid_qty`, `mem_gender`, `mem_dob`, `mem_sign`, `mem_avatar`, `skin`, `poster_img_url`, `mem_intro`) VALUES (1,'img/createBox/myRole.png','¾{³½³n³n',12345,'softsoft@gmail.com',1,1,1000,'M',[value-12],[value-13],[value-14],[value-15],[value-16],[value-17])

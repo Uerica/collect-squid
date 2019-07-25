@@ -2,7 +2,7 @@
   ob_start();
   session_start();
   if(!isset($_SESSION["mem_name"])||($_SESSION["mem_name"] == "")){
-      header("Location: /index.php");
+      header("Location: /homePage.php");
       die();
   } else {
       $mem_no = $_SESSION["mem_no"];
@@ -112,7 +112,7 @@
                               </a>
                           </li>
                           <li class="logo">
-                              <a href="index.php">
+                              <a href="homePage.php">
                                   <img src="imgs/homePage/logo.png" alt="尋找友誼網站LOGO">
                                   <span>尋找友誼</span>
                               </a>
@@ -177,7 +177,7 @@
                       </a>
                   </li>
                   <li class="logo hvr-pulse-grow nav_logo">
-                      <a href="index.php">
+                      <a href="homePage.php">
                           <img src="imgs/homePage/logo.png" alt="尋找友誼網站LOGO">
                           <span>尋找友誼</span>
                       </a>
