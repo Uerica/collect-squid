@@ -6,8 +6,10 @@ let r0 = {
   x: 0,
   y: 0,
   w: map.width(),
-  h: map.height()
+  h: map.height() + 80
 };
+
+console.log(r0.w, r0.h);
 
 let i = 0;
 function moveSquid(e) {
@@ -183,7 +185,7 @@ function moveSquid(e) {
       (r1.x > r0.x - r1.w &&
         r1.x < r0.x + r0.w &&
         r1.y + 0 > r0.y + r0.h - r1.h &&
-        r1.y < r0.y + r1.h) ||
+        r1.y < r0.y + r0.h) ||
       (r2.x > r1.x - r2.w &&
         r2.x < r1.x + r1.w &&
         r2.y + 0 > r1.y + r1.h - r2.h &&
