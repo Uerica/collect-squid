@@ -270,7 +270,7 @@ var chat_app = new Vue({
       };
     
       const mem_name = "上帝94狂";
-      const mem_pwd = "999";
+      const mem_pwd = "1111";
       const url = `login.php?mem_name=${mem_name}&mem_pwd=${mem_pwd}`;
       xhr.open("get", url, true);
       xhr.send(null);
