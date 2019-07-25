@@ -306,11 +306,11 @@ function drawingClothes() {
   drawingCanvas.addEventListener("mousemove", draw);
 
   document.getElementById("clearAll").addEventListener("click", () => {
-    context.clearRect(0, 0, drawingCanvas.width, drawingCanvas.height);
+    drawingCtx.clearRect(0, 0, drawingCanvas.width, drawingCanvas.height);
     let whiteShirt = new Image();
     whiteShirt.src = "imgs/dressingRoom/whiteShirt.png";
     whiteShirt.addEventListener("load", function() {
-      context.drawImage(
+      drawingCtx.drawImage(
         whiteShirt,
         25,
         25,
@@ -334,7 +334,7 @@ function saveImg() {
       if (xhr.responseText == "error") {
         alert("Error");
       } else {
-        alert("Successfully uploaded");
+        // alert("Successfully uploaded");
       }
     } else {
       alert(xhr.status);
@@ -358,7 +358,7 @@ function saveDressing() {
       if (xhr.responseText == "error") {
         alert("Error");
       } else {
-        alert("Successfully uploaded");
+        alert("上傳成功");
         // $_SESSION["dressed_no"] = xhr.responseText;
       }
     } else {
