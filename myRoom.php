@@ -439,7 +439,7 @@
                         $chairCount++;
                     ?>
                         <div class="toMall swiper-slide">
-                            <a href="javascript:;s">
+                            <a href="shop.php">
                                 <img src="images/cart.png">
                             </a>
                         </div>
@@ -480,7 +480,7 @@
                         $deskCount++;
                     ?>
                         <div class="toMall swiper-slide">
-                            <a href="#">
+                            <a href="shop.php">
                                 <img src="images/cart.png">
                             </a>
                         </div>
