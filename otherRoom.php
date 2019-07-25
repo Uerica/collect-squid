@@ -301,7 +301,7 @@
             </div>
             <div class="middleWall">
                 <div class="picUpload"> 
-                    <img id="picUploadImg">
+                    <img id="picUploadImg" src="<?php echo $otherRow["poster_img_url"]; ?>">
                     <a href="#" id="msgBoard" class="messageBoard">
                         <span>留言板</span><br>
                         <img src="images/messageBoard.png">
