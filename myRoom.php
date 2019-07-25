@@ -114,9 +114,9 @@
         $usingBed = $myUsingBed->fetch(PDO::FETCH_ASSOC);
 
     } catch(PDOException $e) {
-        $errMsg .= $e->getMessage()."<br>";
-        $errMsg .= $e->getLine()."<br>";
-        echo $errMsg;
+        // $errMsg .= $e->getMessage()."<br>";
+        // $errMsg .= $e->getLine()."<br>";
+        // echo $errMsg;
     }
 ?>
 

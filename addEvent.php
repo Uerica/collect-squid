@@ -1,6 +1,7 @@
 <?php
+ob_start();
 session_start();
-$errMsg = "";
+require_once('connectSquid.php');
 try {
     $dns = "mysql:host=sql.uerica.com;port=3307;dbname=dd101g2;charset=utf8";
     $user = "dd101g2";
@@ -70,7 +71,7 @@ try {
         }
     }
 } catch (PDOException $e) {
-    echo "錯誤 : ", $e->getMessage(), "<br>";
-    echo "行號 : ", $e->getLine(), "<br>";
+    // echo "錯誤 : ", $e->getMessage(), "<br>";
+    // echo "行號 : ", $e->getLine(), "<br>";
 }
 ?>

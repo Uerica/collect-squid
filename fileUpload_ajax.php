@@ -27,16 +27,16 @@ switch($_FILES["upFile"]["error"]){
 	    }
 		break;
 	case UPLOAD_ERR_INI_SIZE:
-		echo "上傳檔案太大, 不可超過", ini_get("upload_max_filesize"), "<br>";
+		echo "上傳檔案太大, 不可超過", ini_get("upload_max_filesize");
 		break;
 	case UPLOAD_ERR_FORM_SIZE:
-	echo "上傳檔案太大, 不可超過", $_POST["MAX_FILE_SIZE"], "<br>";
+	echo "上傳檔案太大, 不可超過", $_POST["MAX_FILE_SIZE"];
 		break;
 	case UPLOAD_ERR_PARTIAL:
-		echo "上傳檔案不完整<br>";
+		echo "上傳檔案不完整";
 		break;
 	case UPLOAD_ERR_NO_FILE:
-		echo "没有上傳檔案<br>";
+		echo "没有上傳檔案";
 		break;		
 }
 ?>

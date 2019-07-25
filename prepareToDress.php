@@ -14,8 +14,8 @@
         $memRow = $member->fetch(PDO::FETCH_ASSOC);
         echo $memRow["style_no"];
     } catch (PDOException $e) {
-        $errMsg .= $e->getMessage()."<br>";
-        $errMsg .= $e->getLine()."<br>";
-        echo $errMsg;
+        // $errMsg .= $e->getMessage()."<br>";
+        // $errMsg .= $e->getLine()."<br>";
+        // echo $errMsg;
     }
 ?>

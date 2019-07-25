@@ -46,8 +46,8 @@
         $pointFurn->execute();
         echo "更換成功";
     } catch (PDOException $e) {
-        $errMsg .= $e->getMessage()."<br>";
-        $errMsg .= $e->getLine()."<br>";
-        echo $errMsg;
+        // $errMsg .= $e->getMessage()."<br>";
+        // $errMsg .= $e->getLine()."<br>";
+        // echo $errMsg;
     }
 ?>

@@ -1,11 +1,8 @@
 <?php
+ob_start();
 session_start();
+require_once('connectSquid.php');
 try {
-    $dns = "mysql:host=sql.uerica.com;port=3307;dbname=dd101g2;charset=utf8";
-    $user = "dd101g2";
-    $psw = "dd101g2";
-    $options = array(PDO::ATTR_CASE => PDO::CASE_NATURAL, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
-    $pdo = new PDO($dns, $user, $psw, $options);
 
     $mem_no = $_SESSION["mem_no"]; //from session
 
@@ -45,7 +42,7 @@ try {
         echo "購買";
     }
 } catch (PDOException $e) {
-    echo "錯誤 : ", $e->getMessage(), "<br>";
-    echo "行號 : ", $e->getLine(), "<br>";
+    // echo "錯誤 : ", $e->getMessage(), "<br>";
+    // echo "行號 : ", $e->getLine(), "<br>";
 }
 ?>

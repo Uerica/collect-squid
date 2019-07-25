@@ -16,14 +16,14 @@
 <?php
 $errMsg = "";
 try {
-    require_once("connectDB.php");
+    require_once("connectSquid.php");
 
     $sql = "SELECT * from member";  //...............
     $products = $pdo->query($sql);
     $prodRows = $products->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
-    echo "錯誤 : ", $e->getMessage(), "<br>";
-    echo "行號 : ", $e->getLine(), "<br>";
+    // echo "錯誤 : ", $e->getMessage(), "<br>";
+    // echo "行號 : ", $e->getLine(), "<br>";
 }
 
 ?>
@@ -49,7 +49,7 @@ try {
     <?php
     $errMsg = "";
     try {
-        require_once("connectDB.php");
+        require_once("connectSquid.php");
 
         $sql = "select * from member where mem_no = :mem_no";
         $members = $pdo->prepare($sql);
@@ -61,8 +61,8 @@ try {
             $memberArr = $members->fetchAll();
         }
     } catch (PDOException $e) {
-        echo "錯誤 : ", $e->getMessage(), "<br>";
-        echo "行號 : ", $e->getLine(), "<br>";
+        // echo "錯誤 : ", $e->getMessage(), "<br>";
+        // echo "行號 : ", $e->getLine(), "<br>";
     }
 
     ?>
@@ -516,7 +516,7 @@ try {
             <?php
             $errMsg = "";
             try {
-                require_once("connectDB.php");
+                require_once("connectSquid.php");
 
                 $sql = "select * from board_comment where cmt_cnt=:cmt_cnt";
                 $msgRecords = $pdo->prepare($sql);
@@ -588,7 +588,7 @@ try {
             <?php
             $errMsg = "";
             try {
-                require_once("connectDB.php");
+                require_once("connectSquid.php");
 
                 $sql = "select * from event where evt_name=:evt_name";
                 $grpRecords = $pdo->prepare($sql);
@@ -735,7 +735,7 @@ try {
                 <?php
                 $errMsg = "";
                 try {
-                    require_once("connectDB.php");
+                    require_once("connectSquid.php");
 
                     $sql = "select * from board_comment where cmt_cnt=:cmt_cnt";
                     $msgRecords = $pdo->prepare($sql);
@@ -844,7 +844,7 @@ try {
                 <?php
                 $errMsg = "";
                 try {
-                    require_once("connectDB.php");
+                    require_once("connectSquid.php");
 
                     $sql = "select * from event where evt_name=:evt_name";
                     $grpRecords = $pdo->prepare($sql);

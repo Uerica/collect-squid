@@ -24,10 +24,8 @@ try {
 
     echo $evt_no;
 } catch(PDOException $e) {
-    $errMsg .= $e->getMessage()."<br>";
-    $errMsg .= $e->getLine()."<br>";
-    echo $errMsg;
-    // echo "錯誤 : ", $e->getMessage(), "<br>";
-    // echo "行號 : ", $e->getLine(), "<br>";
+    // $errMsg .= $e->getMessage()."<br>";
+    // $errMsg .= $e->getLine()."<br>";
+    // echo $errMsg;
 }
 ?>

@@ -12,8 +12,8 @@
         $deleteCmt->execute();
         echo "刪除成功";
     } catch(PDOException $e) {
-        $errMsg .= $e->getMessage()."<br>";
-        $errMsg .= $e->getLine()."<br>";
-        echo $errMsg;
+        // $errMsg .= $e->getMessage()."<br>";
+        // $errMsg .= $e->getLine()."<br>";
+        // echo $errMsg;
     }
 ?>
