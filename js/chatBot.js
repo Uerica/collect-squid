@@ -6,6 +6,8 @@ document.getElementById("chatSubmit").onclick = getAns;//輸入文字
 let questionTags = document.getElementsByClassName("questionTag");//關鍵字
 for( let i=0; i<questionTags.length; i++){
     questionTags[i].onclick = getAns2;
+
+    
 }
 })
 
@@ -17,31 +19,6 @@ xhr.onload = function(){
         if( xhr.responseText == "notFound"){
             alert('目前機器人沒有此答案, 請輸入關鍵字');
         }else{
-            // //chatContainer
-            // let chatBotBox = document.getElementById("chatContainer");
-            // let chatContainer = document.querySelector(".chatContainer");
-            // let chatBtn = document.querySelector(".chatButton");
-            // let newChat_A = chat_A.cloneNode(true);
-            // newChat_A.style.display = "";
-            // newChat_A.querySelector(".chat_A p").innerHTML = xhr.responseText;
-            // chatBotBox.insertBefore(newChat_A, chatBtn);
-            // // document.getElementById("chatInput").value="";
-
-
-            // //讓輸出的內容出現
-            // let newChat_Q = chat_Q.cloneNode(true);
-            // newChat_Q.style.display = "";
-            // newChat_Q.querySelector(".chat_Q p").innerHTML = xhr.responseText;
-            // chatBotBox.insertBefore(newChat_Q, chatBtn);
-
-            // var clearfixDiv = document.createElement("div"); //clear:both用
-            // clearfixDiv.setAttribute("class","clearfix"); //clear:both用
-            // document.getElementById('chatContainer').appendChild(newQ);
-            // document.getElementById('chatContainer').appendChild(clearfixDiv); //clear:both用
-
-
-
-
             //-------------------------------------Tr.
             let chatBotBox = document.getElementById("chatContainer");
             let chatContainer = document.querySelector(".chatContainer");
@@ -88,6 +65,7 @@ xhr.onload = function(){
         alert(xhr.status);
     };
 };
+
 
 let url = "getAns.php?type=tag&keyword=" + e.target.innerText;//??
 xhr.open("get",url,true);

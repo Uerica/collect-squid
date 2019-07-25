@@ -62,7 +62,7 @@ class MyChat implements MessageComponentInterface {
                     $this->msgToAll($msg);
                 }else if($chat_type == 'USER'){
                     $chat_to = $json_msg['chat_to']; //要傳給哪個user的user_id
-                    $this->msgToUser($from, $chat_to, $msg);
+                    $this->msgToUser($from, $chat_to, $msg, true);
                 }
                 break;
             case "GET_ONLINE_USERS":
@@ -80,6 +80,13 @@ class MyChat implements MessageComponentInterface {
                 // 去掉重覆的人
                 $resp_obj['users'] = array_values(array_unique($resp_obj['users']));
                 $this->msgBack($from, json_encode($resp_obj));
+                break;
+            case "REFRESH":
+                // 通知畫面更新
+                $refresh_type = $json_msg['refresh_type'];
+                echo "使用者:[$user_id] 發送更新 類型:[$refresh_type] 對象:[$refresh_to]\r\n";
+                $refresh_to = $json_msg['refresh_to']; //要傳給哪個user的user_id
+                $this->msgToUser($from, $refresh_to, $msg, false);
                 break;
         }
     }
@@ -142,7 +149,7 @@ class MyChat implements MessageComponentInterface {
      * 把訊息傳給特定的人
      * (需考慮同個user_id可能同時有多個connection)
      */
-    public function msgToUser(ConnectionInterface $from, String $to_user_id, String $msg) {
+    public function msgToUser(ConnectionInterface $from, String $to_user_id, String $msg, bool $alsoSendBack) {
         $user_id = $this->clients[$from];
         foreach ($this->clients as $client) {
             // 所有的clients都找一遍，只要user_id是一樣的，通通傳
@@ -151,7 +158,9 @@ class MyChat implements MessageComponentInterface {
                 $client->send($msg);
             }
         }
-        $from->send($msg);
+        if($alsoSendBack){
+            $from->send($msg);
+        }
     }
 }
 

@@ -40,6 +40,7 @@ var chat_app = new Vue({
       xhr.onload = () => {
           if (xhr.status == 200) {
               console.log('addFriend OK');
+              refresh_to_someone(this.user_id, friend_name, 'friend');
           } else {
               console.error(xhr.responseText);
           }
@@ -54,6 +55,7 @@ var chat_app = new Vue({
       xhr.onload = () => {
           if (xhr.status == 200) {
               console.log('confirmFriend OK');
+              refresh_to_someone(this.user_id, friend_name, 'friend');
               chat_app.refresh_friends();
           } else {
               console.error(xhr.responseText);
@@ -69,6 +71,7 @@ var chat_app = new Vue({
       xhr.onload = () => {
           if (xhr.status == 200) {
               console.log('delFriend OK');
+              refresh_to_someone(this.user_id, friend_name, 'friend');
               chat_app.refresh_friends();
           } else {
               console.error(xhr.responseText);
@@ -122,10 +125,12 @@ var chat_app = new Vue({
       this.mark_read_messages_from_someone(who);
     },
     chat_send: function () {
-      if (this.chat_to_all == true) {
-        chat_to_all(this.user_id, this.chat_send_text);
-      } else {
-        chat_to_someone(this.user_id, this.chat_to_who, this.chat_send_text);
+      if (this.chat_send_text.length > 0) {
+        if (this.chat_to_all == true) {
+          chat_to_all(this.user_id, this.chat_send_text);
+        } else {
+          chat_to_someone(this.user_id, this.chat_to_who, this.chat_send_text);
+        }
       }
       this.chat_send_text = "";
     },
@@ -281,8 +286,16 @@ var chat_app = new Vue({
         top : 100 + Math.random() * (innerHeight - 300) + 'px',
         left: Math.random() * (innerWidth - 200) + 'px'
       };
+    },
+    scrollToEnd: function() {    	
+      var container = this.$el.querySelector(".chatRoom_main");
+      container.scrollTop = container.scrollHeight;
     }
-  }
+  },
+  updated: function () {
+    //scroll down logic here
+    this.scrollToEnd();
+  } 
 });
 var onMessageListener = function (e) {
   // 收到server傳過來的訊息
@@ -326,7 +339,16 @@ var onMessageListener = function (e) {
       console.log('有人上線了', resp_obj.user_id);
       chat_app.user_online(resp_obj.user_id);
       break;
-
+    case 'REFRESH':
+      console.log('畫面需更新', resp_obj.refresh_type);
+      switch (resp_obj.refresh_type) {
+        case 'friend':
+          chat_app.refresh_friends();
+          break;
+        default:
+          console.error('不認得的refresh_type', resp_obj.refresh_type);
+      }
+      break;
     default:
       console.error('收到不認得的msg_type', resp_obj);
   }
@@ -412,6 +434,19 @@ function chat_to_all(user_id, msg) {
         "chat_type": "ALL",
         "chat_time": new Date(),
         "chat_msg": msg
+      }
+    )
+  );
+}
+function refresh_to_someone(user_id, refresh_to, refresh_type) {
+  conn_chat.send(
+    JSON.stringify(
+      {
+        "msg_type": "REFRESH",
+        "user_id": user_id,
+        "refresh_to": refresh_to,
+        "refresh_type": refresh_type,
+        "refresh_time": new Date()
       }
     )
   );

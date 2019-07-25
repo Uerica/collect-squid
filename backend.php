@@ -186,7 +186,7 @@ try {
                     <div class="tab-pane fade show furniture" id="v-pills-furniture" role="tabpanel"
                         aria-labelledby="v-pills-furniture-tab">
                         <div class="input-group mb-3 btn-search">
-                            <input type="text" class="form-control" id="search-furniture" placeholder="傢具名稱"
+                            <input type="text" class="form-control" id="search-furniture" placeholder="傢具編號"
                                 aria-label="Recipient's username" aria-describedby="button-addon2">
                             <div class="input-group-append">
                                 <button class="btn btn-outline-secondary" type="button">搜尋
@@ -283,7 +283,7 @@ try {
                     <div class="tab-pane fade show clothing" id="v-pills-clothing" role="tabpanel"
                         aria-labelledby="v-pills-clothing-tab">
                         <div class="input-group mb-3 btn-search">
-                            <input type="text" class="form-control" id="search-clothing" placeholder="服裝名稱"
+                            <input type="text" class="form-control" id="search-clothing" placeholder="服裝編號"
                                 aria-label="Recipient's username" aria-describedby="button-addon2">
                             <div class="input-group-append">
                                 <button class="btn btn-outline-secondary" type="button">搜尋

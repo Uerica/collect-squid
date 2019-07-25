@@ -45,7 +45,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, minmum-scale=0, maximum-scale=10 initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <!-- <link rel="stylesheet" href="css/normalize.css"> -->
+    <link rel="icon" href="imgs/homePage/logo02.png">
     <link rel="stylesheet" href="css/reset.css">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css'/>
@@ -616,7 +616,7 @@
 
             <div class="chatWords">
                 <input type="text" id="chatInput" class="chatInput">
-                <button type="button" id="chatSubmit" class="chatSubmit">送出</button>
+                <button type="submit" id="chatSubmit" class="chatSubmit">送出</button>
                 <div class="clearfix"></div>
             </div>
         </div>
@@ -878,7 +878,7 @@
             <label for="create_mem_gender">性別</label>
             <select name="mem_gender" id="create_mem_gender">
               <option value="M">男</option>
-              <option value="L">女</option>
+              <option value="F">女</option>
             </select>
             <!-- <input type="text" name="mem_gender" id="create_mem_gender" /> -->
           </div>
