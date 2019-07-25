@@ -196,6 +196,9 @@
     max-width: 1200px;
     margin: auto;
     // background-image: linear-gradient(#c3fcf8 26%, #88c180 25%);
+    @include rwd(mobile) {
+      height: auto;
+    }
   }
   .aboutToCloseEvent {
     animation: hotEvent 10s infinite linear;
@@ -370,6 +373,9 @@
     padding-top: 2%;
     font-size: 18px;
     .bookMarks {
+      @include rwd(mobile) {
+        transform: scale(1.05);
+      }
       &::after {
         content: "";
         display: block;
@@ -408,6 +414,9 @@
       background-color: #fff;
       position: relative;
       z-index: 10;
+      @include rwd(mobile) {
+        transform: translateY(5px);
+      }
       &::-webkit-scrollbar {
         width: 18px;
       }
