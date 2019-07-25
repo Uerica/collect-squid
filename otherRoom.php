@@ -320,7 +320,7 @@
             <div class="rightWall">
                 <div class="roomIntro">
                     <h3><span><?php echo $otherRow["mem_name"] ;?></span>的房間</h3>
-                    <p class="intro">
+                    <p class="intro">  
                         暱稱：<?php echo $otherRow["mem_name"] ;?><br>
                         等級：
                         <?php 
@@ -396,7 +396,7 @@
                 <div class="msgInputArea">
                     <input type="hidden" id="send_mem_no" name="send_mem_no" value="<?php echo $memRow['mem_no']; ?>">
                     <input type="text" class="msgInput">
-                    <span class="textCount">20/50</span>
+                    <!-- <span class="textCount">20/50</span> -->
                     <div class="msgBtn">
                         <input type="hidden" name="send_mem_name" id="send_mem_name" value="<?php echo $memRow["mem_name"] ?>">
                         <input type="hidden" name="rcv_mem_no" id="rcv_mem_no" value="<?php echo $otherRow["mem_no"] ?>">

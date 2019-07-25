@@ -367,7 +367,7 @@
                     <div class="msgInputArea">
                         <input type="hidden" id="talking_mem_no" name="talking_mem_no" value="<?php echo $memRow['mem_no']; ?>">
                         <input type="text" class="msgInput">
-                        <span class="textCount">20/50</span>
+                        <!-- <span class="textCount">20/50</span> -->
                         <div class="msgBtn">
                             <input type="hidden" name="rcv_mem_name" id="rcv_mem_name" value="<?php echo $memRow["mem_name"] ?>">
                             <input type="submit" class="msgSend" value="傳送留言">
