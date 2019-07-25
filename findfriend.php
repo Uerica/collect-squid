@@ -207,7 +207,7 @@
                                     <option value="射手座">射手座</option>
                                     <option value="摩羯座">摩羯座</option>
                                     <option value="水瓶座">水瓶座</option>
-                                    <option value="扣扣看">扣扣看</option>
+                                    <option value="雙魚座">雙魚座</option>
                                     <option value="allsign">星座全選</option>
                                 </select>
                             </div>
