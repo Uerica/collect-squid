@@ -135,7 +135,7 @@
     }
 
     .msgInput {
-      width: 80%;
+      width: 85%;
       height: 40px;
       border: none;
       border-radius: 10px;
@@ -158,7 +158,7 @@
 
     @include rwd(mobile) {
       .msgInput {
-        width: 73%;
+        width: 80%;
       }
 
       .textCount {
@@ -415,10 +415,11 @@
           display: flex;
           flex-flow: row wrap;
           a {
+            font-size: 18px;
             display: inline-block;
             margin-top: 20px;
             margin-right: 10px;
-            padding: 10px 15px;
+            padding: 5px 15px;
             border: 3px solid #f1f1f1;
             border-radius: 20px;
             color: #fff;
@@ -448,10 +449,29 @@
           .intro {
             display: none;
           }
+        }
 
-          // .introMobile{
-          //     display: block;
-          // }
+        a {
+          font-size: 14px;
+          display: inline-block;
+          margin-top: 10px;
+          margin-right: 10px;
+          padding: 10px 15px;
+          border: 3px solid #f1f1f1;
+          border-radius: 20px;
+          color: #fff;
+          background: #fa7979;
+          position: relative;
+          z-index: 20;
+          top: -3px;
+          left: -3px;
+          box-shadow: 3px 3px #e7867e;
+          transition: 0.3s;
+          &:hover {
+            top: 0;
+            left: 0;
+            box-shadow: 0 0 transparent;
+          }
         }
       }
     }
@@ -627,7 +647,7 @@
       top: 45%;
       left: 10%;
       width: 70%;
-      z-index: 52;
+      z-index: 10;
 
       img {
         height: auto;
