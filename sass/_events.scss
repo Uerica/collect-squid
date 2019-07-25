@@ -1,12 +1,11 @@
 @import "public";
 @import "mixin";
 
-
-.raiseBtnWrapper{
+.raiseBtnWrapper {
   padding: 15px;
 }
-#popEvt{
-  border :10px solid #98E0C8;
+#popEvt {
+  border: 10px solid #98e0c8;
 }
 
 .events {
@@ -401,7 +400,7 @@
       }
     }
     .eventDescs {
-      max-height: 420px;
+      max-height: 350px;
       overflow: auto;
       padding: 3% 0 2.5%;
       border: 10px solid #6bbbb6;
@@ -498,7 +497,7 @@
     width: 35%;
     padding-top: 2%;
     text-align: center;
-    span{
+    span {
       cursor: pointer;
     }
     .head {
@@ -530,7 +529,7 @@
         border-radius: 10px;
         ul {
           padding-bottom: 5%;
-          #myAttendBtn{
+          #myAttendBtn {
             border-radius: 10px 0px 10px 0px;
           }
           li {
@@ -975,7 +974,6 @@
     }
   }
 }
-
 
 @media screen and (max-width: 1500px) {
   .events {
