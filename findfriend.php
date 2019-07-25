@@ -359,7 +359,7 @@
             }
             change_profile();
         });
-
+        //加好友
         $("#addFriend").click(function (e){
             var profile = profiles[profile_index];
             if(confirm('是否確認加'+profile.mem_name+'好友?')){
@@ -367,7 +367,13 @@
                 addFriend(mem_name, profile.mem_name);
             }
         });
-
+        //拜訪房間
+        $("#visitRoom").click(function (e){
+            var profile = profiles[profile_index];
+            if(confirm('是否拜訪'+profile.mem_name+'房間')){
+                window.location = `otherRoom.php?other_user=${profile.mem_name}`;
+            }
+        });
         function spin(degree) {
             $(".prizeWheel .pw_body").animate(
                 {
