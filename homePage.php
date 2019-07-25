@@ -143,10 +143,10 @@
                                     <span>虛擬商城</span></a></li>
                             <li><a href="memberCenter.php"> <img src="imgs/homePage/icon/member.png" alt="會員中心icon">
                                     <span>會員中心</span></a></li>
-                            <li><a href="javascript:;"> <img src="imgs/homePage/icon/robot.png" alt="客服機器人_icon">
+                            <!-- <li><a href="javascript:;"> <img src="imgs/homePage/icon/robot.png" alt="客服機器人_icon">
                                     <span>客服機器人</span></a></li>
                             <li><a href="javascript:;"> <img src="imgs/homePage/icon/notice02.png" alt="通知_icon">
-                                    <span>通知</span></a></li>
+                                    <span>通知</span></a></li> -->
                         </nav>
                     </div>
                 </div>
