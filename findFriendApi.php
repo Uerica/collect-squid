@@ -52,7 +52,9 @@
             echo json_encode($resp);
         }else{
             // account or password incorrect
-            echo "[]";
+            echo '<script language="javascript">';
+            echo 'alert("沒有此篩選條件的角色喔～")';  //not showing an alert box.
+            echo '</script>';
         }
 
     } catch(PDOException $e) {
