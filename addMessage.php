@@ -46,8 +46,8 @@
         echo $lastCmtID;
 
     } catch(PDOException $e) {
-        $errMsg .= $e->getMessage()."<br>";
-        $errMsg .= $e->getLine()."<br>";
-        echo $errMsg;
+        // $errMsg .= $e->getMessage()."<br>";
+        // $errMsg .= $e->getLine()."<br>";
+        // echo $errMsg;
     }
 ?>

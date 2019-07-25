@@ -16,14 +16,14 @@
 <?php
 $errMsg = "";
 try {
-    require_once("connectDB.php");
+    require_once("connectSquid.php");
 
     $sql = "SELECT * from member";  //...............
     $products = $pdo->query($sql);
     $prodRows = $products->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
-    echo "錯誤 : ", $e->getMessage(), "<br>";
-    echo "行號 : ", $e->getLine(), "<br>";
+    // echo "錯誤 : ", $e->getMessage(), "<br>";
+    // echo "行號 : ", $e->getLine(), "<br>";
 }
 
 ?>

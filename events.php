@@ -14,14 +14,9 @@
   };
 ?>
 <?php
-$errMsg = "";
 try {
-  $dns = "mysql:host=sql.uerica.com;port=3307;dbname=dd101g2;charset=utf8";
-  $user = "dd101g2";
-  $psw = "dd101g2";
-  $options = array(PDO::ATTR_CASE => PDO::CASE_NATURAL, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
-  $pdo = new PDO($dns, $user, $psw, $options);
-
+  require_once('connectSquid.php');
+  
   // 取得最新的 5 筆活動
   $sql =
     "SELECT * 
@@ -92,8 +87,8 @@ try {
   $myRaise->execute();
 
 } catch (PDOException $e) {
-  echo "錯誤 : ", $e->getMessage(), "<br>";
-  echo "行號 : ", $e->getLine(), "<br>";
+  // echo "錯誤 : ", $e->getMessage(), "<br>";
+  // echo "行號 : ", $e->getLine(), "<br>";
 }
 ?>
 

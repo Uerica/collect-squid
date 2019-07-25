@@ -16,11 +16,7 @@
 <?php
 $errMsg = "";
 try {
-    $dns = "mysql:host=sql.uerica.com;port=3307;dbname=dd101g2;charset=utf8";
-    $user = "dd101g2";
-    $psw = "dd101g2";
-    $options = array(PDO::ATTR_CASE => PDO::CASE_NATURAL, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
-    $pdo = new PDO($dns, $user, $psw, $options);
+    require_once('connectSquid.php');
 
     $sql = "SELECT * FROM product_furniture WHERE furn_type=:furn_type";
 

@@ -15,8 +15,8 @@
             try {
                 $editManager->execute();
             } catch (PDOException $e) {
-                $error['message'] = $e->getMessage();
-                $error['line']=$e->getLine();
+                // $error['message'] = $e->getMessage();
+                // $error['line']=$e->getLine();
             }
 
             break;
@@ -30,8 +30,8 @@
             try {
                 $editManager->execute();
             } catch (PDOException $e) {
-                $error['message'] = $e->getMessage();
-                $error['line']=$e->getLine();
+                // $error['message'] = $e->getMessage();
+                // $error['line']=$e->getLine();
             }
 
             break;
@@ -44,8 +44,8 @@
             try {
                 $editMemberStatus->execute();
             } catch (PDOException $e) {
-                $error['message'] = $e->getMessage();
-                $error['line']=$e->getLine();
+                // $error['message'] = $e->getMessage();
+                // $error['line']=$e->getLine();
             }
 
             break;
@@ -58,8 +58,8 @@
             try {
                 $editFurnStatus->execute();
             } catch (PDOException $e) {
-                $error['message'] = $e->getMessage();
-                $error['line']=$e->getLine();
+                // $error['message'] = $e->getMessage();
+                // $error['line']=$e->getLine();
             }
 
             break;
@@ -73,8 +73,8 @@
             try {
                 $editFurn->execute();
             } catch (PDOException $e) {
-                $error['message'] = $e->getMessage();
-                $error['line']=$e->getLine();
+                // $error['message'] = $e->getMessage();
+                // $error['line']=$e->getLine();
             }
 
             break;
@@ -87,8 +87,8 @@
             try {
                 $editClo->execute();
             } catch (PDOException $e) {
-                $error['message'] = $e->getMessage();
-                $error['line']=$e->getLine();
+                // $error['message'] = $e->getMessage();
+                // $error['line']=$e->getLine();
             }
 
             break;
@@ -101,8 +101,8 @@
             try {
                 $editEvent->execute();
             } catch (PDOException $e) {
-                $error['message'] = $e->getMessage();
-                $error['line']=$e->getLine();
+                // $error['message'] = $e->getMessage();
+                // $error['line']=$e->getLine();
             }
 
             break;

@@ -36,8 +36,8 @@ try {
     $robotKeyword = $pdo->query($getRobot);
     $robotKeywordRows = $robotKeyword->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
-	echo "錯誤 : ", $e -> getMessage(), "<br>";
-	echo "行號 : ", $e -> getLine(), "<br>";
+	// echo "錯誤 : ", $e -> getMessage(), "<br>";
+	// echo "行號 : ", $e -> getLine(), "<br>";
 }
  
 ?> 

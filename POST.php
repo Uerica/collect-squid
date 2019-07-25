@@ -19,8 +19,8 @@
                 $addManager->execute();
                 $latestData['latestId'] = $pdo->lastInsertId();
             } catch (PDOException $e) {
-                $error['message'] = $e->getMessage();
-                $error['line']=$e->getLine();
+                // $error['message'] = $e->getMessage();
+                // $error['line']=$e->getLine();
             }
             break;
         }
@@ -59,8 +59,8 @@
                     // $_SESSION['mng_name'] = '123';
                    }
                } catch (PDOException $e) {
-                   $error['message'] = $e->getMessage();
-                   $error['line']=$e->getLine();
+                //    $error['message'] = $e->getMessage();
+                //    $error['line']=$e->getLine();
                }
 
             break;
