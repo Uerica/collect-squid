@@ -40,6 +40,16 @@
         $comments->bindValue(':rcv_mem_no', $mem_no);
         $comments->execute();
 
+        // 我自己的愛心數量
+        $heartSQL = 
+        "SELECT *
+        FROM heart_record
+        WHERE `rcv_mem_no` = :mem_no";
+        $heart = $pdo->prepare($heartSQL);
+        $heart->bindValue(':mem_no', $mem_no);
+        $heart->execute();
+        $heartCount = $heart->rowCount();
+
         // 我的椅子
         $chairSQL = 
         "SELECT *
@@ -330,7 +340,7 @@
                             </p>
                         <div class="getHeart">
                             <img src="images/getHeart.png">
-                            <span>100</span>
+                            <span><?php echo $heartCount;?></span>
                         </div>
                     </div>
                     
@@ -511,7 +521,7 @@
                         $bedCount++;
                     ?>
                         <div class="toMall swiper-slide">
-                            <a href="#">
+                            <a href="shop.php">
                                 <img src="images/cart.png">
                             </a>
                         </div>
