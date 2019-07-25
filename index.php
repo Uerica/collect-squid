@@ -896,7 +896,7 @@
           </div>
           <div class="inputField">
             <label for="create_mem_pwd">密碼</label
-            ><input type="password" name="mem_pwd" id="create_mem_pwd" placeholder="需包含小寫、大寫和數字"/>
+            ><input type="password" name="mem_pwd" id="create_mem_pwd" placeholder="須至少三個字"/>
           </div>
           <div class="inputField">
             <label for="mem_pwd_checked">確認密碼</label

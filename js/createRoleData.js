@@ -1,6 +1,6 @@
 $(".createRoleBtn").click(function() {
   // html 創角資料
-  //   填入的資料
+  // 填入的資料
   const mem_name = document.getElementById("create_mem_name").value;
   const mem_pwd = document.getElementById("create_mem_pwd").value;
   const mem_pwd_checked = document.getElementById("mem_pwd_checked").value;
@@ -8,7 +8,7 @@ $(".createRoleBtn").click(function() {
   const mem_gender = document.getElementById("create_mem_gender").value;
   const mem_dob = document.getElementById("create_mem_dob").value;
 
-  //   自動給值
+  // 自動給值
   const mem_lv = 1;
   const highest_lv = 1;
   const squid_qty = 1000;
@@ -30,11 +30,7 @@ $(".createRoleBtn").click(function() {
     return;
   }
 
-  // 驗證密碼
-  const cond1 = /([a-z]+)/;
-  const cond2 = /([A-Z]+)/;
-  const cond3 = /([0-9]+)/;
-  if (!(mem_pwd.match(cond1) && mem_pwd.match(cond2) && mem_pwd.match(cond3))) {
+  if (mem_pwd.length <= 3) {
     alert("密碼格式不符");
     return;
   }
@@ -44,16 +40,15 @@ $(".createRoleBtn").click(function() {
     return;
   }
 
-  // 驗證帳號有沒有錯誤
-  const checkXHR = new XMLHttpRequest();
-  checkXHR.onload = function() {
-    if (checkXHR.status == 200) {
-      if (checkXHR.responseText == "exist") {
-        alert("此信箱已用過");
+  // 確認名稱是否重複
+  const nameXHR = new XMLHttpRequest();
+  nameXHR.onload = function() {
+    if (nameXHR.status == 200) {
+      if (nameXHR.responseText == "exist") {
+        alert("此帳號已用過");
         return;
       } else {
-        console.log(checkXHR.responseText);
-        sendData(
+        checkEmailRepeat(
           mem_name,
           mem_pwd,
           mem_email,
@@ -68,13 +63,48 @@ $(".createRoleBtn").click(function() {
         );
       }
     } else {
-      alert(checkXHR.status);
-      return;
+      alert(nameXHR.status);
     }
   };
-  const checkURL = `checkEmail.php?email=${mem_email}`;
-  checkXHR.open("get", checkURL, true);
-  checkXHR.send(null);
+
+  const new_mem_name = $("#create_mem_name").val();
+  console.log(new_mem_name);
+  const nameURL = `checkName.php?mem_name=${mem_name}`;
+  nameXHR.open("get", nameURL, true);
+  nameXHR.send(null);
+
+  // checkEmailRepeat();
+  // 驗證信箱有沒有重複
+  // const checkXHR = new XMLHttpRequest();
+  // checkXHR.onload = function() {
+  //   if (checkXHR.status == 200) {
+  //     if (checkXHR.responseText == "exist") {
+  //       alert("此信箱已用過");
+  //       return;
+  //     } else {
+  //       console.log(checkXHR.responseText);
+  //       sendData(
+  //         mem_name,
+  //         mem_pwd,
+  //         mem_email,
+  //         mem_lv,
+  //         highest_lv,
+  //         squid_qty,
+  //         mem_gender,
+  //         mem_dob,
+  //         mem_sign,
+  //         mem_avatar,
+  //         mem_status
+  //       );
+  //     }
+  //   } else {
+  //     alert(checkXHR.status);
+  //     return;
+  //   }
+  // };
+  // const checkURL = `checkEmail.php?email=${mem_email}`;
+  // checkXHR.open("get", checkURL, true);
+  // checkXHR.send(null);
 });
 
 // 取得星座
@@ -250,4 +280,50 @@ function sendGraphMoving() {
 
   graphXHR.open("POST", "sendRoleData.php", true);
   graphXHR.send(formData);
+}
+
+// 驗證信箱有沒有重複
+function checkEmailRepeat(
+  mem_name,
+  mem_pwd,
+  mem_email,
+  mem_lv,
+  highest_lv,
+  squid_qty,
+  mem_gender,
+  mem_dob,
+  mem_sign,
+  mem_avatar,
+  mem_status
+) {
+  const checkXHR = new XMLHttpRequest();
+  checkXHR.onload = function() {
+    if (checkXHR.status == 200) {
+      if (checkXHR.responseText == "exist") {
+        alert("此信箱已用過");
+        return;
+      } else {
+        console.log(checkXHR.responseText);
+        sendData(
+          mem_name,
+          mem_pwd,
+          mem_email,
+          mem_lv,
+          highest_lv,
+          squid_qty,
+          mem_gender,
+          mem_dob,
+          mem_sign,
+          mem_avatar,
+          mem_status
+        );
+      }
+    } else {
+      alert(checkXHR.status);
+      return;
+    }
+  };
+  const checkURL = `checkEmail.php?email=${mem_email}`;
+  checkXHR.open("get", checkURL, true);
+  checkXHR.send(null);
 }
