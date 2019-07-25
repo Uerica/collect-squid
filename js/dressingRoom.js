@@ -383,7 +383,7 @@ function saveDressingMoving() {
       if (xhr.responseText == "error") {
         alert("Error");
       } else {
-        alert("Successfully uploaded");
+        // alert("Successfully uploaded");
         // $_SESSION["dressed_no"] = xhr.responseText;
       }
     } else {
