@@ -62,10 +62,12 @@ img {
   -webkit-transform: perspective(1px) translateZ(0);
   transform: perspective(1px) translateZ(0);
   -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-          box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
 }
 
-.hvr-pulse-grow:hover, .hvr-pulse-grow:focus, .hvr-pulse-grow:active {
+.hvr-pulse-grow:hover,
+.hvr-pulse-grow:focus,
+.hvr-pulse-grow:active {
   -webkit-animation-name: hvr-pulse-grow;
   animation-name: hvr-pulse-grow;
   -webkit-animation-duration: 0.3s;
@@ -497,26 +499,26 @@ img {
     &:hover .sliderText {
       visibility: visible;
     }
-    input[type=range] {
+    input[type="range"] {
       background-color: transparent;
       height: 20px;
       -webkit-appearance: none;
       margin: 10px 0;
       width: 100%;
     }
-    input[type=range]:focus {
+    input[type="range"]:focus {
       outline: none;
     }
-    input[type=range]::-webkit-slider-runnable-track {
+    input[type="range"]::-webkit-slider-runnable-track {
       width: 100%;
       height: 14px;
       cursor: pointer;
-      box-shadow: 1px 1px 1px #50555C;
-      background: #50555C;
+      box-shadow: 1px 1px 1px #50555c;
+      background: #50555c;
       border-radius: 14px;
       border: 0px solid #000000;
     }
-    input[type=range]::-webkit-slider-thumb {
+    input[type="range"]::-webkit-slider-thumb {
       box-shadow: 0px 0px 0px #000000;
       border: 0px solid #000000;
       height: 20px;
@@ -527,19 +529,19 @@ img {
       -webkit-appearance: none;
       margin-top: -3px;
     }
-    input[type=range]:focus::-webkit-slider-runnable-track {
-      background: #50555C;
+    input[type="range"]:focus::-webkit-slider-runnable-track {
+      background: #50555c;
     }
-    input[type=range]::-moz-range-track {
+    input[type="range"]::-moz-range-track {
       width: 100%;
       height: 14px;
       cursor: pointer;
-      box-shadow: 1px 1px 1px #50555C;
-      background: #50555C;
+      box-shadow: 1px 1px 1px #50555c;
+      background: #50555c;
       border-radius: 14px;
       border: 0px solid #000000;
     }
-    input[type=range]::-moz-range-thumb {
+    input[type="range"]::-moz-range-thumb {
       box-shadow: 0px 0px 0px #000000;
       border: 0px solid #000000;
       height: 20px;
@@ -548,7 +550,7 @@ img {
       background: $white;
       cursor: pointer;
     }
-    input[type=range]::-ms-track {
+    input[type="range"]::-ms-track {
       width: 100%;
       height: 14px;
       cursor: pointer;
@@ -556,19 +558,19 @@ img {
       border-color: transparent;
       color: transparent;
     }
-    input[type=range]::-ms-fill-lower {
-      background: #50555C;
+    input[type="range"]::-ms-fill-lower {
+      background: #50555c;
       border: 0px solid #000000;
       border-radius: 28px;
-      box-shadow: 1px 1px 1px #50555C;
+      box-shadow: 1px 1px 1px #50555c;
     }
-    input[type=range]::-ms-fill-upper {
-      background: #50555C;
+    input[type="range"]::-ms-fill-upper {
+      background: #50555c;
       border: 0px solid #000000;
       border-radius: 28px;
-      box-shadow: 1px 1px 1px #50555C;
+      box-shadow: 1px 1px 1px #50555c;
     }
-    input[type=range]::-ms-thumb {
+    input[type="range"]::-ms-thumb {
       margin-top: 1px;
       box-shadow: 0px 0px 0px #000000;
       border: 0px solid #000000;
@@ -578,11 +580,11 @@ img {
       background: $white;
       cursor: pointer;
     }
-    input[type=range]:focus::-ms-fill-lower {
-      background: #50555C;
+    input[type="range"]:focus::-ms-fill-lower {
+      background: #50555c;
     }
-    input[type=range]:focus::-ms-fill-upper {
-      background: #50555C;
+    input[type="range"]:focus::-ms-fill-upper {
+      background: #50555c;
     }
   }
   &_closeBtn {
@@ -834,7 +836,7 @@ img {
     padding: 1em 1em;
     background-color: #e6e6e6;
     border-bottom: 1px double black;
-    color: rgba(0,0,0,0.8);
+    color: rgba(0, 0, 0, 0.8);
     cursor: default;
   }
   // &_onlineFriend {
@@ -1042,7 +1044,8 @@ img {
       padding: 1em 0;
       background-color: #f96666;
       color: #fffdfd;
-      box-shadow: 0 1px 1.5px 0 rgba(0,0,0,.12), 0 1px 1px 0 rgba(0,0,0,.24);
+      box-shadow: 0 1px 1.5px 0 rgba(0, 0, 0, 0.12),
+        0 1px 1px 0 rgba(0, 0, 0, 0.24);
       @include rwd(desktop) {
         transform: translateY(100%);
         transition: 1s;
@@ -3028,8 +3031,31 @@ $num-particles: 20; //煙的數量
   }
   .otherSquid {
     width: 7%;
+    .onlineFuns {
+      .funIcon {
+        width: 60%;
+        height: auto;
+        img {
+          width: 100%;
+        }
+      }
+      // .goRoom {
+      // }
+      .mute {
+        position: absolute;
+        left: 80%;
+      }
+    }
     .roleName {
       padding: 0;
+    }
+  }
+  .otherSquid:hover {
+    .onlineFuns {
+      .goRoom {
+        position: absolute;
+        left: -40%;
+      }
     }
   }
 }
