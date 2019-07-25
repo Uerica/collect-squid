@@ -127,7 +127,7 @@ try {
                                     <span>找朋友</span></a></li>
                             <li><a href="events.php"> <img src="imgs/homePage/icon/events.png" alt="揪團活動icon">
                                     <span>揪團活動</span></a></li>
-                            <li><a href="shop.php"> <img src="imgs/homePage/icon/mall.png_selected" alt="虛擬商城icon">
+                            <li><a href="shop.php"> <img src="imgs/homePage/icon/mall_selected.png" alt="虛擬商城icon">
                                     <span >虛擬商城</span></a></li>
                             <li><a href="memberCenter.php"> <img src="imgs/homePage/icon/member.png" alt="會員中心icon">
                                     <span>會員中心</span></a></li>

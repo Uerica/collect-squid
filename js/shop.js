@@ -1,19 +1,3 @@
-// 手機選單動畫
-function menuMobileTransform() {
-  $(".menuMobile_link").click(function (e) {
-    e.preventDefault();
-
-    $(".menuMobile_overlay").toggleClass("open");
-    $(".menuMobile").toggleClass("open");
-  });
-}
-
-$(document).ready(function () {
-  menuMobileTransform();
-});
-
-
-
 // 商店頁籤
 $(window).resize(tab);
 $(window).load(tab);

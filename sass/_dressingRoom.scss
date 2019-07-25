@@ -24,6 +24,9 @@ header {
   display: flex;
   padding-left: 1%;
   font-family: "Noto Sans TC", sans-serif;
+  @include rwd(mobile) {
+    justify-content: space-around;
+  }
   ul {
     list-style: none;
     padding: 0 0 0 3%;
@@ -51,6 +54,9 @@ header {
     width: 25%;
     padding: 11% 0 0 1%;
     box-sizing: border-box;
+    @include rwd(mobile) {
+      display: none;
+    }
     .customize {
       text-align: center;
       .paintShirt {
@@ -97,6 +103,9 @@ header {
     box-sizing: border-box;
     position: relative;
     text-align: center;
+    @include rwd(mobile) {
+      padding: 0;
+    }
     #confirmDressing {
       @include btn();
       padding: 1.5% 7% 2%;
@@ -484,10 +493,11 @@ header {
       }
     }
     .squidArea {
-      padding: 7% 3% 0 3%;
+      // padding: 7% 3% 0 3%;
+      width: 20%;
       text-align: center;
       #confirmDressing {
-        width: 90%;
+        width: auto;
         margin-bottom: 40%;
       }
     }
