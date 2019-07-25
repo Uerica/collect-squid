@@ -18,7 +18,7 @@ try {
                 <div class='flexWrapper'>
                     <div class='graph'>
                         <div class='pic'>
-                            <img src='evt_images/$detailContent->evt_cover_url' alt='Detail Pic' />
+                            <img src='$detailContent->evt_cover_url' alt='Detail Pic' />
                         </div>
                         <div class='map'>
                             <iframe src='https://maps.google.com?output=embed&q=$detailContent->evt_place' width='300' height='450' frameborder='0' style='border:0' allowfullscreen></iframe>
