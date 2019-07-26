@@ -1306,7 +1306,6 @@
   <script src="js/rolePosition.js"></script>
   <script src="js/leaderBoard.js"></script>
   <script src="js/addFriend.js"></script>
-  <script src="js/leaderBoardAddFriend.js"></script>
   <script src="js/leaderBoardVisitRoom.js"></script>
   <script src="js/chat.js"></script>
   <script src="js/movingAction.js"></script>
