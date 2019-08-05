@@ -353,7 +353,7 @@ var onMessageListener = function (e) {
 };
 //send() -- chat_app.is_login()
 function initWebsocketServer() {
-  conn_chat = new WebSocket('ws://35.229.227.58/chat');
+  conn_chat = new WebSocket('ws://cs.uerica.com:8080/chat');
   conn_chat.onopen = function (e) {
     console.log('已連到伺服器');
     if(chat_app.is_login()){
