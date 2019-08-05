@@ -1,5 +1,3 @@
-
-
 // 即時聊天
 //vuejs & websocket
 var conn_chat;
@@ -298,8 +296,8 @@ var chat_app = new Vue({
   } 
 });
 var onMessageListener = function (e) {
-  // 收到server傳過來的訊息
-  //console.log("onMessageListener e:",e)裡面好多東西喔~;
+  // 收到server傳過來的訊息 要傳給其他user
+  //console.log("onMessageListener e:",e)//裡面好多東西喔~;
   var resp_obj = JSON.parse(e.data); //字串轉json
   //console.log("回傳的JSON物件",resp_obj);
   console.log("收到訊息，訊息類型", resp_obj.msg_type);
@@ -378,6 +376,8 @@ function initWebsocketServer() {
   };
   conn_chat.onclose = function (e) {
     console.log('已close伺服器');
+    initWebsocketServer();//重新連線
+    
   };
   conn_chat.onmessage = onMessageListener;
 }
@@ -409,6 +409,7 @@ function login(user_id,style_no,mem_lv,mem_avatar,squid_qty) {
     );
   }
 }
+//傳訊息給某個人
 function chat_to_someone(user_id, to, msg) {
   conn_chat.send(
     //將JSON轉為字串
@@ -425,6 +426,7 @@ function chat_to_someone(user_id, to, msg) {
     )
   );
 }
+//傳訊息給所有人
 function chat_to_all(user_id, msg) {
   conn_chat.send(
     JSON.stringify(
