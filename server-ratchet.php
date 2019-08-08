@@ -96,7 +96,7 @@ class MyChat implements MessageComponentInterface {
     public function onClose(ConnectionInterface $conn) {
         $user_id = $this->clients[$conn];
         echo "$user_id 離線\r\n";
-        $this->clients->detach($conn);
+        $this->clients->detach($conn);//移除連線
         // 通知大家有人離線了
         if($user_id != NULL) {
             $msg = array();
@@ -136,6 +136,7 @@ class MyChat implements MessageComponentInterface {
     /**
      * 把訊息傳給所有非自己的人
      */
+    //$msg['msg_type'] = "USER_ONLINE" $msg['user_id'] = $user_id;
     public function msgToOthers(ConnectionInterface $from, String $msg) {
         foreach ($this->clients as $client) {
             if ($from != $client) {

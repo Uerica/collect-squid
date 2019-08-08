@@ -80,7 +80,7 @@ var chat_app = new Vue({
       xhr.send(null);
     },
     user_online: function (user) {
-      this.online_users.push(user);
+      this.online_users.push(user);//收到上線的user 存到data中的online_users
       var xhr = new XMLHttpRequest();
         xhr.onload=function (e){
           if(e.currentTarget.status == 200){
@@ -95,6 +95,7 @@ var chat_app = new Vue({
         var url = "getRole.php?mem_name="+user;
         xhr.open("Get", url, true);
         xhr.send( null );
+        
     },
     is_muted_user: function(user) {
       return this.muted_users.indexOf(user) != -1;
@@ -297,7 +298,7 @@ var chat_app = new Vue({
 });
 var onMessageListener = function (e) {
   // 收到server傳過來的訊息 要傳給其他user
-  //console.log("onMessageListener e:",e)//裡面好多東西喔~;
+  console.log("onMessageListener e:",e)//裡面好多東西喔~;
   var resp_obj = JSON.parse(e.data); //字串轉json
   //console.log("回傳的JSON物件",resp_obj);
   console.log("收到訊息，訊息類型", resp_obj.msg_type);
@@ -392,6 +393,7 @@ function login(user_id,style_no,mem_lv,mem_avatar,squid_qty) {
 
   chat_app.refresh_friends();
 
+  //登入後傳送LOGIN msg_type
   if(conn_chat.readyState === WebSocket.OPEN) {
     conn_chat.send(
       JSON.stringify(
